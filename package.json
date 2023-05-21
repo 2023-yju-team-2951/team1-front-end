@@ -9,12 +9,14 @@
     "bundle": "webpack --mode production",
     "bundle:dev": "webpack --mode development",
     "watch": "nodemon --exec 'yarn bundle:dev' --watch src",
-    "dev": "serve ./public && yarn watch"
+    "dev": "serve ./public | yarn watch"
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",
     "@babel/preset-env": "^7.21.5",
     "babel-loader": "^9.1.2",
+    "nodemon": "^2.0.22",
+    "serve": "^14.2.0",
     "webpack": "^5.83.1",
     "webpack-cli": "^5.1.1"
   }
