@@ -1,13 +1,10 @@
-import Abstract from "./Abstract";
-
-export default class extends Abstract {
+export default class {
   constructor() {
-    super();
+    document.title = 'About';
   }
-
   async getHtml() {
     return `
-      <h1>어바웃 페이지</h1>
-    `;
+      <h1>About</h1>
+    `
   }
 }
