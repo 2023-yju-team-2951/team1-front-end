@@ -1,13 +1,14 @@
-import Abstract from "./Abstract";
+import '../components/Header/Header.js'
 
-export default class extends Abstract {
+export default class {
   constructor() {
-    super();
+    document.title = 'Main';
   }
-
   async getHtml() {
     return `
-      <h1>메인 페이지</h1>
+      <Header-component></Header-component>
+      <h1>Main</h1>
+      <h1>asd</h1>
     `;
   }
 }

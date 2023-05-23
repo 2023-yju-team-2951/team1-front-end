@@ -45,7 +45,7 @@ const router = async () => {
   const view = new match.route.view();
 
   // html을 가져오기
-  document.querySelector('#app').innerHTML = await view.getHtml()
+  document.querySelector('#root').innerHTML = await view.getHtml()
 }
 
 // 뒤로가기나 새로고침을 했을 때 router함수 실행
