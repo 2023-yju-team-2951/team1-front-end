@@ -1,10 +1,11 @@
 import './Header.css';
 
 class Header extends HTMLElement {
-  constructor() {
+  constructor() { 
     super();
     
-    this.innerHTML = `
+    this.innerHTML = 
+    `
     <div class="header">
 
       <div class="header-layout">
