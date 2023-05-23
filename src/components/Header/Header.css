@@ -27,6 +27,8 @@
   float: left;
 }
 .header-layout .search .material-symbols-outlined {
+  position: relative;
+  left: 60px;
   font-size: 50px;
 }
 
