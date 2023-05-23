@@ -5,9 +5,6 @@ class Header extends HTMLElement {
     super();
     
     this.innerHTML = `
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-
     <div class="header">
 
       <div class="header-layout">
