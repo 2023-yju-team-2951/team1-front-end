@@ -6,40 +6,41 @@ class Header extends HTMLElement {
     
     this.innerHTML = 
     `
-    <div class="header">
+    <div class="main">
 
-      <div class="header-layout">
+      <div class="main-body">
 
-        <div class="search">
-          <span class="material-symbols-outlined"> search </span>
+        <div class="header">
+
+          <div class="menu">
+
+            <ul class="list">
+
+              <li class="item">
+
+                <div class="item-div">
+
+                  <div class="photo">
+                    <canvas></canvas>
+                    <span class="img">
+                      <img src="../../../public/assets/image/imyon.jpg" alt="test">
+                    </span>
+                  </div>
+
+                  <div class="name">
+                    <p>이름</p>
+                  </div>
+
+                </div>
+
+              </li>
+
+            </ul>
+
+          </div>
+
         </div>
 
-        <div class="logo">
-          <a href="/" class="nav__link" data-link>
-            <img src="./assets/image/Logo.png" alt="logo">
-          </a>
-        </div>
-
-        <div class="icon">
-          <span class="material-symbols-outlined"> favorite </span>
-          <span class="material-symbols-outlined"> shopping_cart_checkout </span>
-          <span class="material-symbols-outlined"> account_circle </span>
-        </div>
-
-      </div>
-
-      <div class="category">
-        <ul class="category-list">
-          <li>
-          <a href="/men" class="nav__link" data-link>Men</a>
-          </li>
-          <li>
-          <a href="/women" class="nav__link" data-link>Women</a>
-          </li>
-          <li>
-            <a href="/about" class="nav__link" data-link>About us</a>
-          </li>
-        </ul>
       </div>
 
     </div>
@@ -47,4 +48,4 @@ class Header extends HTMLElement {
   }
 }
 
-window.customElements.define('header-component', Header);
+window.customElements.define('Header-component', Header);
