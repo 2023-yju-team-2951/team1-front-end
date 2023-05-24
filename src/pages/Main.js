@@ -1,4 +1,4 @@
-import '../components/Header/Header.js'
+import '../components/Header'
 
 export default class {
   constructor() {
@@ -7,7 +7,6 @@ export default class {
   async getHtml() {
     return `
       <Header-component>
-
       </Header-component>
     `;
   }
