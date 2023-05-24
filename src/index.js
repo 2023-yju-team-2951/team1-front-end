@@ -1,7 +1,4 @@
 import Main from './pages/Main.js'
-import About from './pages/About.js'
-import Men from './pages/Men.js'
-import Women from './pages/Women.js'
 
 // 페이지 전환
 // history.pushState(state, title, URL) : 현재 페이지의 상태를 변경하지 않고, 새로운 주소를 추가
