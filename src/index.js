@@ -14,9 +14,6 @@ const router = async () => {
   // 경로 설정
   const routes = [
     { path: '/', view: Main },
-    { path: '/about', view: About },
-    { path: '/men', view: Men },
-    { path: '/women', view: Women },
     { path: '/404', view: () => console.log('Viewing 404')}
   ]
 
