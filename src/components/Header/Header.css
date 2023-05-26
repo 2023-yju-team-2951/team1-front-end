@@ -8,11 +8,38 @@
 .main .main-body {
   max-width: 630px;
   width: 100%;
+  margin-top: 16px;
 }
-.main .main-body .story-wrapper {
-  margin: 0;
-  padding: 8px 0;
-  display: flex;
+.main .main-body .menu-wrapper {
   align-items: stretch;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: relative;
+  width: 100%;
+  overflow-y: hidden;
+  padding: 16px 0;
+}
+
+.main .main-body .menu-wrapper .story-wrapper {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  position: relative;
+  overflow-x: auto;
   overflow-y: hidden;
 }
+
+.main .main-body .story-wrapper story-component{
+  display: flex;
+}
+
+.main .main-body .story-wrapper .slider-button {
+  position: sticky;
+  width: 20px;
+  height: 20px;
+
+}
+
