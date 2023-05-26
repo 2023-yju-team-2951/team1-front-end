@@ -6,24 +6,16 @@ class Story extends HTMLElement {
 
     this.innerHTML =
     ` 
-    <div class="test"></div>
-
-    <li class="item"> 
-
-      <div class="item-div">
-
-        <div class="photo">
-          <canvas></canvas>
+    <div class="story-container">
+      <button class="story"> 
+        <div class="profile">
           <img src="./assets/image/imyon.jpg" alt="test">
         </div>
-
-        <div class="name">
-          <p>이름</p>
+        <div class="name"> 
+          <span>imyon</span>
         </div>
-
-      </div>
-
-    </li>
+      </button> 
+    </div>
     `
   }
 }
