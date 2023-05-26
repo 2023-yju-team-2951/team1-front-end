@@ -9,15 +9,8 @@ class Header extends HTMLElement {
     `
     <div class="main">
       <div class="main-body">
-        <div class="header">
-          <div class="menu"> 
-
-            <ul class="list">
-              <Story-component>
-              </Story-component>
-            </ul>
-
-          </div>
+        <div class="story-wrapper">
+          <story-component></story-component>
         </div>
       </div>
     </div>

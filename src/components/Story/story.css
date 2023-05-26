@@ -1,14 +1,41 @@
-.li .item-div {
-  background-color: red;
-}
-.li .item-div .photo {
+.main .main-body .story-wrapper .story-container {
   width: 66px;
-  height: 66px;
-  background-color: black;
+  height: 122px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 0 4px;
 }
-
-.test {
-  width: 200px;
-  height: 200px;
-  background-color: black;
-}/*# sourceMappingURL=story.css.map */
+.main .main-body .story-wrapper .story-container .story {
+  width: 64px;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  border: none;
+  align-self: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+}
+.main .main-body .story-wrapper .story-container .story .profile {
+  width: 56px;
+  height: 56px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  border-radius: 50%;
+  align-self: center;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.main .main-body .story-wrapper .story-container .story .profile img {
+  position: relative;
+  top: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+}
+.main .main-body .story-wrapper .story-container .story .name {
+  text-align: center;
+  font-weight: bold;
+}
