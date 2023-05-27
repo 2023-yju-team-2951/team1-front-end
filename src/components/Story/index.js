@@ -10,14 +10,19 @@ class Story extends HTMLElement {
     this.render();
   }
 
+  // 렌더링
   render() {
-    const container = document.createElement("div");
+    const container = document.createElement("ul");
     container.className = "container";
 
-    const slider = document.createElement("div");
-    slider.className = "slider";
+    this.appendChild(container);
 
+    let translateXValue = 0;
+    
     this.data.forEach((story) => {
+      const slider = document.createElement("li");
+      slider.className = "slider";
+
       const storyContainer = document.createElement("div");
       storyContainer.className = "story-container";
       
@@ -43,7 +48,12 @@ class Story extends HTMLElement {
 
       const nameText = document.createTextNode(story.name);
 
-      this.appendChild(container);
+      const translateX = `translateX(${translateXValue}px)`;
+      slider.style.transform = translateX;
+
+      // li 요소가 만들어질때 마다 오른쪽으로 80px씩 이동
+      translateXValue += 80;
+
       container.appendChild(slider);
 
       slider.appendChild(storyContainer);
@@ -55,36 +65,8 @@ class Story extends HTMLElement {
       profileElement.appendChild(imgElement);
       imgElement.appendChild(img);
       name.appendChild(nameText);
-
     });
-
-    // prevButton.addEventListener("click", this.slidePrev.bind(this));
-    // nextButton.addEventListener("click", this.slideNext.bind(this));
   }
-
-  // slidePrev() {
-  //   const slider = this.querySelector(".slider");
-  //   const sliderWidth = slider.offsetWidth;
-  //   const containerWidth = slider.parentElement.offsetWidth;
-  //   const maxOffset = 0;
-
-  //   if (this.currentOffset < maxOffset) {
-  //     this.currentOffset += containerWidth;
-  //     slider.style.transform = `translateX(${this.currentOffset}px)`;
-  //   }
-  // }
-
-  // slideNext() {
-  //   const slider = this.querySelector(".slider");
-  //   const sliderWidth = slider.offsetWidth;
-  //   const containerWidth = slider.parentElement.offsetWidth;
-  //   const minOffset = -(sliderWidth - containerWidth);
-
-  //   if (this.currentOffset > minOffset) {
-  //     this.currentOffset -= containerWidth;
-  //     slider.style.transform = `translateX(${this.currentOffset}px)`;
-  //   }
-  // }
 
   // 엘리먼트가 호출된 후 실행하는 함수
   connectedCallback() {
@@ -94,6 +76,7 @@ class Story extends HTMLElement {
     });
   }
 
+  // 테두리 원 그리는 함수
   draw(canvasElement) {
 
     var canvas = canvasElement;

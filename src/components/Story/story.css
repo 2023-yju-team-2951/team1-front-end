@@ -1,24 +1,26 @@
-.main .main-body .story-wrapper .container {
-  max-width: 630px;
+.container {
+  width: fit-content;
   display: flex;
-  position: relative;
+  list-style: none;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
-
-.main .main-body .story-wrapper .slider {
-  display: flex;
+.slider {
+  position: absolute;
+  display: list-item;
 }
 
-.main .main-body .story-wrapper .story-container {
+.slider .story-container {
   width: 66px;
   height: 122px;
   position: relative;
   display: flex;
   flex-direction: column; 
   box-sizing: border-box;
-  margin-right: 12px;
+  padding: 0 4px;
 }
-.main .main-body .story-wrapper .story-container .story {
+.slider .story-container .story {
   width: 64px;
   display: flex;
   margin: 0;
@@ -29,7 +31,7 @@
   align-items: center;
   background-color: transparent;
 }
-.main .main-body .story-wrapper .story-container .story .profile {
+.slider .story-container .story .profile {
   width: 56px;
   height: 56px;
   margin-top: 4px;
@@ -40,14 +42,14 @@
   cursor: pointer;
   position: relative;
 }
-.main .main-body .story-wrapper .story-container .story .profile canvas {
+.slider .story-container .story .profile canvas {
   position: absolute;
   top: -5px;
   left: -5px;
   width: 66px;
   height: 66px;
 }
-.main .main-body .story-wrapper .story-container .story .profile .image {
+.slider .story-container .story .profile .image {
   top: 0;
   width: 56px;
   height: 56px;
@@ -58,13 +60,13 @@
   overflow-x: hidden;
   display: block;
 }
-.main .main-body .story-wrapper .story-container .story .profile .image img {
+.slider .story-container .story .profile .image img {
   width: 100%;
   height: 100%;
   position: absolute;
   display: block;
 }
-.main .main-body .story-wrapper .story-container .story .name {
+.slider .story-container .story .name {
   text-align: center;
   font-family: 'Segoe UI';
 }
