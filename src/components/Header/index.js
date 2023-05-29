@@ -17,11 +17,11 @@ class Header extends HTMLElement {
               <story-component class="sty"></story-component>
             </div>
             <button class="slider-button prev">
+              <div class="btn"></div>
+            </button>
+            <button class="slider-button next">
                 <div class="btn"></div>
-              </button>
-              <button class="slider-button next">
-                  <div class="btn"></div>
-              </button>
+            </button>
           </div>
         </div>
       </div>
@@ -29,6 +29,7 @@ class Header extends HTMLElement {
     `
   }
 
+  // prev 버튼 숨기기
   prevBtnHidden(button) {
     if (this.currentOffset < 0) {
       button.classList.remove("hidden");
@@ -37,6 +38,7 @@ class Header extends HTMLElement {
     }
   }
   
+  // next 버튼 숨기기
   nextBtnHidden(button) {
     const sliderWrapper = this.querySelector(".story-wrapper");
     const sliderWidth = sliderWrapper.scrollWidth;
@@ -50,6 +52,7 @@ class Header extends HTMLElement {
     }
   }
   
+  // 연결된 후 실행할 함수
   connectedCallback() {
     const prevButton = this.querySelector(".prev");
     const nextButton = this.querySelector(".next");
@@ -67,6 +70,7 @@ class Header extends HTMLElement {
     });
   }
 
+  // 왼쪽으로 슬라이드
   slidePrev() {
     const sliderWrapper = this.querySelector(".story-wrapper");
     const itemWidth = 80;
@@ -86,7 +90,7 @@ class Header extends HTMLElement {
     this.nextBtnHidden(nextButton);
   }
   
-
+  // 오른쪽으로 슬라이드
   slideNext() {
     const sliderWrapper = this.querySelector(".story-wrapper");
     const sliderWidth = sliderWrapper.scrollWidth; // story-wrapper의 총 너비
@@ -94,6 +98,7 @@ class Header extends HTMLElement {
     const containerWidth = sliderWrapper.offsetWidth; // 컨테이너의 너비
     const minOffset = -(sliderWidth - containerWidth);
     console.log(sliderWidth, containerWidth, minOffset)
+    console.log(this.currentOffset)
 
     if (this.currentOffset > minOffset) {
       this.currentOffset -= itemWidth;
