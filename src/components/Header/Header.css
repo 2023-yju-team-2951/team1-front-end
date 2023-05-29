@@ -1,0 +1,21 @@
+.main {
+  justify-content: center;
+  width: 100%;
+  display: flex;
+  padding-top: 22px;
+  flex-direction: row;
+  background-color: blue;
+}
+.main .main-body {
+  max-width: 630px;
+  width: 100%;
+  background-color: red;
+}
+.main .main-body .header {
+  margin: 0;
+  padding: 8px 0;
+}
+.main .main-body .header .menu {
+  height: 85px;
+  background-color: yellow;
+}
