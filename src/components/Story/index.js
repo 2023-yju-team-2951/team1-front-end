@@ -1,50 +1,52 @@
-import { data } from "./dataTest.js"
-import "./story.css";
+import { getStories } from '../../api/stories';
+import './story.css';
 
 class Story extends HTMLElement {
   constructor() {
     super();
 
-    this.data = data;
+    this.data = [];
 
     this.render();
   }
 
   // 렌더링
-  render() {
-    const container = document.createElement("ul");
-    container.className = "container";
+  async render() {
+    this.data = await getStories();
+
+    const container = document.createElement('ul');
+    container.className = 'container';
 
     this.appendChild(container);
 
     let translateXValue = 0;
-    
+
     this.data.forEach((story) => {
-      const slider = document.createElement("li");
-      slider.className = "slider";
+      const slider = document.createElement('li');
+      slider.className = 'slider';
 
-      const storyContainer = document.createElement("div");
-      storyContainer.className = "story-container";
-      
-      const storyElement = document.createElement("button");
-      storyElement.className = "story";
+      const storyContainer = document.createElement('div');
+      storyContainer.className = 'story-container';
 
-      const profileElement = document.createElement("div");
-      profileElement.className = "profile";
-      profileElement.setAttribute("aria-disabled", "true");
+      const storyElement = document.createElement('button');
+      storyElement.className = 'story';
 
-      const canvasElement = document.createElement("canvas");
+      const profileElement = document.createElement('div');
+      profileElement.className = 'profile';
+      profileElement.setAttribute('aria-disabled', 'true');
+
+      const canvasElement = document.createElement('canvas');
       canvasElement.width = 66;
       canvasElement.height = 66;
 
-      const imgElement = document.createElement("div");
-      imgElement.className = "image";
+      const imgElement = document.createElement('div');
+      imgElement.className = 'image';
 
-      const img = document.createElement("img");
+      const img = document.createElement('img');
       img.src = story.img;
 
-      const name = document.createElement("div");
-      name.className = "name";
+      const name = document.createElement('div');
+      name.className = 'name';
 
       const nameText = document.createTextNode(story.name);
 
@@ -70,7 +72,7 @@ class Story extends HTMLElement {
 
   // 엘리먼트가 호출된 후 실행하는 함수
   connectedCallback() {
-    const canvasElements = this.querySelectorAll("canvas");
+    const canvasElements = this.querySelectorAll('canvas');
     canvasElements.forEach((canvasElement) => {
       this.draw(canvasElement); // draw 메서드 호출
     });
@@ -78,18 +80,17 @@ class Story extends HTMLElement {
 
   // 테두리 원 그리는 함수
   draw(canvasElement) {
-
     var canvas = canvasElement;
-    var ctx = canvas.getContext("2d");
+    var ctx = canvas.getContext('2d');
 
     // 중심 잡기
     var centerX = canvas.width / 2;
     var centerY = canvas.height / 2;
 
     var gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-    gradient.addColorStop(0.2, "#fdf497");
-    gradient.addColorStop(0.5, "#d6249f");
-    gradient.addColorStop(1, "#285AEB");
+    gradient.addColorStop(0.2, '#fdf497');
+    gradient.addColorStop(0.5, '#d6249f');
+    gradient.addColorStop(1, '#285AEB');
 
     // 테두리 그리기
     ctx.lineWidth = 2;
@@ -98,7 +99,6 @@ class Story extends HTMLElement {
     ctx.arc(centerX, centerY, 31, 0, 360, false); // 원 그리기
     ctx.stroke();
   }
-  
 }
 
-window.customElements.define("story-component", Story);
+window.customElements.define('story-component', Story);
