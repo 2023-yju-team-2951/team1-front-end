@@ -1,4 +1,6 @@
 import Main from './pages/Main.js'
+import Login from './pages/Login.js'
+import Story from './pages/Story.js'
 
 // 페이지 전환
 // history.pushState(state, title, URL) : 현재 페이지의 상태를 변경하지 않고, 새로운 주소를 추가
@@ -11,6 +13,8 @@ const router = async () => {
   // 경로 설정
   const routes = [
     { path: '/', view: Main },
+    { path: '/login', view: Login},
+    { path: '/story', view: Story},
     { path: '/404', view: () => console.log('Viewing 404')}
   ]
 
@@ -59,6 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
       routerLink(e.target.href)
     }
   })
+
+  window.addEventListener('popstate', router)
 
   router()
 })
