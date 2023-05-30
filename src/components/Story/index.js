@@ -78,7 +78,12 @@ class Story extends HTMLElement {
     const canvasElements = this.querySelectorAll("canvas");
     canvasElements.forEach((canvasElement) => {
       this.draw(canvasElement); // draw 메서드 호출
+      const linkElement = canvasElement.parentElement.querySelector("a[data-link]");
+      linkElement.addEventListener("click", () => {
+        const storyId = this.data[index].id;
+        window.location.href = `/story?id=${storyId}`;
     });
+  });
   }
 
   // 테두리 원 그리는 함수

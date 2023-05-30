@@ -10,9 +10,7 @@ export default class {
     <div class="story-modal">
       <div class="story-modal-body">
         <div class="story-modal-wrapper">
-          <div class="wrapper">
-           <storyview-component></storyview-component>
-          </div>
+          <storyview-component></storyview-component>
         </div>
       </div>
     </div>
