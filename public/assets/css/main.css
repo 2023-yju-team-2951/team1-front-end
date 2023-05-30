@@ -6,3 +6,31 @@ a {
   text-decoration: none;
 }
 
+.px-12 {
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+}
+
+.gap-12 {
+  gap: 12px !important;
+}
+
+.pt-8 {
+  padding-top: 8px !important;
+}
+
+.pb-20 {
+  padding-bottom: 20px !important;
+}
+
+.p-10 {
+  padding: 10px !important;
+}
+
+.gap-10 {
+  gap: 10px !important;
+}
+
+.p-12 {
+  padding: 12px !important;
+}
