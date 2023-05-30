@@ -1,0 +1,51 @@
+.nav-full {
+  width: 336px;
+  height: 100vh;
+  left: 955px;
+  top: 643px;
+
+  /* border: 1px solid #000000; */
+}
+
+.nav-header-logo {
+  width: 311px;
+  height: 92px;
+
+  /* border: 1px solid #000000; */
+}
+
+.header-logo {
+  width: 291px;
+  height: 72px;
+
+  /* border: 1px solid #000000; */
+}
+
+.nav-list-contain {
+  width: 310px;
+  height: 960px;
+
+  /* border: 1px solid #000000; */
+}
+
+.nav_list {
+  width: 310px;
+  height: 168px;
+
+  /* border: 1px solid #000000; */
+}
+
+.nav-item,
+.nav-other {
+  width: 310px;
+  height: 56px;
+
+  /* border: 1px solid #000000; */
+}
+
+.nav-item:hover,
+.nav-other:hover {
+  background-color: #f2f2f2;
+  border-radius: 15px;
+  cursor: pointer;
+}
