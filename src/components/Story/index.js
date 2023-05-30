@@ -29,6 +29,10 @@ class Story extends HTMLElement {
       const storyElement = document.createElement("button");
       storyElement.className = "story";
 
+      const linkElement = document.createElement("a");
+      linkElement.href = "/story";
+      linkElement.setAttribute("data-link", "");
+
       const profileElement = document.createElement("div");
       profileElement.className = "profile";
       profileElement.setAttribute("aria-disabled", "true");
@@ -63,6 +67,7 @@ class Story extends HTMLElement {
 
       profileElement.appendChild(canvasElement);
       profileElement.appendChild(imgElement);
+      profileElement.appendChild(linkElement);
       imgElement.appendChild(img);
       name.appendChild(nameText);
     });
