@@ -8,6 +8,6 @@ export default class {
     return `
       <Header-component>
       </Header-component>
-    `;
+    `; 
   }
 }
