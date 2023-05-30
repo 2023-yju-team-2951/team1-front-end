@@ -51,7 +51,9 @@ const router = async () => {
 }
 
 // 뒤로가기나 새로고침을 했을 때 router함수 실행
-window.addEventListener('popstate', router)
+window.addEventListener('popstate', () => {
+  router(); 
+})
 
 // 렌더링 되면 router함수 실행
 document.addEventListener('DOMContentLoaded', () => {
