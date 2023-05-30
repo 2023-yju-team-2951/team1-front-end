@@ -81,7 +81,10 @@ class Header extends HTMLElement {
       if(this.currentOffset > maxOffset){
         this.currentOffset = maxOffset;
       }
-      sliderWrapper.scrollLeft = -this.currentOffset;
+      sliderWrapper.scrollTo({
+        left: -this.currentOffset,
+        behavior: "smooth"
+      }) 
     }
 
     const prevButton = this.querySelector(".prev");
@@ -97,15 +100,18 @@ class Header extends HTMLElement {
     const itemWidth = 80; // 아이템 크기
     const containerWidth = sliderWrapper.offsetWidth; // 컨테이너의 너비
     const minOffset = -(sliderWidth - containerWidth);
-    console.log(sliderWidth, containerWidth, minOffset)
-    console.log(this.currentOffset)
 
     if (this.currentOffset > minOffset) {
       this.currentOffset -= itemWidth;
       if(this.currentOffset < minOffset){
         this.currentOffset = minOffset;
       }
-      sliderWrapper.scrollLeft = -this.currentOffset;
+      sliderWrapper.scrollTo({
+        left: -this.currentOffset,
+        behavior: "smooth"
+      });
+    
+
     }
 
     const prevButton = this.querySelector(".prev");
