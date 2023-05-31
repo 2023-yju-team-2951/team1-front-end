@@ -9,7 +9,8 @@
     "bundle": "webpack --mode production",
     "bundle:dev": "webpack --mode development",
     "watch": "nodemon --exec yarn bundle:dev --watch src -e css,js,html",
-    "dev": "serve ./public | yarn watch"
+    "dev": "serve ./public | yarn watch",
+    "json-server": "json-server --watch ./server/db.json --port 7000"
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",
