@@ -1,0 +1,17 @@
+.card {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card > h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+}
+
+.card > p {
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+}

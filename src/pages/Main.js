@@ -1,14 +1,11 @@
-import '../components/Header';
-import '../components/Nav';
-
+import '../components/Card';
 export default class {
   constructor() {
     document.title = 'Main';
   }
   async getHtml() {
     return `
-      <Header-component> 
-      </Header-component>
+      <card-component></card-component>
     `;
   }
 }
