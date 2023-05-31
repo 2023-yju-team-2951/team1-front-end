@@ -30,7 +30,8 @@ class Story extends HTMLElement {
       storyElement.className = "story";
 
       const linkElement = document.createElement("a");
-      linkElement.href = "/story";
+      const storyId = story.id;
+      linkElement.href = `/story?id=${storyId}`;
       linkElement.setAttribute("data-link", "");
 
       const profileElement = document.createElement("div");
@@ -78,12 +79,7 @@ class Story extends HTMLElement {
     const canvasElements = this.querySelectorAll("canvas");
     canvasElements.forEach((canvasElement) => {
       this.draw(canvasElement); // draw 메서드 호출
-      const linkElement = canvasElement.parentElement.querySelector("a[data-link]");
-      linkElement.addEventListener("click", () => {
-        const storyId = this.data[index].id;
-        window.location.href = `/story?id=${storyId}`;
     });
-  });
   }
 
   // 테두리 원 그리는 함수
