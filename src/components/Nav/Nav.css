@@ -39,13 +39,26 @@
 .nav-other {
   width: 310px;
   height: 56px;
-
+  border-radius: 8px;
+  cursor: pointer;
   /* border: 1px solid #000000; */
 }
 
 .nav-item:hover,
 .nav-other:hover {
   background-color: #f2f2f2;
-  border-radius: 15px;
+}
+
+.othermenu-item {
+  width: 250px;
   cursor: pointer;
+  border-radius: 8px;
+}
+
+.othermenu-item:hover {
+  background-color: #f2f2f2;
+}
+
+.item-name {
+  padding-left: 16px;
 }
