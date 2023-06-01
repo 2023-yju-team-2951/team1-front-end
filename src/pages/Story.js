@@ -1,4 +1,4 @@
-import '../components/StoryView/storyview.css'
+import '../components/StoryView/storyView.css'
 import '../components/StoryView';
 
 export default class {
@@ -9,11 +9,9 @@ export default class {
     return `
     <div class="story-modal">
       <div class="story-modal-body">
-        <div class="story-modal-wrapper">
-          <storyview-component></storyview-component>
-        </div>
+        <storyview-component></storyview-component>
       </div>
     </div>
     `;
   }
-}
+}   
