@@ -31,21 +31,30 @@
   flex-grow: 0;
   position: relative;
   align-items: center;
+  justify-content: center;
   align-self: auto;
   height: 100%;
 }
 
-.story-modal .story-modal-body .story-modal-wrapper .story-container {
-  display: flex;
-  align-items: center;
-  transform-origin: left;
+.story-modal .story-modal-body .story-modal-wrapper .modal-wrapper .story-container {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.story-container.move-out {
+  transform: translateX(-100%) scale(0.5);
+}
+
+.story-container.move-in {
+  transform: translateX(0) scale(1);
 }
 
 .modal-story {
   height: 100%;
   width: 100%;
   border-right: 46px solid transparent;
-  border-left: 46px solid transparent;  
+  border-left: 46px solid transparent;
+  margin-left: -46px;
   box-sizing: content-box;
 }
 
@@ -60,7 +69,7 @@
   position: relative;
 }
 
-.modal-story .story-item .img-container {
+.img-container {
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -69,54 +78,31 @@
   overflow: hidden;
 }
 
-.modal-story .story-item .img-container .img-size .img-item {
+.img-container .img-size .img-item {
   height: 100%;
 }
 
-.modal-story .story-item .img-container .img-size .img-item .img-div {
+.img-container .img-size .img-item .img-div {
   width: 100%;
   height: 100%;
 }
 
-.modal-story .img-container img {
+.img-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
 .side-story {
-  border-radius: 20px;
+  height: 100%;
+  width: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  flex-shrink: 0;
-  font: inherit;
-  font-size: 100%;
-  height: 100%;
+  align-items: center;
   justify-content: center;
-  margin: 0;
-  overflow: hidden;
-  padding: 0;
   position: relative;
-  text-align: center;
-  vertical-align: baseline;
-  width: 100%;
-  align-items: stretch;
-  border: 0;
-}
-
-.side-story .side-image {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  position: absolute;
-}
-
-.side-story .side-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  overflow: hidden;
 }
 
 .slide-button {
@@ -153,4 +139,8 @@
   border: 0;
   height: 30px;
   width: 30px;
+}
+
+.hidden-story {
+  display: none;
 }

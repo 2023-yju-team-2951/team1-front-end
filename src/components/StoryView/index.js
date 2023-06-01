@@ -2,7 +2,7 @@ import './storyView.css'
 import { data } from '../Story/dataTest.js'
 
 class StoryView extends HTMLElement {
-  constructor() { 
+  constructor() {   
     super();
     this.data = data;
     this.storyWrapper = document.createElement('div');
@@ -50,9 +50,24 @@ class StoryView extends HTMLElement {
     const container = document.createElement('div');
     container.className = `story-container`;
 
-    container.style.width = window.innerWidth / 3 + 'px';
+    if (className === 'side-story') {
+      container.style.transform = 'scale(0.5)'
+      container.ariaDisabled = true;
+    }
 
     this.modalWrapper.appendChild(container);
+
+    container.addEventListener('click', () => {    
+      while (this.modalWrapper.firstChild) {
+        this.modalWrapper.firstChild.remove();
+      }
+  
+      const newURL = window.location.origin + window.location.pathname + '?id=' + data.id;
+      history.pushState(null, null, newURL);
+  
+      this.render();
+      this.sizeChange();
+    });       
 
     if (className !== 'side-story') {
       const modalStory = document.createElement('div');
@@ -104,15 +119,27 @@ class StoryView extends HTMLElement {
       const sideStory = document.createElement('div');
       sideStory.className = 'side-story';
 
-      const sideStoryImg = document.createElement('div');
-      sideStoryImg.className = 'side-image';
+      const imgContainer = document.createElement('div');
+      imgContainer.className = 'img-container';
 
-      const sideImg = document.createElement('img');
-      sideImg.src = data.img;
+      const imgSize = document.createElement('div');
+      imgSize.className = 'img-size';
+
+      const imgItem = document.createElement('div');
+      imgItem.className = 'img-item';
+
+      const imgDiv = document.createElement('div');
+      imgDiv.className = 'img-div';
+
+      const img = document.createElement('img');
+      img.src = data.img;
 
       container.appendChild(sideStory);
-      sideStory.appendChild(sideStoryImg);
-      sideStoryImg.appendChild(sideImg);
+      sideStory.appendChild(imgContainer);
+      imgContainer.appendChild(imgSize);
+      imgSize.appendChild(imgItem);
+      imgItem.appendChild(imgDiv);
+      imgDiv.appendChild(img);
     }
   }
 
@@ -131,35 +158,17 @@ class StoryView extends HTMLElement {
   reSize() {
     
     let viewportWidth = window.innerWidth;
-    let containerHeight = viewportWidth - 100;
+    let containerHeight = viewportWidth >= 940 ? 840 : viewportWidth - 100;
   
     let storyContainers = this.storyWrapper.querySelectorAll('.story-container');
     let imgSizes = this.storyWrapper.querySelectorAll('.img-size');
-    let img = this.storyWrapper.querySelectorAll('img');
 
-    img.forEach(img => {
-      img.sizes = img.offsetWidth + 'px';
-    });
-
-    if (containerHeight > 920) { 
-      containerHeight = 840;
-    } else if (containerHeight < 500) {
-      containerHeight = 840;
-    }
-  
     storyContainers.forEach((storyContainer) => {
       storyContainer.style.width = containerHeight / 2 + 'px';
       storyContainer.style.height = containerHeight -40 + 'px';
-  
-      // sideStory 는 scale 0.4로 줄이기
-      if(storyContainer.firstChild.className === 'side-story') {
-        storyContainer.style.transform = `translate(0) scale(0.4)`;
-      } else {
-        storyContainer.style.transform = `translate(0)`;
-      }
     });
   
-    imgSizes.forEach(imgSize => {
+    imgSizes.forEach(imgSize => { 
       imgSize.style.width = containerHeight / 2 + 'px';
       imgSize.style.height = containerHeight -40 + 'px';
     });
