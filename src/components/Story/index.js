@@ -1,25 +1,26 @@
 import { getStories } from '../../api/stories';
 import './story.css';
+import { data } from './dataTest';
 
 class Story extends HTMLElement {
   constructor() {
     super();
 
-    this.data = [];
+    this.data = data;
 
     this.render();
   }
 
   // 렌더링
   async render() {
-    this.data = await getStories();
+    // this.data = await getStories();
 
     const container = document.createElement('ul');
     container.className = 'container';
 
     this.appendChild(container);
 
-    let translateXValue = 0;
+    let translateXValue = -15;
 
     this.data.forEach((story) => {
       const slider = document.createElement('li');
@@ -31,9 +32,10 @@ class Story extends HTMLElement {
       const storyElement = document.createElement('button');
       storyElement.className = 'story';
 
-      const linkElement = document.createElement('a');
-      linkElement.href = '/story';
-      linkElement.setAttribute('data-link', '');
+      const linkElement = document.createElement("a");
+      const storyId = story.id;
+      linkElement.href = `/story?id=${storyId}`;
+      linkElement.setAttribute("data-link", "");
 
       const profileElement = document.createElement('div');
       profileElement.className = 'profile';

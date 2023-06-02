@@ -38,3 +38,7 @@ a {
 .p-16 {
   padding: 16px !important;
 }
+
+:root {
+  --max-width: 630px;
+}
