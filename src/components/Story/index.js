@@ -1,18 +1,19 @@
 import { getStories } from '../../api/stories';
 import './story.css';
+import { data } from './dataTest';
 
 class Story extends HTMLElement {
   constructor() {
     super();
 
-    this.data = [];
+    this.data = data;
 
     this.render();
   }
 
   // 렌더링
   async render() {
-    this.data = await getStories();
+    // this.data = await getStories();
 
     const container = document.createElement('ul');
     container.className = 'container';
