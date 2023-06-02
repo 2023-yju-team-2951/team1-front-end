@@ -1,4 +1,5 @@
-import '../components/Header'
+import '../components/Header';
+import '../components/Nav';
 
 export default class {
   constructor() {
@@ -6,8 +7,8 @@ export default class {
   }
   async getHtml() {
     return `
-      <Header-component>
+      <Header-component> 
       </Header-component>
-    `; 
+    `;
   }
 }
