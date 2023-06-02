@@ -8,7 +8,12 @@
 .main .main-body {
   max-width: 630px;
   width: 100%;
-  margin-top: 16px;
+}
+
+@media (max-width: 630px) {
+  .main .main-body {
+    max-width: 70%;
+  }
 }
 
 .hidden {
@@ -27,11 +32,11 @@
   flex-direction: column;
   flex-shrink: 0;
   position: relative;
-  height: 85px;
+  height: 100px;
   overflow-y: hidden;
 }
 
-.main .main-body .menu-wrapper .story-wrapper {
+.main .main-body .menu-wrapper .menu .story-wrapper {
   align-items: stretch;
   display: flex;
   flex-direction: row;
@@ -39,6 +44,13 @@
   position: relative;
   overflow-x: hidden;
   overflow-y: hidden;
+}
+
+.main .main-body .menu-wrapper .menu .story-wrapper story-component {
+  margin: 0;
+  padding: 0;
+  width: 0;
+  height: 0;
 }
 
 .main .main-body .slider-button {
