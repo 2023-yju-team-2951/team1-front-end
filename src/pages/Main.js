@@ -7,8 +7,8 @@ export default class {
   }
   async getHtml() {
     return `
-      <Header-component> 
-      </Header-component>
+      <Header-component></Header-component>
+      <Nav-component></Nav-component>
     `;
   }
 }
