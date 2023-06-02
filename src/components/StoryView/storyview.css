@@ -87,6 +87,20 @@
   height: 100%;
 }
 
+.img-container .img-size .carousel.slide {
+  height: 100%;
+}
+
+.img-container .img-size .carousel.slide .carousel-inner {
+  width: 100%;
+  height: 100%;
+}
+
+.img-container .img-size .carousel.slide .carousel-inner .carousel-item {
+  width: 100%;
+  height: 100%;
+}
+
 .img-container img {
   width: 100%;
   height: 100%;
