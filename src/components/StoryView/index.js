@@ -223,9 +223,15 @@ class StoryView extends HTMLElement {
 
       const slideBtnPrev = document.createElement('button');
       slideBtnPrev.className = 'slide-button prevB';
+      slideBtnPrev.type = 'button';
+      slideBtnPrev.setAttribute('data-bs-target', '#carouselAuto');
+      slideBtnPrev.setAttribute('data-bs-slide', 'prev');
 
       const slideBtnNext = document.createElement('button');
       slideBtnNext.className = 'slide-button nextB';
+      slideBtnNext.type = 'button';
+      slideBtnNext.setAttribute('data-bs-target', '#carouselAuto');
+      slideBtnNext.setAttribute('data-bs-slide', 'next');
 
       const prevBtn = document.createElement('div');
       prevBtn.className = 'btn-prev';
@@ -239,26 +245,60 @@ class StoryView extends HTMLElement {
       const imgSize = document.createElement('div');
       imgSize.className = 'img-size';
 
-      const imgItem = document.createElement('div');
-      imgItem.className = 'img-item';
+      const carouselSlide = document.createElement('div');
+      carouselSlide.className = 'carousel slide';
+      carouselSlide.id = 'carouselAuto';
+      carouselSlide.setAttribute('data-bs-ride', 'carousel');
 
-      const imgDiv = document.createElement('div');
-      imgDiv.className = 'img-div';
+      const carouselIndicators = document.createElement('div');
+      carouselIndicators.className = 'carousel-indicators';
 
-      const img = document.createElement('img');
-      img.src = data.img;
+      const carouselInner = document.createElement('div');
+      carouselInner.className = 'carousel-inner';
 
-      container.appendChild(modalStory);
-      modalStory.appendChild(storyItem);
-      storyItem.appendChild(slideBtnPrev);
-      storyItem.appendChild(slideBtnNext);
-      slideBtnPrev.appendChild(prevBtn);
-      slideBtnNext.appendChild(nextBtn);
-      storyItem.appendChild(imgContainer);
+
+      if (Array.isArray(data.storyImg)) {
+
+        for (let i = 0; i < data.storyImg.length; i++) {
+          const carouselItem = document.createElement('div');
+          const carouselIndicator = document.createElement('button');
+
+          carouselIndicator.type = 'button';
+          carouselIndicator.setAttribute('data-bs-target', '#carouselAuto');
+          carouselIndicator.setAttribute('data-bs-slide-to', i);
+          carouselIndicator.setAttribute('aria-label', `Slide ${i + 1}`);
+    
+          carouselItem.setAttribute('data-bs-interval', '10000');
+          if (i === 0) {
+            carouselItem.className = 'carousel-item active';
+            carouselIndicator.className = 'active';
+            carouselIndicator.setAttribute('aria-current', 'true');
+          } else {
+            carouselItem.className = 'carousel-item';
+          }
+    
+          const img = document.createElement('img');
+          img.src = data.storyImg[i];
+
+          carouselItem.appendChild(img);
+          carouselInner.appendChild(carouselItem);
+          carouselIndicators.appendChild(carouselIndicator);
+          
+        }
+      }
+
+      carouselSlide.appendChild(carouselInner);
+      carouselSlide.appendChild(carouselIndicators);
+      imgSize.appendChild(carouselSlide);
       imgContainer.appendChild(imgSize);
-      imgSize.appendChild(imgItem);
-      imgItem.appendChild(imgDiv);
-      imgDiv.appendChild(img);
+      storyItem.appendChild(imgContainer);
+      slideBtnNext.appendChild(nextBtn);
+      slideBtnPrev.appendChild(prevBtn);
+      storyItem.appendChild(slideBtnNext);
+      storyItem.appendChild(slideBtnPrev);
+      modalStory.appendChild(storyItem);
+      container.appendChild(modalStory);
+      
     } 
     else {
       const sideStory = document.createElement('div');
