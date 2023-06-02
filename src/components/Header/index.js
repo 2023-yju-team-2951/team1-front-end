@@ -14,7 +14,7 @@ class Header extends HTMLElement {
         <div class="menu-wrapper">
           <div class="menu">
             <div class="story-wrapper">
-              <story-component class="sty"></story-component>
+              <story-component></story-component>
             </div>
             <button class="slider-button prev">
               <div class="btn"></div>
