@@ -7,6 +7,7 @@ export default class {
   }
   async getHtml() {
     return `
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <div class="story-modal">
       <div class="story-modal-body">
         <storyview-component></storyview-component>

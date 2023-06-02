@@ -1,5 +1,6 @@
 import './storyView.css'
 import { data } from '../Story/dataTest.js'
+import { gsap } from "gsap";
 
 class StoryView extends HTMLElement {
   constructor() {   
@@ -30,7 +31,7 @@ class StoryView extends HTMLElement {
       // 첫번째 스토리가 아니면 왼쪽 스토리 생성
       if(index > 0) {
         const prevData = this.data[index - 1];
-        this.createStoryContainer(prevData, 'side-story');
+        this.createStoryContainer(prevData, 'side-story left');
       }
 
       // 중앙 스토리
@@ -40,7 +41,7 @@ class StoryView extends HTMLElement {
       // 맨 마지막 스토리가 아니면 오른쪽 스토리 생성
       if(index < this.data.length - 1) {
         const nextData = this.data[index + 1];
-        this.createStoryContainer(nextData, 'side-story');
+        this.createStoryContainer(nextData, 'side-story right');
       }
     }
 
@@ -48,9 +49,13 @@ class StoryView extends HTMLElement {
 
   createStoryContainer(data, className) {
     const container = document.createElement('div');
-    container.className = `story-container`;
+    if (className === 'story') {
+      container.className = 'story-container center'
+    } else {
+      container.className = `story-container ${className}`;
+    }
 
-    if (className === 'side-story') {
+    if (className === 'side-story left' || className === 'side-story right') {
       container.style.transform = 'scale(0.5)'
       container.ariaDisabled = true;
     }
@@ -58,18 +63,71 @@ class StoryView extends HTMLElement {
     this.modalWrapper.appendChild(container);
 
     container.addEventListener('click', () => {    
-      while (this.modalWrapper.firstChild) {
-        this.modalWrapper.firstChild.remove();
-      }
-  
-      const newURL = window.location.origin + window.location.pathname + '?id=' + data.id;
-      history.pushState(null, null, newURL);
-  
-      this.render();
-      this.sizeChange();
-    });       
+      const currentId = parseInt(new URLSearchParams(window.location.search).get('id'));
 
-    if (className !== 'side-story') {
+      const originalStory = document.querySelector('.story-container.center');
+      const sideStoryLeft = document.querySelector('.story-container.side-story.left');
+      const sideStoryRight = document.querySelector('.story-container.side-story.right');
+      
+      // 선택한 스토리의 ID가 주소창의 ID보다 큰지 작은지 판단
+      const direction = data.id > currentId ? 'right' : 'left';
+    
+      // GSAP Timeline 생성
+      const tl = gsap.timeline({
+        onComplete: () => {
+          while (this.modalWrapper.firstChild) {
+            this.modalWrapper.firstChild.remove();
+          }
+          
+          const newURL = window.location.origin + window.location.pathname + '?id=' + data.id;
+          history.pushState(null, null, newURL);
+      
+          this.render();
+          this.sizeChange();
+        }
+      });
+    
+      // 클릭한 스토리 애니메이션 추가
+      if (direction === 'right') {
+        // 클릭한 스토리가 오른쪽에 있을 때
+        tl.add(
+          gsap.to(sideStoryRight, {
+            duration: 0.5, 
+            scale: 1,
+            x: '-100%',
+          })
+        );
+    
+        tl.add(
+          gsap.to(originalStory, {
+            duration: 0.5, 
+            scale: 0.5,
+            x: '-100%',
+          }),
+          '<' // 이전 애니메이션과 동시에 실행
+        );
+      } else {
+        // 클릭한 스토리가 왼쪽에 있을 때
+        tl.add(
+          gsap.to(sideStoryLeft, {
+            duration: 0.5, 
+            scale: 1,
+            x: '100%',
+          })
+        );
+    
+        tl.add(
+          gsap.to(originalStory, {
+            duration: 0.5, 
+            x: '100%',
+          }),
+          '<' // 이전 애니메이션과 동시에 실행
+        );
+      }
+    });
+    
+        
+    if (className === 'story') {
       const modalStory = document.createElement('div');
       modalStory.className = 'modal-story';
 
