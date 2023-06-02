@@ -10,8 +10,8 @@ class StoryView extends HTMLElement {
     this.storyWrapper.className = 'story-modal-wrapper';
     this.modalWrapper = document.createElement('div');
     this.modalWrapper.className = 'modal-wrapper';
-    this.sizeChange();
     this.render();
+    this.sizeChange();
   }
 
   render() {
@@ -31,17 +31,17 @@ class StoryView extends HTMLElement {
       // 첫번째 스토리가 아니면 왼쪽 스토리 생성
       if(index > 0) {
         const prevData = this.data[index - 1];
-        this.createStoryContainer(prevData, 'side-story left');
+        this.createStoryContainer(prevData, 'left');
       }
 
       // 중앙 스토리
       const middleData = this.data[index];
-      this.createStoryContainer(middleData, 'story');
+      this.createStoryContainer(middleData, 'center');
 
       // 맨 마지막 스토리가 아니면 오른쪽 스토리 생성
       if(index < this.data.length - 1) {
         const nextData = this.data[index + 1];
-        this.createStoryContainer(nextData, 'side-story right');
+        this.createStoryContainer(nextData, 'right');
       }
     }
 
@@ -49,13 +49,14 @@ class StoryView extends HTMLElement {
 
   createStoryContainer(data, className) {
     const container = document.createElement('div');
-    if (className === 'story') {
-      container.className = 'story-container center'
+    // container.className = `story-container`;
+    if (className === 'center') {
+      container.className = `story-container ${className}`;
     } else {
       container.className = `story-container ${className}`;
     }
 
-    if (className === 'side-story left' || className === 'side-story right') {
+    if (className !== 'center') {
       container.style.transform = 'scale(0.5)'
       container.ariaDisabled = true;
     }
@@ -65,12 +66,25 @@ class StoryView extends HTMLElement {
     container.addEventListener('click', () => {    
       const currentId = parseInt(new URLSearchParams(window.location.search).get('id'));
 
+      if (currentId === data.id) {
+        return;
+      }
+
       const originalStory = document.querySelector('.story-container.center');
-      const sideStoryLeft = document.querySelector('.story-container.side-story.left');
-      const sideStoryRight = document.querySelector('.story-container.side-story.right');
+      const sideStoryLeft = document.querySelector('.story-container.left');
+      const sideStoryRight = document.querySelector('.story-container.right');
       
       // 선택한 스토리의 ID가 주소창의 ID보다 큰지 작은지 판단
-      const direction = data.id > currentId ? 'right' : 'left';
+
+      let direction = '';
+      
+      if (data.id === 1 || data.id === this.data.length - 1 && currentId === this.data.length) {
+        direction = 'endLeft'
+      } else if (data.id === this.data.length || data.id === 2 && currentId === 1) {
+        direction = 'endRight'
+      } else {
+        direction = data.id > currentId ? 'right' : 'left';
+      }
     
       // GSAP Timeline 생성
       const tl = gsap.timeline({
@@ -92,42 +106,115 @@ class StoryView extends HTMLElement {
         // 클릭한 스토리가 오른쪽에 있을 때
         tl.add(
           gsap.to(sideStoryRight, {
-            duration: 0.5, 
-            scale: 1,
-            x: '-100%',
+            duration: 1, 
+            scale: 1.2,
+            x: '-140%',
           })
         );
     
         tl.add(
           gsap.to(originalStory, {
-            duration: 0.5, 
-            scale: 0.5,
-            x: '-100%',
+            duration: 1, 
+            scale: 0.3,
+            x: '-140%',
           }),
-          '<' // 이전 애니메이션과 동시에 실행
+          '<'
         );
-      } else {
+
+        tl.add(
+          gsap.to(sideStoryLeft, {
+            duration: 1,
+            x: '-140%',
+            opacity: 0,
+          }),
+          '<'
+        )
+      } else if (direction === 'endLeft') {
+        tl.add(
+          gsap.to(sideStoryLeft, {
+            duration: 1, 
+            scale: 1.2,
+            x: '70%',
+          })
+        );
+    
+        tl.add(
+          gsap.to(originalStory, {
+            duration: 1, 
+            scale: 0.3,
+            x: '70%',
+          }),
+          '<'
+        );
+
+        tl.add(
+          gsap.to(sideStoryRight, {
+            duration: 1,
+            x: '70%',
+            opacity: 0,
+          }),
+          '<'
+        )
+      } else if (direction === 'endRight') {
+        tl.add(
+          gsap.to(sideStoryRight, {
+            duration: 1, 
+            scale: 1.2,
+            x: '-70%',
+          })
+        );
+    
+        tl.add(
+          gsap.to(originalStory, {
+            duration: 1, 
+            scale: 0.3,
+            x: '-70%',
+          }),
+          '<'
+        );
+
+        tl.add(
+          gsap.to(sideStoryLeft, {
+            duration: 1,
+            x: '-70%',
+            opacity: 0,
+          }),
+          '<'
+        )
+      }
+      
+      else {
         // 클릭한 스토리가 왼쪽에 있을 때
         tl.add(
           gsap.to(sideStoryLeft, {
-            duration: 0.5, 
-            scale: 1,
-            x: '100%',
+            duration: 1, 
+            scale: 1.2,
+            x: '140%',
           })
         );
     
         tl.add(
           gsap.to(originalStory, {
-            duration: 0.5, 
-            x: '100%',
+            duration: 1,
+            scale: 0.3, 
+            x: '140%',
           }),
           '<' // 이전 애니메이션과 동시에 실행
         );
+
+        tl.add(
+          gsap.to(sideStoryRight, {
+            duration: 1,
+            x: '140%',
+            opacity: 0,
+          }),
+          '<'
+        )
       }
     });
     
         
-    if (className === 'story') {
+    if (className === 'center') {
       const modalStory = document.createElement('div');
       modalStory.className = 'modal-story';
 
@@ -200,10 +287,6 @@ class StoryView extends HTMLElement {
       imgDiv.appendChild(img);
     }
   }
-
-  connectedCallback() {
-    this.reSize();
-  }
   
   sizeChange() {
     this.reSize();
@@ -221,16 +304,16 @@ class StoryView extends HTMLElement {
     let storyContainers = this.storyWrapper.querySelectorAll('.story-container');
     let imgSizes = this.storyWrapper.querySelectorAll('.img-size');
 
-    storyContainers.forEach((storyContainer) => {
-      storyContainer.style.width = containerHeight / 2 + 'px';
-      storyContainer.style.height = containerHeight -40 + 'px';
-    });
-  
     imgSizes.forEach(imgSize => { 
       imgSize.style.width = containerHeight / 2 + 'px';
       imgSize.style.height = containerHeight -40 + 'px';
     });
-  
+
+    storyContainers.forEach((storyContainer) => {
+      storyContainer.style.width = containerHeight / 2 + 'px';
+      storyContainer.style.height = containerHeight -40 + 'px';
+    });
+
     let containerElement = this.storyWrapper;
     containerElement.style.maxWidth = viewportWidth + 'px';
     containerElement.style.maxHeight = containerHeight + 'px';
