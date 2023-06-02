@@ -20,7 +20,7 @@ class Story extends HTMLElement {
 
     this.appendChild(container);
 
-    let translateXValue = 0;
+    let translateXValue = -15;
 
     this.data.forEach((story) => {
       const slider = document.createElement('li');

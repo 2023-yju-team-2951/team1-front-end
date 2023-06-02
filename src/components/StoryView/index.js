@@ -107,16 +107,16 @@ class StoryView extends HTMLElement {
         tl.add(
           gsap.to(sideStoryRight, {
             duration: 1, 
-            scale: 1.2,
-            x: '-140%',
+            scale: 1.28,
+            x: '-155%',
           })
         );
     
         tl.add(
           gsap.to(originalStory, {
             duration: 1, 
-            scale: 0.3,
-            x: '-140%',
+            scale: 0.25,
+            x: '-155%',
           }),
           '<'
         );
@@ -124,7 +124,7 @@ class StoryView extends HTMLElement {
         tl.add(
           gsap.to(sideStoryLeft, {
             duration: 1,
-            x: '-140%',
+            x: '-155%',
             opacity: 0,
           }),
           '<'
@@ -133,16 +133,16 @@ class StoryView extends HTMLElement {
         tl.add(
           gsap.to(sideStoryLeft, {
             duration: 1, 
-            scale: 1.2,
-            x: '70%',
+            scale: 1.28,
+            x: '80%',
           })
         );
     
         tl.add(
           gsap.to(originalStory, {
             duration: 1, 
-            scale: 0.3,
-            x: '70%',
+            scale: 0.25,
+            x: '80%',
           }),
           '<'
         );
@@ -150,7 +150,7 @@ class StoryView extends HTMLElement {
         tl.add(
           gsap.to(sideStoryRight, {
             duration: 1,
-            x: '70%',
+            x: '80%',
             opacity: 0,
           }),
           '<'
@@ -159,16 +159,16 @@ class StoryView extends HTMLElement {
         tl.add(
           gsap.to(sideStoryRight, {
             duration: 1, 
-            scale: 1.2,
-            x: '-70%',
+            scale: 1.28,
+            x: '-80%',
           })
         );
     
         tl.add(
           gsap.to(originalStory, {
             duration: 1, 
-            scale: 0.3,
-            x: '-70%',
+            scale: 0.25,
+            x: '-80%',
           }),
           '<'
         );
@@ -176,7 +176,7 @@ class StoryView extends HTMLElement {
         tl.add(
           gsap.to(sideStoryLeft, {
             duration: 1,
-            x: '-70%',
+            x: '-80%',
             opacity: 0,
           }),
           '<'
@@ -188,16 +188,16 @@ class StoryView extends HTMLElement {
         tl.add(
           gsap.to(sideStoryLeft, {
             duration: 1, 
-            scale: 1.2,
-            x: '140%',
+            scale: 1.28,
+            x: '155%',
           })
         );
     
         tl.add(
           gsap.to(originalStory, {
             duration: 1,
-            scale: 0.3, 
-            x: '140%',
+            scale: 0.25, 
+            x: '155%',
           }),
           '<' // 이전 애니메이션과 동시에 실행
         );
@@ -205,7 +205,7 @@ class StoryView extends HTMLElement {
         tl.add(
           gsap.to(sideStoryRight, {
             duration: 1,
-            x: '140%',
+            x: '155%',
             opacity: 0,
           }),
           '<'
