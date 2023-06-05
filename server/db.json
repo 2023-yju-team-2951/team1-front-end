@@ -1,102 +1,98 @@
 {
-  "users": [
+  "accounts": [
     {
-      "id": 1,
-      "username": "",
+      "id": "1",
+      "name": "d556f8",
       "email": "",
-      "password": ""
+      "password": "1234"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "1",
+      "name": "d556f8",
+      "image": "https://github.com/d556f8.png"
     },
     {
-      "id": 2,
-      "username": "juhyeon",
-      "email": "d556f8@g.yju.ac.kr",
-      "password": "123qwe"
+      "id": "2",
+      "name": "2201400",
+      "image": "https://github.com/2201400.png"
     },
     {
-      "username": "test",
-      "email": "d556f8@gmail.com",
-      "password": "123qwe",
-      "id": 3
+      "id": "3",
+      "name": "hetame1",
+      "image": "https://github.com/hetame1.png"
     },
     {
-      "username": "test",
-      "email": "d556f8@g.yju.ac.kr1",
-      "password": "123qwe",
-      "id": 4
+      "id": "4",
+      "name": "HyunjinHa",
+      "image": "https://github.com/HyunjinHa.png"
+    },
+    {
+      "id": "5",
+      "name": "Jaeil-Lee",
+      "image": "https://github.com/Jaeil-Lee.png"
+    },
+    {
+      "id": "6",
+      "name": "Lsy04178",
+      "image": "https://github.com/Lsy04178.png"
     }
   ],
   "stories": [
     {
-      "img": "https://cdnimg.melon.co.kr/resource/image/cds/musicstory/imgUrl20230404034734352.jpg/melon/optimize/90",
-      "name": "imyon"
+      "id": "1",
+      "user_id": "1",
+      "title": "Story1",
+      "content": "Story1 Content",
+      "content_img": [
+        "https://images.pexels.com/photos/5022847/pexels-photo-5022847.jpeg?auto=compress&cs=tinysrgb&w=800"
+      ]
     },
     {
-      "img": "https://i.namu.wiki/i/BvuxveyRolQlc5CTqE5WWDhMrTGzTzcMvrqNTIsvMEFNn-GaTWe1KiBMW0t34a2zl01AXj5qS4ssHpRKJKzQ-Q.webp",
-      "name": "vaundy"
+      "id": "2",
+      "user_id": "2",
+      "title": "Story2",
+      "content": "Story2 Content",
+      "content_img": [
+        "https://images.pexels.com/photos/288100/pexels-photo-288100.jpeg?auto=compress&cs=tinysrgb&w=800"
+      ]
     },
     {
-      "img": "https://cdnimg.melon.co.kr/resource/image/cds/musicstory/imgUrl20230404034734352.jpg/melon/optimize/90",
-      "name": "imyon"
+      "id": "3",
+      "user_id": "3",
+      "title": "Story3",
+      "content": "Story3 Content",
+      "content_img": [
+        "https://images.pexels.com/photos/5091507/pexels-photo-5091507.jpeg?auto=compress&cs=tinysrgb&w=800"
+      ]
     },
     {
-      "img": "https://i.namu.wiki/i/BvuxveyRolQlc5CTqE5WWDhMrTGzTzcMvrqNTIsvMEFNn-GaTWe1KiBMW0t34a2zl01AXj5qS4ssHpRKJKzQ-Q.webp",
-      "name": "vaundy"
+      "id": "4",
+      "user_id": "4",
+      "title": "Story4",
+      "content": "Story4 Content",
+      "content_img": [
+        "https://images.pexels.com/photos/5091507/pexels-photo-5091507.jpeg?auto=compress&cs=tinysrgb&w=800"
+      ]
     },
     {
-      "img": "https://cdnimg.melon.co.kr/resource/image/cds/musicstory/imgUrl20230404034734352.jpg/melon/optimize/90",
-      "name": "imyon"
+      "id": "5",
+      "user_id": "5",
+      "title": "Story5",
+      "content": "Story5 Content",
+      "content_img": [
+        "https://images.pexels.com/photos/1561020/pexels-photo-1561020.jpeg?auto=compress&cs=tinysrgb&w=800"
+      ]
     },
     {
-      "img": "https://i.namu.wiki/i/BvuxveyRolQlc5CTqE5WWDhMrTGzTzcMvrqNTIsvMEFNn-GaTWe1KiBMW0t34a2zl01AXj5qS4ssHpRKJKzQ-Q.webp",
-      "name": "vaundy"
-    },
-    {
-      "img": "https://cdnimg.melon.co.kr/resource/image/cds/musicstory/imgUrl20230404034734352.jpg/melon/optimize/90",
-      "name": "imyon"
-    },
-    {
-      "img": "https://i.namu.wiki/i/BvuxveyRolQlc5CTqE5WWDhMrTGzTzcMvrqNTIsvMEFNn-GaTWe1KiBMW0t34a2zl01AXj5qS4ssHpRKJKzQ-Q.webp",
-      "name": "vaundy"
-    },
-    {
-      "img": "https://cdnimg.melon.co.kr/resource/image/cds/musicstory/imgUrl20230404034734352.jpg/melon/optimize/90",
-      "name": "imyon"
-    },
-    {
-      "img": "https://i.namu.wiki/i/BvuxveyRolQlc5CTqE5WWDhMrTGzTzcMvrqNTIsvMEFNn-GaTWe1KiBMW0t34a2zl01AXj5qS4ssHpRKJKzQ-Q.webp",
-      "name": "vaundy"
-    },
-    {
-      "img": "https://cdnimg.melon.co.kr/resource/image/cds/musicstory/imgUrl20230404034734352.jpg/melon/optimize/90",
-      "name": "imyon"
-    },
-    {
-      "img": "https://i.namu.wiki/i/BvuxveyRolQlc5CTqE5WWDhMrTGzTzcMvrqNTIsvMEFNn-GaTWe1KiBMW0t34a2zl01AXj5qS4ssHpRKJKzQ-Q.webp",
-      "name": "vaundy"
-    },
-    {
-      "img": "https://cdnimg.melon.co.kr/resource/image/cds/musicstory/imgUrl20230404034734352.jpg/melon/optimize/90",
-      "name": "imyon"
-    },
-    {
-      "img": "https://i.namu.wiki/i/BvuxveyRolQlc5CTqE5WWDhMrTGzTzcMvrqNTIsvMEFNn-GaTWe1KiBMW0t34a2zl01AXj5qS4ssHpRKJKzQ-Q.webp",
-      "name": "vaundy"
-    },
-    {
-      "img": "https://cdnimg.melon.co.kr/resource/image/cds/musicstory/imgUrl20230404034734352.jpg/melon/optimize/90",
-      "name": "imyon"
-    },
-    {
-      "img": "https://i.namu.wiki/i/BvuxveyRolQlc5CTqE5WWDhMrTGzTzcMvrqNTIsvMEFNn-GaTWe1KiBMW0t34a2zl01AXj5qS4ssHpRKJKzQ-Q.webp",
-      "name": "vaundy"
-    },
-    {
-      "img": "https://cdnimg.melon.co.kr/resource/image/cds/musicstory/imgUrl20230404034734352.jpg/melon/optimize/90",
-      "name": "imyon"
-    },
-    {
-      "img": "https://i.namu.wiki/i/BvuxveyRolQlc5CTqE5WWDhMrTGzTzcMvrqNTIsvMEFNn-GaTWe1KiBMW0t34a2zl01AXj5qS4ssHpRKJKzQ-Q.webp",
-      "name": "vaundy"
+      "id": "6",
+      "user_id": "6",
+      "title": "Story6",
+      "content": "Story6 Content",
+      "content_img": [
+        "https://images.pexels.com/photos/288099/pexels-photo-288099.jpeg?auto=compress&cs=tinysrgb&w=800"
+      ]
     }
   ]
 }
