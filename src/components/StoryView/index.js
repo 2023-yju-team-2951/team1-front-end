@@ -3,6 +3,7 @@ import { data } from '../Story/dataTest.js'
 import { gsap } from "gsap";
 
 class StoryView extends HTMLElement {
+
   constructor() {   
     super();
     this.data = data;
@@ -49,7 +50,7 @@ class StoryView extends HTMLElement {
 
   createStoryContainer(data, className) {
     const container = document.createElement('div');
-    // container.className = `story-container`;
+
     if (className === 'center') {
       container.className = `story-container ${className}`;
     } else {
@@ -109,7 +110,7 @@ class StoryView extends HTMLElement {
         tl.add(
           gsap.to(sideStoryRight, {
             duration: 1, 
-            scale: 1.255,
+            scale: 1.25,
             x: `-150%`,
           })
         );
@@ -117,7 +118,7 @@ class StoryView extends HTMLElement {
         tl.add(
           gsap.to(originalStory, {
             duration: 1, 
-            scale: 0.3,
+            scale: 0.25,
             x: '-150%',
           }),
           '<'
@@ -143,7 +144,7 @@ class StoryView extends HTMLElement {
         tl.add(
           gsap.to(originalStory, {
             duration: 1, 
-            scale: 0.3,
+            scale: 0.25,
             x: '75%',
           }),
           '<'
@@ -169,7 +170,7 @@ class StoryView extends HTMLElement {
         tl.add(
           gsap.to(originalStory, {
             duration: 1, 
-            scale: 0.3,
+            scale: 0.25,
             x: '-75%',
           }),
           '<'
@@ -198,7 +199,7 @@ class StoryView extends HTMLElement {
         tl.add(
           gsap.to(originalStory, {
             duration: 1,
-            scale: 0.3, 
+            scale: 0.25, 
             x: '150%',
           }),
           '<' // 이전 애니메이션과 동시에 실행
@@ -371,7 +372,7 @@ class StoryView extends HTMLElement {
       sideStoryText.textContent = data.name;
 
       const img = document.createElement('img');
-      img.src = data.img;
+      img.src = data.storyImg[0];
 
       container.appendChild(sideStory);
       sideStory.appendChild(imgContainer);
@@ -388,13 +389,6 @@ class StoryView extends HTMLElement {
       sideStoryTextContainer.appendChild(sideStoryText);
       imgDiv.appendChild(img);
     }
-  }
-
-  connectedCallback() {
-    const canvasElements = this.querySelectorAll('canvas');
-    canvasElements.forEach((canvasElement) => {
-      this.draw(canvasElement); // draw 메서드 호출
-    });
   }
   
   sizeChange() {
@@ -426,27 +420,6 @@ class StoryView extends HTMLElement {
     let containerElement = this.storyWrapper;
     containerElement.style.maxWidth = viewportWidth + 'px';
     containerElement.style.maxHeight = containerHeight + 'px';
-  }
-
-  draw(canvasElement) {
-    var canvas = canvasElement;
-    var ctx = canvas.getContext('2d');
-
-    // 중심 잡기
-    var centerX = canvas.width / 2;
-    var centerY = canvas.height / 2;
-
-    var gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-    gradient.addColorStop(0.2, '#fdf497');
-    gradient.addColorStop(0.5, '#d6249f');
-    gradient.addColorStop(1, '#285AEB');
-
-    // 테두리 그리기
-    ctx.lineWidth = 2;
-    ctx.strokeStyle = gradient;
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, 31, 0, 360, false); // 원 그리기
-    ctx.stroke();
   }
   
 }
