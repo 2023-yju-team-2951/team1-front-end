@@ -85,6 +85,8 @@ class StoryView extends HTMLElement {
       } else {
         direction = data.id > currentId ? 'right' : 'left';
       }
+
+      const wrapper = document.querySelector('.modal-wrapper');
     
       // GSAP Timeline 생성
       const tl = gsap.timeline({
@@ -107,16 +109,16 @@ class StoryView extends HTMLElement {
         tl.add(
           gsap.to(sideStoryRight, {
             duration: 1, 
-            scale: 1.28,
-            x: '-155%',
+            scale: 1.255,
+            x: `-150%`,
           })
         );
     
         tl.add(
           gsap.to(originalStory, {
             duration: 1, 
-            scale: 0.25,
-            x: '-155%',
+            scale: 0.3,
+            x: '-150%',
           }),
           '<'
         );
@@ -124,7 +126,7 @@ class StoryView extends HTMLElement {
         tl.add(
           gsap.to(sideStoryLeft, {
             duration: 1,
-            x: '-155%',
+            x: '-150%',
             opacity: 0,
           }),
           '<'
@@ -133,16 +135,16 @@ class StoryView extends HTMLElement {
         tl.add(
           gsap.to(sideStoryLeft, {
             duration: 1, 
-            scale: 1.28,
-            x: '80%',
+            scale: 1.25,
+            x: '75%',
           })
         );
     
         tl.add(
           gsap.to(originalStory, {
             duration: 1, 
-            scale: 0.25,
-            x: '80%',
+            scale: 0.3,
+            x: '75%',
           }),
           '<'
         );
@@ -150,7 +152,7 @@ class StoryView extends HTMLElement {
         tl.add(
           gsap.to(sideStoryRight, {
             duration: 1,
-            x: '80%',
+            x: '75%',
             opacity: 0,
           }),
           '<'
@@ -159,16 +161,16 @@ class StoryView extends HTMLElement {
         tl.add(
           gsap.to(sideStoryRight, {
             duration: 1, 
-            scale: 1.28,
-            x: '-80%',
+            scale: 1.25,
+            x: '-75%',
           })
         );
     
         tl.add(
           gsap.to(originalStory, {
             duration: 1, 
-            scale: 0.25,
-            x: '-80%',
+            scale: 0.3,
+            x: '-75%',
           }),
           '<'
         );
@@ -176,7 +178,7 @@ class StoryView extends HTMLElement {
         tl.add(
           gsap.to(sideStoryLeft, {
             duration: 1,
-            x: '-80%',
+            x: '-75%',
             opacity: 0,
           }),
           '<'
@@ -188,16 +190,16 @@ class StoryView extends HTMLElement {
         tl.add(
           gsap.to(sideStoryLeft, {
             duration: 1, 
-            scale: 1.28,
-            x: '155%',
+            scale: 1.25,
+            x: '150%',
           })
         );
     
         tl.add(
           gsap.to(originalStory, {
             duration: 1,
-            scale: 0.25, 
-            x: '155%',
+            scale: 0.3, 
+            x: '150%',
           }),
           '<' // 이전 애니메이션과 동시에 실행
         );
@@ -205,7 +207,7 @@ class StoryView extends HTMLElement {
         tl.add(
           gsap.to(sideStoryRight, {
             duration: 1,
-            x: '155%',
+            x: '150%',
             opacity: 0,
           }),
           '<'
@@ -220,6 +222,20 @@ class StoryView extends HTMLElement {
 
       const storyItem = document.createElement('div');
       storyItem.className = 'story-item';
+
+      const storyHeader = document.createElement('div');
+      storyHeader.className = 'story-header';
+
+      const storyTitle = document.createElement('div');
+      storyTitle.className = 'story-title';
+
+      const storyName = document.createElement('div');
+      storyName.className = 'story-name';
+      storyName.textContent = data.name;
+
+      const storySmallImg = document.createElement('img');
+      storySmallImg.className = 'story-small-img';
+      storySmallImg.src = data.img;
 
       const slideBtnPrev = document.createElement('button');
       slideBtnPrev.className = 'slide-button prevB';
@@ -283,6 +299,14 @@ class StoryView extends HTMLElement {
           carouselItem.appendChild(img);
           carouselInner.appendChild(carouselItem);
           carouselIndicators.appendChild(carouselIndicator);
+
+          if (Array.isArray(data.storyText)) {
+            const text = document.createElement('div');
+            text.className = 'text';
+            text.innerHTML = data.storyText[i];
+
+            carouselItem.appendChild(text);
+          }
           
         }
       }
@@ -296,6 +320,10 @@ class StoryView extends HTMLElement {
       slideBtnPrev.appendChild(prevBtn);
       storyItem.appendChild(slideBtnNext);
       storyItem.appendChild(slideBtnPrev);
+      storyTitle.appendChild(storySmallImg);
+      storyTitle.appendChild(storyName);
+      storyHeader.appendChild(storyTitle);
+      storyItem.appendChild(storyHeader);
       modalStory.appendChild(storyItem);
       container.appendChild(modalStory);
       
@@ -316,6 +344,32 @@ class StoryView extends HTMLElement {
       const imgDiv = document.createElement('div');
       imgDiv.className = 'img-div';
 
+      const backDiv = document.createElement('div');
+      backDiv.className = 'back-div';
+
+      const sideStoryWrapper = document.createElement('div');
+      sideStoryWrapper.className = 'side-story-wrapper';
+
+      const sideStoryContainer = document.createElement('div');
+      sideStoryContainer.className = 'side-story-container';
+
+      const sideStoryImgContainer = document.createElement('div');
+      sideStoryImgContainer.className = 'side-story-img-container';
+
+      const sideStoryImgItem = document.createElement('span');
+      sideStoryImgItem.className = 'side-story-img-item';
+
+      const sideStoryImg = document.createElement('img');
+      sideStoryImg.className = 'side-story-img';
+      sideStoryImg.src = data.img;
+
+      const sideStoryTextContainer = document.createElement('div');
+      sideStoryTextContainer.className = 'side-story-text-container';
+
+      const sideStoryText = document.createElement('span');
+      sideStoryText.className = 'side-story-text';
+      sideStoryText.textContent = data.name;
+
       const img = document.createElement('img');
       img.src = data.img;
 
@@ -324,8 +378,23 @@ class StoryView extends HTMLElement {
       imgContainer.appendChild(imgSize);
       imgSize.appendChild(imgItem);
       imgItem.appendChild(imgDiv);
+      imgDiv.appendChild(backDiv);
+      imgDiv.appendChild(sideStoryWrapper);
+      sideStoryWrapper.appendChild(sideStoryContainer);
+      sideStoryContainer.appendChild(sideStoryImgContainer);
+      sideStoryImgContainer.appendChild(sideStoryImgItem);
+      sideStoryImgItem.appendChild(sideStoryImg);
+      sideStoryContainer.appendChild(sideStoryTextContainer);
+      sideStoryTextContainer.appendChild(sideStoryText);
       imgDiv.appendChild(img);
     }
+  }
+
+  connectedCallback() {
+    const canvasElements = this.querySelectorAll('canvas');
+    canvasElements.forEach((canvasElement) => {
+      this.draw(canvasElement); // draw 메서드 호출
+    });
   }
   
   sizeChange() {
@@ -357,6 +426,27 @@ class StoryView extends HTMLElement {
     let containerElement = this.storyWrapper;
     containerElement.style.maxWidth = viewportWidth + 'px';
     containerElement.style.maxHeight = containerHeight + 'px';
+  }
+
+  draw(canvasElement) {
+    var canvas = canvasElement;
+    var ctx = canvas.getContext('2d');
+
+    // 중심 잡기
+    var centerX = canvas.width / 2;
+    var centerY = canvas.height / 2;
+
+    var gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+    gradient.addColorStop(0.2, '#fdf497');
+    gradient.addColorStop(0.5, '#d6249f');
+    gradient.addColorStop(1, '#285AEB');
+
+    // 테두리 그리기
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, 31, 0, 360, false); // 원 그리기
+    ctx.stroke();
   }
   
 }
