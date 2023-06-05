@@ -24,11 +24,11 @@ export const data = [
   },
   {
     id: 3,
-    img: "./assets/image/TestImage/imyon.jpg",
-    name: "imyon",
+    img: "./assets/image/TestImage/iu1.jpg",
+    name: "IU",
     storyImg: [
-      "./assets/image/TestImage/imyon.jpg",
-      "./assets/image/TestImage/vaundy.jpg",
+      "./assets/image/TestImage/iu2.jpg",
+      "./assets/image/TestImage/iu3.jpg",
     ]
   },
   {
