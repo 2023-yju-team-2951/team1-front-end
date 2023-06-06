@@ -1,18 +1,27 @@
 import './storyView.css'
-import { data } from '../Story/dataTest.js'
+import { getProfiles } from '../../api/profiles.js';
 import { gsap } from "gsap";
 
 class StoryView extends HTMLElement {
 
   constructor() {   
     super();
-    this.data = data;
     this.storyWrapper = document.createElement('div');
     this.storyWrapper.className = 'story-modal-wrapper';
     this.modalWrapper = document.createElement('div');
     this.modalWrapper.className = 'modal-wrapper';
-    this.render();
-    this.sizeChange();
+    this.loadDatas();
+  }
+
+  async loadDatas() {
+    try {
+      this.data = await getProfiles();
+      console.log(this.data);
+      this.render();
+      this.sizeChange();
+    } catch (error) {
+      console.log(error);
+    } 
   }
 
   render() {
@@ -24,7 +33,7 @@ class StoryView extends HTMLElement {
     const id = parseInt(urlParams.get('id'));
     
     // 데이터에서 id 값이 같은 데이터의 인덱스번호 가져오기
-    const index = this.data.findIndex(item => item.id === id);
+    const index = this.data.findIndex((data) => data.id === id);
 
     // 스토리 생성
     if(index !== -1) {
