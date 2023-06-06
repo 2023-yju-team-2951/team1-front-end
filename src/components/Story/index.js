@@ -1,14 +1,11 @@
-import { getStories } from '../../api/stories';
+import { getProfiles } from '../../api/profiles';
 import './story.css';
-import { data } from './dataTest';
 
 class Story extends HTMLElement {
   constructor() {
     super();
 
-    this.data = data;
-
-    this.render();
+    this.loadDatas();
   }
 
   // 렌더링
@@ -105,6 +102,16 @@ class Story extends HTMLElement {
     ctx.beginPath();
     ctx.arc(centerX, centerY, 31, 0, 360, false); // 원 그리기
     ctx.stroke();
+  }
+
+  async loadDatas() {
+    try {
+      this.data = await getProfiles();
+      console.log(this.data);
+      this.render();
+    } catch (error) {
+      console.log(error);
+    } 
   }
 }
 
