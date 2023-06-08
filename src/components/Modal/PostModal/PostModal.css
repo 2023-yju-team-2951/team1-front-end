@@ -1,0 +1,38 @@
+.post-modal .modal-dialog {
+  width: 1000px;
+  max-width: 960px;
+  min-width: 688px;
+  min-height: 391px;
+  max-height: 898px;
+}
+
+.post-modal .modal-header > .btn-close {
+  margin: 0;
+}
+
+.post-modal .modal-content {
+  border-radius: 0.6rem;
+}
+
+.post-modal .modal-header {
+  padding: 0.5rem 0.5rem;
+}
+
+.post-modal .btn-share {
+  color: #0d6efd;
+}
+
+.post-modal .modal-body {
+  padding: 0;
+
+  min-height: 348px;
+  max-height: 80vh;
+}
+
+.post-modal .post-upload-img {
+  flex-grow: 4;
+}
+
+.post-modal .post-write {
+  flex-grow: 1;
+}

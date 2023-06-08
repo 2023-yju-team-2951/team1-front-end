@@ -1,6 +1,8 @@
 import Main from '../../pages/Main';
-import PostModal from '../PostModal';
+import PostModal from '../Modal/PostModal';
+import SearchModal from '../Modal/SearchModal';
 import './Nav.css';
+import { exchangeModal } from '../utils/exchangeModal';
 
 /**
  * TODO:
@@ -86,15 +88,20 @@ class Nav extends HTMLDivElement {
         </div>
       </div>
     `;
+    this.navHome = this.querySelector('.nav-home');
+    this.navSearch = this.querySelector('.nav-search');
+    this.navAdd = this.querySelector('.nav-add');
+    this.otherSettings = this.querySelector('.other-settings');
+    this.otherActivities = this.querySelector('.other-activities');
 
     // 1. 홈 버튼: 클릭 시 fetch 후 (`root` 모든 것을 재 렌더링), window의 스크롤을 최상단으로 이동
-    this.querySelector('.nav-home').addEventListener('click', this.homeEvent);
+    this.navHome.addEventListener('click', this.homeEvent);
 
     // 2. 검색 버튼: 클릭 시 검색하는 창 띄우기 sidebar 옆으로
-    this.querySelector('.nav-search').addEventListener('click', () => {});
+    this.navSearch.addEventListener('click', this.searchEvent);
 
     // 3. 만들기 버튼: 클릭 시 `사진과 동영상을 끌어다 놓으세요` 컴포넌트 작성
-    this.querySelector('.nav-add').addEventListener('click', this.addEvent);
+    this.navAdd.addEventListener('click', this.addEvent);
 
     /**
      * TODO: faze 2
@@ -103,18 +110,24 @@ class Nav extends HTMLDivElement {
      *  - 내 활동 버튼: 클릭 시 내 활동 페이지로 이동
      *  - 로그아웃: 클릭시 로그아웃
      */
-    this.querySelector('.other-settings').addEventListener('click', () => {});
-    this.querySelector('.other-activities').addEventListener('click', () => {});
+    this.otherSettings.addEventListener('click', () => {});
+    this.otherActivities.addEventListener('click', () => {});
   }
 
+  // root 재 렌더링
   homeEvent() {
     const root = document.querySelector('#root');
     root.innerHTML = new Main().getHtml();
   }
 
+  // 만들기 버튼 클릭 시, PostModal 띄우기
   addEvent() {
-    const old = document.querySelector('.modal');
-    old.parentNode.replaceChild(new PostModal(), old);
+    exchangeModal(new PostModal());
+  }
+
+  // 검색 버튼 클릭 시, SearchModal 띄우기
+  searchEvent() {
+    exchangeModal(new SearchModal());
   }
 }
 
