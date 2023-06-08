@@ -41,6 +41,9 @@
   box-sizing: border-box;
   cursor: pointer;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .slider .story-container .story .profile a {
   display: block;
