@@ -8,10 +8,21 @@ class Story extends HTMLElement {
     this.loadDatas();
   }
 
+  async loadDatas() {
+    try {
+      this.data = await getProfiles();
+      this.render();
+      const canvasElements = this.querySelectorAll('canvas');
+      canvasElements.forEach((canvasElement) => {
+      this.draw(canvasElement); // draw 메서드 호출
+    });
+    } catch (error) {
+      console.log(error);
+    } 
+  }
+
   // 렌더링
   async render() {
-    // this.data = await getStories();
-
     const container = document.createElement('ul');
     container.className = 'container';
 
@@ -72,14 +83,34 @@ class Story extends HTMLElement {
       imgElement.appendChild(img);
       name.appendChild(nameText);
     });
-  }
 
-  // 엘리먼트가 호출된 후 실행하는 함수
-  connectedCallback() {
-    const canvasElements = this.querySelectorAll('canvas');
-    canvasElements.forEach((canvasElement) => {
-      this.draw(canvasElement); // draw 메서드 호출
-    });
+    // 마지막 스토리 뒤에 + 버튼을 가진 스토리 하나 더 생성
+    const slider = document.createElement('li');
+    slider.className = 'slider';
+
+    const storyContainer = document.createElement('div');
+    storyContainer.className = 'story-container';
+
+    const storyElement = document.createElement('button');
+    storyElement.className = 'story';
+
+    const profileElement = document.createElement('div');
+    profileElement.className = 'profile';
+
+    const spanElement = document.createElement('span');
+    spanElement.className = 'material-symbols-outlined';
+
+    // 마지막 스토리 + 80px 이동
+    const translateX = `translateX(${translateXValue}px)`;
+    slider.style.transform = translateX;
+
+    container.appendChild(slider);
+    slider.appendChild(storyContainer);
+    storyContainer.appendChild(storyElement);
+    storyElement.appendChild(profileElement);
+    profileElement.appendChild(spanElement);
+    spanElement.appendChild(document.createTextNode('add'));
+    
   }
 
   // 테두리 원 그리는 함수
@@ -104,15 +135,6 @@ class Story extends HTMLElement {
     ctx.stroke();
   }
 
-  async loadDatas() {
-    try {
-      this.data = await getProfiles();
-      console.log(this.data);
-      this.render();
-    } catch (error) {
-      console.log(error);
-    } 
-  }
 }
 
 window.customElements.define('story-component', Story);
