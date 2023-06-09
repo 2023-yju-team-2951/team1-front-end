@@ -5,7 +5,7 @@ export default class {
   constructor() {
     document.title = 'Main';
   }
-  async getHtml() {
+  getHtml() {
     return `
       <Header-component></Header-component>
       <Nav-component></Nav-component>
