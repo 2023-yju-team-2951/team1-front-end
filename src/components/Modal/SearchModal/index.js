@@ -1,17 +1,15 @@
-class PostModal extends HTMLDivElement {
+import './SearchModal.css';
+import Modal from '../../Modal';
+class SearchModal extends Modal {
   constructor() {
     super();
-    this.classList.add('modal');
-    this.classList.add('fade');
-    this.classList.add('d-block', 'show');
-    this.setAttribute('tabindex', '-1');
-    this.setAttribute('role', 'dialog');
+    this.classList.add('search-modal');
 
     this.innerHTML = `
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">새 게시물 만들기</h5>
+            <h5 class="modal-title">검색</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -27,10 +25,8 @@ class PostModal extends HTMLDivElement {
       </div>
     `;
   }
-
-  connectedCallback() {}
 }
 
-window.customElements.define('post-modal', PostModal, { extends: 'div' });
+window.customElements.define('search-modal', SearchModal, { extends: 'div' });
 
-export default PostModal;
+export default SearchModal;
