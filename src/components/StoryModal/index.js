@@ -1,6 +1,6 @@
 import './storymodal.css';
 
-class StoryModal extends HTMLDivElement {
+class StoryModal extends HTMLElement {
   constructor() {
     super();
     this.className = 'modal fade';
@@ -153,6 +153,6 @@ class StoryModal extends HTMLDivElement {
   }
 }
 
-window.customElements.define('story-modal', StoryModal, { extends: 'div' });
+window.customElements.define('story-modal', StoryModal);
 
 export default StoryModal;
