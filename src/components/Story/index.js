@@ -6,7 +6,8 @@ class Story extends HTMLElement {
   constructor() {
     super();
 
-    
+    this.storyModal = new StoryModal();
+    this.appendChild(this.storyModal);
 
     this.loadDatas();
   }
@@ -97,6 +98,13 @@ class Story extends HTMLElement {
     const storyModalElement = document.createElement('div');
     storyModalElement.className = 'story';
     storyModalElement.id = 'add-story';
+    storyModalElement.setAttribute('data-bs-toggle', 'modal');
+    storyModalElement.setAttribute('data-bs-target', '#storyModal');
+    storyModalElement.addEventListener('click', () => {
+      this.storyModal.remove();
+      this.storyModal = new StoryModal();
+      this.appendChild(this.storyModal);
+    });
 
     const profileElement = document.createElement('div');
     profileElement.className = 'profile';
