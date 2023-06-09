@@ -17,64 +17,50 @@ class StoryView extends HTMLElement {
   async loadDatas() {
     try {
       this.data = await getProfiles();
-      console.log(this.data);
       this.render();
-      this.sizeChange();
     } catch (error) {
       console.log(error);
     } 
   }
 
   render() {
-    this.appendChild(this.storyWrapper);
-    this.storyWrapper.appendChild(this.modalWrapper);
-
-    // 주소에서 id 값 가져오기
     const urlParams = new URLSearchParams(window.location.search);
     const id = parseInt(urlParams.get('id'));
-    
-    // 데이터에서 id 값이 같은 데이터의 인덱스번호 가져오기
+  
     const index = this.data.findIndex((data) => data.id === id);
-
-    // 스토리 생성
-    if(index !== -1) {
-
-      // 첫번째 스토리가 아니면 왼쪽 스토리 생성
-      if(index > 0) {
-        const prevData = this.data[index - 1];
-        const leftStory = new SideStory(prevData);
-        this.modalWrapper.appendChild(leftStory.render('left'));
-      }
-
-      // 중앙 스토리
-      const middleData = this.data[index];
-      const centerStory = new CenterStory(middleData);
-      this.modalWrapper.appendChild(centerStory.render());
-
-      // 맨 마지막 스토리가 아니면 오른쪽 스토리 생성
-      if(index < this.data.length - 1) {
-        const nextData = this.data[index + 1];
-        const rightStory = new SideStory(nextData);
-        this.modalWrapper.appendChild(rightStory.render('right'));
-      }
-    }
-
-    const leftStory = this.modalWrapper.querySelector('.story-container.left');
-    const rightStory = this.modalWrapper.querySelector('.story-container.right');
+  
+    let prevData = '', nextData = '';
+    if(index > 0) prevData = this.data[index - 1];
+    if(index < this.data.length - 1) nextData = this.data[index + 1];
+  
+    this.modalWrapper.innerHTML = `
+      ${index > 0 ? new SideStory(prevData).render('left') : ''}
+      ${new CenterStory(this.data[index]).render()}
+      ${index < this.data.length - 1 ? new SideStory(nextData).render('right') : ''}
+    `;
+  
+    this.storyWrapper.appendChild(this.modalWrapper);
+  
+    this.appendChild(this.storyWrapper);
+  
+    const leftStory = this.querySelector('.story-container.left');
+    const rightStory = this.querySelector('.story-container.right');
     
     if (leftStory) {
       leftStory.addEventListener('click', () => {
         this.moveStory('left');
       });
     }
-
+  
     if (rightStory) {
       rightStory.addEventListener('click', () => {
         this.moveStory('right');
       });
     }
-
+  
+    this.sizeChange();
   }
+  
   
   sizeChange() {
     this.reSize();
@@ -88,9 +74,14 @@ class StoryView extends HTMLElement {
   reSize() {
     let viewportWidth = window.innerWidth;
     let containerHeight = viewportWidth >= 940 ? 840 : viewportWidth - 100;
+
+    console.log(this.storyWrapper);
   
     let storyContainers = this.storyWrapper.querySelectorAll('.story-container');
     let imgSizes = this.storyWrapper.querySelectorAll('.img-size');
+
+    console.log(storyContainers);
+    console.log(imgSizes);
 
     imgSizes.forEach(imgSize => { 
       imgSize.style.width = containerHeight / 2 + 'px';
@@ -272,72 +263,42 @@ class CenterStory {
     this.data = data;
   }
   render() {
-    const container = document.createElement('div');
-    container.className = 'story-container center';
+    let container = document.createElement('div');
+    container.innerHTML = `
+      <div class="story-container center">
+        <div class="modal-story">
+          <div class="story-item">
+            <div class="story-header">
+              <div class="story-title">
+                <div class="story-name">${this.data.name}</div>
+                <img class="story-small-img" src="${this.data.img}" />
+              </div>
+            </div>
+            <button class="slide-button prevB" type="button" data-bs-target="#carouselAuto" data-bs-slide="prev">
+              <div class="btn-prev"></div>
+            </button>
+            <button class="slide-button nextB" type="button" data-bs-target="#carouselAuto" data-bs-slide="next">
+              <div class="btn-next"></div>
+            </button>
+            <div class="img-container">
+              <div class="img-size">
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
 
-    const modalStory = document.createElement('div');
-    modalStory.className = 'modal-story';
-
-    const storyItem = document.createElement('div');
-    storyItem.className = 'story-item';
-
-    const storyHeader = document.createElement('div');
-    storyHeader.className = 'story-header';
-
-    const storyTitle = document.createElement('div');
-    storyTitle.className = 'story-title';
-
-    const storyName = document.createElement('div');
-    storyName.className = 'story-name';
-    storyName.textContent = this.data.name;
-
-    const storySmallImg = document.createElement('img');
-    storySmallImg.className = 'story-small-img';
-    storySmallImg.src = this.data.img;
-
-    const slideBtnPrev = document.createElement('button');
-    slideBtnPrev.className = 'slide-button prevB';
-    slideBtnPrev.type = 'button';
-    slideBtnPrev.setAttribute('data-bs-target', '#carouselAuto');
-    slideBtnPrev.setAttribute('data-bs-slide', 'prev');
-
-    const slideBtnNext = document.createElement('button');
-    slideBtnNext.className = 'slide-button nextB';
-    slideBtnNext.type = 'button';
-    slideBtnNext.setAttribute('data-bs-target', '#carouselAuto');
-    slideBtnNext.setAttribute('data-bs-slide', 'next');
-
-    const prevBtn = document.createElement('div');
-    prevBtn.className = 'btn-prev';
-
-    const nextBtn = document.createElement('div');
-    nextBtn.className = 'btn-next';
-
-    const imgContainer = document.createElement('div');
-    imgContainer.className = 'img-container';
-
-    const imgSize = document.createElement('div');
-    imgSize.className = 'img-size';
-
-    container.appendChild(modalStory);
-    modalStory.appendChild(storyItem);
-    storyItem.appendChild(storyHeader);
-    storyHeader.appendChild(storyTitle);
-    storyTitle.appendChild(storyName);
-    storyTitle.appendChild(storySmallImg);
-    storyItem.appendChild(slideBtnPrev);
-    slideBtnPrev.appendChild(prevBtn);
-    storyItem.appendChild(slideBtnNext);
-    slideBtnNext.appendChild(nextBtn);
-    storyItem.appendChild(imgContainer);
-    imgContainer.appendChild(imgSize);
+    let imgSize = container.querySelector(".img-size");
 
     const carouselImg = new CarouselImg(this.data);
     imgSize.appendChild(carouselImg.render());
 
-    return container;
+    return container.innerHTML;
   }
 }
+
 
 // 캐러셀 이미지 생성
 class CarouselImg {
@@ -414,70 +375,39 @@ class SideStory {
   }
   render(name) {
     const container = document.createElement('div');
-    container.className = `story-container ${name}`;
-    container.style.transform = 'scale(0.5)'
+    
+    container.innerHTML = `
+      <div class="story-container ${name}" style="transform: scale(0.5)">
+        <div class="side-story">
+          <div class="img-container">
+            <div class="img-size">
+              <div class="img-item">
+                <div class="img-div">
+                  <div class="back-div"></div>
+                  <div class="side-story-wrapper">
+                    <div class="side-story-container">
+                      <div class="side-story-img-container">
+                        <span class="side-story-img-item">
+                          <img class="side-story-img" src="${this.data.img}">
+                        </span>
+                      </div>
+                      <div class="side-story-text-container">
+                        <span class="side-story-text">${this.data.name}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <img src="${this.data.storyImg[0]}">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
 
-    const sideStory = document.createElement('div');
-    sideStory.className = 'side-story';
-
-    const imgContainer = document.createElement('div');
-    imgContainer.className = 'img-container';
-
-    const imgSize = document.createElement('div');
-    imgSize.className = 'img-size';
-
-    const imgItem = document.createElement('div');
-    imgItem.className = 'img-item';
-
-    const imgDiv = document.createElement('div');
-    imgDiv.className = 'img-div';
-
-    const backDiv = document.createElement('div');
-    backDiv.className = 'back-div';
-
-    const sideStoryWrapper = document.createElement('div');
-    sideStoryWrapper.className = 'side-story-wrapper';
-
-    const sideStoryContainer = document.createElement('div');
-    sideStoryContainer.className = 'side-story-container';
-
-    const sideStoryImgContainer = document.createElement('div');
-    sideStoryImgContainer.className = 'side-story-img-container';
-
-    const sideStoryImgItem = document.createElement('span');
-    sideStoryImgItem.className = 'side-story-img-item';
-
-    const sideStoryImg = document.createElement('img');
-    sideStoryImg.className = 'side-story-img';
-    sideStoryImg.src = this.data.img;
-
-    const sideStoryTextContainer = document.createElement('div');
-    sideStoryTextContainer.className = 'side-story-text-container';
-
-    const sideStoryText = document.createElement('span');
-    sideStoryText.className = 'side-story-text';
-    sideStoryText.textContent = this.data.name;
-
-    const img = document.createElement('img');
-    img.src = this.data.storyImg[0];
-
-    container.appendChild(sideStory);
-    sideStory.appendChild(imgContainer);
-    imgContainer.appendChild(imgSize);
-    imgSize.appendChild(imgItem);
-    imgItem.appendChild(imgDiv);
-    imgDiv.appendChild(backDiv);
-    imgDiv.appendChild(sideStoryWrapper);
-    sideStoryWrapper.appendChild(sideStoryContainer);
-    sideStoryContainer.appendChild(sideStoryImgContainer);
-    sideStoryImgContainer.appendChild(sideStoryImgItem);
-    sideStoryImgItem.appendChild(sideStoryImg);
-    sideStoryContainer.appendChild(sideStoryTextContainer);
-    sideStoryTextContainer.appendChild(sideStoryText);
-    imgDiv.appendChild(img);
-
-    return container;
+    return container.innerHTML;
   }
 }
+
 
 window.customElements.define('storyview-component', StoryView);
