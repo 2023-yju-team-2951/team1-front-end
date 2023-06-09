@@ -75,13 +75,8 @@ class StoryView extends HTMLElement {
     let viewportWidth = window.innerWidth;
     let containerHeight = viewportWidth >= 940 ? 840 : viewportWidth - 100;
 
-    console.log(this.storyWrapper);
-  
     let storyContainers = this.storyWrapper.querySelectorAll('.story-container');
     let imgSizes = this.storyWrapper.querySelectorAll('.img-size');
-
-    console.log(storyContainers);
-    console.log(imgSizes);
 
     imgSizes.forEach(imgSize => { 
       imgSize.style.width = containerHeight / 2 + 'px';
@@ -111,8 +106,6 @@ class StoryView extends HTMLElement {
     let direction = ''
 
     const currentId = parseInt(urlParams.get('id'));
-    console.log(this.data.length);
-    console.log(currentId);
 
     if (directions === 'left' ) {
       direction = 'left';
@@ -125,8 +118,6 @@ class StoryView extends HTMLElement {
         direction = 'endRight';
       }
     }
-
-    console.log(direction);
 
     const sideStoryLeft = this.modalWrapper.querySelector('.story-container.left');
     const originalStory = this.modalWrapper.querySelector('.story-container.center');

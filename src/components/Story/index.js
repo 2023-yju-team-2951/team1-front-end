@@ -7,8 +7,8 @@ class Story extends HTMLElement {
     super();
     
     this.storyModal = new StoryModal();
-    this.appendChild(this.storyModal);
-
+    document.body.appendChild(this.storyModal);
+    
     this.loadDatas();
   }
 
