@@ -1,9 +1,13 @@
 import { getProfiles } from '../../api/profiles';
 import './story.css';
+import StoryModal from '../StoryModal/index.js';
 
 class Story extends HTMLElement {
   constructor() {
     super();
+
+    const modal = new StoryModal();
+    document.body.appendChild(modal);
 
     this.loadDatas();
   }
@@ -91,8 +95,11 @@ class Story extends HTMLElement {
     const storyContainer = document.createElement('div');
     storyContainer.className = 'story-container';
 
-    const storyElement = document.createElement('button');
-    storyElement.className = 'story';
+    const storyModalElement = document.createElement('div');
+    storyModalElement.className = 'story';
+    storyModalElement.id = 'add-story';
+    storyModalElement.setAttribute('data-bs-toggle', 'modal');
+    storyModalElement.setAttribute('data-bs-target', '#storyModal');
 
     const profileElement = document.createElement('div');
     profileElement.className = 'profile';
@@ -106,11 +113,10 @@ class Story extends HTMLElement {
 
     container.appendChild(slider);
     slider.appendChild(storyContainer);
-    storyContainer.appendChild(storyElement);
-    storyElement.appendChild(profileElement);
+    storyContainer.appendChild(storyModalElement);
+    storyModalElement.appendChild(profileElement);
     profileElement.appendChild(spanElement);
     spanElement.appendChild(document.createTextNode('add'));
-    
   }
 
   // 테두리 원 그리는 함수
