@@ -9,7 +9,7 @@ class StoryModal extends HTMLDivElement {
     this.setAttribute('aria-hidden', 'true');
     this.setAttribute('tabindex', '-1');
 
-    this.pickColor = '#ffffff';
+    this.pick = '';
 
     this.num = 0;
 
@@ -36,7 +36,7 @@ class StoryModal extends HTMLDivElement {
           </div>
           <div id="num-1" class="num" style="display: none;">
             <div class="writing">
-
+              <input type="text" class="text-write" />
             </div>
           </div>
         </div>
@@ -49,23 +49,35 @@ class StoryModal extends HTMLDivElement {
       </div>
     </div>`;
 
+    // 다음 버튼 클릭시
     this.querySelector('#next-button').addEventListener('click', () => {
       if (this.num === 1) {
         return;
       }
       this.num++;
-      this.querySelector('.writing').style.backgroundColor = this.pickColor;
+
+      const writingElement = this.querySelector('.writing')
+
+      if (/^http.*/.test(this.pick)) {
+        writingElement.style.background = `url(${this.pick})`;
+      } else {
+        writingElement.style.background = this.pick;
+      }
+      
       this.updateNum();
     });
-
+    
+    // 이전 버튼 클릭시
     this.querySelector('#prev-button').addEventListener('click', () => {
       this.num--;
       this.updateNum();
     });
+
+    // 색깔 고를때 효과 + 고른 색 selected 클래스 추가
     this.colors = this.querySelectorAll('.colors')
     this.colors.forEach((color) => {
       color.addEventListener('click', (e) => {
-        this.pickColor = e.target.style.backgroundColor;
+        this.pick = e.target.style.backgroundColor;
 
         const colorSelected = e.target.classList.contains('selected');
 
@@ -79,10 +91,20 @@ class StoryModal extends HTMLDivElement {
 
       });
     });
+
+    const writingElement = this.querySelector('.writing')
+    writingElement.addEventListener('click', () => {
+      this.querySelector('.text-write').focus();
+    });
+
+    const textInput = this.querySelector('.text-write');
+
     
   }
 
+  // 다음, 이전 버튼 클릭시 화면 업데이트
   updateNum() {
+
     this.querySelectorAll('.num').forEach((num) => { num.style.display = 'none'; });
 
     this.querySelector(`#num-${this.num}`).style.display = 'flex';
@@ -90,6 +112,7 @@ class StoryModal extends HTMLDivElement {
     this.querySelector('#prev-button').style.display = this.num > 0 ? 'block' : 'none';
     this.querySelector('#next-button').style.display = this.num < 1 ? 'block' : 'none';
     this.querySelector('#finish-button').style.display = this.num === 1 ? 'block' : 'none';
+
   }
 }
 
