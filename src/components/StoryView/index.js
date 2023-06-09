@@ -13,6 +13,7 @@ class StoryView extends HTMLElement {
     this.loadDatas();
   }
 
+  // 데이터 불러오기
   async loadDatas() {
     try {
       this.data = await getProfiles();
@@ -83,6 +84,7 @@ class StoryView extends HTMLElement {
     });
   }
   
+  // 사이즈 크기에 맞게 변경
   reSize() {
     let viewportWidth = window.innerWidth;
     let containerHeight = viewportWidth >= 940 ? 840 : viewportWidth - 100;
@@ -105,6 +107,7 @@ class StoryView extends HTMLElement {
     containerElement.style.maxHeight = containerHeight + 'px';
   }
 
+  // 스토리 클릭 했을 때 애니메이션
   moveStory(directions) { 
     const urlParams = new URLSearchParams(window.location.search);
     const id = parseInt(urlParams.get('id'));
@@ -263,6 +266,7 @@ class StoryView extends HTMLElement {
   }
 }
 
+// 중간 스토리 생성
 class CenterStory {
   constructor(data) {
     this.data = data;
@@ -335,6 +339,7 @@ class CenterStory {
   }
 }
 
+// 캐러셀 이미지 생성
 class CarouselImg {
   constructor(data) {
     this.data = data;
@@ -372,8 +377,13 @@ class CarouselImg {
           carouselItem.className = 'carousel-item';
         }
   
-        const img = document.createElement('img');
-        img.src = this.data.storyImg[i];
+        const img = document.createElement('div');
+        img.className = 'img';
+        if (/^http.*/.test(this.data.storyImg[i])) {
+          img.style.background = `url(${this.data.storyImg[i]})`;
+        } else {
+          img.style.background = this.data.storyImg[i];
+        }
 
         carouselItem.appendChild(img);
         carouselInner.appendChild(carouselItem);
@@ -397,6 +407,7 @@ class CarouselImg {
   }
 }
 
+// 사이드 스토리 생성
 class SideStory {
   constructor(data) {
     this.data = data;
