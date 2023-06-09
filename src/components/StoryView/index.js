@@ -1,4 +1,4 @@
-import './storyView.css'
+import './storyView.css';
 import { getProfiles } from '../../api/profiles.js';
 import { gsap } from "gsap";
 
