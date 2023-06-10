@@ -75,13 +75,8 @@ class StoryView extends HTMLElement {
     let viewportWidth = window.innerWidth;
     let containerHeight = viewportWidth >= 940 ? 840 : viewportWidth - 100;
 
-    console.log(this.storyWrapper);
-  
     let storyContainers = this.storyWrapper.querySelectorAll('.story-container');
     let imgSizes = this.storyWrapper.querySelectorAll('.img-size');
-
-    console.log(storyContainers);
-    console.log(imgSizes);
 
     imgSizes.forEach(imgSize => { 
       imgSize.style.width = containerHeight / 2 + 'px';
@@ -111,8 +106,6 @@ class StoryView extends HTMLElement {
     let direction = ''
 
     const currentId = parseInt(urlParams.get('id'));
-    console.log(this.data.length);
-    console.log(currentId);
 
     if (directions === 'left' ) {
       direction = 'left';
@@ -125,8 +118,6 @@ class StoryView extends HTMLElement {
         direction = 'endRight';
       }
     }
-
-    console.log(direction);
 
     const sideStoryLeft = this.modalWrapper.querySelector('.story-container.left');
     const originalStory = this.modalWrapper.querySelector('.story-container.center');
@@ -318,7 +309,7 @@ class CarouselImg {
     carouselInner.className = 'carousel-inner';
 
 
-    if (Array.isArray(this.data.storyImg)) {
+    if (Array.isArray(this.data.storyImg) && Array.isArray(this.data.storyText)) {
 
       for (let i = 0; i < this.data.storyImg.length; i++) {
         const carouselItem = document.createElement('div');
@@ -346,18 +337,25 @@ class CarouselImg {
           img.style.background = this.data.storyImg[i];
         }
 
+        const textItem = this.data.storyText[i];
+
+        const text = document.createElement('div');
+        text.className = 'text';
+
+        if (textItem.hasOwnProperty('text')) {
+          const textElement = document.createElement('span');
+          textElement.innerHTML = textItem.text;
+          text.appendChild(textElement);
+        }
+  
+        if (textItem.hasOwnProperty('color')) {
+          text.style.color = textItem.color;
+        }
+        
         carouselItem.appendChild(img);
         carouselInner.appendChild(carouselItem);
         carouselIndicators.appendChild(carouselIndicator);
-
-        if (Array.isArray(this.data.storyText)) {
-          const text = document.createElement('div');
-          text.className = 'text';
-          text.innerHTML = this.data.storyText[i];
-
-          carouselItem.appendChild(text);
-        }
-        
+        carouselItem.appendChild(text);
       }
     }
 
