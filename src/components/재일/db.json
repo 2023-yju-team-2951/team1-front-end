@@ -1,0 +1,74 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "name": "",
+      "post_description": "",
+      "post_top_img": "/img/box.png",
+      "post_main_img": [
+        "/img/1.jpg",
+        "/img/2.jpg",
+        "/img/3.jpg",
+        "/img/1.jpg",
+        "/img/2.jpg",
+        "/img/3.jpg"
+      ],
+      "statements": [
+        {
+          "visitor": "",
+          "comment": "逃れ逃れついたあるカフェ～～！すっごく居心地よくて時間のある方々にはぜひお勧めいたします！！流れてくる音楽も雰囲気とピッタリなので久々にのんびりしたい人たちにもいいと思います"
+        }
+      ],
+      "likes": "2"
+    },
+    {
+      "id": "2",
+      "name": "",
+      "post_description": "",
+      "post_top_img": "/img/ketty1.png",
+      "post_main_img": [
+        "/img/1.jpg",
+        "/img/2.jpg",
+        "/img/3.jpg",
+        "/img/1.jpg",
+        "/img/2.jpg",
+        "/img/3.jpg"
+      ],
+      "statements": [
+        {
+          "visitor": "",
+          "comment": ""
+        }
+      ],
+      "likes": "0"
+    },
+    {
+      "id": "3",
+      "name": "",
+      "post_description": "",
+      "post_top_img": "/img/ketty1.png",
+      "post_main_img": [
+        "/img/1.jpg",
+        "/img/2.jpg",
+        "/img/3.jpg",
+        "/img/1.jpg",
+        "/img/2.jpg",
+        "/img/3.jpg"
+      ],
+      "statements": [
+        {
+          "visitor": "",
+          "comment": ""
+        }
+      ],
+      "likes": "0"
+    }
+  ],
+  "ichiban": [
+    {
+      "name": "이재일",
+      "age": "27",
+      "city": "ULSAN"
+    }
+  ]
+}
