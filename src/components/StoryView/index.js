@@ -309,7 +309,7 @@ class CarouselImg {
     carouselInner.className = 'carousel-inner';
 
 
-    if (Array.isArray(this.data.storyImg)) {
+    if (Array.isArray(this.data.storyImg) && Array.isArray(this.data.storyText)) {
 
       for (let i = 0; i < this.data.storyImg.length; i++) {
         const carouselItem = document.createElement('div');
@@ -337,18 +337,25 @@ class CarouselImg {
           img.style.background = this.data.storyImg[i];
         }
 
+        const textItem = this.data.storyText[i];
+
+        const text = document.createElement('div');
+        text.className = 'text';
+
+        if (textItem.hasOwnProperty('text')) {
+          const textElement = document.createElement('span');
+          textElement.innerHTML = textItem.text;
+          text.appendChild(textElement);
+        }
+  
+        if (textItem.hasOwnProperty('color')) {
+          text.style.color = textItem.color;
+        }
+        
         carouselItem.appendChild(img);
         carouselInner.appendChild(carouselItem);
         carouselIndicators.appendChild(carouselIndicator);
-
-        if (Array.isArray(this.data.storyText)) {
-          const text = document.createElement('div');
-          text.className = 'text';
-          text.innerHTML = this.data.storyText[i];
-
-          carouselItem.appendChild(text);
-        }
-        
+        carouselItem.appendChild(text);
       }
     }
 
