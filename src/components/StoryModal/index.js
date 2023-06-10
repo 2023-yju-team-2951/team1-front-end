@@ -1,6 +1,6 @@
 import './storymodal.css';
 
-class StoryModal extends HTMLDivElement {
+class StoryModal extends HTMLElement {
   constructor() {
     super();
     this.className = 'modal fade';
@@ -81,17 +81,38 @@ class StoryModal extends HTMLDivElement {
 
     // 완료 버튼 클릭시
     this.querySelector('#finish-button').addEventListener('click', () => {
-      const textWrite = this.querySelector('.text-write');
-      const writingElement = this.querySelector('.writing')
 
-      // json-server post 요청
-      fetch('http://localhost:7000/profiles/1')
-        .then((res) => res.json())
-        .then((user) => {
-          user.storyImg.push(writingElement.style.background);
-          console.log(user.storyImg);
-        })
+      const id = 2;
+      
+      fetch(`http://localhost:7000/profiles/${id}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      }).then(response => {
+        if(!response.ok) {
+          throw response;
+        }
+        return response.json();
+      }).then(data => {
+        console.log(data);
+        return data;
+      })
+      .catch(error => {
+        if (error.status === 404) {
+          console.log("없는 데이터");
+        } else {
+          console.log(error);
+        }
+      })
+
+      const writingElement = this.querySelector('.writing')
+      const background = writingElement.style.background;
+      const textWrite = this.querySelector('.text-write');
+      const text = textWrite.value;
+
+      
     });
+    
+    
 
     // 색깔 고를때 효과 + 고른 색 selected 클래스 추가 + 고른색으로 배경 변경
     this.colors = this.querySelectorAll('.colors')
@@ -138,10 +159,8 @@ class StoryModal extends HTMLDivElement {
     });
         
   }
-
   // 다음, 이전 버튼 클릭시 화면 업데이트
   updateNum() {
-
     this.querySelectorAll('.num').forEach((num) => { num.style.display = 'none'; });
 
     this.querySelector(`#num-${this.num}`).style.display = 'flex';
@@ -149,10 +168,9 @@ class StoryModal extends HTMLDivElement {
     this.querySelector('#prev-button').style.display = this.num > 0 ? 'block' : 'none';
     this.querySelector('#next-button').style.display = this.num < 1 ? 'block' : 'none';
     this.querySelector('#finish-button').style.display = this.num === 1 ? 'block' : 'none';
-
   }
 }
 
-window.customElements.define('story-modal', StoryModal, { extends: 'div' });
+window.customElements.define('story-modal', StoryModal);
 
 export default StoryModal;
