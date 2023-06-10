@@ -1,0 +1,247 @@
+/* 1300px */
+.inner {
+  width: 800px;
+  height: 1300px;
+  margin: 0px auto;
+}
+
+/* .btn:active, .btn:focus {
+  outline:none !important;
+  box-shadow:none !important;} */
+
+/* 1 TOP  10%*/
+.top{
+  width: auto;
+  height: 10%;
+}
+
+.top-container{
+  height: 100%;
+  display: flex;
+}
+.account {
+  font-size:30px ;
+}
+
+/* 1.1 item-image */
+.top-item-image{
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+                                                     
+.top-item-image .top-img {
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+}
+
+/* 1.2 item-account */
+.top-item-account{
+  width: 25%;
+  text-align: center;
+  margin: auto 0;
+}
+/* 1.3 item-mark */
+.top-item-mark{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.top-item-mark .check-img {
+  width: 30px;
+  height: 30px;
+}
+
+/* 2 IMAGE  70%*/
+/* .main-container{
+  width: auto;
+  height: 70%;
+  position: relative;
+  background-position: center;
+}
+
+.main-container .main-img{
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  
+} */
+
+
+.main-container {
+  overflow: hidden;
+  width: 800px;
+  position: relative;
+}
+.createImg {
+  overflow: hidden;
+  width: 800px;
+  position: relative;
+}
+
+
+.items{
+  /* width: 800px; */
+  white-space: nowrap;
+}
+/* li */
+.items .item{
+  width: 100%;
+  height: 800px;
+  display: inline-block;
+  margin-right: -9.5px;
+
+}
+.items .item .main-img{
+  width: 100%;
+  height: 100%;
+  visibility: visible;
+}
+
+.prevButton {
+  background: #dcdcdcab;
+  color: rgb(183, 186, 189);
+  border-radius: 50%;
+  /* font-size: 30px; */
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  position:absolute;
+  top: 50%;
+  left: 30px;
+  z-index: 5;
+}
+.nextButton {
+  background: #dcdcdcab;
+  color: rgb(183, 186, 189);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  position:absolute;
+  top: 50%;
+  right: 30px;
+  z-index: 5;
+}
+
+.items{
+  transition: 0.5s;
+}
+
+
+/* 3. USER WRITE  10% */
+.user-heart{
+  width: auto;
+  height: 5%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 3px;
+}
+.user-heart .user-img{
+  width: 40px;
+  height:40px ;
+  top: 5px;
+  position: relative;
+  margin-right: 15px;
+}
+#account {
+  font-weight: bolder;
+  margin-right: 5px;
+}
+.user-write{
+  width: auto;
+  height: 36px;
+  overflow: hidden;
+  font-size: 18px;
+}
+.user-tag-on{
+  /* visibility: visible; */
+  height: auto;
+}
+
+
+
+/* 4. COMMENT */
+.comment{
+ width: 100%;
+ height: 7%;
+ /* background: red; */
+ display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+.comment .comment-input {
+  width: 89%;
+  height: 20px;
+  font-size: 18px;
+  margin-right: 20px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgba(137, 134, 134, 0.655);
+}
+button {
+  color: rgb(54, 120, 226);
+  background: #00000000;
+  font-size: 25px;
+  font-weight: 900;
+  border: none;
+  outline:none;
+}
+button:hover{
+  color: rgb(0, 0, 0);
+}
+button:active{
+  color:rgb(174, 174, 174);
+}
+
+
+
+#showMore ,#showAll{
+  color: rgb(181, 173, 173);
+  background: #00000000;
+  font-size: 16px;
+  border: none;
+  outline:none;
+}
+#showMore:active{
+  color:rgb(174, 174, 174);
+}
+#showAll:active{
+  color:rgb(174, 174, 174);
+}
+
+
+
+/* 🟡 모달 🟡  */
+.bgBlur{
+  width : 100vw;
+  height : 100vh;
+  position : fixed;
+  background : rgba(0,0,0,0.5);
+  z-index : 500;
+  /* visibility: hidden; */
+  /* padding: 30px; */
+  
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  width: 50vw;
+  height: 90vh;
+  position: fixed;
+  border: 1px solid red;
+  background: rgb(246, 246, 246);
+  z-index: 999;
+  visibility: hidden;
+  }
+  .visible{
+    visibility: visible;
+  }
+  .no_visible{
+    visibility: hidden;
+  }

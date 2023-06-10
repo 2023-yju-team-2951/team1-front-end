@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- CSS초기화 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="modal.css">
+
+<!-- 자바 스크립트  -->
+  <script src="img.js"></script>
+
+</head>
+
+<body>
+
+  <!-- 모달 -->
+  <div class="container">
+    <div class="modal">
+      <div class="modalBox">
+
+        <!-- 왼쪽  -->
+        <div class="left">
+          <!-- <div class="main-container">
+            <button class="prevButton" > &lt;</button>
+            <button class="nextButton"> &gt;</button>
+            <ul class="items">
+              <li class="item"><img class="main-img" src="/img/1.jpg" alt="no_picture"></li>  
+              <li class="item"><img class="main-img" src="/img/2.jpg" alt="no_picture"></li>  
+              <li class="item"><img class="main-img" src="/img/3.jpg" alt="no_picture"></li>  
+              <li class="item"><img class="main-img" src="/img/1.jpg" alt="no_picture"></li>  
+              <li class="item"><img class="main-img" src="/img/2.jpg" alt="no_picture"></li>  
+              <li class="item"><img class="main-img" src="/img/3.jpg" alt="no_picture"></li>  
+            </ul>  
+          </div> -->
+          <mainimg-comp></mainimg-comp>
+        </div>
+
+        <!-- 오른쪽 -->
+        <div class="right">
+          <!-- 1 -->          
+            <user-tag></user-tag>
+          <!-- 2  🟡🟡🟡🟡🟡 여기에 등록 글들 추가-->
+            <div class="modal-inner">
+
+                <div class="innerComent">
+                    <div class="visitor">
+                      <img class="visitor-img" src="/img/ketty1.png" alt="no_picture"> 
+                    </div>
+                    <div class="comment">
+                      <span class="visitor-id">betty0624</span> 
+                      <span class="visitor-comment">
+                        aslchaisulhcliahscilacliahscilaisulhcliahsc
+                      </span> 
+                    </div>
+                </div>
+              
+                
+                <div class="innerComent">
+                    <div class="visitor">
+                      <img class="visitor-img" src="/img/ketty1.png" alt="no_picture"> 
+                    </div>
+                    <div class="comment">
+                      <span class="visitor-id">betty0624</span> 
+                      <span class="visitor-comment">
+                        aslchaisulhcliahscilacliahscilaisulhcliahsc
+                      </span> 
+                    </div>
+                </div>
+             
+            </div>
+          <!-- 3 -->
+            <div class="modal-comment">
+              <div class="modal_bottom">
+                  <textarea  class="modal-comment-input" style="overflow:hidden; resize:none;" placeholder="댓글 달기..."></textarea>
+                  <div class="comment-push">
+                  <button class="btn-push">게시</button>
+                  </div>
+              </div>
+            </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+      <script>
+        document.querySelector('.btn-push')
+      
+      </script>
+
+
+  <script>
+    /* 1. 우측 유저아이디  */
+    class User extends HTMLElement {
+      constructor() {
+        super();
+        this.innerHTML =
+          `<div class="top">
+            <div class="top-container">
+              <div class="top-item-image">
+                <img class="top-img" src="/img/box.png" alt="no_picture"> 
+              </div>
+              <div class="top-item-account">
+                <span class="account"><strong id="userAcct">ichiban1001</strong></span>
+              </div>
+             
+            </div>
+          </div>
+        `
+      }
+      connectedCallback() {
+        let $topImg = document.querySelector('.top-img');
+        $topImg.src = "/img/box.png";
+      }
+      
+    }
+    customElements.define('user-tag', User)
+
+
+
+     /* 2. MainImg 클래스 */
+     class MainImg extends HTMLElement {
+
+        constructor() {
+          super();
+          this.nowPage = 1;
+          this.nowPosition = 0;
+          this.PageLength = 0;
+          this.innerHTML =
+            `<div class="main-container">
+            <button class="prevButton">&lt;</button>
+            <button class="nextButton">&gt;</button>
+            <ul class="items">
+              <!-- FIXME: li값 추가  -->
+              <li class="item"><img class="main-img" src="/img/1.jpg" alt="no_picture"></li>  
+              <li class="item"><img class="main-img" src="/img/2.jpg" alt="no_picture"></li>  
+              <li class="item"><img class="main-img" src="/img/3.jpg" alt="no_picture"></li>  
+              <li class="item"><img class="main-img" src="/img/1.jpg" alt="no_picture"></li>  
+              <li class="item"><img class="main-img" src="/img/2.jpg" alt="no_picture"></li>  
+              <li class="item"><img class="main-img" src="/img/3.jpg" alt="no_picture"></li>  
+            </ul>  
+          </div>`;
+
+          this.items = this.querySelector('.items');
+
+          this.nextButton = this.querySelector('.main-container .nextButton');
+          this.prevButton = this.querySelector('.main-container .prevButton');
+
+
+          /* bind(this)를 사용하여 이벤트 리스너에 메서드의 this 값을 연결 */
+          this.nextButton.addEventListener('click', this.nextTransition.bind(this));
+          this.prevButton.addEventListener('click', this.prevTransition.bind(this));
+        }
+
+        itemsRender() {
+          this.items.innerHTML = '';
+          this.nmbvnmb.forEach((item) => {
+            this.items.innerHTML += itemTemplate(item);
+          })
+        }
+
+        itemTemplate({ img }) {
+          return `<li class="item"><img class="main-img" src="${img}" alt="no_picture"></li>`
+        }
+
+
+        // 2차 실행
+        connectedCallback() {
+          this.initializeCarousel();
+        }
+
+        // 초기화
+        initializeCarousel() {
+          let $items = this.querySelector('.items');
+          let $prevButton = this.querySelector('.prevButton');
+          let $nextButton = this.querySelector('.nextButton');
+          let $mainImg = this.querySelector('.main-img'); // FIXME: 
+          this.PageLength = $items.getElementsByTagName('li').length; // 총 사진 갯수 만큼 변화
+          if (this.nowPage == 1) {
+            $prevButton.classList.add('no_visible');
+          }
+        }
+
+        // 2.1 우측 버튼
+        nextTransition() {
+          console.log(this);
+            this.nowPage++;
+            console.log(this.nowPage);
+
+            if (this.nowPage > 1) {
+              this.prevButton.classList.remove('no_visible');
+            }
+
+            if (this.nowPage == this.PageLength) {
+              this.nextButton.classList.add('no_visible');
+            }
+
+            this.nowPosition -= 800;
+            console.log(this.nowPosition);
+            this.items.style.transform = `translateX(${this.nowPosition}px)`;
+        }
+
+        // 2.2 좌측 버튼
+        prevTransition() {
+            this.nowPage--;
+            console.log(this.nowPage);
+
+            if (this.nowPage == 1) {
+              this.prevButton.classList.add('no_visible');
+            }
+
+            if (this.nowPage < this.PageLength) {
+              this.nextButton.classList.remove('no_visible');
+            }
+
+            this.nowPosition += 800;
+            console.log(this.nowPosition);
+            this.items.style.transform = `translateX(${this.nowPosition}px)`;
+          }
+      }
+      customElements.define('mainimg-comp', MainImg)
+
+
+  </script>
+
+
+
+</body>
+
+</html>
