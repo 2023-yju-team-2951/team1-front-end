@@ -1,17 +1,17 @@
-.main {
+.header {
   justify-content: center;
   width: 100%;
   display: flex;
   padding-top: 22px;
   flex-direction: row;
 }
-.main .main-body {
+.header .header-body {
   max-width: 630px;
   width: 100%;
 }
 
 @media (max-width: 630px) {
-  .main .main-body {
+  .header .header-body {
     max-width: 70%;
   }
 }
@@ -20,12 +20,12 @@
   display: none;
 }
 
-.main .main-body .menu-wrapper {
+.header .header-body .menu-wrapper {
   margin: 0;
   padding: 8px 0;
 }
 
-.main .main-body .menu-wrapper .menu {
+.header .header-body .menu-wrapper .menu {
   align-items: stretch;
   box-sizing: border-box;
   display: flex;
@@ -36,7 +36,7 @@
   overflow-y: hidden;
 }
 
-.main .main-body .menu-wrapper .menu .story-wrapper {
+.header .header-body .menu-wrapper .menu .story-wrapper {
   align-items: stretch;
   display: flex;
   flex-direction: row;
@@ -46,14 +46,7 @@
   overflow-y: hidden;
 }
 
-.main .main-body .menu-wrapper .menu .story-wrapper story-component {
-  margin: 0;
-  padding: 0;
-  width: 0;
-  height: 0;
-}
-
-.main .main-body .slider-button {
+.header .header-body .slider-button {
   position: absolute;
   padding: 0 0 12px 0;
   top: 50%;
@@ -82,7 +75,7 @@
   background-repeat: none;
 }
 
-.main .main-body .story-wrapper .slider-button .btn {
+.header .header-body .story-wrapper .slider-button .btn {
   height: 45px;
   width: 45px;
   background-repeat: no-repeat; 

@@ -131,5 +131,64 @@
         }
       ]
     }
+  ],
+  "posts": [
+    {
+      "id": "1",
+      "name": "test",
+      "post_description": "",
+      "post_top_img": "https://github.com/HyunjinHa.png",
+      "post_main_img": [
+        "https://cdn.pixabay.com/photo/2022/01/22/00/32/bird-6956012_1280.png",
+        "https://cdn.pixabay.com/photo/2022/01/22/00/32/bird-6956012_1280.png",
+        "https://cdn.pixabay.com/photo/2022/01/22/00/32/bird-6956012_1280.png"
+      ],
+      "post_content": "안녕하세요",
+      "statements": [
+        {
+          "visitor": "",
+          "comment": "逃れ逃れついたあるカフェ～～！すっごく居心地よくて時間のある方々にはぜひお勧めいたします！！流れてくる音楽も雰囲気とピッタリなので久々にのんびりしたい人たちにもいいと思います"
+        }
+      ],
+      "likes": "1"
+    },
+    {
+      "id": "2",
+      "name": "",
+      "post_description": "",
+      "post_top_img": "/img/ketty1.png",
+      "post_main_img": [
+        "https://cdn.pixabay.com/photo/2022/01/22/00/32/bird-6956012_1280.png",
+        "https://cdn.pixabay.com/photo/2022/01/22/00/32/bird-6956012_1280.png",
+        "https://cdn.pixabay.com/photo/2022/01/22/00/32/bird-6956012_1280.png"
+      ],
+      "post_content": "안녕하세요",
+      "statements": [
+        {
+          "visitor": "",
+          "comment": ""
+        }
+      ],
+      "likes": "0"
+    },
+    {
+      "id": "3",
+      "name": "",
+      "post_description": "",
+      "post_top_img": "/img/ketty1.png",
+      "post_main_img": [
+        "https://cdn.pixabay.com/photo/2022/01/22/00/32/bird-6956012_1280.png",
+        "https://cdn.pixabay.com/photo/2022/01/22/00/32/bird-6956012_1280.png",
+        "https://cdn.pixabay.com/photo/2022/01/22/00/32/bird-6956012_1280.png"
+      ],
+      "post_content": "안녕하세요",
+      "statements": [
+        {
+          "visitor": "",
+          "comment": ""
+        }
+      ],
+      "likes": "0"
+    }
   ]
 }
