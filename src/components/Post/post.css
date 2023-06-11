@@ -1,0 +1,171 @@
+.inner {
+  justify-content: center;
+  width: 100%;
+  display: flex;
+  padding-top: 22px;
+  flex-direction: row;
+}
+
+.inner post-container {
+  width: 100%;
+  max-width: 630px;
+}
+
+.inner .inner-container {
+  max-width: 630px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.inner .inner-container .card-container {
+  max-width: 470px;
+  width: 100%;
+}
+
+.card {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.card .top {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.card .top .top-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  margin: 8px 4px 8px 5px;
+}
+
+.card .top .top-container .top-item-image {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+}
+
+.card .top .top-container .top-item-account {
+  display: flex;
+  flex-direction: column;
+  margin-left: 16px;
+  justify-content: center;
+  min-height: 40px;
+}
+
+.card .top .top-container .top-item-account .account {
+  font-size: 18px;
+}
+
+.card .main-container {
+  width: 100%;
+  height: 470px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card .main-container .items {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel.slide {
+  height: 100%;
+}
+
+.carousel.slide .carousel-inner {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel.slide .carousel-inner .carousel-item {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.carousel.slide .carousel-inner .carousel-item .img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card .post-footer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.card .post-footer .user-heart {
+  display: flex;
+  margin-top: 4px;
+  margin-left: 0;
+}
+
+.card .post-footer .user-heart .user-heart-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.card .post-footer .user-count {
+  display: flex;
+  margin: 6px;
+  margin-left: 0;
+}
+
+.card .post-footer .user-write {
+  display: flex;
+  flex-direction: column;
+}
+
+.card .post-footer .user-write #account {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.card .post-footer .user-write #showMore {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgb(115, 115, 115);
+  cursor: pointer;
+}
+
+.card .post-footer #showAll {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgb(115, 115, 115);
+  cursor: pointer;
+}
+
+.card .post-footer .comment {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0;
+}
+
+.card .post-footer .comment .comment-input {
+  max-height: 80px;
+  max-width: 100%;
+  flex-grow: 1;
+  height: 24px;
+  border: none;
+  outline: none;
+  resize: none;
+  overflow: hidden;
+}

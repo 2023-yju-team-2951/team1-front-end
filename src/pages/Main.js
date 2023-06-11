@@ -1,5 +1,6 @@
 import '../components/Header';
 import '../components/Nav';
+import '../components/Post'
 
 export default class {
   constructor() {
@@ -7,7 +8,16 @@ export default class {
   }
   getHtml() {
     return `
-      <Header-component></Header-component>
+      <div class="main">
+        <div class="main-body">
+          <Header-component></Header-component>
+
+          <div class="inner">
+            <post-container></post-container>
+          </div>
+          
+        </div>
+      </div>
       <Nav-component></Nav-component>
     `;
   }

@@ -9,8 +9,8 @@ class Header extends HTMLElement {
     
     this.innerHTML = 
     `
-    <div class="main">
-      <div class="main-body">
+    <div class="header">
+      <div class="header-body">
         <div class="menu-wrapper">
           <div class="menu">
             <div class="story-wrapper">
@@ -25,7 +25,8 @@ class Header extends HTMLElement {
           </div>
         </div>
       </div>
-    </div>
+    </div
+    
     `
   }
 
