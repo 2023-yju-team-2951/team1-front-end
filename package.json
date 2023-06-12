@@ -9,7 +9,7 @@
     "bundle": "webpack --mode production",
     "bundle:dev": "webpack --mode development",
     "watch": "webpack --mode development --watch",
-    "dev": "webpack serve --mode development --open",
+    "dev": "yarn watch | serve ./public ",
     "json-server": "json-server --watch ./server/db.json --port 7000"
   },
   "devDependencies": {
@@ -22,8 +22,7 @@
     "serve": "^14.2.0",
     "style-loader": "^3.3.3",
     "webpack": "^5.83.1",
-    "webpack-cli": "^5.1.1",
-    "webpack-dev-server": "^4.15.1"
+    "webpack-cli": "^5.1.1"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
