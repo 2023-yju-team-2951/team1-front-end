@@ -8,7 +8,7 @@
   "scripts": {
     "bundle": "webpack --mode production",
     "bundle:dev": "webpack --mode development",
-    "watch": "nodemon --watch . --exec \"npm run bundle:dev\"",
+    "watch": "nodemon --watch . --exec \"npm run bundle:dev\" --ext js,css",
     "dev": "serve ./public | yarn watch",
     "juhyeondev": "webpack serve --mode development",
     "json-server": "json-server --watch ./server/db.json --port 7000"
