@@ -18,18 +18,23 @@ class StoryView extends HTMLElement {
   async loadDatas() {
     try {
       this.data = await getProfiles();
-      this.storyModal = new StoryModal('edit', 0, this.data);
 
-      const storyViewModal = document.querySelector('.story-view-modal');
+      this.modalContainer = document.createElement('div');
+      this.modalContainer.classList.add('modal-container');
+      document.body.appendChild(this.modalContainer);
 
-      storyViewModal.appendChild(this.storyModal);
       this.render();
+
+      setTimeout(() => {
+        this.openModal();
+      }, 10);
     } catch (error) {
       console.log(error);
     } 
   }
 
   render() {
+    
     const urlParams = new URLSearchParams(window.location.search);
     const id = parseInt(urlParams.get('id'));
   
@@ -70,15 +75,25 @@ class StoryView extends HTMLElement {
     const deleteStory = this.querySelector('#del-story');
 
     editStory.addEventListener('click', () => {
-      this.editCarouselImg();
+      this.openModal();
     })
 
     deleteStory.addEventListener('click', () => {
       this.deleteCarouselImg();
     });
 
+    editStory.setAttribute('data-bs-toggle', 'modal');
+    editStory.setAttribute('data-bs-target', '#editStoryModal');
+
   }
-  
+
+  openModal() {
+    const activeCarouselItem = this.querySelector('.carousel-item.active');
+    const activeIndex = activeCarouselItem.dataset.index;
+
+    this.storyModal = new StoryModal('edit', activeIndex, this.data);
+    this.modalContainer.appendChild(this.storyModal);
+  }
   
   sizeChange() {
     this.reSize();
@@ -292,7 +307,6 @@ class StoryView extends HTMLElement {
         const index = this.data.findIndex((data) => data.id === id);
         this.data[index].storyImg = storyImg;
         this.data[index].storyText = storyText;
-        console.log(this.data);
         
         return fetch(`http://localhost:7000/profiles/${id}`, {
           method: 'PATCH',
@@ -315,28 +329,17 @@ class StoryView extends HTMLElement {
     })
     
   }
+
+  removeModal() {
+    const modal = document.querySelector('story-modal');
+    if (modal) {
+      const event = new Event('hide.bs.modal');
+      modal.dispatchEvent(event);
   
-  editCarouselImg() {
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = parseInt(urlParams.get('id'));
-
-    const activeCarouselItem = this.querySelector('.carousel-item.active');
-    const activeIndex = activeCarouselItem.dataset.index;
-    
-    this.storyModal.remove();
-    this.storyModal = new StoryModal('edit', activeIndex, this.data);
-    this.appendChild(this.storyModal);
-
-    while (this.modalWrapper.firstChild) {
-      this.modalWrapper.firstChild.remove();
+      modal.remove();
     }
-    const newURL = window.location.origin + window.location.pathname + '?id=' + id;
-    history.pushState(null, null, newURL);
-
-    this.render();
-    this.sizeChange();
   }
+  
 }
 // 중간 스토리 생성
 class CenterStory {
@@ -356,7 +359,7 @@ class CenterStory {
                   <div class="story-name">${this.data.name}</div>
                 </div>
                 <div class="story-tool">
-                  <span class="material-symbols-outlined" id="edit-story" data-bs-toggle="modal" data-bs-target="#editStoryModal">
+                  <span class="material-symbols-outlined" id="edit-story">
                     edit
                   </span>
                   <span class="material-symbols-outlined" id="del-story">
@@ -399,7 +402,6 @@ class CarouselImg {
     const carouselSlide = document.createElement('div');
     carouselSlide.className = 'carousel slide';
     carouselSlide.id = 'carouselAuto';
-    carouselSlide.setAttribute('data-bs-ride', 'carousel');
 
     const carouselIndicators = document.createElement('div');
     carouselIndicators.className = 'carousel-indicators';
@@ -419,7 +421,6 @@ class CarouselImg {
         carouselIndicator.setAttribute('data-bs-slide-to', i);
         carouselIndicator.setAttribute('aria-label', `Slide ${i + 1}`);
   
-        carouselItem.setAttribute('data-bs-interval', '10000');
         carouselItem.dataset.index = i;
         if (i === 0) {
           carouselItem.className = 'carousel-item active';
@@ -494,7 +495,7 @@ class SideStory {
                       </div>
                     </div>
                   </div>
-                  <img src="${this.data.storyImg[0]}">
+                  <div class="side-img"></div>
                 </div>
               </div>
             </div>
@@ -502,6 +503,13 @@ class SideStory {
         </div>
       </div>
     `;
+
+    const sideImg = container.querySelector('.side-img');
+    if (/^http.*/.test(this.data.storyImg[0])) {
+      sideImg.style.background = `url(${this.data.storyImg[0]})`;
+    } else {
+      sideImg.style.background = this.data.storyImg[0];
+    }
 
     return container.innerHTML;
   }

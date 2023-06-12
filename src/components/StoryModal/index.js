@@ -16,6 +16,8 @@ class StoryModal extends HTMLElement {
     this.index = index;
     this.data = data;
 
+    console.log(this.index);
+
     this.id = id;
     this.mode = mode;
     this.setAttribute('aria-labelledby', 'storyModalLabel');
@@ -144,6 +146,7 @@ class StoryModal extends HTMLElement {
       .then(response => response.json())
       .then(updatedData => {
         console.log(updatedData);
+        this.removeModal();
       })
       .catch(error => {
         console.error(error);
@@ -153,14 +156,15 @@ class StoryModal extends HTMLElement {
 
     // 수정 버튼 클릭시
     this.querySelector('#edit-button').addEventListener('click', () => {
-      const writingElement = this.querySelector('.writing')
+      const writingElement = this.querySelector('.writing');
       const background = writingElement.style.background;
       const textWrite = this.querySelector('.text-write');
       const text = textWrite.value;
-
+      console.log(this.index); // 인덱스 값을 새로운 스코프로 가져오기
+    
       const urlParams = new URLSearchParams(window.location.search);
       const id = parseInt(urlParams.get('id'));
-
+    
       fetch(`http://localhost:7000/profiles/${id}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
@@ -169,24 +173,25 @@ class StoryModal extends HTMLElement {
           const storyImg = data.storyImg;
           const storyText = data.storyText;
 
-          storyImg.splice(this.index, 1, background);
-          storyText.splice(this.index, 1, text);
-
-          this.data[id].storyImg = storyImg;
-          this.data[id].storyText = storyText;
-
+          console.log(index);
+    
+          storyImg.splice(index, 1, background);
+          storyText.splice(index, 1, text);
+    
+          data.storyImg = storyImg;
+          data.storyText = storyText;
+    
           return fetch(`http://localhost:7000/profiles/${id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ storyImg, storyText }),
+          });
+        }).then(res => res.json())
+        .then(() => {
+          this.removeModal();
         });
-      }).then(res => res.json())
-        .then(data => {
-          console.log(data);
-        }
-        );
-    })
-
+    });
+    
     // 색깔 고를때 효과 + 고른 색 selected 클래스 추가 + 고른색으로 배경 변경
     this.colors = this.querySelectorAll('.colors')
     this.colors.forEach((color) => {
@@ -254,6 +259,18 @@ class StoryModal extends HTMLElement {
       this.querySelector('#finish-button').style.display = 'none';
       this.querySelector('#edit-button').style.display = 'none';
     }
+  }
+
+  removeModal() {
+    const event = new Event('hide.bs.modal');
+    this.dispatchEvent(event);
+  
+    const backdrop = document.querySelector('.modal-backdrop');
+    if (backdrop) {
+      backdrop.remove();
+    }
+  
+    this.remove();
   }
 
 }
