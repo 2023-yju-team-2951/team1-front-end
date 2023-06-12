@@ -1,6 +1,7 @@
 import './storymodal.css';
 
 class StoryModal extends HTMLElement {
+
   constructor(mode, index, data) {
     super();
     this.className = 'modal fade';
