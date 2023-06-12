@@ -6,12 +6,6 @@ class StoryView extends HTMLElement {
 
   constructor() {   
     super();
-    
-    this.storyModal = new StoryModal('edit');
-
-    const storyViewModal = document.querySelector('.story-view-modal');
-
-    storyViewModal.appendChild(this.storyModal);
 
     this.storyWrapper = document.createElement('div');
     this.storyWrapper.className = 'story-modal-wrapper';
@@ -24,6 +18,11 @@ class StoryView extends HTMLElement {
   async loadDatas() {
     try {
       this.data = await getProfiles();
+      this.storyModal = new StoryModal('edit', 0, this.data);
+
+      const storyViewModal = document.querySelector('.story-view-modal');
+
+      storyViewModal.appendChild(this.storyModal);
       this.render();
     } catch (error) {
       console.log(error);
@@ -293,6 +292,7 @@ class StoryView extends HTMLElement {
         const index = this.data.findIndex((data) => data.id === id);
         this.data[index].storyImg = storyImg;
         this.data[index].storyText = storyText;
+        console.log(this.data);
         
         return fetch(`http://localhost:7000/profiles/${id}`, {
           method: 'PATCH',
@@ -317,9 +317,6 @@ class StoryView extends HTMLElement {
   }
   
   editCarouselImg() {
-    this.storyModal.remove();
-    this.storyModal = new StoryModal('edit');
-    this.modalWrapper.appendChild(this.storyModal);
 
     const urlParams = new URLSearchParams(window.location.search);
     const id = parseInt(urlParams.get('id'));
@@ -327,43 +324,18 @@ class StoryView extends HTMLElement {
     const activeCarouselItem = this.querySelector('.carousel-item.active');
     const activeIndex = activeCarouselItem.dataset.index;
     
+    this.storyModal.remove();
+    this.storyModal = new StoryModal('edit', activeIndex, this.data);
+    this.appendChild(this.storyModal);
 
-    // 모달창에서 나온 값 리턴 받기
-    
+    while (this.modalWrapper.firstChild) {
+      this.modalWrapper.firstChild.remove();
+    }
+    const newURL = window.location.origin + window.location.pathname + '?id=' + id;
+    history.pushState(null, null, newURL);
 
-    // fetch(`http://localhost:7000/profiles/${id}`, {
-    //   method: 'GET',
-    //   headers: {  'Content-Type': 'application/json' },
-    // }).then((res) => res.json())
-    //   .then((data) => {
-    //     const storyImg = data.storyImg;
-    //     const storyText = data.storyText;
-
-    //     storyImg.splice(activeIndex, 1, this.storyModal.img);
-    //     storyText.splice(activeIndex, 1, this.storyModal.text);
-
-    //     const index = this.data.findIndex((data) => data.id === id);
-    //     this.data[index].storyImg = storyImg;
-    //     this.data[index].storyText = storyText;
-
-    //     return fetch(`http://localhost:7000/profiles/${id}`, {
-    //       method: 'PATCH',
-    //       headers: { 'Content-Type': 'application/json' },
-    //       body: JSON.stringify({ storyImg, storyText }),
-    //     });
-    //   })
-    //   .then((res) => res.json())
-    //   .then(() => {
-    //     while (this.modalWrapper.firstChild) {
-    //       this.modalWrapper.firstChild.remove();
-    //     }
-
-    //     const newURL = window.location.origin + window.location.pathname + '?id=' + id;
-    //     history.pushState(null, null, newURL);
-
-    //     this.render();
-    //     this.sizeChange();
-    //   })
+    this.render();
+    this.sizeChange();
   }
 }
 // 중간 스토리 생성
@@ -384,7 +356,7 @@ class CenterStory {
                   <div class="story-name">${this.data.name}</div>
                 </div>
                 <div class="story-tool">
-                  <span class="material-symbols-outlined" id="edit-story" data-bs-toggle="modal" data-bs-target="#storyModal">
+                  <span class="material-symbols-outlined" id="edit-story" data-bs-toggle="modal" data-bs-target="#editStoryModal">
                     edit
                   </span>
                   <span class="material-symbols-outlined" id="del-story">

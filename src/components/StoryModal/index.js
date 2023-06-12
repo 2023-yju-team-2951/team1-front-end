@@ -1,10 +1,22 @@
 import './storymodal.css';
 
 class StoryModal extends HTMLElement {
-  constructor(mode, index) {
+  constructor(mode, index, data) {
     super();
     this.className = 'modal fade';
-    this.id = 'storyModal';
+
+    let id;
+
+    if (mode === 'main') {
+      id = 'storyModal';
+    } else if (mode === 'edit') {
+      id = `editStoryModal`;
+    }
+
+    this.index = index;
+    this.data = data;
+
+    this.id = id;
     this.mode = mode;
     this.setAttribute('aria-labelledby', 'storyModalLabel');
     this.setAttribute('aria-hidden', 'true');
@@ -141,10 +153,39 @@ class StoryModal extends HTMLElement {
 
     // 수정 버튼 클릭시
     this.querySelector('#edit-button').addEventListener('click', () => {
-      const activeCarouselItem = this.querySelector('.carousel-item.active');
+      const writingElement = this.querySelector('.writing')
+      const background = writingElement.style.background;
+      const textWrite = this.querySelector('.text-write');
+      const text = textWrite.value;
 
-      console.log(activeCarouselItem);
-    });
+      const urlParams = new URLSearchParams(window.location.search);
+      const id = parseInt(urlParams.get('id'));
+
+      fetch(`http://localhost:7000/profiles/${id}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      }).then(res => res.json())
+        .then(data => {
+          const storyImg = data.storyImg;
+          const storyText = data.storyText;
+
+          storyImg.splice(this.index, 1, background);
+          storyText.splice(this.index, 1, text);
+
+          this.data[id].storyImg = storyImg;
+          this.data[id].storyText = storyText;
+
+          return fetch(`http://localhost:7000/profiles/${id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ storyImg, storyText }),
+        });
+      }).then(res => res.json())
+        .then(data => {
+          console.log(data);
+        }
+        );
+    })
 
     // 색깔 고를때 효과 + 고른 색 selected 클래스 추가 + 고른색으로 배경 변경
     this.colors = this.querySelectorAll('.colors')
