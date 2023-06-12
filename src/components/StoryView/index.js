@@ -6,12 +6,12 @@ class StoryView extends HTMLElement {
 
   constructor() {   
     super();
-
+    
     this.storyModal = new StoryModal('edit');
 
     const storyViewModal = document.querySelector('.story-view-modal');
 
-    storyViewModal.append(this.storyModal);
+    storyViewModal.appendChild(this.storyModal);
 
     this.storyWrapper = document.createElement('div');
     this.storyWrapper.className = 'story-modal-wrapper';
@@ -316,19 +316,17 @@ class StoryView extends HTMLElement {
     
   }
   
-  async editCarouselImg() {
+  editCarouselImg() {
+    this.storyModal.remove();
+    this.storyModal = new StoryModal('edit');
+    this.modalWrapper.appendChild(this.storyModal);
+
     const urlParams = new URLSearchParams(window.location.search);
     const id = parseInt(urlParams.get('id'));
 
     const activeCarouselItem = this.querySelector('.carousel-item.active');
     const activeIndex = activeCarouselItem.dataset.index;
-
-    this.storyModal.remove();
-    this.storyModal = new StoryModal('edit');
-    this.appendChild(this.storyModal);
-
-    const editedValues = await this.storyModal.editButtonHandler();
-    console.log(editedValues);
+    
 
     // 모달창에서 나온 값 리턴 받기
     
@@ -367,7 +365,6 @@ class StoryView extends HTMLElement {
     //     this.sizeChange();
     //   })
   }
-
 }
 // 중간 스토리 생성
 class CenterStory {
