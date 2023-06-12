@@ -8,7 +8,7 @@
   "scripts": {
     "bundle": "webpack --mode production",
     "bundle:dev": "webpack --mode development",
-    "watch": "nodemon --exec yarn bundle:dev --watch src -e css,js,html",
+    "watch": "webpack --mode development --watch",
     "dev": "serve ./public | yarn watch",
     "json-server": "json-server --watch ./server/db.json --port 7000"
   },
@@ -17,6 +17,7 @@
     "@babel/preset-env": "^7.21.5",
     "babel-loader": "^9.1.2",
     "css-loader": "^6.7.4",
+    "dotenv-webpack": "^8.0.1",
     "nodemon": "^2.0.22",
     "serve": "^14.2.0",
     "style-loader": "^3.3.3",
@@ -24,9 +25,9 @@
     "webpack-cli": "^5.1.1"
   },
   "dependencies": {
-    "gsap": "^3.11.5",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.2.3",
+    "gsap": "^3.11.5",
     "json-server": "^0.17.3"
   }
 }
