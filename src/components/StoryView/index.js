@@ -1,11 +1,18 @@
 import './storyView.css';
 import { getProfiles } from '../../api/profiles.js';
 import { gsap } from "gsap";
-
+import StoryModal from '../StoryModal/';
 class StoryView extends HTMLElement {
 
   constructor() {   
     super();
+
+    this.storyModal = new StoryModal('edit');
+
+    const storyViewModal = document.querySelector('.story-view-modal');
+
+    storyViewModal.append(this.storyModal);
+
     this.storyWrapper = document.createElement('div');
     this.storyWrapper.className = 'story-modal-wrapper';
     this.modalWrapper = document.createElement('div');
@@ -38,7 +45,7 @@ class StoryView extends HTMLElement {
       ${new CenterStory(this.data[index]).render()}
       ${index < this.data.length - 1 ? new SideStory(nextData).render('right') : ''}
     `;
-  
+
     this.storyWrapper.appendChild(this.modalWrapper);
   
     this.appendChild(this.storyWrapper);
@@ -59,6 +66,18 @@ class StoryView extends HTMLElement {
     }
   
     this.sizeChange();
+
+    const editStory = this.querySelector('#edit-story');
+    const deleteStory = this.querySelector('#del-story');
+
+    editStory.addEventListener('click', () => {
+      this.editCarouselImg();
+    })
+
+    deleteStory.addEventListener('click', () => {
+      this.deleteCarouselImg();
+    });
+
   }
   
   
@@ -246,8 +265,110 @@ class StoryView extends HTMLElement {
       )
     }
   }
-}
 
+  // 현재 캐러셀 이미지 삭제
+  deleteCarouselImg() {
+    const activeCarouselItem = this.querySelector('.carousel-item.active');
+    const activeIndex = activeCarouselItem.dataset.index;
+  
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = parseInt(urlParams.get('id'));
+    
+    fetch(`http://localhost:7000/profiles/${id}`, {
+      method: 'GET',
+      headers: { 
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache'
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+
+        const storyImg = data.storyImg;
+        const storyText = data.storyText;
+
+        storyImg.splice(activeIndex, 1); 
+        storyText.splice(activeIndex, 1);
+        
+        const index = this.data.findIndex((data) => data.id === id);
+        this.data[index].storyImg = storyImg;
+        this.data[index].storyText = storyText;
+        
+        return fetch(`http://localhost:7000/profiles/${id}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ storyImg, storyText }),
+        });
+      })
+    .then((res) => res.json())
+    .then(() => {
+
+      while (this.modalWrapper.firstChild) {
+        this.modalWrapper.firstChild.remove();
+      }
+      
+      const newURL = window.location.origin + window.location.pathname + '?id=' + id;
+      history.pushState(null, null, newURL);
+      
+      this.render();
+      this.sizeChange();
+    })
+    
+  }
+  
+  async editCarouselImg() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = parseInt(urlParams.get('id'));
+
+    const activeCarouselItem = this.querySelector('.carousel-item.active');
+    const activeIndex = activeCarouselItem.dataset.index;
+
+    this.storyModal.remove();
+    this.storyModal = new StoryModal('edit');
+    this.appendChild(this.storyModal);
+
+    const editedValues = await this.storyModal.editButtonHandler();
+    console.log(editedValues);
+
+    // 모달창에서 나온 값 리턴 받기
+    
+
+    // fetch(`http://localhost:7000/profiles/${id}`, {
+    //   method: 'GET',
+    //   headers: {  'Content-Type': 'application/json' },
+    // }).then((res) => res.json())
+    //   .then((data) => {
+    //     const storyImg = data.storyImg;
+    //     const storyText = data.storyText;
+
+    //     storyImg.splice(activeIndex, 1, this.storyModal.img);
+    //     storyText.splice(activeIndex, 1, this.storyModal.text);
+
+    //     const index = this.data.findIndex((data) => data.id === id);
+    //     this.data[index].storyImg = storyImg;
+    //     this.data[index].storyText = storyText;
+
+    //     return fetch(`http://localhost:7000/profiles/${id}`, {
+    //       method: 'PATCH',
+    //       headers: { 'Content-Type': 'application/json' },
+    //       body: JSON.stringify({ storyImg, storyText }),
+    //     });
+    //   })
+    //   .then((res) => res.json())
+    //   .then(() => {
+    //     while (this.modalWrapper.firstChild) {
+    //       this.modalWrapper.firstChild.remove();
+    //     }
+
+    //     const newURL = window.location.origin + window.location.pathname + '?id=' + id;
+    //     history.pushState(null, null, newURL);
+
+    //     this.render();
+    //     this.sizeChange();
+    //   })
+  }
+
+}
 // 중간 스토리 생성
 class CenterStory {
   constructor(data) {
@@ -260,9 +381,19 @@ class CenterStory {
         <div class="modal-story">
           <div class="story-item">
             <div class="story-header">
-              <div class="story-title">
-                <div class="story-name">${this.data.name}</div>
-                <img class="story-small-img" src="${this.data.img}" />
+              <div class="story-head">
+                <div class="story-profile">
+                  <img class="story-small-img" src="${this.data.img}">
+                  <div class="story-name">${this.data.name}</div>
+                </div>
+                <div class="story-tool">
+                  <span class="material-symbols-outlined" id="edit-story" data-bs-toggle="modal" data-bs-target="#storyModal">
+                    edit
+                  </span>
+                  <span class="material-symbols-outlined" id="del-story">
+                    delete_forever
+                  </span>
+                </div>
               </div>
             </div>
             <button class="slide-button prevB" type="button" data-bs-target="#carouselAuto" data-bs-slide="prev">
@@ -289,7 +420,6 @@ class CenterStory {
     return container.innerHTML;
   }
 }
-
 
 // 캐러셀 이미지 생성
 class CarouselImg {
@@ -321,6 +451,7 @@ class CarouselImg {
         carouselIndicator.setAttribute('aria-label', `Slide ${i + 1}`);
   
         carouselItem.setAttribute('data-bs-interval', '10000');
+        carouselItem.dataset.index = i;
         if (i === 0) {
           carouselItem.className = 'carousel-item active';
           carouselIndicator.className = 'active';
