@@ -144,6 +144,12 @@
   height: 100%;
 }
 
+.img-container .img-size .img-item .img-div .side-img {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
 .img-container .img-size .carousel.slide {
   height: 100%;
 }

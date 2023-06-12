@@ -5,23 +5,26 @@ import './story.css'
 class Story extends HTMLElement {
   constructor() {
     super();
-
-    this.storyModal = new StoryModal('main');
-
-    const main = document.querySelector('.main');
-    main.appendChild(this.storyModal);
-    
     this.loadDatas();
   }
 
   async loadDatas() {
     try {
       this.data = await getProfiles();
+
+      this.modalContainer = document.createElement('div');
+      this.modalContainer.classList.add('modal-container');
+      document.body.appendChild(this.modalContainer);
+
       this.render();
       const canvasElements = this.querySelectorAll('canvas');
       canvasElements.forEach((canvasElement) => {
         this.draw(canvasElement);
       });
+
+      setTimeout(() => {
+        this.openModal();
+      }, 10);
     } catch (error) {
       console.log(error);
     }
@@ -54,7 +57,7 @@ class Story extends HTMLElement {
     storyHTML += `
       <li class="slider" style="transform: translateX(${translateXValue}px);">
         <div class="story-container">
-          <div class="story" id="add-story" data-bs-toggle="modal" data-bs-target="#storyModal">
+          <div class="story" id="add-story">
             <div class="profile">
               <span class="material-symbols-outlined">add</span>
             </div>
@@ -67,14 +70,24 @@ class Story extends HTMLElement {
     this.innerHTML = storyHTML;
 
     this.querySelector('#add-story').addEventListener('click', () => {
-      this.storyModal.remove();
-      this.storyModal = new StoryModal('main');
-      const main = document.querySelector('.main');
-      main.appendChild(this.storyModal);
+      this.openModal();
+    });
+    
+    const addStoryButton = this.querySelector('#add-story');
+
+    addStoryButton.setAttribute('data-bs-toggle', 'modal');
+    addStoryButton.setAttribute('data-bs-target', '#storyModal');
+
+    const canvasElements = this.querySelectorAll('canvas');
+    canvasElements.forEach((canvasElement) => {
+      this.draw(canvasElement);
     });
   }
 
-
+  openModal() {
+    this.storyModal = new StoryModal('main');
+    this.modalContainer.appendChild(this.storyModal);
+  }
   draw(canvasElement) {
     var canvas = canvasElement;
     var ctx = canvas.getContext('2d');

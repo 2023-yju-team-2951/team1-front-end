@@ -23,16 +23,12 @@
       ],
       "storyText": [
         {
-          "text": "안녕하세요",
-          "color": "#333"
+          "text": "",
+          "color": ""
         },
         {
-          "text": "반갑습니다",
-          "color": "#333"
-        },
-        {
-          "text": "테스트래ㅔㅏㅁㅇㄴ랜아래ㅔㅏㄴㅇ래ㅔㅏㄴ애라내ㅔㅇ라내ㅔ프ㅐㅔㄴ으패ㅔㄴ으패느에ㅐㅓㄹ느애ㅔ래으래ㅔㅇ르ㅐㅔㅡ랟베ㅡ래ㅔ므레ㅐ므래ㅔ",
-          "color": "#fff"
+          "text": "",
+          "color": ""
         }
       ]
     },
@@ -43,10 +39,12 @@
       "name": "2201400",
       "img": "https://github.com/2201400.png",
       "storyImg": [
-        "https://cdn.pixabay.com/photo/2023/05/31/09/57/skyscraper-8030987_1280.jpg",
+        "rgb(189, 178, 255)",
+        "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg",
         "rgb(202, 255, 191)"
       ],
       "storyText": [
+        "",
         {
           "text": "",
           "color": ""
@@ -63,7 +61,7 @@
       "name": "hetame1",
       "img": "https://github.com/hetame1.png",
       "storyImg": [
-        "rgb(202, 255, 191)",
+        "rgb(253, 255, 182)",
         "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg"
       ],
       "storyText": [
@@ -78,15 +76,21 @@
       "id": 4,
       "name": "HyunjinHa",
       "img": "https://github.com/HyunjinHa.png",
-      "storyImg": [],
-      "storyText": []
+      "storyImg": [
+        "rgb(202, 255, 191)",
+        "rgb(155, 246, 255)"
+      ],
+      "storyText": [
+        "",
+        ""
+      ]
     },
     {
       "id": 5,
       "name": "Jaeil-Lee",
       "img": "https://github.com/Jaeil-Lee.png",
       "storyImg": [
-        "rgb(202, 255, 191)",
+        "rgb(189, 178, 255)",
         "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg"
       ],
       "storyText": [
@@ -102,14 +106,11 @@
       "name": "Lsy04178",
       "img": "https://github.com/Lsy04178.png",
       "storyImg": [
-        "https://cdn.pixabay.com/photo/2023/05/31/09/57/skyscraper-8030987_1280.jpg",
+        "rgb(155, 246, 255)",
         "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg"
       ],
       "storyText": [
-        {
-          "text": "",
-          "color": ""
-        },
+        "",
         {
           "text": "",
           "color": ""
