@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>mainCard</title>
+
+  <!-- CSS 초기화 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="./main.css">
+
+</head>
+
+<!-- FIXME:   TODO: -->
+
+<body>
+  
+  <!-- root class -->
+  <div class="root">
+    <!-- <div class="modal"></div> -->
+    <div class="inner">
+      <div is="cardcontainer-comp"></div>
+    </div>
+
+  </div>
+  <!-----------------------------------------------------------------------------------------------🟡 js 🟡------------------------------------------------------------------------------------------------>
+ 
+  <script>
+  
+    /* 1. CardContainer class  [ class로 div 만들기 -> HTMLDivElement ] */
+    class CardContainer extends HTMLDivElement {
+      /* 생성자 */
+      constructor() {
+        super()
+
+        this.classList.add('card-container');
+
+        this.posts = []
+      }
+
+      /* TODO: fetch로 데이터 받아오기  */
+      async getPosts() {
+        const res = await fetch('http://localhost:3000/posts');
+        this.posts = await res.json();
+        console.log(this.posts)  // Array 형식으로 담겨 온다 -> 그래서 위에    this.posts = []  이렇게 표시함 
+      }
+
+      async connectedCallback(){
+        await this.getPosts();   // 제일 먼저 데이터 불러오기  
+        this.render();
+      }
+
+      render() {
+        this.posts.forEach(post=>{
+          this.appendChild( new Card() ); // 🟢 post의 개수 만큼 Card 생성 🟢
+        })
+        
+      }
+    }
+    customElements.define("cardcontainer-comp", CardContainer, {extends: 'div'})
+
+
+    /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+
+
+    /* 2. Card class */
+    class Card extends HTMLDivElement {
+      constructor(){
+        super()
+        this.classList.add('card');
+        this.style.marginBottom='50px';
+      }
+      connectedCallback(){
+        this.append(
+            new UserAcct(), 
+            new MainImg(), 
+            new UserWrite(), 
+            // new Moreview(), 
+            new Comment()
+        )
+      }
+    }
+    customElements.define("card-comp", Card, {extends: 'div'})
+
+
+    /* 3. 모달 */ 
+    class Modal extends HTMLElement {
+   
+
+      async connectedCallback() {
+        await this.getPosts();
+        this.innerHTML =
+          `<div class="modal">
+              </div>
+           </div>`;
+      }
+    }
+    customElements.define('modal-comp', Modal)
+
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+
+
+    /* 4. UserAcct 클래스 */
+    class UserAcct extends HTMLElement {
+    
+      // 1차 실행
+      constructor() {
+        super();
+        this.user_id
+        this.posts = [];
+
+        this.innerHTML =
+          `<div class="top">
+          <div class="top-container">
+            <div class="top-item-image">
+              <!-- FIXME: src: 변경해야됨  --> 
+              <img class="top-img" src="/img/box.png" alt="no_picture"> 
+            </div>
+            <div class="top-item-account">
+              <!-- FIXME: 이름: 변경해야됨  --> 
+              <span class="account"><strong id="userAcct">ichiban1001</strong></span>
+            </div>
+            <div class="top-item-mark">
+              <img class="check-img" src="/img/check.png" alt="no_picture">
+            </div>
+          </div>
+        </div>`;
+      }
+      // // 2차 실행  
+      // async connectedCallback() {
+      //   await this.getPosts()
+      //   this.setTopimg();
+      // }
+      // setTopimg() {
+      //   this.querySelector('.top-img').src = this.posts[0].post_img;
+      //   // document.querySelector('.top-img').src = '/img/ketty5.png';
+      // }
+    }
+    customElements.define('useraccount-comp', UserAcct);
+
+
+
+    class CreateImg extends HTMLElement {
+    constructor(){
+      super();
+      this.posts = []
+    } 
+
+    async connectedCallback(){
+      await this.getPosts();
+      this.render();
+    }
+
+    /*  fetch로 데이터 받아오기  */
+    async getPosts() {
+    const res = await fetch('http://localhost:3000/posts');
+    this.posts = await res.json();   // Array 형식으로 담겨 온다 -> 그래서 위에    this.posts = []  이렇게 표시함 
+    // console.log(this.posts) 
+    }
+
+    render() {
+      // 1.ul 태그 만들기 
+      const ul_element = document.createElement('ul');
+      ul_element.className = 'items';
+
+      this.appendChild(ul_element);
+      console.log("포스트 있나 없나");
+      console.log(this.posts);
+      // 2. posts에서 데이터를 가져와 ,데이터 수만큼 이미지 생성
+      this.posts.forEach( (post ,i) => {
+        
+        // 2.1 li 생성
+        const li_element = document.createElement('li');
+        li_element.className = 'item';
+        ul_element.appendChild(li_element);
+        
+        // 2.2 image 생성
+        const img_element = document.createElement('img');
+        img_element.className = 'main-img';
+        img_element.src = post.post_main_img[i]
+        li_element.appendChild(img_element);
+        
+      })
+
+      // this.appendChild('.items')
+     }
+
+    }
+     customElements.define('sendingimg-comp',CreateImg)
+
+
+
+    /* 5. MainImg 클래스 */
+    class MainImg extends HTMLElement {
+
+      constructor() {
+        super();
+        this.nowPage = 1;
+        this.nowPosition = 0;
+        this.PageLength = 0;
+        this.innerHTML =
+          `<div class="main-container">
+              <button class="prevButton">&lt;</button>
+              <button class="nextButton">&gt;</button>
+             
+           </div>`;
+        this.appendChild(new CreateImg());
+
+        this.items = this.querySelector('.items');
+
+        this.nextButton = this.querySelector('.main-container .nextButton');
+        this.prevButton = this.querySelector('.main-container .prevButton');
+
+        // this.nextButton.addEventListener('click' ,() => this.nextTransition())
+        // this.prevButton.addEventListener('click' ,() => this.prevTransition())
+        /* bind(this)를 사용하여 이벤트 리스너에 메서드의 this 값을 연결 */
+        this.nextButton.addEventListener('click', this.nextTransition.bind(this));
+        this.prevButton.addEventListener('click', this.prevTransition.bind(this));
+      }
+
+      // itemsRender() {
+      //   this.items.innerHTML = '';
+      //   this.nmbvnmb.forEach((item) => {
+      //     this.items.innerHTML += itemTemplate(item);
+      //   })
+      // }
+
+      // itemTemplate({ img }) {
+      //   return `<li class="item"><img class="main-img" src="${img}" alt="no_picture"></li>`
+      // }
+
+
+      // 2차 실행
+      connectedCallback() {
+        this.initializeCarousel();
+      }
+
+      // 초기화
+      initializeCarousel() {
+        let $items = this.querySelector('.items');
+        let $prevButton = this.querySelector('.prevButton');
+        let $nextButton = this.querySelector('.nextButton');
+        let $mainImg = this.querySelector('.main-img'); // FIXME: 
+        this.PageLength = $items.getElementsByTagName('li').length; // 총 사진 갯수 만큼 변화
+        if (this.nowPage == 1) {
+          $prevButton.classList.add('no_visible');
+        }
+      }
+
+      // 2.1 우측 버튼
+      nextTransition() {
+        console.log(this);
+          this.nowPage++;
+          console.log(this.nowPage);
+
+          if (this.nowPage > 1) {
+            this.prevButton.classList.remove('no_visible');
+          }
+
+          if (this.nowPage == this.PageLength) {
+            this.nextButton.classList.add('no_visible');
+          }
+
+          this.nowPosition -= 800;
+          console.log(this.nowPosition);
+          this.items.style.transform = `translateX(${this.nowPosition}px)`;
+      }
+
+      // 2.2 좌측 버튼
+      prevTransition() {
+          this.nowPage--;
+          console.log(this.nowPage);
+
+          if (this.nowPage == 1) {
+            this.prevButton.classList.add('no_visible');
+          }
+
+          if (this.nowPage < this.PageLength) {
+            this.nextButton.classList.remove('no_visible');
+          }
+
+          this.nowPosition += 800;
+          console.log(this.nowPosition);
+          this.items.style.transform = `translateX(${this.nowPosition}px)`;
+      }
+    }
+    customElements.define('mainimg-comp', MainImg)
+
+
+
+
+    /* ❤️ 6. UserWrite 클래스 */
+    class UserWrite extends HTMLElement {
+      // 1차 실행
+      constructor() {
+        super()
+        this.countLike = 0;
+        this.innerHTML = `
+        <div class="user-heart ">
+          <img class="user-img"  src="/img/heart1.png" alt="no_picture" >
+          <div class="user-count"><strong>0</strong></div>
+          <div class="user-like">명이 좋아합니다</div>
+        </div>
+        <div class="user-write">
+          <div class="user-tag">
+            <span id="account">ichiban1001</span>
+            逃れ逃れついたあるカフェ～～！すっごく居心地よくて時間のある方々にはぜひお勧めいたします！！
+            流れてくる音楽も雰囲気とピッタリなので久々にのんびりしたい人たちにもいいと思います！！！！！！！！
+            流れてくる音楽も雰囲気とピッタリなので久々にのんびりしたい人たちにもいいと思います！！！！！！！！
+            流れてくる音楽も雰囲気とピッタリなので久々にのんびりしたい人たちにもいいと思います！！！！！！！！
+         
+          </div>
+        </div>
+        <div class="btnBar">
+          <button id="showMore">더보기</button>
+        </div>
+        <div>
+          <button id="showAll">댓글 모두 보기</button>
+        </div>`
+      }
+
+      // 2차 실행
+      async connectedCallback() {
+        this.posts = []
+        this.clickLike();
+        this.moreViewPosts();
+        this.moreViewComments();
+        this.removeViewComments();
+        await this.getPosts();
+   
+      }
+      
+      clickLike() {
+        let $userImg = document.querySelector('.user-img'); // 하트 이미지
+        let $userCount = document.querySelector('.user-count'); // 좋아요 수
+        $userImg.addEventListener('click', () => {
+          
+          this.countLike++
+          this.pushPatch();
+          if (this.countLike >= 1) {
+            $userImg.src = '/img/heart2.png';
+          }
+          $userCount.textContent = this.countLike;
+        })
+      }
+
+      // Patch요청 - likes만 수정
+      async pushPatch() {
+       await fetch(`http://localhost:3000/posts/1`,{
+          method : "PATCH", // 일부만 수정
+          headers: {"Content-Type": "application/json",},
+          body: JSON.stringify({
+          likes: `${this.countLike+1}`}), // title만 바꿈. 나머지 요소는 건들지 않음.
+          
+       })
+       .then((response) => response.json())
+       .then((data) => this.posts)
+      }
+
+      async getPosts() {
+        const res = await fetch('http://localhost:3000/posts');
+        this.posts = await res.json();
+        console.log(this.posts)  // Array 형식으로 담겨 온다 -> 그래서 위에    this.posts = []  이렇게 표시함 
+      }
+
+
+      // 6.1 사용자가 작성한 글 더보기 
+      moreViewPosts() {
+        let $showMore = this.querySelector('#showMore');
+        let $userWrite = this.querySelector('.user-write');
+        $showMore.addEventListener('click', () => {
+          $userWrite.classList.toggle('user-tag-on');
+        });
+      }
+
+      // 6.2 모달 - 댓글 모두 보기
+      moreViewComments() {
+        let $showAll = this.querySelector('#showAll');
+        let $modal = document.querySelector('.modal');
+        let $body = document.querySelector('body');
+        
+        // let $container = this.querySelector('.container');
+        let $root = document.querySelector('.root');
+        $showAll.addEventListener('click', () => {
+          $modal.classList.add('visible');
+          $body.classList.add('bgBlur');
+        })
+      }
+      
+      // 6.3 모달 제거
+      removeViewComments() {
+        let $modal = document.querySelector('.modal')
+        let $root = document.querySelector('.root');
+        let $body = document.querySelector('body');
+        $root.addEventListener('click', (e) => {
+          if (e.target === $root) {
+            $modal.classList.remove('visible');
+            $body.classList.remove('bgBlur');
+            console.log("zfzfzfzfz")
+          }
+        })
+      }
+
+
+
+    }
+    customElements.define('userwrite-comp', UserWrite)
+
+
+
+
+    /* 4. Moreview 클래스 */
+    // class Moreview extends HTMLElement {
+    //   // 1차 실행
+    //   constructor() {
+    //     super();
+    //     this.innerHTML =
+    //       `
+    //     `;
+    //   }
+    //   // 2차 실행
+    //   connectedCallback() {
+       
+    //   }
+
+      
+    // }
+    // customElements.define('moreview-comp', Moreview)
+
+
+
+
+    /* 7. Comment 클래스 */
+    class Comment extends HTMLElement {
+      // 1차 실행
+      constructor() {
+        super();
+        this.innerHTML =
+          `<div class="comment">
+          <textarea  class="comment-input" style="overflow:hidden; resize:none;" placeholder="댓글 달기..." id="myField"></textarea>
+          <div class="comment-push">
+           <button class="btn-push">게시</button>
+          </div>
+        </div>`
+      }
+      // 2차 실행
+      connectedCallback() {
+        this.clickPostBtn();
+      }
+      // 7.1 게시 버튼 클릭
+      clickPostBtn() {
+        this.userInput = '';
+        let commentInput = document.querySelector('.comment-input')
+        let btnPush = document.querySelector('.btn-push')
+        commentInput.addEventListener('input', (e) => {
+          this.userInput = e.target.value;
+        })
+        btnPush.addEventListener('click', () => {
+          console.log(this.userInput);
+          commentInput.value = '';
+        });
+      }
+    }
+    customElements.define('comment-comp', Comment)
+
+
+  </script>
+  <!-- 🟡 /js 🟡   -->
+</body>
+
+</html>
