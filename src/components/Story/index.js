@@ -5,7 +5,7 @@ import './story.css'
 class Story extends HTMLElement {
   constructor() {
     super();
-    
+
     this.storyModal = new StoryModal('main');
 
     const main = document.querySelector('.main');
@@ -69,9 +69,11 @@ class Story extends HTMLElement {
     this.querySelector('#add-story').addEventListener('click', () => {
       this.storyModal.remove();
       this.storyModal = new StoryModal('main');
-      this.appendChild(this.storyModal);
+      const main = document.querySelector('.main');
+      main.appendChild(this.storyModal);
     });
   }
+
 
   draw(canvasElement) {
     var canvas = canvasElement;
