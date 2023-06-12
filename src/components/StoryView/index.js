@@ -91,8 +91,10 @@ class StoryView extends HTMLElement {
     const activeCarouselItem = this.querySelector('.carousel-item.active');
     const activeIndex = activeCarouselItem.dataset.index;
 
-    this.storyModal = new StoryModal('edit', activeIndex, this.data);
-    this.modalContainer.appendChild(this.storyModal);
+    if (!this.storyModal) {
+      this.storyModal = new StoryModal('edit', activeIndex, this.data);
+      this.modalContainer.appendChild(this.storyModal);
+    }
   }
   
   sizeChange() {

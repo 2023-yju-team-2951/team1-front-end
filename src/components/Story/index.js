@@ -5,26 +5,35 @@ import './story.css'
 class Story extends HTMLElement {
   constructor() {
     super();
+
+    this.modalContainer = document.querySelector('.modal-container');
+    if (!this.modalContainer) {
+      this.modalContainer = document.createElement('div');
+      this.modalContainer.classList.add('modal-container');
+      document.body.appendChild(this.modalContainer);
+    }
+
+    this.loaded = false;
+    this.storyModal = null;
+
     this.loadDatas();
   }
 
   async loadDatas() {
     try {
       this.data = await getProfiles();
-
-      this.modalContainer = document.createElement('div');
-      this.modalContainer.classList.add('modal-container');
-      document.body.appendChild(this.modalContainer);
-
       this.render();
       const canvasElements = this.querySelectorAll('canvas');
       canvasElements.forEach((canvasElement) => {
         this.draw(canvasElement);
       });
 
-      setTimeout(() => {
-        this.openModal();
-      }, 10);
+      if (!this.loaded) {
+        this.loaded = true;
+        setTimeout(() => {
+          this.openModal();
+        }, 10);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -85,6 +94,11 @@ class Story extends HTMLElement {
   }
 
   openModal() {
+    if (this.storyModal) {
+      this.storyModal.remove();
+      this.storyModal = null;
+    }
+
     this.storyModal = new StoryModal('main');
     this.modalContainer.appendChild(this.storyModal);
   }
