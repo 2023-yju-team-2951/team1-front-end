@@ -48,7 +48,6 @@
   width: 460px;
   height: 600px;
   margin-bottom: 5px;
-  background: #fff;
 }
 
 #num-1 .writing .text-write {
@@ -58,7 +57,7 @@
   background: transparent;
   border: none;
   max-width: 300px;
-  color: #000;
+  color: #000000;
 }
 
 #num-1 .writing .text-write:focus {

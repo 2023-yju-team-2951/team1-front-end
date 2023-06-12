@@ -6,8 +6,10 @@ class Story extends HTMLElement {
   constructor() {
     super();
     
-    this.storyModal = new StoryModal();
-    document.body.appendChild(this.storyModal);
+    this.storyModal = new StoryModal('main');
+
+    const main = document.querySelector('.main');
+    main.appendChild(this.storyModal);
     
     this.loadDatas();
   }
@@ -66,7 +68,7 @@ class Story extends HTMLElement {
 
     this.querySelector('#add-story').addEventListener('click', () => {
       this.storyModal.remove();
-      this.storyModal = new StoryModal();
+      this.storyModal = new StoryModal('main');
       this.appendChild(this.storyModal);
     });
   }

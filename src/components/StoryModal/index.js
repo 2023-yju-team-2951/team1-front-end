@@ -1,10 +1,11 @@
 import './storymodal.css';
 
 class StoryModal extends HTMLElement {
-  constructor() {
+  constructor(mode, index) {
     super();
     this.className = 'modal fade';
     this.id = 'storyModal';
+    this.mode = mode;
     this.setAttribute('aria-labelledby', 'storyModalLabel');
     this.setAttribute('aria-hidden', 'true');
     this.setAttribute('tabindex', '-1');
@@ -34,7 +35,7 @@ class StoryModal extends HTMLElement {
           </div>
           <div id="num-1" class="num" style="display: none;">
 
-            <div class="writing">
+            <div class="writing" style="background: rgb(255, 255, 255);">
               <textarea class="text-write"></textarea>
             </div>
 
@@ -51,6 +52,7 @@ class StoryModal extends HTMLElement {
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button id="next-button" type="button" class="btn btn-primary">Next</button>
           <button id="finish-button" type="button" class="btn btn-primary" style="display: none;">Finish</button>
+          <button id="edit-button" type="button" class="btn btn-primary" style="display: none;">Edit</button>
         </div>
       </div>
     </div>`
@@ -84,35 +86,65 @@ class StoryModal extends HTMLElement {
 
       const id = 2;
       
-      fetch(`http://localhost:7000/profiles/${id}`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      }).then(response => {
-        if(!response.ok) {
-          throw response;
-        }
-        return response.json();
-      }).then(data => {
-        console.log(data);
-        return data;
-      })
-      .catch(error => {
-        if (error.status === 404) {
-          console.log("없는 데이터");
-        } else {
-          console.log(error);
-        }
-      })
+      // fetch(`http://localhost:7000/profiles/${id}`, {
+      //   method: 'GET',
+      //   headers: { 'Content-Type': 'application/json' },
+      // }).then(response => {
+      //   if(!response.ok) {
+      //     throw response;
+      //   }
+      //   return response.json();
+      // }).then(data => {
+      //   console.log(data);
+      //   return data;
+      // })
+      // .catch(error => {
+      //   if (error.status === 404) {
+      //     console.log("없는 데이터");
+      //   } else {
+      //     console.log(error);
+      //   }
+      // })
 
       const writingElement = this.querySelector('.writing')
       const background = writingElement.style.background;
       const textWrite = this.querySelector('.text-write');
       const text = textWrite.value;
 
-      
+      fetch(`http://localhost:7000/profiles/${id}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      })
+      .then(response => response.json())
+      .then(data => {
+        const appendData = {
+          ...data,
+          storyImg: [...(data.storyImg || []), background],
+          storyText: [...(data.storyText || []), text],
+        };
+
+        return fetch(`http://localhost:7000/profiles/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(appendData),
+        });
+      })
+      .then(response => response.json())
+      .then(updatedData => {
+        console.log(updatedData);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+
     });
-    
-    
+
+    // 수정 버튼 클릭시
+    this.querySelector('#edit-button').addEventListener('click', () => {
+      const activeCarouselItem = this.querySelector('.carousel-item.active');
+
+      console.log(activeCarouselItem);
+    });
 
     // 색깔 고를때 효과 + 고른 색 selected 클래스 추가 + 고른색으로 배경 변경
     this.colors = this.querySelectorAll('.colors')
@@ -159,6 +191,7 @@ class StoryModal extends HTMLElement {
     });
         
   }
+
   // 다음, 이전 버튼 클릭시 화면 업데이트
   updateNum() {
     this.querySelectorAll('.num').forEach((num) => { num.style.display = 'none'; });
@@ -167,8 +200,21 @@ class StoryModal extends HTMLElement {
 
     this.querySelector('#prev-button').style.display = this.num > 0 ? 'block' : 'none';
     this.querySelector('#next-button').style.display = this.num < 1 ? 'block' : 'none';
-    this.querySelector('#finish-button').style.display = this.num === 1 ? 'block' : 'none';
+
+    if (this.num === 1) {
+      if (this.mode === 'main') {
+        this.querySelector('#finish-button').style.display = 'block';
+        this.querySelector('#edit-button').style.display = 'none';
+      } else if (this.mode === 'edit') {
+        this.querySelector('#finish-button').style.display = 'none';
+        this.querySelector('#edit-button').style.display = 'block';
+      }
+    } else {
+      this.querySelector('#finish-button').style.display = 'none';
+      this.querySelector('#edit-button').style.display = 'none';
+    }
   }
+
 }
 
 window.customElements.define('story-modal', StoryModal);
