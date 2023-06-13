@@ -33,8 +33,6 @@
       ]
     },
     {
-      "0": "https://cdn.pixabay.com/photo/2023/05/31/09/57/skyscraper-8030987_1280.jpg",
-      "1": "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg",
       "id": 2,
       "name": "2201400",
       "img": "https://github.com/2201400.png",
@@ -60,23 +58,15 @@
       "id": 3,
       "name": "hetame1",
       "img": "https://github.com/hetame1.png",
-      "storyImg": [
-        "rgb(202, 255, 191)"
-      ],
-      "storyText": [
-        ""
-      ]
+      "storyImg": ["rgb(202, 255, 191)"],
+      "storyText": [""]
     },
     {
       "id": 4,
       "name": "HyunjinHa",
       "img": "https://github.com/HyunjinHa.png",
-      "storyImg": [
-        "rgb(155, 246, 255)"
-      ],
-      "storyText": [
-        ""
-      ]
+      "storyImg": ["rgb(155, 246, 255)"],
+      "storyText": [""]
     },
     {
       "id": 5,
@@ -114,7 +104,7 @@
   "posts": [
     {
       "id": 1,
-      "username": "lji1001",
+      "name": "lji1001",
       "post_top_img": "https://github.com/Jaeil-Lee.png",
       "post_main_img": [
         "https://i.pinimg.com/564x/6d/aa/e0/6daae02f73627c1fdc3b442af716d5e2.jpg",
@@ -132,8 +122,8 @@
     },
     {
       "id": 2,
-      "username": "betty0612",
-      "post_top_img": "https://i.ibb.co/9hhkLp1/ketty1.png",
+      "name": "kitty",
+      "post_top_img": "https://thumbsnap.com/i/WoMTvUCv.png",
       "post_main_img": [
         "https://i.pinimg.com/564x/1f/f2/4d/1ff24d7ebbae1a4eef4a76861f979994.jpg",
         "https://i.pinimg.com/564x/be/51/84/be518469899adaa010ad917eecf654bc.jpg",
@@ -150,8 +140,8 @@
     },
     {
       "id": 3,
-      "username": "michiyo94",
-      "post_top_img": "https://ai-illustrator-file.com/wp-content/uploads/2020/01/001_0024-scaled.jpg",
+      "name": "",
+      "post_top_img": "/img/ketty1.png",
       "post_main_img": [
         "https://i.pinimg.com/564x/fa/de/09/fade09c72481660a25aaa6221e8fb9ae.jpg",
         "https://i.pinimg.com/564x/d4/fb/97/d4fb97447185288389a41d72ad114efd.jpg",
@@ -167,11 +157,10 @@
       "likes": 14
     },
     {
-      "user": "juhyeonni",
+      "name": "juhyeonni",
+      "post_content": "asdfasdf👏",
       "post_top_img": "",
-      "post_main_img": [
-        "https://thumbsnap.com/i/xtnRS3Vj.png"
-      ],
+      "post_main_img": ["https://thumbsnap.com/i/k8HTBeTa.jpg"],
       "statements": [],
       "likes": 0,
       "id": 4

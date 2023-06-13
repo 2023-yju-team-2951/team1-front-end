@@ -4,21 +4,12 @@ import SearchModal from '../Modal/SearchModal';
 import './Nav.css';
 import { exchangeModal } from '../utils/exchangeModal';
 
-/**
- * TODO:
- * 1. 홈 버튼: 클릭 시 fetch 후, window의 스크롤을 최상단으로 이동
- * 2. 검색 버튼: 클릭 시 검색하는 창 띄우기 sidebar 옆으로
- * 3. 만들기 버튼: 클릭 시 `사진과 동영상을 끌어다 놓으세요` 컴포넌트 작성
- * 4. 더 보기 버튼
- *  - 설정 버튼: 클릭 시 설정 페이지로 이동
- *  - 내 활동 버튼: 클릭 시 내 활동 페이지로 이동
- *  - 모드 전환: 클릭 시 dropdown 메뉴로 `라이트 모드`와 `어두운 모드` 표시하는 컴포넌트 띄우기
- *  - 로그아웃: 클릭시 로그아웃
- */
-
 class Nav extends HTMLDivElement {
   constructor() {
     super();
+
+    // this.account = { id, username };
+    this.account = { name: 'juhyeonni123' };
 
     this.classList.add('nav-full');
 
@@ -94,7 +85,7 @@ class Nav extends HTMLDivElement {
     this.navSearch.addEventListener('click', this.searchEvent);
 
     // 3. 만들기 버튼: 클릭 시 `사진과 동영상을 끌어다 놓으세요` 컴포넌트 작성
-    this.navAdd.addEventListener('click', this.addEvent);
+    this.navAdd.addEventListener('click', () => this.addEvent());
 
     // 4. 설정 버튼:
     this.otherSettings.addEventListener('click', () => {});
@@ -111,7 +102,7 @@ class Nav extends HTMLDivElement {
 
   // 만들기 버튼 클릭 시, 기존 Modal을 PostModal로 교체
   addEvent() {
-    exchangeModal(new PostModal());
+    exchangeModal(new PostModal(this.account));
   }
 
   // 검색 버튼 클릭 시, 기존 Modal을 SearchModal로 교체
@@ -121,3 +112,5 @@ class Nav extends HTMLDivElement {
 }
 
 window.customElements.define('nav-component', Nav, { extends: 'div' });
+
+export default Nav;
