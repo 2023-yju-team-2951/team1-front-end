@@ -11,7 +11,7 @@
     "watch": "nodemon --watch . --exec \"npm run bundle:dev\" --ext js,css",
     "watch2": "webpack --mode development --watch --config ./webpack.config.js",
     "dev": "serve ./public | yarn watch",
-    "juhyeondev": "webpack serve --mode development",
+    "dev2": "serve ./public | yarn watch2",
     "json-server": "json-server --watch ./server/db.json --port 7000"
   },
   "devDependencies": {
@@ -22,9 +22,6 @@
     "css-loader": "^6.8.1",
     "dotenv-webpack": "^8.0.1",
     "nodemon": "^2.0.22",
-    "postcss-loader": "^7.3.3",
-    "sass": "^1.63.3",
-    "sass-loader": "^13.3.2",
     "serve": "^14.2.0",
     "style-loader": "^3.3.3",
     "thread-loader": "^4.0.2",
