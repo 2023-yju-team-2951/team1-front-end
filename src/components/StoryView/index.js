@@ -1,11 +1,15 @@
 import './storyView.css';
 import { getProfiles } from '../../api/profiles.js';
 import { gsap } from "gsap";
-
+import StoryModal from '../StoryModal/';
 class StoryView extends HTMLElement {
 
   constructor() {   
     super();
+
+    this.storyModal = new StoryModal("edit");
+    document.body.appendChild(this.storyModal);
+
     this.storyWrapper = document.createElement('div');
     this.storyWrapper.className = 'story-modal-wrapper';
     this.modalWrapper = document.createElement('div');
@@ -24,6 +28,7 @@ class StoryView extends HTMLElement {
   }    
 
   render() {
+    
     const urlParams = new URLSearchParams(window.location.search);
     const id = parseInt(urlParams.get('id'));
   
@@ -38,7 +43,7 @@ class StoryView extends HTMLElement {
       ${new CenterStory(this.data[index]).render()}
       ${index < this.data.length - 1 ? new SideStory(nextData).render('right') : ''}
     `;
-  
+
     this.storyWrapper.appendChild(this.modalWrapper);
   
     this.appendChild(this.storyWrapper);
@@ -59,8 +64,31 @@ class StoryView extends HTMLElement {
     }
   
     this.sizeChange();
+
+    const editStory = this.querySelector('#edit-story');
+    const deleteStory = this.querySelector('#del-story');
+
+    editStory.addEventListener('click', () => {
+      const activeCarouselItem = this.querySelector('.carousel-item.active');
+      const activeIndex = activeCarouselItem.dataset.index;
+
+      this.storyModal = new StoryModal('edit', activeIndex, this.data);
+      this.appendChild(this.storyModal);
+      this.storyModal.remove();
+    })
+
+    const editButton = document.querySelector('#edit-button');
+    console.log(editButton);
+
+    deleteStory.addEventListener('click', () => {
+      this.deleteCarouselImg();
+    });
+
   }
-  
+
+  openModal() {
+    
+  }
   
   sizeChange() {
     this.reSize();
@@ -246,8 +274,58 @@ class StoryView extends HTMLElement {
       )
     }
   }
-}
 
+  // 현재 캐러셀 이미지 삭제
+  deleteCarouselImg() {
+    const activeCarouselItem = this.querySelector('.carousel-item.active');
+    const activeIndex = activeCarouselItem.dataset.index;
+  
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = parseInt(urlParams.get('id'));
+    
+    fetch(`http://localhost:7000/profiles/${id}`, {
+      method: 'GET',
+      headers: { 
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache'
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+
+        const storyImg = data.storyImg;
+        const storyText = data.storyText;
+
+        storyImg.splice(activeIndex, 1); 
+        storyText.splice(activeIndex, 1);
+        
+        const index = this.data.findIndex((data) => data.id === id);
+        this.data[index].storyImg = storyImg;
+        this.data[index].storyText = storyText;
+        
+        return fetch(`http://localhost:7000/profiles/${id}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ storyImg, storyText }),
+        });
+      })
+    .then((res) => res.json())
+    .then(() => {
+
+      while (this.modalWrapper.firstChild) {
+        this.modalWrapper.firstChild.remove();
+      }
+      
+      const newURL = window.location.origin + window.location.pathname + '?id=' + id;
+      history.pushState(null, null, newURL);
+      
+      this.render();
+      this.sizeChange();
+    })
+    
+  }
+  
+}
 // 중간 스토리 생성
 class CenterStory {
   constructor(data) {
@@ -260,9 +338,19 @@ class CenterStory {
         <div class="modal-story">
           <div class="story-item">
             <div class="story-header">
-              <div class="story-title">
-                <div class="story-name">${this.data.name}</div>
-                <img class="story-small-img" src="${this.data.img}" />
+              <div class="story-head">
+                <div class="story-profile">
+                  <img class="story-small-img" src="${this.data.img}">
+                  <div class="story-name">${this.data.name}</div>
+                </div>
+                <div class="story-tool">
+                  <span class="material-symbols-outlined" id="edit-story" data-bs-target="#editStoryModal" data-bs-toggle="modal">
+                    edit
+                  </span>
+                  <span class="material-symbols-outlined" id="del-story">
+                    delete_forever
+                  </span>
+                </div>
               </div>
             </div>
             <button class="slide-button prevB" type="button" data-bs-target="#carouselAuto" data-bs-slide="prev">
@@ -290,7 +378,6 @@ class CenterStory {
   }
 }
 
-
 // 캐러셀 이미지 생성
 class CarouselImg {
   constructor(data) {
@@ -300,7 +387,6 @@ class CarouselImg {
     const carouselSlide = document.createElement('div');
     carouselSlide.className = 'carousel slide';
     carouselSlide.id = 'carouselAuto';
-    carouselSlide.setAttribute('data-bs-ride', 'carousel');
 
     const carouselIndicators = document.createElement('div');
     carouselIndicators.className = 'carousel-indicators';
@@ -320,7 +406,7 @@ class CarouselImg {
         carouselIndicator.setAttribute('data-bs-slide-to', i);
         carouselIndicator.setAttribute('aria-label', `Slide ${i + 1}`);
   
-        carouselItem.setAttribute('data-bs-interval', '10000');
+        carouselItem.dataset.index = i;
         if (i === 0) {
           carouselItem.className = 'carousel-item active';
           carouselIndicator.className = 'active';
@@ -394,7 +480,7 @@ class SideStory {
                       </div>
                     </div>
                   </div>
-                  <img src="${this.data.storyImg[0]}">
+                  <div class="side-img"></div>
                 </div>
               </div>
             </div>
@@ -402,6 +488,13 @@ class SideStory {
         </div>
       </div>
     `;
+
+    const sideImg = container.querySelector('.side-img');
+    if (/^http.*/.test(this.data.storyImg[0])) {
+      sideImg.style.background = `url(${this.data.storyImg[0]})`;
+    } else {
+      sideImg.style.background = this.data.storyImg[0];
+    }
 
     return container.innerHTML;
   }

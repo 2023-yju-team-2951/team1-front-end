@@ -121,8 +121,12 @@ class Post extends HTMLElement {
      document.querySelectorAll('.dropdown-delete-btn')
 
      
-
   }
+
+
+
+
+}
 
 
 /* 🟢  2. CardContainer */
@@ -214,7 +218,6 @@ class Top {
   }
 }
 
-
 /* 🟢  4. MainPost */
 class MainPost {
   constructor(data) {  // ❓ card 갖
@@ -240,7 +243,6 @@ class MainPost {
   }
 }
 
-
 /* 🟢  5. UserWrite */
 class UserWrite {
   constructor(data) {
@@ -264,7 +266,7 @@ class UserWrite {
       </div>
       <div class="user-write">
         <div class="user-tag">
-          <span id="account">${this.data.name}</span>
+          <span id="account">${this.data.username}</span>
           <div class="post-content">
             <span class="post">
               ${this.data.post_content} 
@@ -303,7 +305,6 @@ class Comment {
     return commentHTML.innerHTML;
   }
 }
-
 
 /* 🟢  7. CarouselImg */
 class CarouselImg {

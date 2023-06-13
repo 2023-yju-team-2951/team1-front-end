@@ -45,6 +45,11 @@ class Header extends HTMLElement {
     const sliderWidth = sliderWrapper.scrollWidth;
     const containerWidth = sliderWrapper.offsetWidth;
     const minOffset = -(sliderWidth - containerWidth);
+
+    console.log(sliderWidth, containerWidth, minOffset);
+    console.log(this.currentOffset);
+
+    console.log("sdsd");
   
     if (this.currentOffset == minOffset) {
       button.classList.add("hidden");

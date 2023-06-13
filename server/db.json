@@ -23,36 +23,37 @@
       ],
       "storyText": [
         {
-          "text": "안녕하세요",
-          "color": "#333"
+          "text": "",
+          "color": ""
         },
         {
-          "text": "반갑습니다",
-          "color": "#333"
-        },
-        {
-          "text": "테스트래ㅔㅏㅁㅇㄴ랜아래ㅔㅏㄴㅇ래ㅔㅏㄴ애라내ㅔㅇ라내ㅔ프ㅐㅔㄴ으패ㅔㄴ으패느에ㅐㅓㄹ느애ㅔ래으래ㅔㅇ르ㅐㅔㅡ랟베ㅡ래ㅔ므레ㅐ므래ㅔ",
-          "color": "#fff"
+          "text": "",
+          "color": ""
         }
       ]
     },
     {
+      "0": "https://cdn.pixabay.com/photo/2023/05/31/09/57/skyscraper-8030987_1280.jpg",
+      "1": "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg",
       "id": 2,
       "name": "2201400",
       "img": "https://github.com/2201400.png",
       "storyImg": [
-        "https://cdn.pixabay.com/photo/2023/05/31/09/57/skyscraper-8030987_1280.jpg",
-        "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg"
+        "rgb(189, 178, 255)",
+        "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg",
+        "rgb(202, 255, 191)"
       ],
       "storyText": [
+        "",
         {
           "text": "",
           "color": ""
         },
-        {
-          "text": "",
-          "color": ""
-        }
+        ""
+      ],
+      "profileImg": [
+        "https://cdn.pixabay.com/photo/2023/05/31/09/57/skyscraper-8030987_1280.jpg",
+        "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg"
       ]
     },
     {
@@ -60,18 +61,10 @@
       "name": "hetame1",
       "img": "https://github.com/hetame1.png",
       "storyImg": [
-        "https://cdn.pixabay.com/photo/2023/05/31/09/57/skyscraper-8030987_1280.jpg",
-        "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg"
+        "rgb(202, 255, 191)"
       ],
       "storyText": [
-        {
-          "text": "",
-          "color": ""
-        },
-        {
-          "text": "",
-          "color": ""
-        }
+        ""
       ]
     },
     {
@@ -79,18 +72,10 @@
       "name": "HyunjinHa",
       "img": "https://github.com/HyunjinHa.png",
       "storyImg": [
-        "https://cdn.pixabay.com/photo/2023/05/31/09/57/skyscraper-8030987_1280.jpg",
-        "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg"
+        "rgb(155, 246, 255)"
       ],
       "storyText": [
-        {
-          "text": "",
-          "color": ""
-        },
-        {
-          "text": "",
-          "color": ""
-        }
+        ""
       ]
     },
     {
@@ -98,14 +83,11 @@
       "name": "Jaeil-Lee",
       "img": "https://github.com/Jaeil-Lee.png",
       "storyImg": [
-        "https://cdn.pixabay.com/photo/2023/05/31/09/57/skyscraper-8030987_1280.jpg",
+        "rgb(189, 178, 255)",
         "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg"
       ],
       "storyText": [
-        {
-          "text": "",
-          "color": ""
-        },
+        "",
         {
           "text": "",
           "color": ""
@@ -117,14 +99,11 @@
       "name": "Lsy04178",
       "img": "https://github.com/Lsy04178.png",
       "storyImg": [
-        "https://cdn.pixabay.com/photo/2023/05/31/09/57/skyscraper-8030987_1280.jpg",
+        "rgb(155, 246, 255)",
         "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg"
       ],
       "storyText": [
-        {
-          "text": "",
-          "color": ""
-        },
+        "",
         {
           "text": "",
           "color": ""
@@ -149,7 +128,7 @@
           "comment": "逃れ逃れついたあるカフェ～～！すっごく居心地よくて時間のある方々にはぜひお勧めいたします！！流れてくる音楽も雰囲気とピッタリなので久々にのんびりしたい人たちにもいいと思います"
         }
       ],
-      "likes": 28
+      "likes": 31
     },
     {
       "id": 2,
@@ -167,7 +146,7 @@
           "comment": ""
         }
       ],
-      "likes": 8
+      "likes": 11
     },
     {
       "id": 3,
@@ -185,7 +164,7 @@
           "comment": ""
         }
       ],
-      "likes": 11
+      "likes": 14
     },
     {
       "user": "juhyeonni",
