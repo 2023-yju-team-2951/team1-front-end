@@ -39,7 +39,8 @@
       "storyImg": [
         "rgb(189, 178, 255)",
         "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg",
-        "rgb(202, 255, 191)"
+        "rgb(202, 255, 191)",
+        "rgb(255, 214, 165)"
       ],
       "storyText": [
         "",
@@ -47,7 +48,8 @@
           "text": "",
           "color": ""
         },
-        ""
+        "",
+        "ㅍㄷㄱㅍㅈㄷㄱㅍㅈㄷㄱㅍ"
       ],
       "profileImg": [
         "https://cdn.pixabay.com/photo/2023/05/31/09/57/skyscraper-8030987_1280.jpg",
@@ -177,17 +179,6 @@
     },
     {
       "name": "juhyeonni123",
-      "post_content": "엄준식은 살아있다.",
-      "post_top_img": "",
-      "post_main_img": [
-        "https://thumbsnap.com/i/iJwkrk8c.jpg"
-      ],
-      "statements": [],
-      "likes": 0,
-      "id": 5
-    },
-    {
-      "name": "juhyeonni123",
       "post_content": "엄준식은 살아있다2",
       "post_top_img": "",
       "post_main_img": [
@@ -196,6 +187,28 @@
       "statements": [],
       "likes": 0,
       "id": 6
+    },
+    {
+      "name": "juhyeonni123",
+      "post_content": "현짱 ㅎㅎㅎ",
+      "post_top_img": "",
+      "post_main_img": [
+        "https://thumbsnap.com/i/gbxsUu9A.png"
+      ],
+      "statements": [],
+      "likes": 4,
+      "id": 7
+    },
+    {
+      "name": "juhyeonni123",
+      "post_content": "지훈 쨩 ^^",
+      "post_top_img": "",
+      "post_main_img": [
+        "https://thumbsnap.com/i/bNqehtYo.png"
+      ],
+      "statements": [],
+      "likes": 4,
+      "id": 8
     }
   ]
 }
