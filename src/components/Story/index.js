@@ -5,10 +5,10 @@ import './story.css'
 class Story extends HTMLElement {
   constructor() {
     super();
-    
-    this.storyModal = new StoryModal();
+
+    this.storyModal = new StoryModal('main');
     document.body.appendChild(this.storyModal);
-    
+
     this.loadDatas();
   }
 
@@ -65,9 +65,14 @@ class Story extends HTMLElement {
     this.innerHTML = storyHTML;
 
     this.querySelector('#add-story').addEventListener('click', () => {
-      this.storyModal.remove();
-      this.storyModal = new StoryModal();
+      this.storyModal = new StoryModal('main', count);
       this.appendChild(this.storyModal);
+      this.storyModal.remove();
+    });
+
+    const canvasElements = this.querySelectorAll('canvas');
+    canvasElements.forEach((canvasElement) => {
+      this.draw(canvasElement);
     });
   }
 

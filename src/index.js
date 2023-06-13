@@ -1,6 +1,7 @@
-import './scss/styles.scss';
-import * as bootstrap from 'bootstrap';
-import * as Popper from '@popperjs/core';
+
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import Main from './pages/Main.js';
 import Login from './pages/Login.js';
