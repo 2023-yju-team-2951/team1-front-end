@@ -211,7 +211,7 @@ class Top {
             </div>
             <div class="top-item-account">
               <span class="account">
-                <strong id="userAcct">${this.data.username}</strong>
+                <strong id="userAcct">${this.data.name}</strong>
               </span>
             </div>
 
