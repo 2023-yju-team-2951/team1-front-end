@@ -1,0 +1,169 @@
+import { getProfile, putProfile, postProfile, getProfiles  } from '../../api/profiles.js';
+import { getAccount } from '../../api/accounts.js';
+import StoryModal from '../StoryModal/';
+import './story.css'
+
+class Story extends HTMLElement {
+  constructor() {
+    super();
+
+    this.storyModal = new StoryModal('main');
+    document.body.appendChild(this.storyModal);
+    
+    this.loadDatas();
+  }
+
+  async loadDatas() {
+    try {
+      this.data = await getProfiles();
+      this.render();
+      const canvasElements = this.querySelectorAll('canvas');
+      canvasElements.forEach((canvasElement) => {
+        this.draw(canvasElement);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  render() {
+    let translateXValue = -15;
+    let storyHTML = `<ul class="container">`;
+
+    this.data.forEach((story) => {
+      storyHTML += `
+        <li class="slider" style="transform: translateX(${translateXValue}px);">
+          <div class="story-container">
+            <button class="story">
+              <div class="profile" aria-disabled="true">
+                <canvas width="66" height="66"></canvas>
+                <div class="image">
+                  <img src="${story.img}">
+                </div>
+                <a data-link href="/story?id=${story.id}"></a>
+              </div>
+              <div class="name">${story.name}</div>
+            </button>
+          </div>
+        </li>
+      `;
+      translateXValue += 80;
+    });
+
+
+    storyHTML += `
+      <li class="slider" style="transform: translateX(${translateXValue}px);">
+        <div class="story-container">
+          <div class="story" id="add-story" data-bs-toggle="modal" data-bs-target="#storyModal">
+            <div class="profile">
+              <span class="material-symbols-outlined">add</span>
+            </div>
+          </div>
+        </div>
+      </li>
+    `;
+
+    storyHTML += `</ul>`;
+    this.innerHTML = storyHTML;
+
+    document.addEventListener('finishButtonClicked', (event) => {
+      this.addStory(event.detail);
+    }, false);
+
+    this.querySelector('#add-story').addEventListener('click', () => {
+      document.body.removeChild(this.storyModal);
+      this.storyModal.render();
+    });
+
+    const canvasElements = this.querySelectorAll('canvas');
+    canvasElements.forEach((canvasElement) => {
+      this.draw(canvasElement);
+    });
+  }
+
+  draw(canvasElement) {
+    var canvas = canvasElement;
+    var ctx = canvas.getContext('2d');
+
+    var centerX = canvas.width / 2;
+    var centerY = canvas.height / 2;
+
+    var gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+    gradient.addColorStop(0.2, '#fdf497');
+    gradient.addColorStop(0.5, '#d6249f');
+    gradient.addColorStop(1, '#285AEB');
+
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, 31, 0, 360, false);
+    ctx.stroke();
+  }
+
+  addStory(detail) {
+
+    const testId = 7;
+    const background = detail.background;
+    const text = detail.text;
+    const color = detail.textColor;
+
+    this.addStoryView(testId, background, text, color);
+  }
+
+  async addStoryView(testId, background, text, textColor) {
+    try {
+      let data = await getProfile(testId);
+      const appendData = {
+        ...data,
+        storyImg: [...(data.storyImg || []), background],
+        storyText: [...(data.storyText || []), { text, color: textColor }],
+      };
+      await putProfile(testId, appendData);
+    } catch (error) {
+      if (error.status === 404) {
+        const data = await getAccount(testId);
+        const appendData = {
+          ...data,
+          storyImg: [...(data.storyImg || []), background],
+          storyText: [...(data.storyText || []), { text, color: textColor }],
+        };
+        await postProfile(appendData);
+      } else {
+        console.error(error);
+      }
+    }
+    
+    while (this.firstChild) {
+      this.removeChild(this.firstChild);
+    }
+
+    this.loadDatas();
+
+  }
+
+}
+
+class SomeComponent {
+  constructor(modal) {
+    this.modal = modal;
+    this.element = this.createElement();
+  }
+
+  createElement() {
+    const button = document.createElement('button');
+    button.classList.add('btn', 'btn-primary');
+    button.textContent = 'Open Modal';
+
+    // 이벤트 리스너를 설정하지 않고, 외부에서 설정할 수 있게 합니다.
+    return button;
+  }
+}
+
+class AnotherComponent {
+  constructor(button, modal) {
+    // 이 버튼이 클릭되면 모달을 띄우게 합니다.
+    button.addEventListener('click', () => modal.show());
+  }
+}
+
+window.customElements.define('story-component', Story);

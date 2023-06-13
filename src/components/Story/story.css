@@ -1,0 +1,83 @@
+.container {
+  width: fit-content;
+  display: flex;
+  list-style: none;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.slider {
+  position: absolute;
+  display: list-item;
+}
+
+.slider .story-container {
+  width: 66px;
+  height: 122px;
+  position: relative;
+  display: flex;
+  flex-direction: column; 
+  box-sizing: border-box;
+  padding: 0 4px;
+}
+.slider .story-container .story {
+  width: 64px;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  border: none;
+  align-self: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+}
+.slider .story-container .story .profile {
+  width: 56px;
+  height: 56px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  border-radius: 50%;
+  align-self: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slider .story-container .story .profile a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  
+}
+.slider .story-container .story .profile canvas {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 66px;
+  height: 66px;
+}
+.slider .story-container .story .profile .image {
+  top: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  position: relative;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  display: block;
+}
+.slider .story-container .story .profile .image img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: block;
+}
+.slider .story-container .story .name {
+  text-align: center;
+  font-family: 'Segoe UI';
+}
