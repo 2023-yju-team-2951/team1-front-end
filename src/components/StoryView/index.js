@@ -7,6 +7,9 @@ class StoryView extends HTMLElement {
   constructor() {   
     super();
 
+    this.storyModal = new StoryModal("edit");
+    document.body.appendChild(this.storyModal);
+
     this.storyWrapper = document.createElement('div');
     this.storyWrapper.className = 'story-modal-wrapper';
     this.modalWrapper = document.createElement('div');
@@ -18,16 +21,7 @@ class StoryView extends HTMLElement {
   async loadDatas() {
     try {
       this.data = await getProfiles();
-
-      this.modalContainer = document.createElement('div');
-      this.modalContainer.classList.add('modal-container');
-      document.body.appendChild(this.modalContainer);
-
       this.render();
-
-      setTimeout(() => {
-        this.openModal();
-      }, 10);
     } catch (error) {
       console.log(error);
     } 
@@ -75,26 +69,25 @@ class StoryView extends HTMLElement {
     const deleteStory = this.querySelector('#del-story');
 
     editStory.addEventListener('click', () => {
-      this.openModal();
+      const activeCarouselItem = this.querySelector('.carousel-item.active');
+      const activeIndex = activeCarouselItem.dataset.index;
+
+      this.storyModal = new StoryModal('edit', activeIndex, this.data);
+      this.appendChild(this.storyModal);
+      this.storyModal.remove();
     })
+
+    const editButton = document.querySelector('#edit-button');
+    console.log(editButton);
 
     deleteStory.addEventListener('click', () => {
       this.deleteCarouselImg();
     });
 
-    editStory.setAttribute('data-bs-toggle', 'modal');
-    editStory.setAttribute('data-bs-target', '#editStoryModal');
-
   }
 
   openModal() {
-    const activeCarouselItem = this.querySelector('.carousel-item.active');
-    const activeIndex = activeCarouselItem.dataset.index;
-
-    if (!this.storyModal) {
-      this.storyModal = new StoryModal('edit', activeIndex, this.data);
-      this.modalContainer.appendChild(this.storyModal);
-    }
+    
   }
   
   sizeChange() {
@@ -331,16 +324,6 @@ class StoryView extends HTMLElement {
     })
     
   }
-
-  removeModal() {
-    const modal = document.querySelector('story-modal');
-    if (modal) {
-      const event = new Event('hide.bs.modal');
-      modal.dispatchEvent(event);
-  
-      modal.remove();
-    }
-  }
   
 }
 // 중간 스토리 생성
@@ -361,7 +344,7 @@ class CenterStory {
                   <div class="story-name">${this.data.name}</div>
                 </div>
                 <div class="story-tool">
-                  <span class="material-symbols-outlined" id="edit-story">
+                  <span class="material-symbols-outlined" id="edit-story" data-bs-target="#editStoryModal" data-bs-toggle="modal">
                     edit
                   </span>
                   <span class="material-symbols-outlined" id="del-story">

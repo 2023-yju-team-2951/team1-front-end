@@ -1,4 +1,4 @@
-import { getPost } from '../../api/profiles.js';
+import { getPost } from '../../api/posts.js';
 import './post.css'
 
 class Post extends HTMLElement {
@@ -16,6 +16,7 @@ class Post extends HTMLElement {
   async loadDatas() {
     try {
       this.data = await getPost();
+      console.log(this.data);
       this.render();
     } catch (error) {
       console.log(error);

@@ -156,42 +156,43 @@ class StoryModal extends HTMLElement {
     });
 
     // 수정 버튼 클릭시
-    this.querySelector('#edit-button').addEventListener('click', () => {
-      const writingElement = this.querySelector('.writing');
-      const background = writingElement.style.background;
-      const textWrite = this.querySelector('.text-write');
-      const text = textWrite.value;
-      console.log(this.index); // 인덱스 값을 새로운 스코프로 가져오기
+    // this.querySelector('#edit-button').addEventListener('click', () => {
+    //   const writingElement = this.querySelector('.writing');
+    //   const background = writingElement.style.background;
+    //   const textWrite = this.querySelector('.text-write');
+    //   const text = textWrite.value;
+    //   let index = this.index;
+    //   console.log(index);  
     
-      const urlParams = new URLSearchParams(window.location.search);
-      const id = parseInt(urlParams.get('id'));
+    //   const urlParams = new URLSearchParams(window.location.search);
+    //   const id = parseInt(urlParams.get('id'));
     
-      fetch(`http://localhost:7000/profiles/${id}`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      }).then(res => res.json())
-        .then(data => {
-          const storyImg = data.storyImg;
-          const storyText = data.storyText;
+    //   fetch(`http://localhost:7000/profiles/${id}`, {
+    //     method: 'GET',
+    //     headers: { 'Content-Type': 'application/json' },  
+    //   }).then(res => res.json())
+    //     .then(data => {
+    //       const storyImg = data.storyImg;
+    //       const storyText = data.storyText;
 
-          console.log(index);
+    //       console.log(index);
     
-          storyImg.splice(index, 1, background);
-          storyText.splice(index, 1, text);
+    //       storyImg.splice(index, 1, background);
+    //       storyText.splice(index, 1, text);
     
-          data.storyImg = storyImg;
-          data.storyText = storyText;
+    //       data.storyImg = storyImg;
+    //       data.storyText = storyText;
     
-          return fetch(`http://localhost:7000/profiles/${id}`, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ storyImg, storyText }),
-          });
-        }).then(res => res.json())
-        .then(() => {
-          this.removeModal();
-        });
-    });
+    //       return fetch(`http://localhost:7000/profiles/${id}`, {
+    //         method: 'PATCH',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify({ storyImg, storyText }),
+    //       });
+    //     }).then(res => res.json())
+    //     .then(() => {
+    //       this.removeModal();
+    //     });
+    // });
     
     // 색깔 고를때 효과 + 고른 색 selected 클래스 추가 + 고른색으로 배경 변경
     this.colors = this.querySelectorAll('.colors')
