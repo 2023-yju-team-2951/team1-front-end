@@ -38,13 +38,13 @@ class Nav extends HTMLDivElement {
               <span class="item-name">홈</span>
             </div>
           </li>
-          <li class="nav-search">
+          <li class="nav-search" data-bs-toggle="modal" data-bs-target="#swapModal">
             <div>
               <object data="/assets/image/icons/search.svg"></object>
               <span class="item-name">검색</span>
             </div>
           </li>
-          <li class="nav-add">
+          <li class="nav-add" data-bs-toggle="modal" data-bs-target="#swapModal">
             <div>
               <object data="/assets/image/icons/add.svg"></object>
               <span class="item-name">만들기</span>
@@ -79,6 +79,7 @@ class Nav extends HTMLDivElement {
           </div>
         </div>
       </div>
+      
     `;
     this.navHome = this.querySelector('.nav-home');
     this.navSearch = this.querySelector('.nav-search');
@@ -95,14 +96,10 @@ class Nav extends HTMLDivElement {
     // 3. 만들기 버튼: 클릭 시 `사진과 동영상을 끌어다 놓으세요` 컴포넌트 작성
     this.navAdd.addEventListener('click', this.addEvent);
 
-    /**
-     * TODO: faze 2
-     * 4. 더 보기 버튼
-     *  - 설정 버튼: 클릭 시 설정 페이지로 이동
-     *  - 내 활동 버튼: 클릭 시 내 활동 페이지로 이동
-     *  - 로그아웃: 클릭시 로그아웃
-     */
+    // 4. 설정 버튼:
     this.otherSettings.addEventListener('click', () => {});
+
+    // 5. 내 활동 버튼:
     this.otherActivities.addEventListener('click', () => {});
   }
 
@@ -112,12 +109,12 @@ class Nav extends HTMLDivElement {
     root.innerHTML = new Main().getHtml();
   }
 
-  // 만들기 버튼 클릭 시, PostModal 띄우기
+  // 만들기 버튼 클릭 시, 기존 Modal을 PostModal로 교체
   addEvent() {
     exchangeModal(new PostModal());
   }
 
-  // 검색 버튼 클릭 시, SearchModal 띄우기
+  // 검색 버튼 클릭 시, 기존 Modal을 SearchModal로 교체
   searchEvent() {
     exchangeModal(new SearchModal());
   }
