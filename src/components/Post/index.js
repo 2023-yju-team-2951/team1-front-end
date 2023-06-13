@@ -20,15 +20,6 @@ class Post extends HTMLElement {
   }
 
 
-/*  
-   export async function getPost() {
-    const res = await fetch('http://localhost:7000/posts'); //fetch로 서버에서 데이터 가져오기
-    const data = await res.json(); // json 파일 js 객체화 시키기
-    return data;  //객체화 시킨 데이터 반환
-   } 
-*/
-
-
   /* 🚩1.3 fetch - 서버에서 데이터 가져 오기  */
   async loadDatas() {
     try {
@@ -56,15 +47,47 @@ class Post extends HTMLElement {
     /* a. 좋아요 하트 색 변경 */
     this.hearClick();
 
-    /* b. 사용자가 작성한 글 더보기 (토굴) */
+    /* b. Card 삭제하기  */
+    this.deleteClick();
+
+    /* c. 사용자가 작성한 글 더보기 (토굴) */
     this.moreViewPosts();
 
-    /* c. Card 삭제하기  */
-    
-
+  }
+/* fetch 사용 */
+  /* 🟡 1.5 데이터 수정하기  */
+  async pushPatch(post) {
+    try {const res = await fetch(`http://localhost:7000/posts/${post.id}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json",} , 
+            body: JSON.stringify({ likes: post.likes + 1 }),
+          });
+          const data = await res.json();
+          return data;
+        } 
+    catch (error) {
+        console.log(error);
+    }
   }
 
-  /* a. 좋아요 하트 색 변경  + 숫자 변경*/
+  /* 🔴 1.6데이터 삭제하기  */
+  async cardDelete(post) {
+    console.log("삭제한당 ㅇㅇ");
+    try { const res = await fetch(`http://localhost:7000/posts/${post.id}`, {
+            method: "DELETE"
+          });
+        const data = await res.json();
+
+        return data;
+        }
+    catch(error){
+      console.log(error);
+    }
+  }
+  
+
+  
+  /* 1.7.a. 좋아요 하트 색 변경  + 숫자 변경*/
   hearClick() {
     
     // 하트 이미지들
@@ -73,10 +96,13 @@ class Post extends HTMLElement {
     /* 하트 객체 수 만큼 */
     heartImgs.forEach((heartImg, index) => {
       heartImg.addEventListener('click', () => {
-        if ( parseInt(countLikes[index].innerText)  > 0 ) {
+        
+        // 하트 색 변경
+        this.data[index].likes++;
+        if ( this.data[index].likes  > 0 ) {
           heartImg.src = 'https://cdn-icons-png.flaticon.com/512/2107/2107845.png';
         }
-        this.data[index].likes++;
+        
         this.pushPatch(this.data[index]);
         
         // 하트 개수 하나씩 증가 
@@ -84,55 +110,45 @@ class Post extends HTMLElement {
         countLikes[index].textContent = this.data[index].likes;
       });
     });
-
+    
   }  /* /hearClick */
-
   
-  async pushPatch(post) {
-    try {
-      const res = await fetch(`http://localhost:7000/posts/${post.id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          likes: post.likes + 1
-        }),
-      });
-      const data = await res.json();
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
-   }
+  /* 🔴1.7.b.Card 삭제하기  */
+  deleteClick(){
+    let deleteBtns_El = document.querySelectorAll('.dropdown-delete-btn'); 
+    
+    deleteBtns_El.forEach((deleteBtn,index)=>{
+      deleteBtn.addEventListener('click',()=>{
 
-  /* b. 사용자가 작성한 글 더보기 (토굴) */
+        this.cardDelete(this.data[index]);
+        this.cardContainer.innerHTML=``;
+
+
+        // let cardContainerHtml  = new CardContainer(this.data);
+        this.cardContainer.innerHTML+= new CardContainer(this.data).render();
+        console.log(this)
+      })
+    })
+  } 
+  
+  /* 1.7.c. 사용자가 작성한 글 더보기 (토굴) */
   moreViewPosts() {
     let showMore_El = this.querySelector('#showMore');
     let postContent_El = this.querySelector('.post-content');
+
     showMore_El.addEventListener('click', () => {
-      console.log('정상 작동ㅇㅇㅇㅇㅇ')
       postContent_El.classList.toggle('user-tag-on');
     });
   }
 
-   /* c.  */
-  cardDelete() {
-     document.querySelectorAll('.dropdown-delete-btn')
-
-     
-  }
-
-
-
+  
 
 }
-
 
 /* 🟢  2. CardContainer */
 class CardContainer {
 
-  constructor(data) { // 46번 라인에서 데이터 전달 받아 겂 전달 
+  constructor(data) { // 46번 라인에서 데이터 전달 받아 값 전달 
     this.data = data;
   }
 
@@ -184,9 +200,8 @@ class Top {
   }
 
   render() {
-    let topHTML = document.createElement('div'); //  
-
     /* class="top"이 안에 이미 설정 되어 있음 */ //⭐ 이렇게 넣으면 return 할 때 div는 까지면서 안의 내용만 반환된다. ⭐
+    let topHTML = document.createElement('div'); //  
 
     topHTML.innerHTML += `
       <div class="top">
@@ -196,7 +211,7 @@ class Top {
             </div>
             <div class="top-item-account">
               <span class="account">
-                <strong id="userAcct">${this.data.name}</strong>
+                <strong id="userAcct">${this.data.username}</strong>
               </span>
             </div>
 
@@ -247,16 +262,25 @@ class MainPost {
 class UserWrite {
   constructor(data) {
     this.data = data;
+
+    // 하트 불들어 오게 
+    this.heartImg ="https://cdn-icons-png.flaticon.com/512/5814/5814450.png";
+  
+    if (this.data.likes > 0) {
+      this.heartImg = "https://cdn-icons-png.flaticon.com/512/2107/2107845.png";
+    }  
   }
+ 
+
 
   render() {
     let userWriteHTML = document.createElement('div');  // ⭐ 이렇게 넣으면 return 할 때 div는 까지면서 안의 내용만 반환된다. ⭐
- 
+  
     userWriteHTML.innerHTML += `
       <div class="user-heart">
         <div class="user-heart-icon">
           <span class="use-heart-wrap">
-           <img id="hear_img" src="https://cdn-icons-png.flaticon.com/512/5814/5814450.png">
+           <img id="hear_img" src=${this.heartImg}>
           </span>
         </div>
       </div>
@@ -314,7 +338,9 @@ class CarouselImg {
   render() {
     const carouselSlide = document.createElement('div');
     carouselSlide.className = 'carousel slide';
-    carouselSlide.id = 'carouselAuto';
+
+    // id를 생성해야지 각각의 인스턴스에 고유한 값을 부여하여 조종할 수 있음
+    carouselSlide.id = `carouselAuto${this.data.id}`; 
     carouselSlide.setAttribute('data-bs-ride', 'carousel');  // carouselSlide에 속성 설정
 
 
@@ -322,7 +348,7 @@ class CarouselImg {
     const carouselControlPrev = document.createElement('button');
     carouselControlPrev.className = 'carousel-control-prev';
     carouselControlPrev.type = 'button';
-    carouselControlPrev.setAttribute('data-bs-target', '#carouselAuto');  
+    carouselControlPrev.setAttribute('data-bs-target', `#carouselAuto${this.data.id}`);  
     carouselControlPrev.setAttribute('data-bs-slide', 'prev');           
     
     const carouselControlPrevIcon = document.createElement('span');
@@ -340,7 +366,7 @@ class CarouselImg {
     const carouselControlNext = document.createElement('button');
     carouselControlNext.className = 'carousel-control-next';
     carouselControlNext.type = 'button';
-    carouselControlNext.setAttribute('data-bs-target', '#carouselAuto');
+    carouselControlNext.setAttribute('data-bs-target', `#carouselAuto${this.data.id}`);
     carouselControlNext.setAttribute('data-bs-slide', 'next');
 
     const carouselControlNextIcon = document.createElement('span');
