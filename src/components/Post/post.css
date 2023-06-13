@@ -80,7 +80,8 @@
 }
 
 .isvisible {
-  transition: 0.5s;
+  transition: 1s;
+
 }
 
 .card .main-container {
@@ -119,6 +120,8 @@
   background-position: center;
   object-fit: contain;
   border-radius: 5px;
+  background-repeat: no-repeat !important;
+  background-position:center center !important;
   
     
 }
