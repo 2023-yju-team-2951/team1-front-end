@@ -141,7 +141,7 @@
     {
       "id": 3,
       "name": "",
-      "post_top_img": "/img/ketty1.png",
+      "post_top_img": "https://thumbsnap.com/i/WoMTvUCv.png",
       "post_main_img": [
         "https://i.pinimg.com/564x/fa/de/09/fade09c72481660a25aaa6221e8fb9ae.jpg",
         "https://i.pinimg.com/564x/d4/fb/97/d4fb97447185288389a41d72ad114efd.jpg",
@@ -164,6 +164,24 @@
       "statements": [],
       "likes": 0,
       "id": 4
+    },
+    {
+      "name": "juhyeonni123",
+      "post_content": "엄준식은 살아있다.",
+      "post_top_img": "",
+      "post_main_img": ["https://thumbsnap.com/i/iJwkrk8c.jpg"],
+      "statements": [],
+      "likes": 0,
+      "id": 5
+    },
+    {
+      "name": "juhyeonni123",
+      "post_content": "엄준식은 살아있다2",
+      "post_top_img": "",
+      "post_main_img": ["https://thumbsnap.com/i/iJwkrk8c.jpg"],
+      "statements": [],
+      "likes": 0,
+      "id": 6
     }
   ]
 }
