@@ -9,6 +9,7 @@
     "bundle": "webpack --mode production",
     "bundle:dev": "webpack --mode development",
     "watch": "nodemon --watch . --exec \"npm run bundle:dev\" --ext js,css",
+    "watch2": "webpack --mode development --watch --config ./webpack.config.js",
     "dev": "serve ./public | yarn watch",
     "juhyeondev": "webpack serve --mode development",
     "json-server": "json-server --watch ./server/db.json --port 7000"
