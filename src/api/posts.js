@@ -1,3 +1,5 @@
+import { method } from 'lodash';
+
 export async function getPost() {
   const res = await fetch('http://localhost:7000/posts');
   const data = await res.json();
@@ -13,3 +15,5 @@ export function createPost(post) {
     body: JSON.stringify(post),
   });
 }
+
+

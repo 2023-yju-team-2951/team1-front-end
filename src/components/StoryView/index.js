@@ -25,7 +25,7 @@ class StoryView extends HTMLElement {
     } catch (error) {
       console.log(error);
     } 
-  }
+  }    
 
   render() {
     
