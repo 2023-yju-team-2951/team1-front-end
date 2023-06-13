@@ -3,9 +3,13 @@ import './PostModal.css';
 import { uploadImg } from '../../../api/thumbsnap';
 import { createPost } from '../../../api/posts';
 
+// TODO: 현재 접속한 유저 정보를 받아온다.
 class PostModal extends HTMLDivElement {
-  constructor() {
+  constructor({ name }) {
     super();
+
+    this.name = name;
+
     this.classList.add('post-modal', 'modal-dialog');
     this.setAttribute('role', 'document');
 
@@ -26,11 +30,11 @@ class PostModal extends HTMLDivElement {
           <div class="post-field">
             <div class="user-info">
               <img class="user-img" src="./juhyeonniinsta.jpg" alt="">
-              <span class="user-name">juhyeonni</span>
+              <span class="user-name">${this.name}</span>
             </div>
             <textarea class="post-content" placeholder="문구 입력..." maxlength="2000"></textarea>
             <div class="post-assist">
-              <div class="emoji-picker">
+              <div class="emoji-picker">                                     
                 <button type="button" class="btn dropdown" data-bs-toggle="dropdown" aria-expanded="false">
                   <img src="/assets/image/icons/emoji.svg" alt="">
                 </button>
@@ -55,7 +59,7 @@ class PostModal extends HTMLDivElement {
     // FIXME:
     // data set
     this.userName = this.querySelector('.user-name');
-    this.postDescription = this.querySelector('.post-content');
+    this.postContent = this.querySelector('.post-content');
     this.uploadImg = this.querySelector('#uploadImg');
     // "post_top_img": "https://github.com/HyunjinHa.png",
     // this.postMainImg = this.querySelector('') // 이건 나중에 post할 때 데이터를 받고 추가함
@@ -76,7 +80,7 @@ class PostModal extends HTMLDivElement {
 
     // textarea length
     this.contentLength = this.querySelector('.content-length');
-    this.postDescription.addEventListener('keyup', () => this.rewriteLength());
+    this.postContent.addEventListener('keyup', () => this.rewriteLength());
   }
 
   renderImg() {
@@ -89,20 +93,20 @@ class PostModal extends HTMLDivElement {
   }
 
   addEmoji(btn) {
-    this.postDescription.value += btn.textContent;
+    this.postContent.value += btn.textContent;
     this.rewriteLength();
   }
 
   rewriteLength() {
-    this.contentLength.textContent = `${this.postDescription.value.length}/2000`;
+    this.contentLength.textContent = `${this.postContent.value.length}/2000`;
   }
 
   // FIXME:
   async share() {
     const file = this.uploadImg.files[0];
     const post = {
-      user: 'juhyeonni', // 나중에 로그인한 유저 정보를 받아와서 넣어줘야 함
-      post_description: this.postDescription.value,
+      name: this.name, // 나중에 로그인한 유저 정보를 받아와서 넣어줘야 함
+      post_content: this.postContent.value,
       post_top_img: '',
       post_main_img: [await uploadImg(file)],
       statements: [],
