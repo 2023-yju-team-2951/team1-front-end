@@ -1,5 +1,6 @@
 import { getPost } from '../../api/posts.js';
 import './post.css'
+import Main from '../../pages/Main.js'
 
 /* 🟢  1. POST */
 class Post extends HTMLElement {
@@ -19,6 +20,7 @@ class Post extends HTMLElement {
     this.loadDatas();
   }
 
+ 
 
   /* 🚩1.3 fetch - 서버에서 데이터 가져 오기  */
   async loadDatas() {
@@ -29,8 +31,6 @@ class Post extends HTMLElement {
     } catch (error) {
       console.log(error);
     }
-
-
   }
 
   /* 1.4 렌더링 */
@@ -77,7 +77,6 @@ class Post extends HTMLElement {
             method: "DELETE"
           });
         const data = await res.json();
-
         return data;
         }
     catch(error){
@@ -114,19 +113,33 @@ class Post extends HTMLElement {
   }  /* /hearClick */
   
   /* 🔴1.7.b.Card 삭제하기  */
-  deleteClick(){
+   deleteClick(){
     let deleteBtns_El = document.querySelectorAll('.dropdown-delete-btn'); 
     
     deleteBtns_El.forEach((deleteBtn,index)=>{
-      deleteBtn.addEventListener('click',()=>{
+      deleteBtn.addEventListener('click',async ()=>{
+
+      
 
         this.cardDelete(this.data[index]);
-        this.cardContainer.innerHTML=``;
+        // // this.cardContainer.innerHTML=``;
+        // while (this.innerContainer.firstChild) {
+        //   this.innerContainer.firstChild.remove();
+        // }
+        
+        // // 새롭게 변경된 데이터를 가져 오기 
+        // this.data = await getPost();
+        
+        // const cardContainer_El = new CardContainer(this.data).render(); // 새로운 CardContainer 생성
+        // this.innerContainer.innerHTML = cardContainer_El; // innerContainer에 새로운 CardContainer 추가
+
+        // // this.innerContainer += CardContainer_El;
 
 
-        // let cardContainerHtml  = new CardContainer(this.data);
-        this.cardContainer.innerHTML+= new CardContainer(this.data).render();
-        console.log(this)
+        const root = document.getElementById('root');
+        root.innerHTML = new Main().getHtml();
+        
+
       })
     })
   } 
@@ -140,8 +153,6 @@ class Post extends HTMLElement {
       postContent_El.classList.toggle('user-tag-on');
     });
   }
-
-  
 
 }
 

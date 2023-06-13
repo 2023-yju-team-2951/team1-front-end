@@ -113,24 +113,6 @@
   ],
   "posts": [
     {
-      "id": 1,
-      "name": "lji1001",
-      "post_top_img": "https://github.com/Jaeil-Lee.png",
-      "post_main_img": [
-        "https://i.pinimg.com/564x/6d/aa/e0/6daae02f73627c1fdc3b442af716d5e2.jpg",
-        "https://i.pinimg.com/564x/6d/4f/9a/6d4f9a53c5569dd6d9954405cc987a80.jpg",
-        "https://i.pinimg.com/564x/9b/03/33/9b03330cc803670fc9f9a401aafa86e6.jpg"
-      ],
-      "post_content": "逃れ逃れついたあるカフェ～～逃れ逃れついたあるカフェ～～！すっごく居心地よくて時間のある方々にはぜひお勧め",
-      "statements": [
-        {
-          "visitor": "",
-          "comment": "逃れ逃れついたあるカフェ～～！すっごく居心地よくて時間のある方々にはぜひお勧めいたします！！流れてくる音楽も雰囲気とピッタリなので久々にのんびりしたい人たちにもいいと思います"
-        }
-      ],
-      "likes": 4
-    },
-    {
       "id": 2,
       "name": "kitty",
       "post_top_img": "https://thumbsnap.com/i/WoMTvUCv.png",
@@ -164,7 +146,7 @@
           "comment": ""
         }
       ],
-      "likes": 0
+      "likes": 9
     },
     {
       "name": "juhyeonni",
@@ -174,7 +156,7 @@
         "https://thumbsnap.com/i/k8HTBeTa.jpg"
       ],
       "statements": [],
-      "likes": 0,
+      "likes": 5,
       "id": 4
     },
     {
@@ -196,7 +178,7 @@
         "https://thumbsnap.com/i/gbxsUu9A.png"
       ],
       "statements": [],
-      "likes": 4,
+      "likes": 9,
       "id": 7
     },
     {
@@ -207,7 +189,7 @@
         "https://thumbsnap.com/i/bNqehtYo.png"
       ],
       "statements": [],
-      "likes": 4,
+      "likes": 10,
       "id": 8
     }
   ]
