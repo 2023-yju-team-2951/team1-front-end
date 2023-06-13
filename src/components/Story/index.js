@@ -6,15 +6,8 @@ class Story extends HTMLElement {
   constructor() {
     super();
 
-    this.modalContainer = document.querySelector('.modal-container');
-    if (!this.modalContainer) {
-      this.modalContainer = document.createElement('div');
-      this.modalContainer.classList.add('modal-container');
-      document.body.appendChild(this.modalContainer);
-    }
-
-    this.loaded = false;
-    this.storyModal = null;
+    this.storyModal = new StoryModal('main');
+    document.body.appendChild(this.storyModal);
 
     this.loadDatas();
   }
@@ -27,13 +20,6 @@ class Story extends HTMLElement {
       canvasElements.forEach((canvasElement) => {
         this.draw(canvasElement);
       });
-
-      if (!this.loaded) {
-        this.loaded = true;
-        setTimeout(() => {
-          this.openModal();
-        }, 10);
-      }
     } catch (error) {
       console.log(error);
     }
@@ -66,7 +52,7 @@ class Story extends HTMLElement {
     storyHTML += `
       <li class="slider" style="transform: translateX(${translateXValue}px);">
         <div class="story-container">
-          <div class="story" id="add-story">
+          <div class="story" id="add-story" data-bs-toggle="modal" data-bs-target="#storyModal">
             <div class="profile">
               <span class="material-symbols-outlined">add</span>
             </div>
@@ -79,13 +65,10 @@ class Story extends HTMLElement {
     this.innerHTML = storyHTML;
 
     this.querySelector('#add-story').addEventListener('click', () => {
-      this.openModal();
+      this.storyModal = new StoryModal('main', count);
+      this.appendChild(this.storyModal);
+      this.storyModal.remove();
     });
-    
-    const addStoryButton = this.querySelector('#add-story');
-
-    addStoryButton.setAttribute('data-bs-toggle', 'modal');
-    addStoryButton.setAttribute('data-bs-target', '#storyModal');
 
     const canvasElements = this.querySelectorAll('canvas');
     canvasElements.forEach((canvasElement) => {
@@ -93,15 +76,6 @@ class Story extends HTMLElement {
     });
   }
 
-  openModal() {
-    if (this.storyModal) {
-      this.storyModal.remove();
-      this.storyModal = null;
-    }
-
-    this.storyModal = new StoryModal('main');
-    this.modalContainer.appendChild(this.storyModal);
-  }
   draw(canvasElement) {
     var canvas = canvasElement;
     var ctx = canvas.getContext('2d');
