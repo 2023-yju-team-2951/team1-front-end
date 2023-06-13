@@ -21,7 +21,7 @@ class StoryView extends HTMLElement {
     } catch (error) {
       console.log(error);
     } 
-  }
+  }    
 
   render() {
     const urlParams = new URLSearchParams(window.location.search);

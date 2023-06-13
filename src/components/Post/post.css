@@ -31,8 +31,12 @@
   flex-direction: column;
   justify-content: center;
   position: relative;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
+
+/* TOP  - 사용자 이미지  +  아이디  + ・・・ */
 .card .top {
   display: flex;
   flex-direction: row;
@@ -47,7 +51,7 @@
   margin: 8px 4px 8px 5px;
 }
 
-.card .top .top-container .top-item-image {
+.card .top .top-container .top-item-image .top-img {
   width: 42px;
   height: 42px;
   border-radius: 50%;
@@ -65,12 +69,28 @@
   font-size: 18px;
 }
 
+/* 구글 머티리얼 아이콘 */
+.card .top .top-container .dropdown{
+  position: absolute;
+  right: 1px;
+}
+.card .top .top-container .dropdown .cansel-modal {
+  border: none;
+ 
+}
+
+.isvisible {
+  transition: 0.5s;
+}
+
 .card .main-container {
   width: 100%;
-  height: 470px;
+  height: 650px;
   display: flex;
   justify-content: center;
   align-items: center;
+  object-fit: contain;
+
 }
 
 .card .main-container .items {
@@ -96,9 +116,15 @@
 .carousel.slide .carousel-inner .carousel-item .img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  background-position: center;
+  object-fit: contain;
+  border-radius: 5px;
+  
+    
 }
 
+
+/* 🟢 CARD */
 .card .post-footer {
   display: flex;
   flex-direction: column;
@@ -110,7 +136,6 @@
 .card .post-footer .user-heart {
   display: flex;
   margin-top: 4px;
-  margin-left: 0;
 }
 
 .card .post-footer .user-heart .user-heart-icon {
@@ -125,8 +150,22 @@
 .card .post-footer .user-count {
   display: flex;
   margin: 6px;
-  margin-left: 0;
 }
+
+
+/* 좋아요 수 ( 서버에서 변수로 받아와 적용)  */
+.card .post-footer .user-count .count-like{
+  font-size: 15px;
+  font-weight: 900;
+  margin: 0 3px 0;
+}
+/* 좋아요 수 뒤에 글자  */
+.card .post-footer .user-count .user-like{
+  font-size: 15px;
+  font-weight: 900;
+}
+
+
 
 .card .post-footer .user-write {
   display: flex;
@@ -135,37 +174,87 @@
 
 .card .post-footer .user-write #account {
   font-weight: 600;
-  font-size: 18px;
-  line-height: 18px;
+  font-size: 15px;
+  line-height: 7px;
+  margin: 0 3px 0;
 }
 
 .card .post-footer .user-write #showMore {
+  display: block;
   font-size: 14px;
   font-weight: 400;
   color: rgb(115, 115, 115);
   cursor: pointer;
 }
+
+
+/* 작성자 게시글 박스 */
+.card .post-footer .user-write .user-tag .post-content  {
+  height: 25px;  /* 50px 2줄 */
+  overflow: hidden;
+  line-height: 0.5em;
+}
+/* 더보기 토굴  */
+.card .post-footer .user-write .user-tag .post-content.user-tag-on{
+  height: auto;
+}
+
+/* 작성자 게시글 크기 */
+.card .post-footer .user-write .user-tag .post-content .post {
+  font-size: 15px;
+  line-height: 1.7em;
+  
+}
+
+
 
 .card .post-footer #showAll {
   font-size: 14px;
   font-weight: 400;
   color: rgb(115, 115, 115);
   cursor: pointer;
+  margin-bottom: 10px;
 }
 
-.card .post-footer .comment {
+.card .post-footer .comment-wrap {
+  display: flex;
+  align-items: center;
+}
+.card .post-footer .comment-wrap .comment {
   display: flex;
   flex-direction: row;
-  margin: 10px 0;
+  height: 40px;
+  width: 90%;
 }
 
-.card .post-footer .comment .comment-input {
-  max-height: 80px;
+.card .post-footer .comment-wrap .comment .comment-input {
+  width: 20%;
+  max-height: 120px;
   max-width: 100%;
   flex-grow: 1;
-  height: 24px;
+  height: 40px;
+  font-size:15px;
   border: none;
   outline: none;
   resize: none;
   overflow: hidden;
+  padding-top: 5px;
+  border-bottom: 1px solid rgba(137, 134, 134, 0.655);
 }
+
+button {
+  color: rgb(54, 120, 226);
+  background: #00000000;
+  font-size: 13px;
+  font-weight: 900;
+  border: none;
+  outline:none;
+}
+button:hover{
+  color: rgb(0, 0, 0);
+}
+button:active{
+  color:rgb(174, 174, 174);
+}
+
+

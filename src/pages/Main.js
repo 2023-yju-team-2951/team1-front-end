@@ -8,7 +8,7 @@ export default class {
   }
   getHtml() {
     return `
-      <!-- test
+      
       <div class="main">
         <div class="main-body">
           <Header-component></Header-component>
@@ -19,7 +19,7 @@ export default class {
           
         </div>
       </div>
-      -->
+      
       <div is="nav-component"></div>
     `;
   }
