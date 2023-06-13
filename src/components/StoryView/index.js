@@ -1,5 +1,5 @@
 import './storyView.css';
-import { getProfiles } from '../../api/profiles.js';
+import { getProfiles, getProfile, updateProfile } from '../../api/profiles.js';
 import { gsap } from "gsap";
 import StoryModal from '../StoryModal/';
 class StoryView extends HTMLElement {
@@ -28,7 +28,6 @@ class StoryView extends HTMLElement {
   }
 
   render() {
-    
     const urlParams = new URLSearchParams(window.location.search);
     const id = parseInt(urlParams.get('id'));
   
@@ -65,29 +64,43 @@ class StoryView extends HTMLElement {
   
     this.sizeChange();
 
+    let editButton = document.querySelector('#edit-button');
+
     const editStory = this.querySelector('#edit-story');
     const deleteStory = this.querySelector('#del-story');
 
     editStory.addEventListener('click', () => {
-      const activeCarouselItem = this.querySelector('.carousel-item.active');
-      const activeIndex = activeCarouselItem.dataset.index;
-
-      this.storyModal = new StoryModal('edit', activeIndex, this.data);
-      this.appendChild(this.storyModal);
-      this.storyModal.remove();
+      document.body.removeChild(this.storyModal);
+      this.storyModal.render();
     })
 
-    const editButton = document.querySelector('#edit-button');
-    console.log(editButton);
+    document.addEventListener('editButtonClicked', (event) => {
+      this.changeCarouselImg(event.detail);
+    }, false);
+
+    editButton.addEventListener('click', () => {
+      document.body.removeChild(this.storyModal);
+      this.storyModal.render();
+    });
 
     deleteStory.addEventListener('click', () => {
       this.deleteCarouselImg();
     });
 
+    this.textAreaResize();
+
+    const myCarousel = document.querySelector('#carouselAuto');
+    myCarousel.addEventListener('slid.bs.carousel', () => {
+      this.textAreaResize();
+    });
+
   }
 
-  openModal() {
-    
+  textAreaResize() {
+    const textInput = this.querySelectorAll('.text-area');
+    textInput.forEach((text) => {
+      text.style.height = text.scrollHeight + 'px';
+    });
   }
   
   sizeChange() {
@@ -276,42 +289,32 @@ class StoryView extends HTMLElement {
   }
 
   // 현재 캐러셀 이미지 삭제
-  deleteCarouselImg() {
+  async deleteCarouselImg() {
     const activeCarouselItem = this.querySelector('.carousel-item.active');
     const activeIndex = activeCarouselItem.dataset.index;
   
     const urlParams = new URLSearchParams(window.location.search);
     const id = parseInt(urlParams.get('id'));
     
+    const data  = await getProfile(id);
+
+    const storyImg = data.storyImg;
+    const storyText = data.storyText;
+
+    storyImg.splice(activeIndex, 1); 
+    storyText.splice(activeIndex, 1);
+    
+    const index = this.data.findIndex((data) => data.id === id);
+    this.data[index].storyImg = storyImg;
+    this.data[index].storyText = storyText;
+    
     fetch(`http://localhost:7000/profiles/${id}`, {
-      method: 'GET',
-      headers: { 
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache'
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-
-        const storyImg = data.storyImg;
-        const storyText = data.storyText;
-
-        storyImg.splice(activeIndex, 1); 
-        storyText.splice(activeIndex, 1);
-        
-        const index = this.data.findIndex((data) => data.id === id);
-        this.data[index].storyImg = storyImg;
-        this.data[index].storyText = storyText;
-        
-        return fetch(`http://localhost:7000/profiles/${id}`, {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ storyImg, storyText }),
-        });
-      })
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ storyImg, storyText }),
+    }) 
     .then((res) => res.json())
     .then(() => {
-
       while (this.modalWrapper.firstChild) {
         this.modalWrapper.firstChild.remove();
       }
@@ -322,7 +325,44 @@ class StoryView extends HTMLElement {
       this.render();
       this.sizeChange();
     })
+  }
+
+  changeCarouselImg(detail) {
+    const activeCarouselItem = this.querySelector('.carousel-item.active');
+    const activeIndex = activeCarouselItem.dataset.index;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = parseInt(urlParams.get('id'));
+    const background = detail.background;
+    const text = detail.text;
+    const color = detail.textColor;
     
+    this.updateStory(id, activeIndex, background, text, color);
+  }
+
+  async updateStory(id, activeIndex, background, text, color) {
+    const data = await getProfile(id);
+    const { storyImg, storyText } = data;
+  
+    storyImg.splice(activeIndex, 1, background);
+    storyText[activeIndex].text = text;
+    storyText[activeIndex].color = color;
+  
+    const index = this.data.findIndex((data) => data.id === id);
+    this.data[index].storyImg = storyImg;
+    this.data[index].storyText = storyText;
+    
+    await updateProfile(id, storyImg, storyText);
+    
+    while (this.modalWrapper.firstChild) {
+      this.modalWrapper.firstChild.remove();
+    }
+  
+    const newURL = window.location.origin + window.location.pathname + '?id=' + id;
+    history.pushState(null, null, newURL);
+    
+    this.render();
+    this.sizeChange();
   }
   
 }
@@ -425,23 +465,21 @@ class CarouselImg {
 
         const textItem = this.data.storyText[i];
 
-        const text = document.createElement('div');
-        text.className = 'text';
+        const textContainer = document.createElement('div');
+        textContainer.className = 'text-container';
 
-        if (textItem.hasOwnProperty('text')) {
-          const textElement = document.createElement('span');
-          textElement.innerHTML = textItem.text;
-          text.appendChild(textElement);
-        }
-  
-        if (textItem.hasOwnProperty('color')) {
-          text.style.color = textItem.color;
-        }
+        const textElement = document.createElement('textarea');
+        textElement.className = 'text-area';
+        textElement.setAttribute('disabled', 'true');
+        textElement.innerHTML = textItem.text;
+        textContainer.appendChild(textElement); 
+
+        textElement.style.color = textItem.color;
         
         carouselItem.appendChild(img);
         carouselInner.appendChild(carouselItem);
         carouselIndicators.appendChild(carouselIndicator);
-        carouselItem.appendChild(text);
+        carouselItem.appendChild(textContainer);
       }
     }
 
