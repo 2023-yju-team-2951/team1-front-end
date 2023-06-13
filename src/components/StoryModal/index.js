@@ -1,8 +1,8 @@
 import './storymodal.css';
-
+import { getAccount } from '../../api/accounts.js';
 class StoryModal extends HTMLElement {
 
-  constructor(mode, index, data) {
+  constructor(mode) {
     super();
     this.className = 'modal fade';
 
@@ -13,20 +13,21 @@ class StoryModal extends HTMLElement {
     } else if (mode === 'edit') {
       id = `editStoryModal`;
     }
-
-    this.index = index;
-    this.data = data;
-
-    console.log(this.index);
-
     this.id = id;
     this.mode = mode;
     this.setAttribute('aria-labelledby', 'storyModalLabel');
     this.setAttribute('aria-hidden', 'true');
     this.setAttribute('tabindex', '-1');
+    
+    this.check = false;
 
     this.num = 0;
+    this.render();
+  }
 
+  render() {
+    this.num = 0;
+    this.check = false;
     this.innerHTML = `
     <div class="modal-dialog">
       <div class="modal-content">
@@ -66,8 +67,8 @@ class StoryModal extends HTMLElement {
           <button id="prev-button" type="button" class="btn btn-secondary" style="display: none;">Prev</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button id="next-button" type="button" class="btn btn-primary">Next</button>
-          <button id="finish-button" type="button" class="btn btn-primary" style="display: none;">Finish</button>
-          <button id="edit-button" type="button" class="btn btn-primary" style="display: none;">Edit</button>
+          <button id="finish-button" type="button" class="btn btn-primary" style="display: none;" data-bs-dismiss="modal">Finish</button>
+          <button id="edit-button" type="button" class="btn btn-primary" style="display: none;" data-bs-dismiss="modal">Edit</button>
         </div>
       </div>
     </div>`
@@ -86,6 +87,10 @@ class StoryModal extends HTMLElement {
       } else {
         writingElement.style.background = this.pick;
       }
+
+      if (this.check === false) {
+        writingElement.style.background = '#ffffff';
+      }
       
       this.updateNum();
     });
@@ -96,109 +101,47 @@ class StoryModal extends HTMLElement {
       this.updateNum();
     });
 
-    // 완료 버튼 클릭시
-    this.querySelector('#finish-button').addEventListener('click', () => {
-
-      const id = 2;
-      
-      // fetch(`http://localhost:7000/profiles/${id}`, {
-      //   method: 'GET',
-      //   headers: { 'Content-Type': 'application/json' },
-      // }).then(response => {
-      //   if(!response.ok) {
-      //     throw response;
-      //   }
-      //   return response.json();
-      // }).then(data => {
-      //   console.log(data);
-      //   return data;
-      // })
-      // .catch(error => {
-      //   if (error.status === 404) {
-      //     console.log("없는 데이터");
-      //   } else {
-      //     console.log(error);
-      //   }
-      // })
-
+    // 완료 버튼 클릭시 버블로 넘기기
+    this.querySelector('#finish-button').addEventListener('click', (e) => { 
       const writingElement = this.querySelector('.writing')
       const background = writingElement.style.background;
       const textWrite = this.querySelector('.text-write');
       const text = textWrite.value;
+      const textColor = textWrite.style.color;
 
-      fetch(`http://localhost:7000/profiles/${id}`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      })
-      .then(response => response.json())
-      .then(data => {
-        const appendData = {
-          ...data,
-          storyImg: [...(data.storyImg || []), background],
-          storyText: [...(data.storyText || []), text],
-        };
-
-        return fetch(`http://localhost:7000/profiles/${id}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(appendData),
-        });
-      })
-      .then(response => response.json())
-      .then(updatedData => {
-        console.log(updatedData);
-        this.removeModal();
-      })
-      .catch(error => {
-        console.error(error);
+      const event = new CustomEvent('finishButtonClicked', {
+        bubbles: true,
+        detail: { background, text, textColor }
       });
 
+      e.target.dispatchEvent(event);
     });
 
-    // 수정 버튼 클릭시
-    // this.querySelector('#edit-button').addEventListener('click', () => {
-    //   const writingElement = this.querySelector('.writing');
-    //   const background = writingElement.style.background;
-    //   const textWrite = this.querySelector('.text-write');
-    //   const text = textWrite.value;
-    //   let index = this.index;
-    //   console.log(index);  
-    
-    //   const urlParams = new URLSearchParams(window.location.search);
-    //   const id = parseInt(urlParams.get('id'));
-    
-    //   fetch(`http://localhost:7000/profiles/${id}`, {
-    //     method: 'GET',
-    //     headers: { 'Content-Type': 'application/json' },  
-    //   }).then(res => res.json())
-    //     .then(data => {
-    //       const storyImg = data.storyImg;
-    //       const storyText = data.storyText;
-
-    //       console.log(index);
-    
-    //       storyImg.splice(index, 1, background);
-    //       storyText.splice(index, 1, text);
-    
-    //       data.storyImg = storyImg;
-    //       data.storyText = storyText;
-    
-    //       return fetch(`http://localhost:7000/profiles/${id}`, {
-    //         method: 'PATCH',
-    //         headers: { 'Content-Type': 'application/json' },
-    //         body: JSON.stringify({ storyImg, storyText }),
-    //       });
-    //     }).then(res => res.json())
-    //     .then(() => {
-    //       this.removeModal();
-    //     });
-    // });
+    // 수정 버튼 클릭 버블로 넘기기
+    this.querySelector('#edit-button').addEventListener('click', (e) => {
+      const writingElement = this.querySelector('.writing');
+      const background = writingElement.style.background;
+      const textWrite = this.querySelector('.text-write');
+      const text = textWrite.value;
+      const textColor = textWrite.style.color;
+      
+      // 새로운 커스텀 이벤트 생성
+      const event = new CustomEvent('editButtonClicked', {
+        bubbles: true, 
+        detail: { background, text, textColor }
+      });
+  
+      // 이벤트 발생
+      e.target.dispatchEvent(event);
+    });
     
     // 색깔 고를때 효과 + 고른 색 selected 클래스 추가 + 고른색으로 배경 변경
     this.colors = this.querySelectorAll('.colors')
     this.colors.forEach((color) => {
       color.addEventListener('click', (e) => {
         this.pick = e.target.style.backgroundColor;
+
+        this.check = true;
 
         this.colors.forEach((color) => {
           color.classList.remove('selected');
@@ -237,8 +180,8 @@ class StoryModal extends HTMLElement {
       this.style.display = 'block';
       this.style.height = (this.scrollHeight) + 'px';
     });
-        
   }
+  
 
   // 다음, 이전 버튼 클릭시 화면 업데이트
   updateNum() {
@@ -263,17 +206,6 @@ class StoryModal extends HTMLElement {
     }
   }
 
-  removeModal() {
-    const event = new Event('hide.bs.modal');
-    this.dispatchEvent(event);
-  
-    const backdrop = document.querySelector('.modal-backdrop');
-    if (backdrop) {
-      backdrop.remove();
-    }
-  
-    this.remove();
-  }
 
 }
 
