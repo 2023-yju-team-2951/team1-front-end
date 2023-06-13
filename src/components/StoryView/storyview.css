@@ -1,10 +1,10 @@
-.story-modal {
+.story-view-modal {
   height: 100vh;
   width: 100%;
   position: fixed;
 }
 
-.story-modal .story-modal-body {
+.story-view-modal .story-modal-body {
   height: 100%;
   width: 100%;
   display: flex;
@@ -15,7 +15,7 @@
   overflow: hidden;
 }
 
-.story-modal .story-modal-body .story-modal-wrapper {
+.story-view-modal .story-modal-body .story-modal-wrapper {
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -24,7 +24,7 @@
   height: 100%;
 }
 
-.story-modal .story-modal-body .story-modal-wrapper .modal-wrapper {
+.story-view-modal .story-modal-body .story-modal-wrapper .modal-wrapper {
   display: flex;
   flex-direction: row;
   flex-shrink: 0;
@@ -36,7 +36,7 @@
   height: 100%;
 }
 
-.story-modal .story-modal-body .story-modal-wrapper .modal-wrapper .story-container {
+.story-view-modal .story-modal-body .story-modal-wrapper .modal-wrapper .story-container {
   cursor: pointer;
   transition: transform 0.3s ease;
 }
@@ -74,30 +74,55 @@
   padding: 20px 16px 32px 16px;
   display: flex;
   top: 0;
+  z-index: 1;
   position: absolute;
   background: linear-gradient( 180deg, rgba(38, 38, 38, .8) 0%, rgba(38, 38, 38, 0) 100% );
 }
 
-.modal-story .story-item .story-header .story-title {
+.modal-story .story-item .story-header .story-head {
   align-items: center;
   display: flex;
-  justify-content: center;
+  align-self: auto;
   position: relative;
+  justify-content: space-between;
 }
 
-.modal-story .story-item .story-header .story-title .story-name {
-  align-items: center;
+.story-head .story-profile {
   display: flex;
   justify-content: center;
+  align-items: center;
   position: relative;
-  margin-left: 8px;
   color: #fff;
 }
 
-.modal-story .story-item .story-header .story-title .story-small-img {
+.story-head .story-profile img {
   width: 32px;
   height: 32px;
   border-radius: 50%;
+}
+
+.story-head .story-profile .story-name {
+  display: flex;
+  margin-left: 12px;
+}
+
+.story-head .story-tool {
+  align-items: center;
+  display: flex;
+  margin-left: 200px;
+  min-height: 40px;
+  right: 0;
+}
+
+.story-head .story-tool span {
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
 }
 
 .img-container {
@@ -115,6 +140,12 @@
 }
 
 .img-container .img-size .img-item .img-div {
+  width: 100%;
+  height: 100%;
+}
+
+.img-container .img-size .img-item .img-div .side-img {
+  display: inline-block;
   width: 100%;
   height: 100%;
 }
@@ -255,4 +286,22 @@
 
 .hidden-story {
   display: none;
+}
+
+.out-box {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+}
+
+.out-box a {
+  display: block;
+  width: 36px;
+  height: 36px;
+}
+
+.out-box a span {
+  display: block;
+  font-size: 48px;
+  color: #fff;
 }
