@@ -1,5 +1,30 @@
+/**
+ * 서버로부터 계정 목록을 가져옵니다.
+ * @returns {Promise<[]>} 계정 목록
+ */
+export async function getAccounts() {
+  const res = await fetch('http://localhost:7000/accounts');
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch accounts, ${res.status}`);
+  }
+
+  const data = await res.json();
+  return data;
+}
+
+/**
+ * 서버로부터 id를 통해 계정을 가져옵니다.
+ * @param {*} id
+ * @returns {Promise<{}>} 계정
+ */
 export async function getAccountById(id) {
   const res = await fetch(`http://localhost:7000/accounts/${id}`);
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch account, ${res.status}`);
+  }
+
   const data = await res.json();
   return data;
 }
