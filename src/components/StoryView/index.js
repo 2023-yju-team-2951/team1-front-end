@@ -1,14 +1,13 @@
 import './storyView.css';
 import { getProfiles, getProfile, updateProfile } from '../../api/profiles.js';
 import { gsap } from "gsap";
-import StoryModal from '../StoryModal/';
+import StoryModal from '../StoryModal';
+import { exchangeModal } from '../utils/exchangeModal';
+
 class StoryView extends HTMLElement {
 
   constructor() {   
     super();
-
-    this.storyModal = new StoryModal("edit");
-    document.body.appendChild(this.storyModal);
 
     this.storyWrapper = document.createElement('div');
     this.storyWrapper.className = 'story-modal-wrapper';
@@ -70,18 +69,12 @@ class StoryView extends HTMLElement {
     const deleteStory = this.querySelector('#del-story');
 
     editStory.addEventListener('click', () => {
-      document.body.removeChild(this.storyModal);
-      this.storyModal.render();
+      exchangeModal(new StoryModal('edit'))
     })
 
     document.addEventListener('editButtonClicked', (event) => {
       this.changeCarouselImg(event.detail);
     }, false);
-
-    editButton.addEventListener('click', () => {
-      document.body.removeChild(this.storyModal);
-      this.storyModal.render();
-    });
 
     deleteStory.addEventListener('click', () => {
       this.deleteCarouselImg();
@@ -384,7 +377,7 @@ class CenterStory {
                   <div class="story-name">${this.data.name}</div>
                 </div>
                 <div class="story-tool">
-                  <span class="material-symbols-outlined" id="edit-story" data-bs-target="#editStoryModal" data-bs-toggle="modal">
+                  <span class="material-symbols-outlined" id="edit-story" data-bs-target="#swapModal" data-bs-toggle="modal">
                     edit
                   </span>
                   <span class="material-symbols-outlined" id="del-story">
