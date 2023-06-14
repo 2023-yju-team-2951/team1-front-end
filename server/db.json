@@ -141,25 +141,6 @@
           "color": ""
         }
       ]
-    },
-    {
-      "id": 7,
-      "name": "ji",
-      "img": "https://cdn.pixabay.com/photo/2023/05/30/16/50/milk-8029140_1280.png",
-      "storyImg": [
-        "rgb(0, 0, 0)",
-        "rgb(0, 0, 0)"
-      ],
-      "storyText": [
-        {
-          "text": "sdfsdfsdf",
-          "color": "rgb(255, 255, 255)"
-        },
-        {
-          "text": "sdfsdf\nsdfdsf",
-          "color": "rgb(255, 255, 255)"
-        }
-      ]
     }
   ],
   "posts": [

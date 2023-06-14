@@ -94,7 +94,7 @@ class Story extends HTMLElement {
     ctx.strokeStyle = gradient;
     ctx.beginPath();
     ctx.arc(centerX, centerY, 31, 0, 360, false);
-    ctx.stroke();
+    ctx.stroke(); 
   }
 
   addStory(detail) {
