@@ -1,5 +1,6 @@
 import './Header.css';
 import '../Story';
+import { getProfiles } from '../../api/profiles';
 
 class Header extends HTMLElement {
   constructor() { 
@@ -7,6 +8,19 @@ class Header extends HTMLElement {
 
     this.currentOffset = 0;
     
+    this.loadDatas();
+  }
+
+  async loadDatas() {
+    try {
+      this.data = await getProfiles();
+      this.render();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  render() {
     this.innerHTML = 
     `
     <div class="header">
@@ -25,9 +39,33 @@ class Header extends HTMLElement {
           </div>
         </div>
       </div>
-    </div
-    
+    </div>
     `
+
+    const prevButton = document.querySelector(".prev");
+    const nextButton = document.querySelector(".next");
+    this.prevBtnHidden(prevButton);
+    this.nextBtnHidden(nextButton);
+
+    const prev = this.querySelector(".prev");
+    prev.addEventListener("click", () => {
+      this.slidePrev();
+    });
+
+    const next = this.querySelector(".next");
+    next.addEventListener("click", () => {
+      this.slideNext();
+    });
+
+    this.nextButtonCheck();
+
+  }
+
+  nextButtonCheck() {
+    if (this.data.length > 7) {
+      const nextButton = document.querySelector(".next");
+      nextButton.classList.remove("hidden");
+    }
   }
 
   // prev 버튼 숨기기
@@ -46,34 +84,11 @@ class Header extends HTMLElement {
     const containerWidth = sliderWrapper.offsetWidth;
     const minOffset = -(sliderWidth - containerWidth);
 
-    console.log(sliderWidth, containerWidth, minOffset);
-    console.log(this.currentOffset);
-
-    console.log("sdsd");
-  
     if (this.currentOffset == minOffset) {
       button.classList.add("hidden");
     } else {
       button.classList.remove("hidden");
     }
-  }
-  
-  // 연결된 후 실행할 함수
-  connectedCallback() {
-    const prevButton = this.querySelector(".prev");
-    const nextButton = this.querySelector(".next");
-    this.prevBtnHidden(prevButton);
-    this.nextBtnHidden(nextButton);
-
-    const prev = this.querySelector(".prev");
-    prev.addEventListener("click", () => {
-      this.slidePrev();
-    });
-
-    const next = this.querySelector(".next");
-    next.addEventListener("click", () => {
-      this.slideNext();
-    });
   }
 
   // 왼쪽으로 슬라이드
