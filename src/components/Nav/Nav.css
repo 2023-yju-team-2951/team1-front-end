@@ -68,6 +68,10 @@
   /* border: 1px solid #000000; */
 }
 
+.nav-full .item-name {
+  padding-left: 16px;
+}
+
 .nav-full .nav-list > li,
 .nav-full .nav-other {
   display: flex;
@@ -88,16 +92,27 @@
   background-color: #f2f2f2;
 }
 
-.othermenu-item {
+.other-menu > .menu-list {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.other-menu > .menu-list > a {
   width: 250px;
   cursor: pointer;
   border-radius: 8px;
 }
 
-.othermenu-item:hover {
+.other-menu > .menu-list > a > div {
+  display: flex;
+  padding: 16px;
+}
+
+.other-menu > .menu-list > a:hover {
   background-color: #f2f2f2;
 }
 
-.item-name {
+.nav-full .item-name {
   padding-left: 16px;
 }
