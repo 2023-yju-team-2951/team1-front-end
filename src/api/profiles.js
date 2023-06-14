@@ -4,8 +4,12 @@ export async function getProfiles() {
   return data;
 }
 
-export async function getProfile(id) {
+export async function getProfileById(id) {
   const res = await fetch(`http://localhost:7000/profiles/${id}`);
+  if (!res.ok) {
+    throw res;
+  }
+  
   const data = await res.json();
   return data;
 }
@@ -20,16 +24,12 @@ export async function updateProfile(id, storyImg, storyText) {
   return data;
 }
 
-export async function putProfile(id, data) {
+export async function deleteProfile(id) {
   const res = await fetch(`http://localhost:7000/profiles/${id}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
+    method: 'DELETE',
   });
-  if (!res.ok) {
-    throw res;
-  }
-  return res.json();
+  const data = await res.json();
+  return data;
 }
 
 export async function postProfile(data) {
@@ -38,8 +38,5 @@ export async function postProfile(data) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   });
-  if (!res.ok) {
-    throw res;
-  }
   return res.json();
 }
