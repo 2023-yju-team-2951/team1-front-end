@@ -60,7 +60,7 @@
 .card .top .top-container .top-item-account {
   display: flex;
   flex-direction: column;
-  margin-left: 16px;
+  margin-left: -20px;
   justify-content: center;
   min-height: 40px;
 }
@@ -261,3 +261,204 @@ button:active{
 }
 
 
+/* 🟢 모달  🟢*/
+
+/* COMMON */
+.button-custom {
+  color: rgb(54, 120, 226);
+  background: #00000000;
+  font-size: 25px;
+  font-weight: 900;
+  border: none;
+  outline:none;
+  padding: 0;
+}
+.button-custom:hover{
+  color: rgb(0, 0, 0);
+  background: #00000000;
+}
+.button-custom:active{
+  background: #00000000;
+  color:rgb(174, 174, 174);
+}
+
+
+
+/* 모달 */
+.modal {  /* 모달 전체 사이즈 */
+  --bs-modal-width: none;
+  
+}
+
+.modal-content.modal-control{
+  width: 80vw ;
+  height: 90vh;
+  margin: 0 auto;
+}
+
+
+.modal-body {
+  display: flex;
+  padding: 0;
+  box-sizing: border-box;
+ 
+}
+
+/* 1. LEFT */
+.modal-body .modal-left {
+  background: #ffef5c;
+  width: 55%;
+}
+
+/* 2. RIGHT */
+.modal-body .modal-right {
+  /* background: #ffae5c; */
+  width: 45%;
+}
+
+/* 🟢 TOP - 10% */
+.right-top{
+  width: 100%;
+  height:  10%;
+  box-sizing: border-box;
+  border-bottom: solid 1px rgba(161, 160, 160, 0.486);
+}
+.right-top-container{
+  margin-left: 10px;
+  height: 100%;
+  /* width: 50\; */
+  display: flex;
+}
+.right-top-userimage{
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}    
+.top-img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+.top-item-account{
+  width: 25%;
+  text-align: center;
+  margin: auto 0;
+  padding-left: 30px;
+}
+.name {
+  font-size:25px ;
+  font-weight: 900;
+}
+
+/* 🟢  2. MIDDLE 75% */
+.modal-middle {
+  width: 100%;
+  height: 75%;
+  overflow:auto;  
+  margin-top:10px ;
+  box-sizing: border-box;
+  /* margin: 0 auto; */
+  font-size: 20px;
+  /* background: rgb(0, 38, 255); */
+  overflow:auto;  
+  border-bottom: solid 1px rgba(161, 160, 160, 0.486);
+ 
+}
+
+/* 방문자 글 한줄 */
+.visitor-post{
+  height: auto;
+  width: 100%;
+  /* background: blueviolet; */
+  display: flex;
+  align-items: center;
+  word-wrap: break-word;
+  margin-bottom: 15px;
+  
+}
+.visitor-post .visitor-imgBox {
+  width: 100px;
+}
+
+.visitor-post .visitor-imgBox .visitor-img{
+  height:50px;
+  width: 50px;
+  border-radius: 50%;
+  margin: 0 10px 0 ;
+}
+
+.comment{
+  /* width: 100%; */
+  height: auto;
+  /* background: rgb(246, 212, 107); */
+  display: block;
+  align-items: center;
+  margin-right: 20px;
+  float: left;
+  line-height:1.2 ;
+}
+.comment .visitor-id{
+  font-size: 30px;
+  font-weight: 900;
+}
+
+/* 🟢 하트 좋아요 5% */
+.heart{
+  /* border-top: solid 1px rgba(161, 160, 160, 0.486); */
+  height: 5%;
+  display: flex;
+  align-items: center;
+}
+.hearimg{
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+}
+
+
+/*  🟢 BOTTOM  5% */
+.modal-comment{
+  /* background: #fb3480; */
+  width: 100%;
+  height: 7%;
+  display: flex;
+  align-items: center;
+  /* position: relative; */
+ }
+ .modal-comment .modal_bottom{
+  border-top: solid 1px rgba(161, 160, 160, 0.486);
+  /* position: absolute;
+  bottom: 1px; */
+  width: 100%;
+  display: flex;
+  /* padding-top: 10px; */
+  box-sizing: border-box;
+ }
+ .modal-comment .modal-comment-input {
+   width: 85%;
+   height: 90px;
+   font-size: 18px;
+   margin-right: 10px;
+   border: none;
+   outline: none;
+   background: rgba(246, 246, 246, 0);
+   overflow:auto;  
+   word-wrap: break-word;
+  
+ }
+.posting-push{
+  width: 12%;
+  text-align: center;
+  line-height: 100px;
+  /* line-height: 50%; */
+  /* margin-top: 4%; */
+}
+.show_All{
+  font-size: 14px;
+  color: rgb(115, 115, 115);
+  /* position: relative; */
+  /* left: 1px; */
+  --bs-btn-active-bg: none;
+  width: 100px;
+}
