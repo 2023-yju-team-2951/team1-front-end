@@ -1,10 +1,10 @@
 import './storymodal.css';
 import { getAccount } from '../../api/accounts.js';
-class StoryModal extends HTMLElement {
+class StoryModal extends HTMLDivElement {
 
   constructor(mode) {
     super();
-    this.className = 'modal fade';
+    this.className = 'modal-dialog';
 
     let id;
 
@@ -15,10 +15,6 @@ class StoryModal extends HTMLElement {
     }
     this.id = id;
     this.mode = mode;
-    this.setAttribute('aria-labelledby', 'storyModalLabel');
-    this.setAttribute('aria-hidden', 'true');
-    this.setAttribute('tabindex', '-1');
-    
     this.check = false;
 
     this.num = 0;
@@ -29,47 +25,45 @@ class StoryModal extends HTMLElement {
     this.num = 0;
     this.check = false;
     this.innerHTML = `
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div id="num-0" class="num">
-            <div class="color-picker">
-              <div class="colors selected" style="background-color: #ffffff;"></div>
-              <div class="colors" style="background-color: #ffadad;"></div>
-              <div class="colors" style="background-color: #ffd6a5;"></div>
-              <div class="colors" style="background-color: #fdffb6;"></div>
-              <div class="colors" style="background-color: #caffbf;"></div>
-              <div class="colors" style="background-color: #9bf6ff;"></div>
-              <div class="colors" style="background-color: #a0c4ff;"></div>
-              <div class="colors" style="background-color: #bdb2ff;"></div>
-              <div class="colors" style="background-color: #000000;"></div>
-            </div>
-          </div>
-          <div id="num-1" class="num" style="display: none;">
-
-            <div class="writing" style="background: rgb(255, 255, 255);">
-              <textarea class="text-write"></textarea>
-            </div>
-
-            <div class="font-color">
-              <div class="fontColors" style="background-color: #ffffff;"></div>
-              <div class="fontColors selected" style="background-color: #000000;"></div>
-              <div class="fontColors" style="background-color: #2f4f4f;"></div>
-            </div>
-
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="num-0" class="num">
+          <div class="color-picker">
+            <div class="colors selected" style="background-color: #ffffff;"></div>
+            <div class="colors" style="background-color: #ffadad;"></div>
+            <div class="colors" style="background-color: #ffd6a5;"></div>
+            <div class="colors" style="background-color: #fdffb6;"></div>
+            <div class="colors" style="background-color: #caffbf;"></div>
+            <div class="colors" style="background-color: #9bf6ff;"></div>
+            <div class="colors" style="background-color: #a0c4ff;"></div>
+            <div class="colors" style="background-color: #bdb2ff;"></div>
+            <div class="colors" style="background-color: #000000;"></div>
           </div>
         </div>
-        <div class="modal-footer">
-          <button id="prev-button" type="button" class="btn btn-secondary" style="display: none;">Prev</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button id="next-button" type="button" class="btn btn-primary">Next</button>
-          <button id="finish-button" type="button" class="btn btn-primary" style="display: none;" data-bs-dismiss="modal">Finish</button>
-          <button id="edit-button" type="button" class="btn btn-primary" style="display: none;" data-bs-dismiss="modal">Edit</button>
+        <div id="num-1" class="num" style="display: none;">
+
+          <div class="writing" style="background: rgb(255, 255, 255);">
+            <textarea class="text-write"></textarea>
+          </div>
+
+          <div class="font-color">
+            <div class="fontColors" style="background-color: #ffffff;"></div>
+            <div class="fontColors selected" style="background-color: #000000;"></div>
+            <div class="fontColors" style="background-color: #2f4f4f;"></div>
+          </div> 
+
         </div>
+      </div>
+      <div class="modal-footer">
+        <button id="prev-button" type="button" class="btn btn-secondary" style="display: none;">Prev</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button id="next-button" type="button" class="btn btn-primary">Next</button>
+        <button id="finish-button" type="button" class="btn btn-primary" style="display: none;" data-bs-dismiss="modal">Finish</button>
+        <button id="edit-button" type="button" class="btn btn-primary" style="display: none;" data-bs-dismiss="modal">Edit</button>
       </div>
     </div>`
 
@@ -209,6 +203,6 @@ class StoryModal extends HTMLElement {
 
 }
 
-window.customElements.define('story-modal', StoryModal);
+window.customElements.define('story-modal', StoryModal, { extends: 'div' });
 
 export default StoryModal;
