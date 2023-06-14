@@ -104,12 +104,10 @@ class StoryModal extends HTMLDivElement {
       this.num++;
 
       const writingElement = this.querySelector('.writing')
-
-      if (/^http.*/.test(this.pick)) {
-        writingElement.style.background = `url(${this.pick})`;
-      } else {
-        writingElement.style.background = this.pick;
-      }
+      writingElement.style.background = this.pick;
+      writingElement.style.backgroundSize = 'cover';
+      writingElement.style.backgroundPosition = 'center';
+      writingElement.style.backgroundRepeat = 'no-repeat';
 
       if (this.check === false) {
         writingElement.style.background = '#ffffff';
