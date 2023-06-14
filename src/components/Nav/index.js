@@ -1,5 +1,5 @@
 import Main from '../../pages/Main';
-import PostModal from '../Modal/PostModal';
+import CreatePostModal from '../Modal/CreatePostModal';
 import SearchModal from '../Modal/SearchModal';
 import './Nav.css';
 import { exchangeModal } from '../utils/exchangeModal';
@@ -102,7 +102,7 @@ class Nav extends HTMLDivElement {
 
   // 만들기 버튼 클릭 시, 기존 Modal을 PostModal로 교체
   addEvent() {
-    exchangeModal(new PostModal(this.account));
+    exchangeModal(new CreatePostModal(this.account));
   }
 
   // 검색 버튼 클릭 시, 기존 Modal을 SearchModal로 교체
