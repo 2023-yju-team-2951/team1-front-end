@@ -1,8 +1,15 @@
+.search-modal {
+  display: flex;
+  justify-content: center;
+}
+
 .search-modal.modal-dialog {
   pointer-events: all;
 }
 
 .search-modal .search-box {
+  width: 600px;
+
   background-color: white;
   border-radius: 5px;
 }
