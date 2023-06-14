@@ -40,8 +40,7 @@
         "rgb(189, 178, 255)",
         "rgb(202, 255, 191)",
         "rgb(202, 255, 191)",
-        "rgb(253, 255, 182)",
-        "rgb(202, 255, 191)"
+        "rgb(155, 246, 255)"
       ],
       "storyText": [
         {
@@ -57,11 +56,7 @@
           "color": ""
         },
         {
-          "text": "",
-          "color": ""
-        },
-        {
-          "text": "ㅁㄻㄴ",
+          "text": "sdfsdfsdf",
           "color": ""
         }
       ]
@@ -109,16 +104,11 @@
       "name": "Jaeil-Lee",
       "img": "https://github.com/Jaeil-Lee.png",
       "storyImg": [
-        "rgb(202, 255, 191)",
-        "rgb(189, 178, 255)"
+        "rgb(202, 255, 191)"
       ],
       "storyText": [
         {
           "text": "sdfsdf",
-          "color": ""
-        },
-        {
-          "text": "ㅁㄴㄻㄴㄻㄴ\nㅁㄴ\nㄹ\nㅁㄴㄹ\nㅁㄴ\nㄹ\nㅁㄴㄹ\nㅁㄴ\nㄹ",
           "color": ""
         }
       ]
@@ -139,25 +129,6 @@
         {
           "text": "",
           "color": ""
-        }
-      ]
-    },
-    {
-      "id": 7,
-      "name": "ji",
-      "img": "https://cdn.pixabay.com/photo/2023/05/30/16/50/milk-8029140_1280.png",
-      "storyImg": [
-        "rgb(0, 0, 0)",
-        "rgb(0, 0, 0)"
-      ],
-      "storyText": [
-        {
-          "text": "sdfsdfsdf",
-          "color": "rgb(255, 255, 255)"
-        },
-        {
-          "text": "sdfsdf\nsdfdsf",
-          "color": "rgb(255, 255, 255)"
         }
       ]
     }
