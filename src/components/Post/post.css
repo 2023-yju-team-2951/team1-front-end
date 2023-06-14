@@ -284,38 +284,6 @@ button:active{
 
 
 
-/* 모달 */
-.modal {  /* 모달 전체 사이즈 */
-  --bs-modal-width: none;
-  
-}
-
-.modal-content.modal-control{
-  width: 80vw ;
-  height: 90vh;
-  margin: 0 auto;
-}
-
-
-.modal-body {
-  display: flex;
-  padding: 0;
-  box-sizing: border-box;
- 
-}
-
-/* 1. LEFT */
-.modal-body .modal-left {
-  background: #ffef5c;
-  width: 55%;
-}
-
-/* 2. RIGHT */
-.modal-body .modal-right {
-  /* background: #ffae5c; */
-  width: 45%;
-}
-
 /* 🟢 TOP - 10% */
 .right-top{
   width: 100%;
