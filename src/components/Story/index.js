@@ -1,4 +1,5 @@
-import { getProfiles } from '../../api/profiles.js';
+import { getProfile, putProfile, postProfile, getProfiles  } from '../../api/profiles.js';
+import { getAccount } from '../../api/accounts.js';
 import StoryModal from '../StoryModal/';
 import './story.css'
 
@@ -8,7 +9,7 @@ class Story extends HTMLElement {
 
     this.storyModal = new StoryModal('main');
     document.body.appendChild(this.storyModal);
-
+    
     this.loadDatas();
   }
 
@@ -49,6 +50,7 @@ class Story extends HTMLElement {
       translateXValue += 80;
     });
 
+
     storyHTML += `
       <li class="slider" style="transform: translateX(${translateXValue}px);">
         <div class="story-container">
@@ -64,10 +66,13 @@ class Story extends HTMLElement {
     storyHTML += `</ul>`;
     this.innerHTML = storyHTML;
 
+    document.addEventListener('finishButtonClicked', (event) => {
+      this.addStory(event.detail);
+    }, false);
+
     this.querySelector('#add-story').addEventListener('click', () => {
-      this.storyModal = new StoryModal('main', count);
-      this.appendChild(this.storyModal);
-      this.storyModal.remove();
+      document.body.removeChild(this.storyModal);
+      this.storyModal.render();
     });
 
     const canvasElements = this.querySelectorAll('canvas');
@@ -95,6 +100,70 @@ class Story extends HTMLElement {
     ctx.stroke();
   }
 
+  addStory(detail) {
+
+    const testId = 7;
+    const background = detail.background;
+    const text = detail.text;
+    const color = detail.textColor;
+
+    this.addStoryView(testId, background, text, color);
+  }
+
+  async addStoryView(testId, background, text, textColor) {
+    try {
+      let data = await getProfile(testId);
+      const appendData = {
+        ...data,
+        storyImg: [...(data.storyImg || []), background],
+        storyText: [...(data.storyText || []), { text, color: textColor }],
+      };
+      await putProfile(testId, appendData);
+    } catch (error) {
+      if (error.status === 404) {
+        const data = await getAccount(testId);
+        const appendData = {
+          ...data,
+          storyImg: [...(data.storyImg || []), background],
+          storyText: [...(data.storyText || []), { text, color: textColor }],
+        };
+        await postProfile(appendData);
+      } else {
+        console.error(error);
+      }
+    }
+    
+    while (this.firstChild) {
+      this.removeChild(this.firstChild);
+    }
+
+    this.loadDatas();
+
+  }
+
+}
+
+class SomeComponent {
+  constructor(modal) {
+    this.modal = modal;
+    this.element = this.createElement();
+  }
+
+  createElement() {
+    const button = document.createElement('button');
+    button.classList.add('btn', 'btn-primary');
+    button.textContent = 'Open Modal';
+
+    // 이벤트 리스너를 설정하지 않고, 외부에서 설정할 수 있게 합니다.
+    return button;
+  }
+}
+
+class AnotherComponent {
+  constructor(button, modal) {
+    // 이 버튼이 클릭되면 모달을 띄우게 합니다.
+    button.addEventListener('click', () => modal.show());
+  }
 }
 
 window.customElements.define('story-component', Story);
