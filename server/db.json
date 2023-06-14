@@ -71,12 +71,12 @@
       "name": "hetame1",
       "img": "https://github.com/hetame1.png",
       "storyImg": [
-        "rgb(255, 214, 165)",
+        "rgb(255, 255, 255)",
         "rgb(0, 0, 0)"
       ],
       "storyText": [
         {
-          "text": "ㄴㅇㄹ\nㄴㅇㄹㄴ\nㅇ]ㄹ\nㄴㅇㄹ\nㄴㅇ\nㄹ",
+          "text": "sdfsdfsdf",
           "color": ""
         },
         {
@@ -90,12 +90,12 @@
       "name": "HyunjinHa",
       "img": "https://github.com/HyunjinHa.png",
       "storyImg": [
-        "rgb(202, 255, 191)",
+        "rgb(255, 214, 165)",
         "rgb(0, 0, 0)"
       ],
       "storyText": [
         {
-          "text": "ㅁㄴㄹ\nㅁㄴㄹ\nㅁㄴ\nㄻㄴ\nㄻ\nㄴㄹ",
+          "text": "sdfsdf",
           "color": ""
         },
         {
@@ -114,7 +114,7 @@
       ],
       "storyText": [
         {
-          "text": "ㅁㄴㄻㄴㄻㄴㄻㄴㄻㄴㄻㄴㄻㄴㄻㄴㄻㄴㄻㄴㄹ",
+          "text": "sdfsdf",
           "color": ""
         },
         {
@@ -141,7 +141,26 @@
           "color": ""
         }
       ]
-    } 
+    },
+    {
+      "id": 7,
+      "name": "ji",
+      "img": "https://cdn.pixabay.com/photo/2023/05/30/16/50/milk-8029140_1280.png",
+      "storyImg": [
+        "rgb(0, 0, 0)",
+        "rgb(0, 0, 0)"
+      ],
+      "storyText": [
+        {
+          "text": "sdfsdfsdf",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "sdfsdf\nsdfdsf",
+          "color": "rgb(255, 255, 255)"
+        }
+      ]
+    }
   ],
   "posts": [
     {
@@ -160,7 +179,7 @@
           "comment": "逃れ逃れついたあるカフェ～～！すっごく居心地よくて時間のある方々にはぜひお勧めいたします！！流れてくる音楽も雰囲気とピッタリなので久々にのんびりしたい人たちにもいいと思います"
         }
       ],
-      "likes": 4
+      "likes": 7
     },
     {
       "id": 2,

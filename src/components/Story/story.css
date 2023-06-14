@@ -30,6 +30,8 @@
   flex-direction: column;
   align-items: center;
   background-color: transparent;
+  color: #000;
+  font-weight: 400;
 }
 .slider .story-container .story .profile {
   width: 56px;
