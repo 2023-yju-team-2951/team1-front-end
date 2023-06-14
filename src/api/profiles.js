@@ -20,9 +20,11 @@ export async function getProfiles() {
  */
 export async function getProfileById(id) {
   const res = await fetch(`http://localhost:7000/profiles/${id}`);
+
   if (!res.ok) {
-    throw res;
+    throw new Error(`Failed to fetch profile, ${res.status}`);
   }
+
   const data = await res.json();
   return data;
 }
@@ -78,5 +80,9 @@ export async function postProfile(data) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   });
+
+  if (!res.ok) {
+    throw new Error(`Failed to post profile, ${res.status}`);
+  }
   return res.json();
 }
