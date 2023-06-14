@@ -1,5 +1,5 @@
 import './storyview.css';
-import { getProfiles, getProfile, updateProfile } from '../../api/profiles.js';
+import { getProfiles, getProfileById, updateProfile, deleteProfile } from '../../api/profiles.js';
 import { gsap } from "gsap";
 import StoryModal from '../StoryModal';
 import { exchangeModal } from '../utils/exchangeModal';
@@ -63,13 +63,13 @@ class StoryView extends HTMLElement {
 
     this.sizeChange();
 
-    let editButton = document.querySelector('#edit-button');
-
     const editStory = this.querySelector('#edit-story');
     const deleteStory = this.querySelector('#del-story');
 
     editStory.addEventListener('click', () => {
-      exchangeModal(new StoryModal('edit'))
+      const activeImg = this.querySelector('.img');
+      const color = activeImg.style.backgroundColor;
+      exchangeModal(new StoryModal('edit', color))
     })
 
     document.addEventListener('editButtonClicked', (event) => {
@@ -289,19 +289,25 @@ class StoryView extends HTMLElement {
     const urlParams = new URLSearchParams(window.location.search);
     const id = parseInt(urlParams.get('id'));
 
-    const data = await getProfile(id);
+    const data = await getProfileById(id);
 
     const storyImg = data.storyImg;
     const storyText = data.storyText;
 
     storyImg.splice(activeIndex, 1);
     storyText.splice(activeIndex, 1);
-
+    
     const index = this.data.findIndex((data) => data.id === id);
-    this.data[index].storyImg = storyImg;
-    this.data[index].storyText = storyText;
 
-    fetch(`http://localhost:7000/profiles/${id}`, {
+    if (storyImg.length === 0) {
+
+      await deleteProfile(id);
+      
+    } else {
+      this.data[index].storyImg = storyImg;
+      this.data[index].storyText = storyText;
+
+      fetch(`http://localhost:7000/profiles/${id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ storyImg, storyText }),
@@ -318,6 +324,7 @@ class StoryView extends HTMLElement {
         this.render();
         this.sizeChange();
       })
+    }
   }
 
   changeCarouselImg(detail) {
@@ -334,7 +341,7 @@ class StoryView extends HTMLElement {
   }
 
   async updateStory(id, activeIndex, background, text, color) {
-    const data = await getProfile(id);
+    const data = await getProfileById(id);
     const { storyImg, storyText } = data;
 
     storyImg.splice(activeIndex, 1, background);
