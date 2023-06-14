@@ -308,12 +308,8 @@
 
 .out-box a {
   display: block;
-  width: 36px;
-  height: 36px;
-}
-
-.out-box a span {
-  display: block;
-  font-size: 48px;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
   color: #fff;
 }

@@ -1,13 +1,15 @@
 import './storymodal.css';
-import { getAccount } from '../../api/accounts.js';
 class StoryModal extends HTMLDivElement {
 
-  constructor(mode) {
+  constructor(mode, defaultColor="#ffffff", defaultText="", defaultTextColor="#000000") {
     super();
     this.className = 'modal-dialog';
 
     let id;
-
+    this.defaultColor = defaultColor;
+    this.defaultText = defaultText;
+    this.defaultTextColor = defaultTextColor;
+    
     if (mode === 'main') {
       id = 'storyModal';
     } else if (mode === 'edit') {
@@ -73,6 +75,27 @@ class StoryModal extends HTMLDivElement {
       </div>
     </div>`
 
+    // 만약 기본값이 다른 값이라면 그 값을 설정
+    if( this.defaultColor != "#ffffff" || this.defaultText != "" || this.defaultTextColor != "#000000") {
+      this.check = true;
+      const colors = this.querySelectorAll('.colors');
+      colors.forEach((color) => {
+        color.classList.remove('selected');
+        if (/^http.*/.test(this.defaultColor)) {
+          color.style.backgroundImage = `url(${this.defaultColor})`;
+        } 
+        else if (color.style.backgroundColor === this.defaultColor) {
+          color.classList.add('selected');
+        }
+      })
+      const writingElement = this.querySelector('.writing');
+      writingElement.style.background = this.defaultColor;
+
+      const textWrite = this.querySelector('.text-write');
+      textWrite.value = this.defaultText;
+      textWrite.style.color = this.defaultTextColor;
+    }
+
     // 다음 버튼 클릭시
     this.querySelector('#next-button').addEventListener('click', () => {
       if (this.num === 1) {
@@ -117,6 +140,7 @@ class StoryModal extends HTMLDivElement {
       const text = textWrite.value;
       const textColor = textWrite.style.color;
 
+      // 
       const event = new CustomEvent('finishButtonClicked', {
         bubbles: true,
         detail: { background, text, textColor }
@@ -125,7 +149,7 @@ class StoryModal extends HTMLDivElement {
       e.target.dispatchEvent(event);
     });
 
-    // 수정 버튼 클릭 버블로 넘기기
+    // 수정 버튼 클릭
     this.querySelector('#edit-button').addEventListener('click', (e) => {
       const writingElement = this.querySelector('.writing');
       const background = writingElement.style.background;
@@ -133,7 +157,7 @@ class StoryModal extends HTMLDivElement {
       const text = textWrite.value;
       const textColor = textWrite.style.color;
       
-      // 새로운 커스텀 이벤트 생성
+      // 새로운 커스텀 이벤트 생성해서 버블로 storyview 로 넘기기
       const event = new CustomEvent('editButtonClicked', {
         bubbles: true, 
         detail: { background, text, textColor }
