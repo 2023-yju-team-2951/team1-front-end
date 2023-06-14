@@ -43,13 +43,19 @@ class StoryModal extends HTMLDivElement {
             <div class="colors" style="background-color: #bdb2ff;"></div>
             <div class="colors" style="background-color: #000000;"></div>
           </div>
-        </div>
-        <div id="num-1" class="num" style="display: none;">
 
+          <div class="img picker"> 
+            <div class="mb-3">
+              <label for="formFile" class="form-label"></label>
+              <input class="form-control" type="file" id="formFile">
+            </div>
+          </div>
+        </div>
+
+        <div id="num-1" class="num" style="display: none;">
           <div class="writing" style="background: rgb(255, 255, 255);">
             <textarea class="text-write"></textarea>
           </div>
-
           <div class="font-color">
             <div class="fontColors" style="background-color: #ffffff;"></div>
             <div class="fontColors selected" style="background-color: #000000;"></div>
@@ -93,6 +99,14 @@ class StoryModal extends HTMLDivElement {
     this.querySelector('#prev-button').addEventListener('click', () => {
       this.num--;
       this.updateNum();
+    });
+
+    // 이미지 프리뷰
+    const uploadImg = this.querySelector('#formFile');
+    uploadImg.addEventListener('change', () => {
+      this.check = true;
+      const file = uploadImg.files[0];
+      this.renderImg(file);
     });
 
     // 완료 버튼 클릭시 버블로 넘기기
@@ -174,6 +188,16 @@ class StoryModal extends HTMLDivElement {
       this.style.display = 'block';
       this.style.height = (this.scrollHeight) + 'px';
     });
+  }
+
+  // 이미지 미리보기
+  renderImg(file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const writingElement = this.querySelector('.writing')
+      writingElement.style.background = `url(${reader.result})`;
+    };
+    reader.readAsDataURL(file);
   }
   
 
