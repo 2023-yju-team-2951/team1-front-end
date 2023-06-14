@@ -85,17 +85,12 @@
       "name": "HyunjinHa",
       "img": "https://github.com/HyunjinHa.png",
       "storyImg": [
-        "rgb(255, 214, 165)",
-        "rgb(0, 0, 0)"
+        "rgb(155, 246, 255)"
       ],
       "storyText": [
         {
-          "text": "sdfsdf",
+          "text": "sdfsdfㅁㄴㄹ\nㅁㄴㄹasfasfasf",
           "color": ""
-        },
-        {
-          "text": "ㄴㅇㄹ\nㄴㅇ\nㄹㄴㅇ\nㄹㄴ\nㅇㄹ\nㄴㅇㄹ\nㄴㅇㄹ\nㄴㅇㄹ\nㄴㅇ\nㄹㄴ\nㅇ\nㄴㅇ",
-          "color": "rgb(255, 255, 255)"
         }
       ]
     },
@@ -118,16 +113,11 @@
       "name": "Lsy04178",
       "img": "https://github.com/Lsy04178.png",
       "storyImg": [
-        "rgb(202, 255, 191)",
-        "rgb(189, 178, 255)"
+        "rgb(202, 255, 191)"
       ],
       "storyText": [
         {
-          "text": "ㅔㅑㅔㅑ0ㅓㅔ",
-          "color": ""
-        },
-        {
-          "text": "",
+          "text": "ㅔㅑㅔㅑ0ㅓㅔㄴㅁㄻㅁㄴㄹ",
           "color": ""
         }
       ]
