@@ -79,6 +79,16 @@
  
 }
 
+.card .post-footer .show_All{
+  font-size: 14px;
+  color: rgb(115, 115, 115);
+  /* position: relative; */
+  /* left: 1px; */
+  --bs-btn-active-bg: none;
+  width: 100px;
+}
+
+
 .isvisible {
   transition: 1s;
 
@@ -99,22 +109,22 @@
   height: 100%;
 }
 
-.carousel.slide {
+.card .main-container .item .carousel.slide {
   height: 100%;
 }
 
-.carousel.slide .carousel-inner {
+.card .main-container .item .carousel.slide .carousel.slide .carousel-inner {
   width: 100%;
   height: 100%;
 }
 
-.carousel.slide .carousel-inner .carousel-item {
+.card .main-container .item .carousel.slide .carousel.slide .carousel-inner .carousel-item {
   width: 100%;
   height: 100%;
   position: relative;
 }
 
-.carousel.slide .carousel-inner .carousel-item .img {
+.card .main-container .item .carousel.slide .carousel.slide .carousel-inner .carousel-item .img {
   width: 100%;
   height: 100%;
   background-position: center;
@@ -261,6 +271,7 @@ button:active{
 }
 
 
+
 /* 🟢 모달  🟢*/
 
 /* COMMON */
@@ -294,9 +305,12 @@ button:active{
   width: 80vw ;
   height: 90vh;
   margin: 0 auto;
+  overflow: auto;
+  max-height: 900px;
 }
 
 
+/* 여기부터 리네이밍 */
 .modal-body {
   display: flex;
   padding: 0;
@@ -308,6 +322,8 @@ button:active{
 .modal-body .modal-left {
   background: #ffef5c;
   width: 55%;
+  margin: 0 auto;
+  overflow: auto;
 }
 
 /* 2. RIGHT */
@@ -317,42 +333,42 @@ button:active{
 }
 
 /* 🟢 TOP - 10% */
-.right-top{
+.modal-body .modal-right .right-top{
   width: 100%;
   height:  10%;
   box-sizing: border-box;
   border-bottom: solid 1px rgba(161, 160, 160, 0.486);
 }
-.right-top-container{
+.modal-body .modal-right .right-top .right-top-container{
   margin-left: 10px;
   height: 100%;
   /* width: 50\; */
   display: flex;
 }
-.right-top-userimage{
+.modal-body .modal-right .right-top .right-top-container .right-top-userimage{
   width: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
 }    
-.top-img {
+.modal-body .modal-right .right-top .right-top-container .right-top-userimage .top-img {
   height: 50px;
   width: 50px;
   border-radius: 50%;
 }
-.top-item-account{
+.modal-body .modal-right .right-top .right-top-container .top-item-account{
   width: 25%;
   text-align: center;
   margin: auto 0;
   padding-left: 30px;
 }
-.name {
+.modal-body .modal-right .right-top .right-top-container .top-item-account .name {
   font-size:25px ;
   font-weight: 900;
 }
 
 /* 🟢  2. MIDDLE 75% */
-.modal-middle {
+.modal-body .modal-right .modal-middle {
   width: 100%;
   height: 75%;
   overflow:auto;  
@@ -367,7 +383,7 @@ button:active{
 }
 
 /* 방문자 글 한줄 */
-.visitor-post{
+.modal-body .modal-right .modal-middle .visitor-post{
   height: auto;
   width: 100%;
   /* background: blueviolet; */
@@ -377,18 +393,18 @@ button:active{
   margin-bottom: 15px;
   
 }
-.visitor-post .visitor-imgBox {
+.modal-body .modal-right .modal-middle .visitor-post .visitor-imgBox {
   width: 100px;
 }
 
-.visitor-post .visitor-imgBox .visitor-img{
+.modal-body .modal-right .modal-middle .visitor-post .visitor-imgBox .visitor-img{
   height:50px;
   width: 50px;
   border-radius: 50%;
   margin: 0 10px 0 ;
 }
 
-.comment{
+.modal-body .modal-right .modal-middle .visitor-post .comment{
   /* width: 100%; */
   height: auto;
   /* background: rgb(246, 212, 107); */
@@ -398,35 +414,44 @@ button:active{
   float: left;
   line-height:1.2 ;
 }
-.comment .visitor-id{
+.modal-body .modal-right .modal-middle .visitor-post .comment .visitor-id{
   font-size: 30px;
   font-weight: 900;
 }
+.modal-body .modal-right .modal-middle .visitor-post .comment .visitor-comment{
+
+}
 
 /* 🟢 하트 좋아요 5% */
-.heart{
+.modal-body .modal-right .heart{
   /* border-top: solid 1px rgba(161, 160, 160, 0.486); */
   height: 5%;
   display: flex;
   align-items: center;
 }
-.hearimg{
+.modal-body .modal-right .heart .hearimg{
   width: 30px;
   height: 30px;
   margin-left: 10px;
 }
+.modal-body .modal-right .heart .user-count{
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+}
 
 
 /*  🟢 BOTTOM  5% */
-.modal-comment{
+.modal-body .modal-right .modal-comment{
   /* background: #fb3480; */
   width: 100%;
-  height: 7%;
+  height: 8%;
   display: flex;
   align-items: center;
   /* position: relative; */
  }
- .modal-comment .modal_bottom{
+ .modal-body .modal-right .modal-comment .modal_bottom{
   border-top: solid 1px rgba(161, 160, 160, 0.486);
   /* position: absolute;
   bottom: 1px; */
@@ -435,30 +460,27 @@ button:active{
   /* padding-top: 10px; */
   box-sizing: border-box;
  }
- .modal-comment .modal-comment-input {
-   width: 85%;
-   height: 90px;
-   font-size: 18px;
-   margin-right: 10px;
-   border: none;
-   outline: none;
-   background: rgba(246, 246, 246, 0);
-   overflow:auto;  
-   word-wrap: break-word;
+ .modal-body .modal-right .modal-comment .modal_bottom .modal-comment .modal-comment-input {
+  width: 87%;
+  height: 60px;
+  font-size: 18px;
+  margin-right: 10px;
+  border: none;
+  outline: none;
+  background: rgba(246, 246, 246, 0);
+  overflow:auto;  
+  word-wrap: break-word;
   
  }
-.posting-push{
+ .modal-body .modal-right .modal-comment .modal_bottom .modal-comment .posting-push{
   width: 12%;
   text-align: center;
   line-height: 100px;
-  /* line-height: 50%; */
-  /* margin-top: 4%; */
+  /* -------- */
+  width: 12%;
+  text-align: center;
+  display: flex;
+  align-items: center;
 }
-.show_All{
-  font-size: 14px;
-  color: rgb(115, 115, 115);
-  /* position: relative; */
-  /* left: 1px; */
-  --bs-btn-active-bg: none;
-  width: 100px;
-}
+
+
