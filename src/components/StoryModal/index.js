@@ -6,7 +6,6 @@ class StoryModal extends HTMLDivElement {
     this.className = 'modal-dialog';
 
     let id;
-
     this.defaultColor = defaultColor;
     this.defaultText = defaultText;
     this.defaultTextColor = defaultTextColor;
@@ -46,13 +45,19 @@ class StoryModal extends HTMLDivElement {
             <div class="colors" style="background-color: #bdb2ff;"></div>
             <div class="colors" style="background-color: #000000;"></div>
           </div>
-        </div>
-        <div id="num-1" class="num" style="display: none;">
 
+          <div class="img picker"> 
+            <div class="mb-3">
+              <label for="formFile" class="form-label"></label>
+              <input class="form-control" type="file" id="formFile">
+            </div>
+          </div>
+        </div>
+
+        <div id="num-1" class="num" style="display: none;">
           <div class="writing" style="background: rgb(255, 255, 255);">
             <textarea class="text-write"></textarea>
           </div>
-
           <div class="font-color">
             <div class="fontColors" style="background-color: #ffffff;"></div>
             <div class="fontColors selected" style="background-color: #000000;"></div>
@@ -70,17 +75,25 @@ class StoryModal extends HTMLDivElement {
       </div>
     </div>`
 
+    // 만약 기본값이 다른 값이라면 그 값을 설정
     if( this.defaultColor != "#ffffff" || this.defaultText != "" || this.defaultTextColor != "#000000") {
       this.check = true;
-      // selected 를 지워주고 color 값인 background-color 를 가지고있는 div 를 찾아서 selected 를 추가해준다.
       const colors = this.querySelectorAll('.colors');
-      console.log("test");
       colors.forEach((color) => {
         color.classList.remove('selected');
-        if (color.style.backgroundColor === color) {
+        if (/^http.*/.test(this.defaultColor)) {
+          color.style.backgroundImage = `url(${this.defaultColor})`;
+        } 
+        else if (color.style.backgroundColor === this.defaultColor) {
           color.classList.add('selected');
         }
       })
+      const writingElement = this.querySelector('.writing');
+      writingElement.style.background = this.defaultColor;
+
+      const textWrite = this.querySelector('.text-write');
+      textWrite.value = this.defaultText;
+      textWrite.style.color = this.defaultTextColor;
     }
 
     // 다음 버튼 클릭시
@@ -91,12 +104,10 @@ class StoryModal extends HTMLDivElement {
       this.num++;
 
       const writingElement = this.querySelector('.writing')
-
-      if (/^http.*/.test(this.pick)) {
-        writingElement.style.background = `url(${this.pick})`;
-      } else {
-        writingElement.style.background = this.pick;
-      }
+      writingElement.style.background = this.pick;
+      writingElement.style.backgroundSize = 'cover';
+      writingElement.style.backgroundPosition = 'center';
+      writingElement.style.backgroundRepeat = 'no-repeat';
 
       if (this.check === false) {
         writingElement.style.background = '#ffffff';
@@ -111,6 +122,14 @@ class StoryModal extends HTMLDivElement {
       this.updateNum();
     });
 
+    // 이미지 프리뷰
+    const uploadImg = this.querySelector('#formFile');
+    uploadImg.addEventListener('change', () => {
+      this.check = true;
+      const file = uploadImg.files[0];
+      this.renderImg(file);
+    });
+
     // 완료 버튼 클릭시 버블로 넘기기
     this.querySelector('#finish-button').addEventListener('click', (e) => { 
       const writingElement = this.querySelector('.writing')
@@ -119,6 +138,7 @@ class StoryModal extends HTMLDivElement {
       const text = textWrite.value;
       const textColor = textWrite.style.color;
 
+      // 
       const event = new CustomEvent('finishButtonClicked', {
         bubbles: true,
         detail: { background, text, textColor }
@@ -127,7 +147,7 @@ class StoryModal extends HTMLDivElement {
       e.target.dispatchEvent(event);
     });
 
-    // 수정 버튼 클릭 버블로 넘기기
+    // 수정 버튼 클릭
     this.querySelector('#edit-button').addEventListener('click', (e) => {
       const writingElement = this.querySelector('.writing');
       const background = writingElement.style.background;
@@ -135,7 +155,7 @@ class StoryModal extends HTMLDivElement {
       const text = textWrite.value;
       const textColor = textWrite.style.color;
       
-      // 새로운 커스텀 이벤트 생성
+      // 새로운 커스텀 이벤트 생성해서 버블로 storyview 로 넘기기
       const event = new CustomEvent('editButtonClicked', {
         bubbles: true, 
         detail: { background, text, textColor }
@@ -190,6 +210,16 @@ class StoryModal extends HTMLDivElement {
       this.style.display = 'block';
       this.style.height = (this.scrollHeight) + 'px';
     });
+  }
+
+  // 이미지 미리보기
+  renderImg(file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const writingElement = this.querySelector('.writing')
+      writingElement.style.background = `url(${reader.result})`;
+    };
+    reader.readAsDataURL(file);
   }
   
 
