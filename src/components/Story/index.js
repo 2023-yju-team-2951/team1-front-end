@@ -2,14 +2,12 @@ import { getProfile, putProfile, postProfile, getProfiles  } from '../../api/pro
 import { getAccount } from '../../api/accounts.js';
 import StoryModal from '../StoryModal/';
 import './story.css'
+import { exchangeModal } from '../utils/exchangeModal.js';
 
 class Story extends HTMLElement {
   constructor() {
     super();
 
-    this.storyModal = new StoryModal('main');
-    document.body.appendChild(this.storyModal);
-    
     this.loadDatas();
   }
 
@@ -54,7 +52,7 @@ class Story extends HTMLElement {
     storyHTML += `
       <li class="slider" style="transform: translateX(${translateXValue}px);">
         <div class="story-container">
-          <div class="story" id="add-story" data-bs-toggle="modal" data-bs-target="#storyModal">
+          <div class="story" id="add-story" data-bs-toggle="modal" data-bs-target="#swapModal">
             <div class="profile">
               <span class="material-symbols-outlined">add</span>
             </div>
@@ -71,8 +69,7 @@ class Story extends HTMLElement {
     }, false);
 
     this.querySelector('#add-story').addEventListener('click', () => {
-      document.body.removeChild(this.storyModal);
-      this.storyModal.render();
+      exchangeModal(new StoryModal('main'));
     });
 
     const canvasElements = this.querySelectorAll('canvas');
@@ -141,22 +138,6 @@ class Story extends HTMLElement {
 
   }
 
-}
-
-class SomeComponent {
-  constructor(modal) {
-    this.modal = modal;
-    this.element = this.createElement();
-  }
-
-  createElement() {
-    const button = document.createElement('button');
-    button.classList.add('btn', 'btn-primary');
-    button.textContent = 'Open Modal';
-
-    // 이벤트 리스너를 설정하지 않고, 외부에서 설정할 수 있게 합니다.
-    return button;
-  }
 }
 
 class AnotherComponent {
