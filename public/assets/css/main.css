@@ -1,6 +1,5 @@
 @import url(./reset.css);
 @import url(//db.onlinewebfonts.com/c/daf8c1a0f06e7a24d9dca48b9d88dac0?family=OratorW01-Medium);
-
 a {
   color: #000 !important;
   text-decoration: none !important;
@@ -47,5 +46,13 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-
 }
+
+.main {
+  display: flex;
+}
+.main .main-body {
+  width: 630px;
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -45,9 +45,13 @@
 =======
         "rgb(202, 255, 191)",
         "rgb(202, 255, 191)",
+<<<<<<< HEAD
         "rgb(253, 255, 182)",
         "rgb(202, 255, 191)"
 >>>>>>> f11e4da80797d77ef2e7edb09af8148d89f6c014
+=======
+        "rgb(155, 246, 255)"
+>>>>>>> c0b9b4c870071b37979bbe06de9b1e98fb70b931
       ],
       "storyText": [
         {
@@ -63,6 +67,7 @@
           "color": ""
         },
         {
+<<<<<<< HEAD
           "text": "",
           "color": ""
         },
@@ -76,6 +81,9 @@
 =======
         {
           "text": "ㅁㄻㄴ",
+=======
+          "text": "sdfsdfsdf",
+>>>>>>> c0b9b4c870071b37979bbe06de9b1e98fb70b931
           "color": ""
         }
 >>>>>>> f11e4da80797d77ef2e7edb09af8148d89f6c014
@@ -86,12 +94,12 @@
       "name": "hetame1",
       "img": "https://github.com/hetame1.png",
       "storyImg": [
-        "rgb(255, 214, 165)",
+        "rgb(255, 255, 255)",
         "rgb(0, 0, 0)"
       ],
       "storyText": [
         {
-          "text": "ㄴㅇㄹ\nㄴㅇㄹㄴ\nㅇ]ㄹ\nㄴㅇㄹ\nㄴㅇ\nㄹ",
+          "text": "sdfsdfsdf",
           "color": ""
         },
         {
@@ -105,12 +113,12 @@
       "name": "HyunjinHa",
       "img": "https://github.com/HyunjinHa.png",
       "storyImg": [
-        "rgb(202, 255, 191)",
+        "rgb(255, 214, 165)",
         "rgb(0, 0, 0)"
       ],
       "storyText": [
         {
-          "text": "ㅁㄴㄹ\nㅁㄴㄹ\nㅁㄴ\nㄻㄴ\nㄻ\nㄴㄹ",
+          "text": "sdfsdf",
           "color": ""
         },
         {
@@ -124,16 +132,11 @@
       "name": "Jaeil-Lee",
       "img": "https://github.com/Jaeil-Lee.png",
       "storyImg": [
-        "rgb(202, 255, 191)",
-        "rgb(189, 178, 255)"
+        "rgb(202, 255, 191)"
       ],
       "storyText": [
         {
-          "text": "ㅁㄴㄻㄴㄻㄴㄻㄴㄻㄴㄻㄴㄻㄴㄻㄴㄻㄴㄻㄴㄹ",
-          "color": ""
-        },
-        {
-          "text": "ㅁㄴㄻㄴㄻㄴ\nㅁㄴ\nㄹ\nㅁㄴㄹ\nㅁㄴ\nㄹ\nㅁㄴㄹ\nㅁㄴ\nㄹ",
+          "text": "sdfsdf",
           "color": ""
         }
       ]
@@ -156,10 +159,31 @@
           "color": ""
         }
       ]
-    } 
+    }
   ],
   "posts": [
     {
+<<<<<<< HEAD
+=======
+      "id": 1,
+      "name": "lji1001",
+      "post_top_img": "https://github.com/Jaeil-Lee.png",
+      "post_main_img": [
+        "https://i.pinimg.com/564x/6d/aa/e0/6daae02f73627c1fdc3b442af716d5e2.jpg",
+        "https://i.pinimg.com/564x/6d/4f/9a/6d4f9a53c5569dd6d9954405cc987a80.jpg",
+        "https://i.pinimg.com/564x/9b/03/33/9b03330cc803670fc9f9a401aafa86e6.jpg"
+      ],
+      "post_content": "逃れ逃れついたあるカフェ～～逃れ逃れついたあるカフェ～～！すっごく居心地よくて時間のある方々にはぜひお勧め",
+      "statements": [
+        {
+          "visitor": "",
+          "comment": "逃れ逃れついたあるカフェ～～！すっごく居心地よくて時間のある方々にはぜひお勧めいたします！！流れてくる音楽も雰囲気とピッタリなので久々にのんびりしたい人たちにもいいと思います"
+        }
+      ],
+      "likes": 7
+    },
+    {
+>>>>>>> c0b9b4c870071b37979bbe06de9b1e98fb70b931
       "id": 2,
       "name": "lji1001",
       "post_top_img": "https://thumbsnap.com/i/WoMTvUCv.png",
@@ -193,7 +217,7 @@
           "comment": ""
         }
       ],
-      "likes": 0
+      "likes": 3
     },
     {
       "name": "juhyeonni",

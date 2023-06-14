@@ -1,4 +1,4 @@
-import '../components/StoryView/storyView.css';
+import '../components/StoryView/storyview.css';
 import '../components/StoryView';
 
 export default class {
