@@ -1,5 +1,5 @@
-import { getProfile, putProfile, postProfile, getProfiles  } from '../../api/profiles.js';
-import { getAccount } from '../../api/accounts.js';
+import { getProfileById, updateProfile, postProfile, getProfiles  } from '../../api/profiles.js';
+import { getAccountById } from '../../api/accounts.js';
 import StoryModal from '../StoryModal/';
 import './story.css'
 import { exchangeModal } from '../utils/exchangeModal.js';
@@ -99,7 +99,7 @@ class Story extends HTMLElement {
 
   addStory(detail) {
 
-    const testId = 7;
+    const testId = 2;
     const background = detail.background;
     const text = detail.text;
     const color = detail.textColor;
@@ -109,16 +109,15 @@ class Story extends HTMLElement {
 
   async addStoryView(testId, background, text, textColor) {
     try {
-      let data = await getProfile(testId);
-      const appendData = {
-        ...data,
-        storyImg: [...(data.storyImg || []), background],
-        storyText: [...(data.storyText || []), { text, color: textColor }],
-      };
-      await putProfile(testId, appendData);
+      let data = await getProfileById(testId);
+
+      data.storyImg.push(background);
+      data.storyText.push({ text, color: textColor });
+
+      await updateProfile(testId, data.storyImg, data.storyText);
     } catch (error) {
       if (error.status === 404) {
-        const data = await getAccount(testId);
+        const data = await getAccountById(testId);
         const appendData = {
           ...data,
           storyImg: [...(data.storyImg || []), background],

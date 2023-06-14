@@ -1,12 +1,12 @@
-import './storyView.css';
-import { getProfiles, getProfile, updateProfile } from '../../api/profiles.js';
+import './storyview.css';
+import { getProfiles, getProfileById, updateProfile, deleteProfile } from '../../api/profiles.js';
 import { gsap } from "gsap";
 import StoryModal from '../StoryModal';
 import { exchangeModal } from '../utils/exchangeModal';
 
 class StoryView extends HTMLElement {
 
-  constructor() {   
+  constructor() {
     super();
 
     this.storyWrapper = document.createElement('div');
@@ -23,19 +23,19 @@ class StoryView extends HTMLElement {
       this.render();
     } catch (error) {
       console.log(error);
-    } 
-  }    
+    }
+  }
 
   render() {
     const urlParams = new URLSearchParams(window.location.search);
     const id = parseInt(urlParams.get('id'));
-  
+
     const index = this.data.findIndex((data) => data.id === id);
-  
+
     let prevData = '', nextData = '';
-    if(index > 0) prevData = this.data[index - 1];
-    if(index < this.data.length - 1) nextData = this.data[index + 1];
-  
+    if (index > 0) prevData = this.data[index - 1];
+    if (index < this.data.length - 1) nextData = this.data[index + 1];
+
     this.modalWrapper.innerHTML = `
       ${index > 0 ? new SideStory(prevData).render('left') : ''}
       ${new CenterStory(this.data[index]).render()}
@@ -43,33 +43,33 @@ class StoryView extends HTMLElement {
     `;
 
     this.storyWrapper.appendChild(this.modalWrapper);
-  
+
     this.appendChild(this.storyWrapper);
-  
+
     const leftStory = this.querySelector('.story-container.left');
     const rightStory = this.querySelector('.story-container.right');
-    
+
     if (leftStory) {
       leftStory.addEventListener('click', () => {
         this.moveStory('left');
       });
     }
-  
+
     if (rightStory) {
       rightStory.addEventListener('click', () => {
         this.moveStory('right');
       });
     }
-  
-    this.sizeChange();
 
-    let editButton = document.querySelector('#edit-button');
+    this.sizeChange();
 
     const editStory = this.querySelector('#edit-story');
     const deleteStory = this.querySelector('#del-story');
 
     editStory.addEventListener('click', () => {
-      exchangeModal(new StoryModal('edit'))
+      const activeImg = this.querySelector('.img');
+      const color = activeImg.style.backgroundColor;
+      exchangeModal(new StoryModal('edit', color))
     })
 
     document.addEventListener('editButtonClicked', (event) => {
@@ -95,15 +95,15 @@ class StoryView extends HTMLElement {
       text.style.height = text.scrollHeight + 'px';
     });
   }
-  
+
   sizeChange() {
     this.reSize();
-  
+
     window.addEventListener('resize', () => {
       this.reSize();
     });
   }
-  
+
   // 사이즈 크기에 맞게 변경
   reSize() {
     let viewportWidth = window.innerWidth;
@@ -112,14 +112,14 @@ class StoryView extends HTMLElement {
     let storyContainers = this.storyWrapper.querySelectorAll('.story-container');
     let imgSizes = this.storyWrapper.querySelectorAll('.img-size');
 
-    imgSizes.forEach(imgSize => { 
+    imgSizes.forEach(imgSize => {
       imgSize.style.width = containerHeight / 2 + 'px';
-      imgSize.style.height = containerHeight -40 + 'px';
+      imgSize.style.height = containerHeight - 40 + 'px';
     });
 
     storyContainers.forEach((storyContainer) => {
       storyContainer.style.width = containerHeight / 2 + 'px';
-      storyContainer.style.height = containerHeight -40 + 'px';
+      storyContainer.style.height = containerHeight - 40 + 'px';
     });
 
     let containerElement = this.storyWrapper;
@@ -128,25 +128,25 @@ class StoryView extends HTMLElement {
   }
 
   // 스토리 클릭 했을 때 애니메이션
-  moveStory(directions) { 
+  moveStory(directions) {
     const urlParams = new URLSearchParams(window.location.search);
     const id = parseInt(urlParams.get('id'));
     const data = this.data.find((data) => {
       if (directions === 'left') {
         return data.id === id - 1;
       }
-        return data.id === id + 1;
+      return data.id === id + 1;
     });
     let direction = ''
 
     const currentId = parseInt(urlParams.get('id'));
 
-    if (directions === 'left' ) {
+    if (directions === 'left') {
       direction = 'left';
       if (data.id === 1 || currentId === this.data.length) {
         direction = 'endLeft';
       }
-    } else if (directions === 'right' ) {
+    } else if (directions === 'right') {
       direction = 'right';
       if (data.id === this.data.length || currentId === 1) {
         direction = 'endRight';
@@ -162,10 +162,10 @@ class StoryView extends HTMLElement {
         while (this.modalWrapper.firstChild) {
           this.modalWrapper.firstChild.remove();
         }
-        
+
         const newURL = window.location.origin + window.location.pathname + '?id=' + data.id;
         history.pushState(null, null, newURL);
-    
+
         this.render();
         this.sizeChange();
       }
@@ -174,15 +174,15 @@ class StoryView extends HTMLElement {
       // 클릭한 스토리가 오른쪽에 있을 때
       tl.add(
         gsap.to(sideStoryRight, {
-          duration: 1, 
+          duration: 1,
           scale: 1.2,
           x: `-140%`,
         })
       );
-  
+
       tl.add(
         gsap.to(originalStory, {
-          duration: 1, 
+          duration: 1,
           scale: 0.3,
           x: '-140%',
         }),
@@ -200,15 +200,15 @@ class StoryView extends HTMLElement {
     } else if (direction === 'endLeft') {
       tl.add(
         gsap.to(sideStoryLeft, {
-          duration: 1, 
+          duration: 1,
           scale: 1.2,
           x: '70%',
         })
       );
-  
+
       tl.add(
         gsap.to(originalStory, {
-          duration: 1, 
+          duration: 1,
           scale: 0.3,
           x: '70%',
         }),
@@ -226,15 +226,15 @@ class StoryView extends HTMLElement {
     } else if (direction === 'endRight') {
       tl.add(
         gsap.to(sideStoryRight, {
-          duration: 1, 
+          duration: 1,
           scale: 1.2,
           x: '-70%',
         })
       );
-  
+
       tl.add(
         gsap.to(originalStory, {
-          duration: 1, 
+          duration: 1,
           scale: 0.3,
           x: '-70%',
         }),
@@ -250,21 +250,21 @@ class StoryView extends HTMLElement {
         '<'
       )
     }
-    
+
     else {
       // 클릭한 스토리가 왼쪽에 있을 때
       tl.add(
         gsap.to(sideStoryLeft, {
-          duration: 1, 
+          duration: 1,
           scale: 1.2,
           x: '140%',
         })
       );
-  
+
       tl.add(
         gsap.to(originalStory, {
           duration: 1,
-          scale: 0.3, 
+          scale: 0.3,
           x: '140%',
         }),
         '<' // 이전 애니메이션과 동시에 실행
@@ -285,39 +285,46 @@ class StoryView extends HTMLElement {
   async deleteCarouselImg() {
     const activeCarouselItem = this.querySelector('.carousel-item.active');
     const activeIndex = activeCarouselItem.dataset.index;
-  
+
     const urlParams = new URLSearchParams(window.location.search);
     const id = parseInt(urlParams.get('id'));
-    
-    const data  = await getProfile(id);
+
+    const data = await getProfileById(id);
 
     const storyImg = data.storyImg;
     const storyText = data.storyText;
 
-    storyImg.splice(activeIndex, 1); 
+    storyImg.splice(activeIndex, 1);
     storyText.splice(activeIndex, 1);
     
     const index = this.data.findIndex((data) => data.id === id);
-    this.data[index].storyImg = storyImg;
-    this.data[index].storyText = storyText;
-    
-    fetch(`http://localhost:7000/profiles/${id}`, {
+
+    if (storyImg.length === 0) {
+
+      await deleteProfile(id);
+      
+    } else {
+      this.data[index].storyImg = storyImg;
+      this.data[index].storyText = storyText;
+
+      fetch(`http://localhost:7000/profiles/${id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ storyImg, storyText }),
-    }) 
-    .then((res) => res.json())
-    .then(() => {
-      while (this.modalWrapper.firstChild) {
-        this.modalWrapper.firstChild.remove();
-      }
-      
-      const newURL = window.location.origin + window.location.pathname + '?id=' + id;
-      history.pushState(null, null, newURL);
-      
-      this.render();
-      this.sizeChange();
     })
+      .then((res) => res.json())
+      .then(() => {
+        while (this.modalWrapper.firstChild) {
+          this.modalWrapper.firstChild.remove();
+        }
+
+        const newURL = window.location.origin + window.location.pathname + '?id=' + id;
+        history.pushState(null, null, newURL);
+
+        this.render();
+        this.sizeChange();
+      })
+    }
   }
 
   changeCarouselImg(detail) {
@@ -329,35 +336,35 @@ class StoryView extends HTMLElement {
     const background = detail.background;
     const text = detail.text;
     const color = detail.textColor;
-    
+
     this.updateStory(id, activeIndex, background, text, color);
   }
 
   async updateStory(id, activeIndex, background, text, color) {
-    const data = await getProfile(id);
+    const data = await getProfileById(id);
     const { storyImg, storyText } = data;
-  
+
     storyImg.splice(activeIndex, 1, background);
     storyText[activeIndex].text = text;
     storyText[activeIndex].color = color;
-  
+
     const index = this.data.findIndex((data) => data.id === id);
     this.data[index].storyImg = storyImg;
     this.data[index].storyText = storyText;
-    
+
     await updateProfile(id, storyImg, storyText);
-    
+
     while (this.modalWrapper.firstChild) {
       this.modalWrapper.firstChild.remove();
     }
-  
+
     const newURL = window.location.origin + window.location.pathname + '?id=' + id;
     history.pushState(null, null, newURL);
-    
+
     this.render();
     this.sizeChange();
   }
-  
+
 }
 // 중간 스토리 생성
 class CenterStory {
@@ -438,7 +445,7 @@ class CarouselImg {
         carouselIndicator.setAttribute('data-bs-target', '#carouselAuto');
         carouselIndicator.setAttribute('data-bs-slide-to', i);
         carouselIndicator.setAttribute('aria-label', `Slide ${i + 1}`);
-  
+
         carouselItem.dataset.index = i;
         if (i === 0) {
           carouselItem.className = 'carousel-item active';
@@ -447,7 +454,7 @@ class CarouselImg {
         } else {
           carouselItem.className = 'carousel-item';
         }
-  
+
         const img = document.createElement('div');
         img.className = 'img';
         if (/^http.*/.test(this.data.storyImg[i])) {
@@ -465,10 +472,10 @@ class CarouselImg {
         textElement.className = 'text-area';
         textElement.setAttribute('disabled', 'true');
         textElement.innerHTML = textItem.text;
-        textContainer.appendChild(textElement); 
+        textContainer.appendChild(textElement);
 
         textElement.style.color = textItem.color;
-        
+
         carouselItem.appendChild(img);
         carouselInner.appendChild(carouselItem);
         carouselIndicators.appendChild(carouselIndicator);
@@ -490,7 +497,7 @@ class SideStory {
   }
   render(name) {
     const container = document.createElement('div');
-    
+
     container.innerHTML = `
       <div class="story-container ${name}" style="transform: scale(0.5)">
         <div class="side-story">

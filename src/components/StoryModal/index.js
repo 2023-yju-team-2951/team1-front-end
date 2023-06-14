@@ -1,13 +1,16 @@
 import './storymodal.css';
-import { getAccount } from '../../api/accounts.js';
 class StoryModal extends HTMLDivElement {
 
-  constructor(mode) {
+  constructor(mode, defaultColor="#ffffff", defaultText="", defaultTextColor="#000000") {
     super();
     this.className = 'modal-dialog';
 
     let id;
 
+    this.defaultColor = defaultColor;
+    this.defaultText = defaultText;
+    this.defaultTextColor = defaultTextColor;
+    
     if (mode === 'main') {
       id = 'storyModal';
     } else if (mode === 'edit') {
@@ -66,6 +69,19 @@ class StoryModal extends HTMLDivElement {
         <button id="edit-button" type="button" class="btn btn-primary" style="display: none;" data-bs-dismiss="modal">Edit</button>
       </div>
     </div>`
+
+    if( this.defaultColor != "#ffffff" || this.defaultText != "" || this.defaultTextColor != "#000000") {
+      this.check = true;
+      // selected 를 지워주고 color 값인 background-color 를 가지고있는 div 를 찾아서 selected 를 추가해준다.
+      const colors = this.querySelectorAll('.colors');
+      console.log("test");
+      colors.forEach((color) => {
+        color.classList.remove('selected');
+        if (color.style.backgroundColor === color) {
+          color.classList.add('selected');
+        }
+      })
+    }
 
     // 다음 버튼 클릭시
     this.querySelector('#next-button').addEventListener('click', () => {
