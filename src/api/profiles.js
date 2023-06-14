@@ -6,6 +6,10 @@ export async function getProfiles() {
 
 export async function getProfileById(id) {
   const res = await fetch(`http://localhost:7000/profiles/${id}`);
+  if (!res.ok) {
+    throw res;
+  }
+  
   const data = await res.json();
   return data;
 }
@@ -34,8 +38,5 @@ export async function postProfile(data) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   });
-  if (!res.ok) {
-    throw res;
-  }
   return res.json();
 }

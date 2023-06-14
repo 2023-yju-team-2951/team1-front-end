@@ -1,8 +1,9 @@
 import { getProfileById, updateProfile, postProfile, getProfiles  } from '../../api/profiles.js';
 import { getAccountById } from '../../api/accounts.js';
+import { exchangeModal } from '../utils/exchangeModal.js';
 import StoryModal from '../StoryModal/';
 import './story.css'
-import { exchangeModal } from '../utils/exchangeModal.js';
+
 
 class Story extends HTMLElement {
   constructor() {
@@ -64,20 +65,24 @@ class Story extends HTMLElement {
     storyHTML += `</ul>`;
     this.innerHTML = storyHTML;
 
+    // 피니시 버튼 클릭한게 도착하면 이벤트 발생
     document.addEventListener('finishButtonClicked', (event) => {
       this.addStory(event.detail);
     }, false);
 
+    // 스토리 추가버튼 누르면 모달창 띄우기
     this.querySelector('#add-story').addEventListener('click', () => {
       exchangeModal(new StoryModal('main'));
     });
 
+    // 캔버스 그리기
     const canvasElements = this.querySelectorAll('canvas');
     canvasElements.forEach((canvasElement) => {
       this.draw(canvasElement);
     });
   }
 
+  // 스토리에 테두리 원 그리는 함수
   draw(canvasElement) {
     var canvas = canvasElement;
     var ctx = canvas.getContext('2d');
@@ -97,9 +102,10 @@ class Story extends HTMLElement {
     ctx.stroke();
   }
 
+  // 스토리 추가할때 기본값 넘겨주기
   addStory(detail) {
 
-    const testId = 2;
+    const testId = 7;
     const background = detail.background;
     const text = detail.text;
     const color = detail.textColor;
@@ -107,6 +113,7 @@ class Story extends HTMLElement {
     this.addStoryView(testId, background, text, color);
   }
 
+  // 스토리 추가
   async addStoryView(testId, background, text, textColor) {
     try {
       let data = await getProfileById(testId);
@@ -137,13 +144,6 @@ class Story extends HTMLElement {
 
   }
 
-}
-
-class AnotherComponent {
-  constructor(button, modal) {
-    // 이 버튼이 클릭되면 모달을 띄우게 합니다.
-    button.addEventListener('click', () => modal.show());
-  }
 }
 
 window.customElements.define('story-component', Story);
