@@ -5,10 +5,11 @@ import { createPost } from '../../../api/posts';
 
 // TODO: 현재 접속한 유저 정보를 받아온다.
 class CreatePostModal extends HTMLDivElement {
-  constructor({ name }) {
+  constructor(account) {
     super();
 
-    this.name = name;
+    this.account = account;
+    console.log(this.account);
 
     this.classList.add('create-post-modal', 'modal-dialog');
     this.setAttribute('role', 'document');
@@ -29,8 +30,8 @@ class CreatePostModal extends HTMLDivElement {
           </div>
           <div class="post-field">
             <div class="user-info">
-              <img class="user-img" src="./juhyeonniinsta.jpg" alt="">
-              <span class="user-name">${this.name}</span>
+              <img class="user-img" src="${this.account.img}" alt="">
+              <span class="user-name">${this.account.name}</span>
             </div>
             <textarea class="post-content" placeholder="문구 입력..." maxlength="2000"></textarea>
             <div class="post-assist">
@@ -105,9 +106,9 @@ class CreatePostModal extends HTMLDivElement {
   async share() {
     const file = this.uploadImg.files[0];
     const post = {
-      name: this.name, // 나중에 로그인한 유저 정보를 받아와서 넣어줘야 함
+      name: this.account.name, // 나중에 로그인한 유저 정보를 받아와서 넣어줘야 함
       post_content: this.postContent.value,
-      post_top_img: '',
+      post_top_img: this.account.img,
       post_main_img: [await uploadImg(file)],
       statements: [],
       likes: 0,
