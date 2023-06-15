@@ -1,6 +1,7 @@
 import { getPost, deletePost } from "../../api/posts.js";
 import "./post.css";
-import Main from "../../pages/Main.js";
+import "./postMoal.js"   /* postModal import  */
+
 // import Modal from './postMoal.js' // 모달 import
 
 /* 🟢  1. POST */
