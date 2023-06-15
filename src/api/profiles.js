@@ -40,11 +40,6 @@ export async function updateProfile(id, storyImg, storyText) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ storyImg, storyText }),
   });
-
-  if (!res.ok) {
-    throw new Error(`Failed to update profile, ${res.status}`);
-  }
-
   const data = await res.json();
   return data;
 }
@@ -58,11 +53,6 @@ export async function deleteProfile(id) {
   const res = await fetch(`http://localhost:7000/profiles/${id}`, {
     method: 'DELETE',
   });
-
-  if (!res.ok) {
-    throw new Error(`Failed to delete profile, ${res.status}`);
-  }
-
   const data = await res.json();
   return data;
 }
