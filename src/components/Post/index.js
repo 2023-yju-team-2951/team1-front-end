@@ -76,7 +76,8 @@ class Post extends HTMLElement {
   /* 🔴 1.6데이터 삭제하기  */
   async cardDelete(id) {
     await deletePost(id);
-
+    
+    console.log("삭제");
     const container =  document.querySelector('.card-container')
     container.innerHTML = '';
 
