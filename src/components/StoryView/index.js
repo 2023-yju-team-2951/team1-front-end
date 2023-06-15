@@ -76,10 +76,10 @@ class StoryView extends HTMLElement {
       const active = this.querySelector('.carousel-item.active');
       const activeImg = active.querySelector('.img');
       const activeText = active.querySelector('.text-area');
-      const color = activeImg.style.backgroundColor;
+      const background = activeImg.style.background;
       const text = activeText.value;
       const textColor = activeText.style.color;
-      exchangeModal(new StoryModal('edit', color, text, textColor))
+      exchangeModal(new StoryModal('edit', background, text, textColor))
     })
 
     // 수정 버튼 클릭한게 도착하면 실행
@@ -486,6 +486,8 @@ class CarouselImg {
         img.className = 'img';
         if (/^http.*/.test(this.data.storyImg[i])) {
           img.style.background = `url(${this.data.storyImg[i]})`;
+          img.style.backgroundPosition = 'center';
+          img.style.backgroundRepeat = 'no-repeat';
         } else {
           img.style.background = this.data.storyImg[i];
         }
