@@ -1,19 +1,19 @@
-import './storyView.css';
-import { getProfiles, getProfile, updateProfile } from '../../api/profiles.js';
+import './storyview.css';
+import { getProfiles, getProfileById, updateProfile, deleteProfile } from '../../api/profiles.js';
+import { exchangeModal } from '../utils/exchangeModal';
 import { gsap } from "gsap";
-import StoryModal from '../StoryModal/';
+import StoryModal from '../StoryModal';
+
 class StoryView extends HTMLElement {
 
-  constructor() {   
+  constructor() {
     super();
-
-    this.storyModal = new StoryModal("edit");
-    document.body.appendChild(this.storyModal);
 
     this.storyWrapper = document.createElement('div');
     this.storyWrapper.className = 'story-modal-wrapper';
     this.modalWrapper = document.createElement('div');
     this.modalWrapper.className = 'modal-wrapper';
+
     this.loadDatas();
   }
 
@@ -24,19 +24,21 @@ class StoryView extends HTMLElement {
       this.render();
     } catch (error) {
       console.log(error);
-    } 
-  }    
+    }
+  }
 
   render() {
     const urlParams = new URLSearchParams(window.location.search);
     const id = parseInt(urlParams.get('id'));
-  
+
     const index = this.data.findIndex((data) => data.id === id);
-  
+
+    // 왼쪽, 오른쪽 스토리 있는지 확인하고 데이터 저장
     let prevData = '', nextData = '';
-    if(index > 0) prevData = this.data[index - 1];
-    if(index < this.data.length - 1) nextData = this.data[index + 1];
-  
+    if (index > 0) prevData = this.data[index - 1];
+    if (index < this.data.length - 1) nextData = this.data[index + 1];
+
+    // 스토리 만들기
     this.modalWrapper.innerHTML = `
       ${index > 0 ? new SideStory(prevData).render('left') : ''}
       ${new CenterStory(this.data[index]).render()}
@@ -44,73 +46,78 @@ class StoryView extends HTMLElement {
     `;
 
     this.storyWrapper.appendChild(this.modalWrapper);
-  
+
     this.appendChild(this.storyWrapper);
-  
+
     const leftStory = this.querySelector('.story-container.left');
     const rightStory = this.querySelector('.story-container.right');
-    
+
+    // 왼쪽 스토리 클릭시 애니메이션 실행하고 스토리 이동
     if (leftStory) {
       leftStory.addEventListener('click', () => {
         this.moveStory('left');
       });
     }
-  
+
+    // 오른쪽 스토리 클릭시 애니메이션 실행하고 스토리 이동
     if (rightStory) {
       rightStory.addEventListener('click', () => {
         this.moveStory('right');
       });
     }
-  
-    this.sizeChange();
 
-    let editButton = document.querySelector('#edit-button');
+    this.sizeChange();  // 사이즈 변경
 
     const editStory = this.querySelector('#edit-story');
     const deleteStory = this.querySelector('#del-story');
 
+    // 수정 버튼 클릭시 현재 정보 가져와서 모달창 열어주기
     editStory.addEventListener('click', () => {
-      document.body.removeChild(this.storyModal);
-      this.storyModal.render();
+      const active = this.querySelector('.carousel-item.active');
+      const activeImg = active.querySelector('.img');
+      const activeText = active.querySelector('.text-area');
+      const color = activeImg.style.backgroundColor;
+      const text = activeText.value;
+      const textColor = activeText.style.color;
+      exchangeModal(new StoryModal('edit', color, text, textColor))
     })
 
+    // 수정 버튼 클릭한게 도착하면 실행
     document.addEventListener('editButtonClicked', (event) => {
       this.changeCarouselImg(event.detail);
     }, false);
 
-    editButton.addEventListener('click', () => {
-      document.body.removeChild(this.storyModal);
-      this.storyModal.render();
-    });
-
+    // 삭제 버튼 클릭시
     deleteStory.addEventListener('click', () => {
       this.deleteCarouselImg();
     });
 
     this.textAreaResize();
 
+    // 캐러셀 이동할때 사이즈 변경해주기
     const myCarousel = document.querySelector('#carouselAuto');
     myCarousel.addEventListener('slid.bs.carousel', () => {
       this.textAreaResize();
     });
-
   }
 
+  // 글 사이즈 변경해주기
   textAreaResize() {
     const textInput = this.querySelectorAll('.text-area');
     textInput.forEach((text) => {
       text.style.height = text.scrollHeight + 'px';
     });
   }
-  
+
+  // 사이즈 변경
   sizeChange() {
     this.reSize();
-  
+
     window.addEventListener('resize', () => {
       this.reSize();
     });
   }
-  
+
   // 사이즈 크기에 맞게 변경
   reSize() {
     let viewportWidth = window.innerWidth;
@@ -119,14 +126,14 @@ class StoryView extends HTMLElement {
     let storyContainers = this.storyWrapper.querySelectorAll('.story-container');
     let imgSizes = this.storyWrapper.querySelectorAll('.img-size');
 
-    imgSizes.forEach(imgSize => { 
+    imgSizes.forEach(imgSize => {
       imgSize.style.width = containerHeight / 2 + 'px';
-      imgSize.style.height = containerHeight -40 + 'px';
+      imgSize.style.height = containerHeight - 40 + 'px';
     });
 
     storyContainers.forEach((storyContainer) => {
       storyContainer.style.width = containerHeight / 2 + 'px';
-      storyContainer.style.height = containerHeight -40 + 'px';
+      storyContainer.style.height = containerHeight - 40 + 'px';
     });
 
     let containerElement = this.storyWrapper;
@@ -135,25 +142,25 @@ class StoryView extends HTMLElement {
   }
 
   // 스토리 클릭 했을 때 애니메이션
-  moveStory(directions) { 
+  moveStory(directions) {
     const urlParams = new URLSearchParams(window.location.search);
     const id = parseInt(urlParams.get('id'));
     const data = this.data.find((data) => {
       if (directions === 'left') {
         return data.id === id - 1;
       }
-        return data.id === id + 1;
+      return data.id === id + 1;
     });
     let direction = ''
 
     const currentId = parseInt(urlParams.get('id'));
 
-    if (directions === 'left' ) {
+    if (directions === 'left') {
       direction = 'left';
       if (data.id === 1 || currentId === this.data.length) {
         direction = 'endLeft';
       }
-    } else if (directions === 'right' ) {
+    } else if (directions === 'right') {
       direction = 'right';
       if (data.id === this.data.length || currentId === 1) {
         direction = 'endRight';
@@ -169,10 +176,10 @@ class StoryView extends HTMLElement {
         while (this.modalWrapper.firstChild) {
           this.modalWrapper.firstChild.remove();
         }
-        
+
         const newURL = window.location.origin + window.location.pathname + '?id=' + data.id;
         history.pushState(null, null, newURL);
-    
+
         this.render();
         this.sizeChange();
       }
@@ -181,15 +188,15 @@ class StoryView extends HTMLElement {
       // 클릭한 스토리가 오른쪽에 있을 때
       tl.add(
         gsap.to(sideStoryRight, {
-          duration: 1, 
+          duration: 1,
           scale: 1.2,
           x: `-140%`,
         })
       );
-  
+
       tl.add(
         gsap.to(originalStory, {
-          duration: 1, 
+          duration: 1,
           scale: 0.3,
           x: '-140%',
         }),
@@ -207,15 +214,15 @@ class StoryView extends HTMLElement {
     } else if (direction === 'endLeft') {
       tl.add(
         gsap.to(sideStoryLeft, {
-          duration: 1, 
+          duration: 1,
           scale: 1.2,
           x: '70%',
         })
       );
-  
+
       tl.add(
         gsap.to(originalStory, {
-          duration: 1, 
+          duration: 1,
           scale: 0.3,
           x: '70%',
         }),
@@ -233,15 +240,15 @@ class StoryView extends HTMLElement {
     } else if (direction === 'endRight') {
       tl.add(
         gsap.to(sideStoryRight, {
-          duration: 1, 
+          duration: 1,
           scale: 1.2,
           x: '-70%',
         })
       );
-  
+
       tl.add(
         gsap.to(originalStory, {
-          duration: 1, 
+          duration: 1,
           scale: 0.3,
           x: '-70%',
         }),
@@ -257,21 +264,21 @@ class StoryView extends HTMLElement {
         '<'
       )
     }
-    
+
     else {
       // 클릭한 스토리가 왼쪽에 있을 때
       tl.add(
         gsap.to(sideStoryLeft, {
-          duration: 1, 
+          duration: 1,
           scale: 1.2,
           x: '140%',
         })
       );
-  
+
       tl.add(
         gsap.to(originalStory, {
           duration: 1,
-          scale: 0.3, 
+          scale: 0.3,
           x: '140%',
         }),
         '<' // 이전 애니메이션과 동시에 실행
@@ -292,41 +299,60 @@ class StoryView extends HTMLElement {
   async deleteCarouselImg() {
     const activeCarouselItem = this.querySelector('.carousel-item.active');
     const activeIndex = activeCarouselItem.dataset.index;
-  
+
     const urlParams = new URLSearchParams(window.location.search);
     const id = parseInt(urlParams.get('id'));
-    
-    const data  = await getProfile(id);
+
+    const data = await getProfileById(id);
 
     const storyImg = data.storyImg;
     const storyText = data.storyText;
 
-    storyImg.splice(activeIndex, 1); 
+    storyImg.splice(activeIndex, 1);
     storyText.splice(activeIndex, 1);
     
     const index = this.data.findIndex((data) => data.id === id);
-    this.data[index].storyImg = storyImg;
-    this.data[index].storyText = storyText;
-    
-    fetch(`http://localhost:7000/profiles/${id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ storyImg, storyText }),
-    }) 
-    .then((res) => res.json())
-    .then(() => {
+
+    if (storyImg.length === 0) {
+
+      let loadId = id;
+      if (id === 1) { loadId = id + 1 } else { loadId = id - 1 };
+
+      await deleteProfile(id);
+
       while (this.modalWrapper.firstChild) {
         this.modalWrapper.firstChild.remove();
       }
-      
-      const newURL = window.location.origin + window.location.pathname + '?id=' + id;
+
+      const newURL = window.location.origin + window.location.pathname + '?id=' + loadId;
       history.pushState(null, null, newURL);
+
+      this.loadDatas();
       
-      this.render();
-      this.sizeChange();
+    } else {
+      this.data[index].storyImg = storyImg;
+      this.data[index].storyText = storyText;
+
+      fetch(`http://localhost:7000/profiles/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ storyImg, storyText }),
     })
+      .then((res) => res.json())
+      .then(() => {
+        while (this.modalWrapper.firstChild) {
+          this.modalWrapper.firstChild.remove();
+        }
+
+        const newURL = window.location.origin + window.location.pathname + '?id=' + id;
+        history.pushState(null, null, newURL);
+
+        this.loadDatas();
+      })
+    }
   }
 
+  // 이미지 변경할 때 기본값들 넘겨주기
   changeCarouselImg(detail) {
     const activeCarouselItem = this.querySelector('.carousel-item.active');
     const activeIndex = activeCarouselItem.dataset.index;
@@ -336,35 +362,36 @@ class StoryView extends HTMLElement {
     const background = detail.background;
     const text = detail.text;
     const color = detail.textColor;
-    
+
     this.updateStory(id, activeIndex, background, text, color);
   }
 
+  // 현재 캐러셀 이미지 변경
   async updateStory(id, activeIndex, background, text, color) {
-    const data = await getProfile(id);
+    const data = await getProfileById(id);
     const { storyImg, storyText } = data;
-  
+
     storyImg.splice(activeIndex, 1, background);
     storyText[activeIndex].text = text;
     storyText[activeIndex].color = color;
-  
+
     const index = this.data.findIndex((data) => data.id === id);
     this.data[index].storyImg = storyImg;
     this.data[index].storyText = storyText;
-    
+
     await updateProfile(id, storyImg, storyText);
-    
+
     while (this.modalWrapper.firstChild) {
       this.modalWrapper.firstChild.remove();
     }
-  
+
     const newURL = window.location.origin + window.location.pathname + '?id=' + id;
     history.pushState(null, null, newURL);
-    
+
     this.render();
     this.sizeChange();
   }
-  
+
 }
 // 중간 스토리 생성
 class CenterStory {
@@ -384,7 +411,7 @@ class CenterStory {
                   <div class="story-name">${this.data.name}</div>
                 </div>
                 <div class="story-tool">
-                  <span class="material-symbols-outlined" id="edit-story" data-bs-target="#editStoryModal" data-bs-toggle="modal">
+                  <span class="material-symbols-outlined" id="edit-story" data-bs-target="#swapModal" data-bs-toggle="modal">
                     edit
                   </span>
                   <span class="material-symbols-outlined" id="del-story">
@@ -445,7 +472,7 @@ class CarouselImg {
         carouselIndicator.setAttribute('data-bs-target', '#carouselAuto');
         carouselIndicator.setAttribute('data-bs-slide-to', i);
         carouselIndicator.setAttribute('aria-label', `Slide ${i + 1}`);
-  
+
         carouselItem.dataset.index = i;
         if (i === 0) {
           carouselItem.className = 'carousel-item active';
@@ -454,7 +481,7 @@ class CarouselImg {
         } else {
           carouselItem.className = 'carousel-item';
         }
-  
+
         const img = document.createElement('div');
         img.className = 'img';
         if (/^http.*/.test(this.data.storyImg[i])) {
@@ -472,10 +499,10 @@ class CarouselImg {
         textElement.className = 'text-area';
         textElement.setAttribute('disabled', 'true');
         textElement.innerHTML = textItem.text;
-        textContainer.appendChild(textElement); 
+        textContainer.appendChild(textElement);
 
         textElement.style.color = textItem.color;
-        
+
         carouselItem.appendChild(img);
         carouselInner.appendChild(carouselItem);
         carouselIndicators.appendChild(carouselIndicator);
@@ -497,7 +524,7 @@ class SideStory {
   }
   render(name) {
     const container = document.createElement('div');
-    
+
     container.innerHTML = `
       <div class="story-container ${name}" style="transform: scale(0.5)">
         <div class="side-story">
@@ -527,6 +554,7 @@ class SideStory {
       </div>
     `;
 
+    // 이미지 배경 쓸 때 http 로 시작하는 주소면 url 로 인식하고 아니면 그냥 배경으로 인식
     const sideImg = container.querySelector('.side-img');
     if (/^http.*/.test(this.data.storyImg[0])) {
       sideImg.style.background = `url(${this.data.storyImg[0]})`;

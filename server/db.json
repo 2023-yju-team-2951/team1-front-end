@@ -40,8 +40,7 @@
         "rgb(189, 178, 255)",
         "rgb(202, 255, 191)",
         "rgb(202, 255, 191)",
-        "rgb(253, 255, 182)",
-        "rgb(202, 255, 191)"
+        "rgb(155, 246, 255)"
       ],
       "storyText": [
         {
@@ -57,11 +56,7 @@
           "color": ""
         },
         {
-          "text": "",
-          "color": ""
-        },
-        {
-          "text": "ㅁㄻㄴ",
+          "text": "sdfsdfsdf",
           "color": ""
         }
       ]
@@ -71,12 +66,12 @@
       "name": "hetame1",
       "img": "https://github.com/hetame1.png",
       "storyImg": [
-        "rgb(255, 214, 165)",
+        "rgb(255, 255, 255)",
         "rgb(0, 0, 0)"
       ],
       "storyText": [
         {
-          "text": "ㄴㅇㄹ\nㄴㅇㄹㄴ\nㅇ]ㄹ\nㄴㅇㄹ\nㄴㅇ\nㄹ",
+          "text": "sdfsdfsdf",
           "color": ""
         },
         {
@@ -90,17 +85,12 @@
       "name": "HyunjinHa",
       "img": "https://github.com/HyunjinHa.png",
       "storyImg": [
-        "rgb(202, 255, 191)",
-        "rgb(0, 0, 0)"
+        "rgb(155, 246, 255)"
       ],
       "storyText": [
         {
-          "text": "ㅁㄴㄹ\nㅁㄴㄹ\nㅁㄴ\nㄻㄴ\nㄻ\nㄴㄹ",
+          "text": "sdfsdfㅁㄴㄹ\nㅁㄴㄹasfasfasf",
           "color": ""
-        },
-        {
-          "text": "ㄴㅇㄹ\nㄴㅇ\nㄹㄴㅇ\nㄹㄴ\nㅇㄹ\nㄴㅇㄹ\nㄴㅇㄹ\nㄴㅇㄹ\nㄴㅇ\nㄹㄴ\nㅇ\nㄴㅇ",
-          "color": "rgb(255, 255, 255)"
         }
       ]
     },
@@ -109,16 +99,11 @@
       "name": "Jaeil-Lee",
       "img": "https://github.com/Jaeil-Lee.png",
       "storyImg": [
-        "rgb(202, 255, 191)",
-        "rgb(189, 178, 255)"
+        "rgb(202, 255, 191)"
       ],
       "storyText": [
         {
-          "text": "ㅁㄴㄻㄴㄻㄴㄻㄴㄻㄴㄻㄴㄻㄴㄻㄴㄻㄴㄻㄴㄹ",
-          "color": ""
-        },
-        {
-          "text": "ㅁㄴㄻㄴㄻㄴ\nㅁㄴ\nㄹ\nㅁㄴㄹ\nㅁㄴ\nㄹ\nㅁㄴㄹ\nㅁㄴ\nㄹ",
+          "text": "sdfsdf",
           "color": ""
         }
       ]
@@ -128,20 +113,15 @@
       "name": "Lsy04178",
       "img": "https://github.com/Lsy04178.png",
       "storyImg": [
-        "rgb(202, 255, 191)",
-        "rgb(189, 178, 255)"
+        "rgb(202, 255, 191)"
       ],
       "storyText": [
         {
-          "text": "ㅔㅑㅔㅑ0ㅓㅔ",
-          "color": ""
-        },
-        {
-          "text": "",
+          "text": "ㅔㅑㅔㅑ0ㅓㅔㄴㅁㄻㅁㄴㄹ",
           "color": ""
         }
       ]
-    } 
+    }
   ],
   "posts": [
     {
@@ -160,7 +140,7 @@
           "comment": "逃れ逃れついたあるカフェ～～！すっごく居心地よくて時間のある方々にはぜひお勧めいたします！！流れてくる音楽も雰囲気とピッタリなので久々にのんびりしたい人たちにもいいと思います"
         }
       ],
-      "likes": 4
+      "likes": 7
     },
     {
       "id": 2,
@@ -196,7 +176,7 @@
           "comment": ""
         }
       ],
-      "likes": 0
+      "likes": 3
     },
     {
       "name": "juhyeonni",
