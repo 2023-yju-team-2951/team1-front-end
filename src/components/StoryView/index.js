@@ -14,12 +14,16 @@ class StoryView extends HTMLElement {
     this.modalWrapper = document.createElement('div');
     this.modalWrapper.className = 'modal-wrapper';
 
-    // 수정 버튼 클릭한게 도착하면 실행
-    document.addEventListener('editButtonClicked', (event) => {
-      this.changeCarouselImg(event.detail);
-    }, false);
+    this.handleEditButtonClicked = this.handleEditButtonClicked.bind(this);
+  }
 
+  connectedCallback() {
+    document.addEventListener('editButtonClicked', this.handleEditButtonClicked);
     this.loadDatas();
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener('editButtonClicked', this.handleEditButtonClicked);
   }
 
   // 데이터 불러오기
@@ -30,6 +34,10 @@ class StoryView extends HTMLElement {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  handleEditButtonClicked(event) {
+    this.changeCarouselImg(event.detail);
   }
 
   render() {

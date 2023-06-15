@@ -5,7 +5,6 @@ import { uploadImg } from '../../api/thumbsnap.js';
 import StoryModal from '../Modal/StoryModal/';
 import './story.css'
 
-
 class Story extends HTMLElement {
   constructor() {
     super();
@@ -120,10 +119,8 @@ class Story extends HTMLElement {
     let background = ''
 
     if (detail.background.type) {
-      console.log("파일");
       background = await uploadImg(detail.background);
     } else {
-      console.log("색상");
       background = detail.background;
     }
 
