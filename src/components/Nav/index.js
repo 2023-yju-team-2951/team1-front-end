@@ -76,6 +76,7 @@ class Nav extends HTMLDivElement {
     this.navAdd = this.querySelector('.nav-add');
     this.otherSettings = this.querySelector('.other-settings');
     this.otherActivities = this.querySelector('.other-activities');
+    this.otherLogout = this.querySelector('.other-logout');
 
     // 1. 홈 버튼: 클릭 시 fetch 후 (`root` 모든 것을 재 렌더링), window의 스크롤을 최상단으로 이동
     this.navHome.addEventListener('click', this.homeEvent);
@@ -91,6 +92,8 @@ class Nav extends HTMLDivElement {
 
     // 5. 내 활동 버튼:
     this.otherActivities.addEventListener('click', () => {});
+
+    this.otherLogout.addEventListener('click', () => this.logoutEvent());
   }
 
   // root 재 렌더링
@@ -107,6 +110,11 @@ class Nav extends HTMLDivElement {
   // 검색 버튼 클릭 시, 기존 Modal을 SearchModal로 교체
   searchEvent() {
     exchangeModal(new SearchModal());
+  }
+
+  logoutEvent() {
+    sessionStorage.removeItem('userToken');
+    document.querySelector('#root').innerHTML = new Main().getHtml();
   }
 }
 
