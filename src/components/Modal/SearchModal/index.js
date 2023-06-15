@@ -1,79 +1,26 @@
 import { getPost } from '../../../api/posts';
 import './SearchModal.css';
+
+/**
+ * text에서 keyword를 찾아서 하이라이트 처리한다.
+ * @param {string} text
+ * @param {string} keyword
+ * @returns {string} 하이라이트 처리된 text
+ */
+function highlight(text, keyword) {
+  const regex = new RegExp(keyword, 'gi');
+
+  return text.replace(regex, `<span class="highlight">${keyword}</span>`);
+}
+
 class SearchModal extends HTMLDivElement {
   constructor() {
     super();
     this.classList.add('search-modal', 'modal-dialog');
     this.setAttribute('role', 'document');
 
-    this.contents = [
-      {
-        id: 1,
-        name: 'test',
-        post_top_img: 'https://github.com/HyunjinHa.png',
-        post_main_img: [
-          'https://cdn.pixabay.com/photo/2022/01/22/00/32/bird-6956012_1280.png',
-          'https://cdn.pixabay.com/photo/2022/01/22/00/32/bird-6956012_1280.png',
-          'https://cdn.pixabay.com/photo/2022/01/22/00/32/bird-6956012_1280.png',
-        ],
-        post_content: '안녕하세요',
-        statements: [
-          {
-            visitor: '',
-            comment:
-              '逃れ逃れついたあるカフェ～～！すっごく居心地よくて時間のある方々にはぜひお勧めいたします！！流れてくる音楽も雰囲気とピッタリなので久々にのんびりしたい人たちにもいいと思います',
-          },
-        ],
-        likes: '1',
-      },
-      {
-        id: 2,
-        name: '',
-        post_top_img: '/img/ketty1.png',
-        post_main_img: [
-          'https://cdn.pixabay.com/photo/2022/01/22/00/32/bird-6956012_1280.png',
-          'https://cdn.pixabay.com/photo/2022/01/22/00/32/bird-6956012_1280.png',
-          'https://cdn.pixabay.com/photo/2022/01/22/00/32/bird-6956012_1280.png',
-        ],
-        post_content: '안녕하세요',
-        statements: [
-          {
-            visitor: '',
-            comment: '',
-          },
-        ],
-        likes: '0',
-      },
-      {
-        id: 3,
-        name: '',
-        post_top_img: '/img/ketty1.png',
-        post_main_img: [
-          'https://cdn.pixabay.com/photo/2022/01/22/00/32/bird-6956012_1280.png',
-          'https://cdn.pixabay.com/photo/2022/01/22/00/32/bird-6956012_1280.png',
-          'https://cdn.pixabay.com/photo/2022/01/22/00/32/bird-6956012_1280.png',
-        ],
-        post_content: '안녕하세요',
-        statements: [
-          {
-            visitor: '',
-            comment: '',
-          },
-        ],
-        likes: '0',
-      },
-      {
-        user: 'juhyeonni',
-        post_content: 'asdfasdf👏',
-        post_top_img: '',
-        post_main_img: ['https://thumbsnap.com/i/k8HTBeTa.jpg'],
-        statements: [],
-        likes: 0,
-        id: 4,
-      },
-    ];
+    this.contents = [];
 
-    // TODO: 미완성
     this.innerHTML = `
       <div class="search-box">
         <div class="search-bar">
@@ -101,15 +48,18 @@ class SearchModal extends HTMLDivElement {
       post_content.includes(keyword)
     );
 
-    console.log(contents);
-    this.renderContents(contents);
+    this.renderContents(contents, keyword);
   }
 
-  renderContents(contents) {
+  renderContents(contents, keyword) {
     this.contentList.innerHTML = ``;
-    contents.forEach((content) =>
-      this.contentList.appendChild(new Content(content))
-    );
+    contents.forEach((content) => {
+      const newPostContent = highlight(content.post_content, keyword);
+
+      const newContent = { ...content, post_content: newPostContent };
+
+      this.contentList.appendChild(new Content(newContent));
+    });
   }
 }
 
