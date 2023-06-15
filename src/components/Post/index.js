@@ -1,4 +1,4 @@
-import { getPost } from "../../api/posts.js";
+import { getPost, deletePost } from "../../api/posts.js";
 import "./post.css";
 import Main from "../../pages/Main.js";
 // import Modal from './postMoal.js' // 모달 import
@@ -45,7 +45,12 @@ class Post extends HTMLElement {
     this.hearClick();
 
     /* b. Card 삭제하기  */
-    this.deleteClick();
+    const deleteBtn = document.querySelectorAll(".dropdown-delete-btn");
+    deleteBtn.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        this.cardDelete(btn.dataset.id);
+      });
+    });
 
     /* c. 사용자가 작성한 글 더보기 (토굴) */
     this.moreViewPosts();
@@ -69,17 +74,13 @@ class Post extends HTMLElement {
   }
 
   /* 🔴 1.6데이터 삭제하기  */
-  async cardDelete(post) {
-    console.log("삭제한당 ㅇㅇ");
-    try {
-      const res = await fetch(`http://localhost:7000/posts/${post.id}`, {
-        method: "DELETE",
-      });
-      const data = await res.json();
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
+  async cardDelete(id) {
+    await deletePost(id);
+
+    const container =  document.querySelector('.card-container')
+    container.innerHTML = '';
+
+    this.loadDatas();
   }
 
   /* 1.7.a. 좋아요 하트 색 변경  + 숫자 변경*/
@@ -105,32 +106,6 @@ class Post extends HTMLElement {
       });
     });
   } /* /hearClick */
-
-  /* 🔴1.7.b.Card 삭제하기  */
-  deleteClick() {
-    let deleteBtns_El = document.querySelectorAll(".dropdown-delete-btn");
-
-    deleteBtns_El.forEach((deleteBtn, index) => {
-      deleteBtn.addEventListener("click", async () => {
-        this.cardDelete(this.data[index]);
-        // // this.cardContainer.innerHTML=``;
-        // while (this.innerContainer.firstChild) {
-        //   this.innerContainer.firstChild.remove();
-        // }
-
-        // // 새롭게 변경된 데이터를 가져 오기
-        // this.data = await getPost();
-
-        // const cardContainer_El = new CardContainer(this.data).render(); // 새로운 CardContainer 생성
-        // this.innerContainer.innerHTML = cardContainer_El; // innerContainer에 새로운 CardContainer 추가
-
-        // // this.innerContainer += CardContainer_El;
-
-        const root = document.getElementById("root");
-        root.innerHTML = new Main().getHtml();
-      });
-    });
-  }
 
   /* 1.7.c. 사용자가 작성한 글 더보기 (토굴) */
   moreViewPosts() {
@@ -251,6 +226,10 @@ class Top {
         </div>
       </div>
     `;
+
+    const deleteBtn = topHTML.querySelector(".dropdown-delete-btn");
+    deleteBtn.setAttribute("data-id", this.data.id);
+
 
     return topHTML.innerHTML; // 위에 있는 html내용 그대로 반환
   }

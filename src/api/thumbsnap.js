@@ -1,7 +1,7 @@
 /**
  * File api를 이용하여 이미지를 업로드합니다.
  * @param {File} file
- * @returns {string} 업로드된 이미지의 url
+ * @returns {*} 업로드된 이미지의 url
  */
 export async function uploadImg(file) {
   const PROXY = process.env.CORS_PROXY;
@@ -21,10 +21,6 @@ export async function uploadImg(file) {
     method: 'POST',
     body: formData,
   });
-
-  if (!res.ok) {
-    throw new Error(`Failed to upload image, ${res.status}`);
-  }
 
   /**
    * data: {id, url, media, thumb, width, height }

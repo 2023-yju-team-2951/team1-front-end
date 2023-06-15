@@ -1,4 +1,5 @@
 import './storymodal.css';
+import { uploadImg } from '../../api/thumbsnap';
 class StoryModal extends HTMLDivElement {
 
   constructor(mode, defaultColor="#ffffff", defaultText="", defaultTextColor="#000000") {
@@ -9,7 +10,8 @@ class StoryModal extends HTMLDivElement {
     this.defaultColor = defaultColor;
     this.defaultText = defaultText;
     this.defaultTextColor = defaultTextColor;
-    
+    console.log(defaultColor);
+
     if (mode === 'main') {
       id = 'storyModal';
     } else if (mode === 'edit') {
@@ -82,13 +84,11 @@ class StoryModal extends HTMLDivElement {
       colors.forEach((color) => {
         color.classList.remove('selected');
         if (/^http.*/.test(this.defaultColor)) {
-          color.style.backgroundImage = `url(${this.defaultColor})`;
+          console.log("hello");
+          this.pick = this.defaultColor;
         } 
         else if (color.style.backgroundColor === this.defaultColor) {
           color.classList.add('selected');
-        } else {
-          const formFile = this.querySelector('#formFile');
-          formFile.value = '이미지 파일 있음';
         }
       })
       const writingElement = this.querySelector('.writing');
@@ -107,8 +107,8 @@ class StoryModal extends HTMLDivElement {
       this.num++;
 
       const writingElement = this.querySelector('.writing')
+      console.log(this.pick);
       writingElement.style.background = this.pick;
-      writingElement.style.backgroundSize = 'cover';
       writingElement.style.backgroundPosition = 'center';
       writingElement.style.backgroundRepeat = 'no-repeat';
 
@@ -126,17 +126,16 @@ class StoryModal extends HTMLDivElement {
     });
 
     // 이미지 프리뷰
-    const uploadImg = this.querySelector('#formFile');
-    uploadImg.addEventListener('change', () => {
+    const imagePreview = this.querySelector('#formFile');
+    imagePreview.addEventListener('change', () => {
       this.check = true;
-      const file = uploadImg.files[0];
+      const file = imagePreview.files[0];
       this.renderImg(file);
     });
 
     // 완료 버튼 클릭시 버블로 넘기기
     this.querySelector('#finish-button').addEventListener('click', (e) => { 
-      const writingElement = this.querySelector('.writing')
-      const background = writingElement.style.background;
+      const imgFile = this.querySelector('#formFile').files[0];
       const textWrite = this.querySelector('.text-write');
       const text = textWrite.value;
       const textColor = textWrite.style.color;
@@ -144,7 +143,7 @@ class StoryModal extends HTMLDivElement {
       // 
       const event = new CustomEvent('finishButtonClicked', {
         bubbles: true,
-        detail: { background, text, textColor }
+        detail: { imgFile, text, textColor }
       });
 
       e.target.dispatchEvent(event);
