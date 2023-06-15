@@ -4,6 +4,7 @@ const JSON_SERVER_URL = process.env.JSON_SERVER_URL;
  * @returns {Promise<[]>} 포스트 목록
  */
 export async function getPost() {
+  console.log(JSON_SERVER_URL);
   const res = await fetch(`${JSON_SERVER_URL}/posts`);
   const data = await res.json();
   return data;
