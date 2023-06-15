@@ -43,7 +43,7 @@ class Nav extends HTMLDivElement {
           </li>
         </ul>
         <div class="dropup">
-          <div class="nav-other dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <div class="nav-other" data-bs-toggle="dropdown" aria-expanded="false">
             <object data="/assets/image/icons/other.svg"></object>
             <span class="item-name">더 보기</span>
           </div>
