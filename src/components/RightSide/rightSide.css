@@ -1,250 +1,90 @@
-/* 화면크기가 1000px보다 작을 때
-@media (max-width: 1000px) {
-    .box-aside {
-      display: none;
-    }
-    header h1 {
-      position: absolute;
-      top: 10px;
-      left: 20px;
-    }
-    .bar-search {
-      left: 110px;
-    }
-  }
-
-
-  /* 화면크기가 800px보다 작을 때 */
-  /* @media (max-width: 800px) {
-    .bar-search input {
-      width: 200px;
-    }
-  } */
-
-
-  /* 화면크기가 760px보다 작을 때 */
-  /* @media (max-width: 760px) {
-    .bar-search {
-      display: none;
-    }
-    .list-nav {
-      position: absolute;
-      top: 15px;
-      right: 25px;
-    }
-    header {
-      height: 65px;
-    }
-  } */ */
-
-
-
-
-
-/* body {
-    font-family: 맑은 고딕;
-    font-weight:lighter;
-    display:flex;
-    /* min-height: 100vh;   
-}*/
-
 .right-nav-container {
-  height: 100%;
-  width: 340px;
+  height: 100vh;
+  width: 320px;
+}
+
+.right-nav-container .right-nav {
+  margin-top: 36px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
 }
 
-.right-nav-container #mememe {
+.right-nav-container .right-nav .right-nav-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.category-info {
+  display: flex;
+  flex-wrap: nowrap;
+  position: relative;
+}
+
+.category-info .category-info-img-box {
+  display: block;
+  margin-right: 12px;
+}
+
+.category-info .category-info-img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-info .category-info-img img {
+  position: absolute;
+  display: block;
+}
+
+.category-info .category-info-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.category-info .category-info-text .info-nickname{
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.category-info .category-info-text .info-name{
+  color: rgb(115, 115, 115);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.right-nav-body {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-nav-body .right-nav-body-header {
+  margin: 6px 0;
+  color: rgb(115, 115, 115);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.right-nav-body .right-nav-body-content {
+  height: auto;
+  overflow: hidden auto;
+}
+
+.right-nav-body .right-nav-body-content .right-nav-body-content-item {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.right-nav-item {
+  width: 100%;
+}
+
+.right-nav-item .right-nav-item-contain {
+  padding: 16px 8px 16px 0;
   display: flex;
 }
-
-#mememe .image1 {
-  width: 34px;
-  height: 34px;
-}
-
-#mememe .mesideBanner_1G {
-  width: 100px;
-  height: 30px;
-}
-
-/*  .right-nav-container .nav */
-
-/* #image1 {
-
-    cursor: pointer;
-    position:absolute; 
-    top:100px; 
-    width:100px;
-    right: 280px;
-    height:400px; 
-}
-
-#mesideBanner_1G { 
-
-    cursor: pointer;
-
-    position:absolute; 
-    top:0px; 
-
-    width:100px;  
-    top:100px;
-    right: 190px;
-    height:400px;  
-  }
-
-  #mesideBanner_2G { 
-    position:absolute; 
-    top:0px; 
-
-    width:100px;  
-    top:130px;
-    right: 265px;
-    height:400px;  
-  }  
-
-#meblue {
-    
-    cursor: pointer;
-    font-style: bold #0088ff;
-    position:absolute; 
-    top:110px; 
-    width:100px;
-    right:-50px;
-    height:400px; 
-
-}
-
-#foryou {
-    font-style: bold;
-    position:absolute; 
-    top:180px; 
-    
-    right:250px;
-    height:400px; 
-}
-
-#yjlogo {
-    cursor: pointer;
-    position:absolute; 
-    top:230px; 
-    width:100px;
-    right: 280px;
-    height:400px; 
-
-}
-
-#yjsideBanner_1G { 
-    position:absolute; 
-    top:5px;
-    right: -115px;
-    height:400px;  
-  }  
-
-  #yjsideBanner_2G { 
-    position:absolute; 
-    width:530px;
-    top: 40px;
-    right: -520px;
-    height:400px;  
-  }  
-
-  #yjblue {
-    
-    cursor: pointer;
-    font-style: bold #0088ff;
-    position:absolute; 
-    top:25px; 
-    width:100px;
-    right:-325px;
-    height:400px; 
-
-}
-
-#fukuokalogo {
-    cursor: pointer;
-    position:absolute; 
-    top:350px; 
-    width:100px;
-    right: 280px;
-    height:400px; 
-
-}
-
-#fukusideBanner_trip_1G { 
-    position:absolute; 
-    top:10px;
-    right: -130px;
-    height:400px;  
-  }  
-
-  #fukusideBanner_trip_2G { 
-    position:absolute; 
-    width:500px;
-    top: 45px;
-    right: -490px;
-    height:400px;  
-  }  
-
-  #fukuoka_trip_blue {
-    
-    cursor: pointer;
-    font-style: bold #0088ff;
-    position:absolute; 
-    top:30px; 
-    width:100px;
-    right:-325px;
-    height:400px; 
-
-}
-
-#fukuokamatlogo {
-    cursor: pointer;
-    position:absolute; 
-    top:470px; 
-    width:100px;
-    right: 280px;
-    height:400px; 
-
-}
-
-#fukusideBanner_mat_1G { 
-    cursor:pointer;
-    position:absolute; 
-    top:5px;
-    right: -130px;
-    height:400px;  
-  }  
-
-  #fukusideBanner_mat_2G { 
-    cursor:auto;
-    position:absolute; 
-    width:500px;
-    top: 40px;
-    right: -490px;
-    height:400px;  
-  }  
-
-  #fukusideBanner_mat_3G { 
-    cursor:auto;
-    position:absolute; 
-    width:500px;
-    top: 59px;
-    right: -490px;
-    height:400px;  
-  }  
-
-
-  #fukuok_mat_blue {
-    
-    cursor: pointer;
-    font-style: bold #0088ff;
-    position:absolute; 
-    top:35px; 
-    width:100px;
-    right:-325px;
-    height:400px; 
-
-}  */ 

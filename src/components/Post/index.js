@@ -1,8 +1,10 @@
 import { getPost, deletePost } from "../../api/posts.js";
 import "./post.css";
-import "./postMoal.js"   /* postModal import  */
+import PostModal from '../Modal/PostModal';   /* postModal import  */
+import { exchangeModal } from '../utils/exchangeModal.js';
 
 // import Modal from './postMoal.js' // 모달 import
+
 
 /* 🟢  1. POST */
 class Post extends HTMLElement {
@@ -36,10 +38,11 @@ class Post extends HTMLElement {
   render() {
     /* 1.4.1  2.CardContainer를 불러와서 서버에서 받아온 데이터 넣고 CardContainer를 렌더*/
     //   위에서 서버로 받은 data를 CardContainer로 전달
+   
     this.cardContainer.innerHTML += new CardContainer(this.data).render(); // ❓바로 CardContainer 생성자에서 render() 하면 안되나?  => return 값이 이상하게 나온단다
-
+    
     this.innerContainer.appendChild(this.cardContainer); // innerContainer(전체 감싸는)에 CardContainer 내용 넣기
-
+    
     this.appendChild(this.innerContainer);
 
     /* a. 좋아요 하트 색 변경 */
@@ -52,6 +55,15 @@ class Post extends HTMLElement {
         this.cardDelete(btn.dataset.id);
       });
     });
+
+    const postModal = document.querySelectorAll('.show_All')
+    postModal.forEach((post) => {
+      post.addEventListener('click', () => {
+        const modalId = post.dataset.id;
+        const modalData = this.data.find((data) => data.id === Number(modalId));
+        exchangeModal(new PostModal(modalData));
+      })
+    })
 
     /* c. 사용자가 작성한 글 더보기 (토굴) */
     this.moreViewPosts();
@@ -124,21 +136,6 @@ class Post extends HTMLElement {
     //   postContent_El.classList.toggle('user-tag-on');
     // });
   }
-
-  /* 댓글 모두 보기 - 모달 클릭해서 열기 */
-  moreViewComments() {
-    let showAll_Els = this.querySelectorAll(".show_All");
-
-    showAll_Els.forEach((showAll_El, index) => {
-      showAll_El.addEventListener("click", () => {
-        // let createdModal = new Modal(this.data);
-        
-        console.log(showAll_El[index]);
-        console.log("댓글 모두보기 누름");
-      });
-    });
-  }
-
 
 }
 
@@ -303,12 +300,14 @@ class UserWrite {
         </div>
       </div>
       
-      <button type="button" class="btn btn-primary button-custom show_All" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        댓글 모두 보기
+      <button type="button" class="btn btn-primary button-custom show_All" data-bs-toggle="modal" data-bs-target="#swapModal">
+          댓글 모두 보기
       </button>
-
-    
     `;
+
+    const showAll = userWriteHTML.querySelector(".show_All");
+    showAll.setAttribute("data-id", this.data.id);
+
 
     return userWriteHTML.innerHTML;
   }

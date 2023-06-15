@@ -53,6 +53,11 @@ img {
   justify-content: space-between;
 }
 
+.main .main-body-wrapper {
+  display: flex;
+  margin: 0 auto;
+}
+
 .main .main-body {
   width: 630px;
   margin: 0 auto;
@@ -61,6 +66,10 @@ img {
 .main .main-nav {
   margin-right: auto;
   position: fixed;
+}
+
+.main .right-nav {
+  padding-left: 60px;
 }
 
 /*# sourceMappingURL=main.css.map */
