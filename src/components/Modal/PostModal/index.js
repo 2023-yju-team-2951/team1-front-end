@@ -1,8 +1,10 @@
 import { getPost } from '../../../api/posts.js';
 import "./PostModal.css";
 
-export default class PostModal {
+class PostModal extends HTMLDivElement {
   constructor(data) {
+    super();
+    this.className = 'modal-dialog';
     this.data = data;
     
     // this.loadDatas();
@@ -30,14 +32,13 @@ export default class PostModal {
     
     modalHTML.innerHTML += `
       
-    <!--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class=" modal-dialog modal-dialog-centered  ">  -->
+        <div class=" modal-dialog modal-dialog-centered  ">
           <div class="modal-content modal-control ">
             
           <div class="modal-body">
               
               <div class="modal-left">
-               ${new CarouselImg().render()}
+               
               </div>
               
               
@@ -87,11 +88,9 @@ export default class PostModal {
           </div>
           </div>
           
-  <!--  </div>
-      </div>-->
+        </div>
+      </div>
     `;
-    return modalHTML;
-    return modalHTML.innerHTML;
   }
 }
 
@@ -203,4 +202,6 @@ class CarouselImg {
   }
 }
 
-window.customElements.define('post-modal', PostModal);
+window.customElements.define('post-modal', PostModal, { extends: 'div' })
+
+export default PostModal;
