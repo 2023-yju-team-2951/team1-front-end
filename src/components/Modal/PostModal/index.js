@@ -5,12 +5,15 @@ class PostModal extends HTMLDivElement {
   constructor(data) {
     super();
     this.className = 'modal-dialog';
+
     this.data = data;
-    
-    // this.loadDatas();
+
+    this.id = 'postModal'
+
+    this.render();
   }
   
-  // /* 🚩 fetch - 서버에서 데이터 가져 오기  */
+  /* 🚩 fetch - 서버에서 데이터 가져 오기  */
   // async loadDatas() {
   //     try {
   //       this.data = await getPost(); // 서버에서 객체화된 데이터 불러서 반환
@@ -23,30 +26,26 @@ class PostModal extends HTMLDivElement {
 
   /* 2. 렌더링 */
   render(){
-
-    let modalHTML = document.createElement("div"); 
     
     // const carouselImg = new CarouselImg(this.data);
     // modalHTML.innerHTML += carouselImg.render();
 
     
-    modalHTML.innerHTML += `
+    this.innerHTML += `
       
-        <div class=" modal-dialog modal-dialog-centered  ">
-          <div class="modal-content modal-control ">
+        <div class="modal-content modal-control">
             
           <div class="modal-body">
               
               <div class="modal-left">
-               
+                ${new CarouselImg(this.data).render()}
               </div>
-              
               
               <div class="modal-right">
                 <div class="right-top">
                   <div class="right-top-container">
                     <div class="right-top-userimage">
-                      <img class="top-img" src=${this.data.post_top_img} alt="no_picture"> 
+                      <img class="top-img" src="${this.data.post_top_img}" alt="no_picture"> 
                     </div>
                     <div class="top-item-account">
                       <span class="name">${this.data.name}</span>
@@ -72,7 +71,7 @@ class PostModal extends HTMLDivElement {
                 </div>
                 
                 <div class="heart">
-                  <img class="hearimg" src=${this.data.post_top_img} alt="">
+                  <img class="hearimg" src="${this.data.post_top_img}" alt="">
                 </div>
                
                 <div class="modal-comment">
@@ -89,16 +88,9 @@ class PostModal extends HTMLDivElement {
           </div>
           
         </div>
-      </div>
     `;
   }
 }
-
-
-
-
-
-
 
 
 /* 🟢  7. CarouselImg */
@@ -111,8 +103,9 @@ class CarouselImg {
     carouselSlide.className = "carousel slide";
 
     // id를 생성해야지 각각의 인스턴스에 고유한 값을 부여하여 조종할 수 있음
-    carouselSlide.id = `carouselAuto${this.data.id}`;
+    carouselSlide.id = `carouselAuto`;
     carouselSlide.setAttribute("data-bs-ride", "carousel"); // carouselSlide에 속성 설정
+    carouselSlide.style.height = "100%";
 
     /* prev 버튼 */
     const carouselControlPrev = document.createElement("button");
@@ -120,7 +113,7 @@ class CarouselImg {
     carouselControlPrev.type = "button";
     carouselControlPrev.setAttribute(
       "data-bs-target",
-      `#carouselAuto${this.data.id}`
+      `#carouselAuto`
     );
     carouselControlPrev.setAttribute("data-bs-slide", "prev");
 
@@ -138,7 +131,7 @@ class CarouselImg {
     carouselControlNext.type = "button";
     carouselControlNext.setAttribute(
       "data-bs-target",
-      `#carouselAuto${this.data.id}`
+      `#carouselAuto`
     );
     carouselControlNext.setAttribute("data-bs-slide", "next");
 
@@ -155,6 +148,7 @@ class CarouselImg {
 
     const carouselInner = document.createElement("div");
     carouselInner.className = "carousel-inner";
+    carouselInner.style.height = "100%";
 
     if (Array.isArray(this.data.post_main_img)) {
       for (let i = 0; i < this.data.post_main_img.length; i++) {
@@ -167,6 +161,7 @@ class CarouselImg {
         carouselIndicator.setAttribute("aria-label", `Slide ${i + 1}`);
 
         carouselItem.setAttribute("data-bs-interval", "10000");
+        carouselItem.style.height = "100%";
         if (i === 0) {
           carouselItem.className = "carousel-item active";
           carouselIndicator.className = "active";
@@ -177,8 +172,11 @@ class CarouselImg {
 
         const img = document.createElement("div");
         img.className = "img";
+        img.style.height = "100%";
         if (/^http.*/.test(this.data.post_main_img[i])) {
           img.style.background = `url(${this.data.post_main_img[i]})`;
+          img.style.backgroundPosition = "center";
+          img.style.backgroundRepeat = "no-repeat";
         } else {
           img.style.background = this.data.post_main_img[i];
         }

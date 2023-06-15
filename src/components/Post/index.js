@@ -44,13 +44,6 @@ class Post extends HTMLElement {
     this.innerContainer.appendChild(this.cardContainer); // innerContainer(전체 감싸는)에 CardContainer 내용 넣기
     
     this.appendChild(this.innerContainer);
-    
-    /* 🟡🟡🟡🟡🟡🟡 FIXME:  */
-    console.log(this.data[0]);
-    // const ab = new PostModal(this.data[0]).render();
-    console.log(ab);
-    this.cardContainer.appendChild(ab); /* 모달 */
-
 
     /* a. 좋아요 하트 색 변경 */
     this.hearClick();
@@ -66,7 +59,9 @@ class Post extends HTMLElement {
     const postModal = document.querySelectorAll('.show_All')
     postModal.forEach((post) => {
       post.addEventListener('click', () => {
-        exchangeModal(new PostModal());
+        const modalId = post.dataset.id;
+        const modalData = this.data.find((data) => data.id === Number(modalId));
+        exchangeModal(new PostModal(modalData));
       })
     })
 
@@ -309,21 +304,9 @@ class UserWrite {
           댓글 모두 보기
       </button>
     `;
-    // this.commentMoreBtn = userWriteHTML.querySelector('.sho_All')
-    // console.log(this.commentMoreBtn)
-    // this.commentMoreBtn.addEventListener('click', () => {
-    //   exchangeModal(new PostModal())
-    // })
-    //  this.commentMoreBtn = userWriteHTML.querySelectorAll('.show_All')
-    // this.commentMoreBtn.forEach((e,i)=>{
 
-    //   e.addEventListener('click', () => {
-    //     console.log("눌렀다");
-    //     exchangeModal(new PostModal(this.data).render());
-    //   })
-    // })
-
-
+    const showAll = userWriteHTML.querySelector(".show_All");
+    showAll.setAttribute("data-id", this.data.id);
 
 
     return userWriteHTML.innerHTML;
