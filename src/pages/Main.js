@@ -1,4 +1,5 @@
 import '../components/Header';
+import PostModal from '../components/Modal/PostModal';
 import '../components/Nav';
 import '../components/Post';
 import '../components/RightSide/'
@@ -10,7 +11,6 @@ export default class Main {
   }
   getHtml() {
     return `
-      
       <div class="main">
 
         <div class="main-nav">
