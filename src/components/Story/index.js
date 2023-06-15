@@ -1,6 +1,7 @@
 import { getProfileById, updateProfile, postProfile, getProfiles  } from '../../api/profiles.js';
 import { getAccountById } from '../../api/accounts.js';
 import { exchangeModal } from '../utils/exchangeModal.js';
+import { uploadImg } from '../../api/thumbsnap.js';
 import StoryModal from '../StoryModal/';
 import './story.css'
 
@@ -103,12 +104,15 @@ class Story extends HTMLElement {
   }
 
   // 스토리 추가할때 기본값 넘겨주기
-  addStory(detail) {
+  async addStory(detail) {
 
     const testId = 7;
-    const background = detail.background;
+    let background = detail.imgFile;
     const text = detail.text;
     const color = detail.textColor;
+
+    background = await uploadImg(background);
+    console.log(background);
 
     this.addStoryView(testId, background, text, color);
   }

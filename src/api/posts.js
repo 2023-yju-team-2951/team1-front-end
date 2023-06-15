@@ -22,3 +22,11 @@ export async function createPost(post) {
     body: JSON.stringify(post),
   });
 }
+
+export async function deletePost(id) {
+  const res = await fetch(`http://localhost:7000/posts/${id}`, {
+    method: 'DELETE',
+  });
+  const data = await res.json();
+  return data;
+}
