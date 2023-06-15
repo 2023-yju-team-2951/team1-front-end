@@ -12,7 +12,8 @@
     "watch2": "webpack --mode development --watch --config ./webpack.config.js",
     "dev": "serve ./public | yarn watch",
     "dev2": "serve ./public | yarn watch2",
-    "json-server": "json-server --watch ./server/db.json --port 7000"
+    "json-server": "json-server --watch ./server/db.json --port 7000",
+    "prod": "npm run bundle & npm run json-server"
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",
@@ -22,17 +23,16 @@
     "css-loader": "^6.8.1",
     "dotenv-webpack": "^8.0.1",
     "nodemon": "^2.0.22",
-    "serve": "^14.2.0",
     "style-loader": "^3.3.3",
     "thread-loader": "^4.0.2",
     "webpack": "^5.83.1",
-    "webpack-cli": "^5.1.1",
-    "webpack-dev-server": "^4.15.1"
+    "webpack-cli": "^5.1.1"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.2.3",
     "gsap": "^3.11.5",
-    "json-server": "^0.17.3"
+    "json-server": "^0.17.3",
+    "serve": "^14.2.0"
   }
 }
