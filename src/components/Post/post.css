@@ -107,17 +107,14 @@
 }
 
 .card .main-container .items .carousel.slide {
-.card .main-container .items .carousel.slide {
   height: 100%;
 }
 
-.card .main-container .items .carousel.slide .carousel-inner {
 .card .main-container .items .carousel.slide .carousel-inner {
   width: 100%;
   height: 100%;
 }
 
-.card .main-container .items .carousel.slide .carousel-inner .carousel-item {
 .card .main-container .items .carousel.slide .carousel-inner .carousel-item {
   width: 100%;
   height: 100%;
@@ -289,7 +286,6 @@ button:active {
 
 /* 1. LEFT */
 .modal .modal-body .modal-left {
-.modal .modal-body .modal-left {
   background: #ffef5c;
   width: 55%;
   margin: 0 auto;
@@ -297,7 +293,6 @@ button:active {
 }
 
 /* 2. RIGHT */
-.modal .modal-body .modal-right {
 .modal .modal-body .modal-right {
   /* background: #ffae5c; */
   width: 45%;
@@ -340,7 +335,6 @@ button:active {
 
 /* 🟢  2. MIDDLE 75% */
 .modal-right .modal-middle {
-.modal-right .modal-middle {
   width: 100%;
   height: 75%;
   overflow: auto;
@@ -363,7 +357,6 @@ button:active {
   word-wrap: break-word;
   margin-bottom: 15px;
 }
-.modal-right .modal-middle .visitor-post .visitor-imgBox {
 .modal-right .modal-middle .visitor-post .visitor-imgBox {
   width: 100px;
 }
@@ -391,7 +384,6 @@ button:active {
 }
 
 /* 🟢 하트 좋아요 5% */
-.modal-right .heart {
 .modal-right .heart {
   /* border-top: solid 1px rgba(161, 160, 160, 0.486); */
   height: 5%;
