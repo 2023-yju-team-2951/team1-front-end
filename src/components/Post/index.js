@@ -1,8 +1,6 @@
 import { getPost, deletePost } from "../../api/posts.js";
 import "./post.css";
 import "./postMoal.js"   /* postModal import  */
-import { exchangeModal } from "../utils/exchangeModal.js";
-import PostModal from "../Modal/PostModal/;
 
 // import Modal from './postMoal.js' // 모달 import
 
@@ -58,7 +56,7 @@ class Post extends HTMLElement {
     const postModal = document.querySelectorAll('.show_All')
     postModal.forEach((btn) => {
       btn.addEventListener("click", () => {
-        exchangeModal(new PostModal());
+        console.log("클릭")
       });
     })
 

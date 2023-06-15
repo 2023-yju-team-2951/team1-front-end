@@ -34,6 +34,8 @@ class RightNav extends HTMLElement {
               <img src="${this.data.img}" alt="프로필 사진">
             </div>
             <div class="login-info-text">
+              <span class="info-nickname">${this.data.nickname}</span>
+              <span class="name">${this.data.name}</span>
             </div>
           </div>
         </div>
