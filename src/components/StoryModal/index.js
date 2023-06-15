@@ -35,9 +35,9 @@ class StoryModal extends HTMLDivElement {
       <div class="modal-body">
         <div id="num-0" class="num">
           <div class="color-picker">
-            <div class="colors selected" style="background-color: #ffffff;"></div>
+            <div class="colors" style="background-color: #ffffff;"></div>
             <div class="colors" style="background-color: #ffadad;"></div>
-            <div class="colors" style="background-color: #ffd6a5;"></div>
+            <div class="colors" style="backgrou nd-color: #ffd6a5;"></div>
             <div class="colors" style="background-color: #fdffb6;"></div>
             <div class="colors" style="background-color: #caffbf;"></div>
             <div class="colors" style="background-color: #9bf6ff;"></div>
@@ -86,6 +86,9 @@ class StoryModal extends HTMLDivElement {
         } 
         else if (color.style.backgroundColor === this.defaultColor) {
           color.classList.add('selected');
+        } else {
+          const formFile = this.querySelector('#formFile');
+          formFile.value = '이미지 파일 있음';
         }
       })
       const writingElement = this.querySelector('.writing');
