@@ -1,5 +1,4 @@
 import './storymodal.css';
-import { uploadImg } from '../../api/thumbsnap';
 class StoryModal extends HTMLDivElement {
 
   constructor(mode, defaultColor="#ffffff", defaultText="", defaultTextColor="#000000") {
@@ -39,7 +38,7 @@ class StoryModal extends HTMLDivElement {
           <div class="color-picker">
             <div class="colors" style="background-color: #ffffff;"></div>
             <div class="colors" style="background-color: #ffadad;"></div>
-            <div class="colors" style="backgrou nd-color: #ffd6a5;"></div>
+            <div class="colors" style="background-color: #ffd6a5;"></div>
             <div class="colors" style="background-color: #fdffb6;"></div>
             <div class="colors" style="background-color: #caffbf;"></div>
             <div class="colors" style="background-color: #9bf6ff;"></div>
@@ -84,7 +83,6 @@ class StoryModal extends HTMLDivElement {
       colors.forEach((color) => {
         color.classList.remove('selected');
         if (/^http.*/.test(this.defaultColor)) {
-          console.log("hello");
           this.pick = this.defaultColor;
         } 
         else if (color.style.backgroundColor === this.defaultColor) {
@@ -107,7 +105,6 @@ class StoryModal extends HTMLDivElement {
       this.num++;
 
       const writingElement = this.querySelector('.writing')
-      console.log(this.pick);
       writingElement.style.background = this.pick;
       writingElement.style.backgroundPosition = 'center';
       writingElement.style.backgroundRepeat = 'no-repeat';
@@ -135,18 +132,19 @@ class StoryModal extends HTMLDivElement {
 
     // 완료 버튼 클릭시 버블로 넘기기
     this.querySelector('#finish-button').addEventListener('click', (e) => { 
-      const imgFile = this.querySelector('#formFile').files[0];
+      let background = this.querySelector('#formFile').files[0];
+      if( background === undefined ) {
+        background = this.querySelector('.writing').style.background;
+      }
       const textWrite = this.querySelector('.text-write');
       const text = textWrite.value;
       const textColor = textWrite.style.color;
 
-      // 
       const event = new CustomEvent('finishButtonClicked', {
         bubbles: true,
-        detail: { imgFile, text, textColor }
+        detail: { background, text, textColor }
       });
-
-      e.target.dispatchEvent(event);
+      document.dispatchEvent(event);
     });
 
     // 수정 버튼 클릭

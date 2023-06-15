@@ -57,11 +57,17 @@ export async function deleteProfile(id) {
  * @param {*} data
  * @returns
  */
-export async function postProfile(data) {
+export async function postProfile(id, name, img, storyImg, storyText) {
   const res = await fetch(`http://localhost:7000/profiles`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
+    body: JSON.stringify({ id, name, img, storyImg, storyText }),
   });
+
+  if (!res.ok) {
+    throw new Error(`Server responded with status: ${res.status}`);
+  }
+
   return res.json();
 }
+
