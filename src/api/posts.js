@@ -4,11 +4,6 @@
  */
 export async function getPost() {
   const res = await fetch('http://localhost:7000/posts');
-
-  if (!res.ok) {
-    throw new Error(`Failed to fetch posts, ${res.status}`);
-  }
-
   const data = await res.json();
   return data;
 }
@@ -26,8 +21,4 @@ export async function createPost(post) {
     },
     body: JSON.stringify(post),
   });
-
-  if (!res.ok) {
-    throw new Error(`Failed to create post, ${res.status}`);
-  }
 }
