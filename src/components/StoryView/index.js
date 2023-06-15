@@ -2,7 +2,7 @@ import './storyview.css';
 import { getProfiles, getProfileById, updateProfile, deleteProfile } from '../../api/profiles.js';
 import { exchangeModal } from '../utils/exchangeModal';
 import { gsap } from "gsap";
-import StoryModal from '../StoryModal';
+import StoryModal from '../Modal/StoryModal';
 
 class StoryView extends HTMLElement {
 
@@ -13,6 +13,11 @@ class StoryView extends HTMLElement {
     this.storyWrapper.className = 'story-modal-wrapper';
     this.modalWrapper = document.createElement('div');
     this.modalWrapper.className = 'modal-wrapper';
+
+    // 수정 버튼 클릭한게 도착하면 실행
+    document.addEventListener('editButtonClicked', (event) => {
+      this.changeCarouselImg(event.detail);
+    }, false);
 
     this.loadDatas();
   }
@@ -81,11 +86,6 @@ class StoryView extends HTMLElement {
       const textColor = activeText.style.color;
       exchangeModal(new StoryModal('edit', background, text, textColor))
     })
-
-    // 수정 버튼 클릭한게 도착하면 실행
-    document.addEventListener('editButtonClicked', (event) => {
-      this.changeCarouselImg(event.detail);
-    }, false);
 
     // 삭제 버튼 클릭시
     deleteStory.addEventListener('click', () => {
@@ -381,15 +381,9 @@ class StoryView extends HTMLElement {
 
     await updateProfile(id, storyImg, storyText);
 
-    while (this.modalWrapper.firstChild) {
-      this.modalWrapper.firstChild.remove();
-    }
+    this.modalWrapper.innerHTML = '';
 
-    const newURL = window.location.origin + window.location.pathname + '?id=' + id;
-    history.pushState(null, null, newURL);
-
-    this.render();
-    this.sizeChange();
+    this.loadDatas();
   }
 
 }
