@@ -1,4 +1,4 @@
-/* 화면크기가 1000px보다 작을 때 */
+/* 화면크기가 1000px보다 작을 때
 @media (max-width: 1000px) {
     .box-aside {
       display: none;
@@ -15,15 +15,15 @@
 
 
   /* 화면크기가 800px보다 작을 때 */
-  @media (max-width: 800px) {
+  /* @media (max-width: 800px) {
     .bar-search input {
       width: 200px;
     }
-  }
+  } */
 
 
   /* 화면크기가 760px보다 작을 때 */
-  @media (max-width: 760px) {
+  /* @media (max-width: 760px) {
     .bar-search {
       display: none;
     }
@@ -35,7 +35,7 @@
     header {
       height: 65px;
     }
-  }
+  } */ */
 
 
 
@@ -48,9 +48,31 @@
     /* min-height: 100vh;   
 }*/
 
+.right-nav-container {
+  height: 100%;
+  width: 340px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.right-nav-container #mememe {
+  display: flex;
+}
 
-#image1 {
+#mememe .image1 {
+  width: 34px;
+  height: 34px;
+}
+
+#mememe .mesideBanner_1G {
+  width: 100px;
+  height: 30px;
+}
+
+/*  .right-nav-container .nav */
+
+/* #image1 {
 
     cursor: pointer;
     position:absolute; 
@@ -60,35 +82,28 @@
     height:400px; 
 }
 
-#mesideBanner-1G { 
+#mesideBanner_1G { 
 
     cursor: pointer;
 
     position:absolute; 
-    /* top:0px; 
+    top:0px; 
 
-    width:100px;  */
+    width:100px;  
     top:100px;
     right: 190px;
     height:400px;  
   }
 
-
-
-
-  #mesideBanner-2G { 
+  #mesideBanner_2G { 
     position:absolute; 
-    /* top:0px; 
+    top:0px; 
 
-    width:100px;  */
+    width:100px;  
     top:130px;
     right: 265px;
     height:400px;  
   }  
-
- 
-
-
 
 #meblue {
     
@@ -121,14 +136,14 @@
 
 }
 
-#yjsideBanner-1G { 
+#yjsideBanner_1G { 
     position:absolute; 
     top:5px;
     right: -115px;
     height:400px;  
   }  
 
-  #yjsideBanner-2G { 
+  #yjsideBanner_2G { 
     position:absolute; 
     width:530px;
     top: 40px;
@@ -158,14 +173,14 @@
 
 }
 
-#fukusideBanner_trip_-1G { 
+#fukusideBanner_trip_1G { 
     position:absolute; 
     top:10px;
     right: -130px;
     height:400px;  
   }  
 
-  #fukusideBanner_trip_-2G { 
+  #fukusideBanner_trip_2G { 
     position:absolute; 
     width:500px;
     top: 45px;
@@ -195,7 +210,7 @@
 
 }
 
-#fukusideBanner_mat_-1G { 
+#fukusideBanner_mat_1G { 
     cursor:pointer;
     position:absolute; 
     top:5px;
@@ -203,7 +218,7 @@
     height:400px;  
   }  
 
-  #fukusideBanner_mat_-2G { 
+  #fukusideBanner_mat_2G { 
     cursor:auto;
     position:absolute; 
     width:500px;
@@ -212,7 +227,7 @@
     height:400px;  
   }  
 
-  #fukusideBanner_mat_-3G { 
+  #fukusideBanner_mat_3G { 
     cursor:auto;
     position:absolute; 
     width:500px;
@@ -232,4 +247,4 @@
     right:-325px;
     height:400px; 
 
-}
+}  */ 
