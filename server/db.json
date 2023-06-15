@@ -8,7 +8,8 @@
     },
     {
       "id": 7,
-      "name": "ji",
+      "nickname": "knowteach8946",
+      "name": "김지훈",
       "img": "https://cdn.pixabay.com/photo/2023/05/30/16/50/milk-8029140_1280.png"
     }
   ],
@@ -66,12 +67,12 @@
       "name": "hetame1",
       "img": "https://github.com/hetame1.png",
       "storyImg": [
-        "rgb(0, 0, 0)"
+        "rgb(255, 255, 255)"
       ],
       "storyText": [
         {
-          "text": "ㄹㅇㄹㄴㅇㄹㄴㅇ",
-          "color": "rgb(255, 255, 255)"
+          "text": "sdfsdfsdf",
+          "color": ""
         }
       ]
     },
@@ -108,11 +109,11 @@
       "name": "Lsy04178",
       "img": "https://github.com/Lsy04178.png",
       "storyImg": [
-        "center center no-repeat rgb(160, 196, 255)"
+        "center center / cover no-repeat rgb(189, 178, 255)"
       ],
       "storyText": [
         {
-          "text": "ㅔㅑㅔㅑ0ㅓㅔㄴㅁㄻㅁㄴㄹㅁㄴㄹㅁㄴㄹㅁㄴㄹ",
+          "text": "ㅔㅑㅔㅑ0ㅓㅔㄴㅁㄻㅁㄴㄹsaf",
           "color": ""
         }
       ]

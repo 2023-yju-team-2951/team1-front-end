@@ -142,21 +142,6 @@ class Post extends HTMLElement {
     // });
   }
 
-  /* 댓글 모두 보기 - 모달 클릭해서 열기 */
-  // moreViewComments() {
-  //   let showAll_Els = this.querySelectorAll(".show_All");
-
-  //   showAll_Els.forEach((showAll_El, index) => {
-  //     showAll_El.addEventListener("click", () => {
-  //       // let createdModal = new Modal(this.data);
-        
-  //       console.log(showAll_El[index]);
-  //       console.log("댓글 모두보기 누름");
-  //     });
-  //   });
-  // }
-
-
 }
 
 /* 🟢  2. CardContainer */
