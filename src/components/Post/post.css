@@ -294,30 +294,6 @@ button:active{
   color:rgb(174, 174, 174);
 }
 
-
-
-/* 모달 */
-.modal {  /* 모달 전체 사이즈  부트 스트랩 내부 css속성이라 이렇게 밖에 이름 못줌...*/
-  --bs-modal-width: none;
-  
-}
-
-.modal .modal-content.modal-control{
-  width: 80vw ;
-  height: 90vh;
-  margin: 0 auto;
-  overflow: auto;
-  max-height: 900px;
-}
-
-
-.modal .modal-body {
-  display: flex;
-  padding: 0;
-  box-sizing: border-box;
- 
-}
-
 /* 1. LEFT */
 .modal .modal-body .modal-left {
   background: #ffef5c;

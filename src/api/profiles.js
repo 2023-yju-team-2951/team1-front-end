@@ -4,11 +4,6 @@
  */
 export async function getProfiles() {
   const res = await fetch('http://localhost:7000/profiles');
-
-  if (!res.ok) {
-    throw new Error(`Failed to fetch profiles, ${res.status}`);
-  }
-
   const data = await res.json();
   return data;
 }
@@ -20,11 +15,9 @@ export async function getProfiles() {
  */
 export async function getProfileById(id) {
   const res = await fetch(`http://localhost:7000/profiles/${id}`);
-
   if (!res.ok) {
-    throw new Error(`Failed to fetch profile, ${res.status}`);
+    throw res;
   }
-
   const data = await res.json();
   return data;
 }
@@ -42,11 +35,6 @@ export async function updateProfile(id, storyImg, storyText) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ storyImg, storyText }),
   });
-
-  if (!res.ok) {
-    throw new Error(`Failed to update profile, ${res.status}`);
-  }
-
   const data = await res.json();
   return data;
 }
@@ -60,11 +48,6 @@ export async function deleteProfile(id) {
   const res = await fetch(`http://localhost:7000/profiles/${id}`, {
     method: 'DELETE',
   });
-
-  if (!res.ok) {
-    throw new Error(`Failed to delete profile, ${res.status}`);
-  }
-
   const data = await res.json();
   return data;
 }
@@ -80,9 +63,5 @@ export async function postProfile(data) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   });
-
-  if (!res.ok) {
-    throw new Error(`Failed to post profile, ${res.status}`);
-  }
   return res.json();
 }
