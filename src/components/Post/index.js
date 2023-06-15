@@ -47,7 +47,7 @@ class Post extends HTMLElement {
     
     /* 🟡🟡🟡🟡🟡🟡 FIXME:  */
     console.log(this.data[0]);
-    const ab = new PostModal(this.data[0]).render();
+    // const ab = new PostModal(this.data[0]).render();
     console.log(ab);
     this.cardContainer.appendChild(ab); /* 모달 */
 
@@ -62,6 +62,13 @@ class Post extends HTMLElement {
         this.cardDelete(btn.dataset.id);
       });
     });
+
+    const postModal = document.querySelectorAll('.show_All')
+    postModal.forEach((post) => {
+      post.addEventListener('click', () => {
+        exchangeModal(new PostModal());
+      })
+    })
 
     /* c. 사용자가 작성한 글 더보기 (토굴) */
     this.moreViewPosts();
@@ -136,18 +143,18 @@ class Post extends HTMLElement {
   }
 
   /* 댓글 모두 보기 - 모달 클릭해서 열기 */
-  moreViewComments() {
-    let showAll_Els = this.querySelectorAll(".show_All");
+  // moreViewComments() {
+  //   let showAll_Els = this.querySelectorAll(".show_All");
 
-    showAll_Els.forEach((showAll_El, index) => {
-      showAll_El.addEventListener("click", () => {
-        // let createdModal = new Modal(this.data);
+  //   showAll_Els.forEach((showAll_El, index) => {
+  //     showAll_El.addEventListener("click", () => {
+  //       // let createdModal = new Modal(this.data);
         
-        console.log(showAll_El[index]);
-        console.log("댓글 모두보기 누름");
-      });
-    });
-  }
+  //       console.log(showAll_El[index]);
+  //       console.log("댓글 모두보기 누름");
+  //     });
+  //   });
+  // }
 
 
 }
@@ -317,12 +324,12 @@ class UserWrite {
           댓글 모두 보기
       </button>
     `;
-    this.commentMoreBtn = userWriteHTML.querySelector('.sho_All')
-    console.log(this.commentMoreBtn)
-    this.commentMoreBtn.addEventListener('click', () => {
-      exchangeModal(new PostModal())
-    })
-    // this.commentMoreBtn = userWriteHTML.querySelectorAll('.show_All')
+    // this.commentMoreBtn = userWriteHTML.querySelector('.sho_All')
+    // console.log(this.commentMoreBtn)
+    // this.commentMoreBtn.addEventListener('click', () => {
+    //   exchangeModal(new PostModal())
+    // })
+    //  this.commentMoreBtn = userWriteHTML.querySelectorAll('.show_All')
     // this.commentMoreBtn.forEach((e,i)=>{
 
     //   e.addEventListener('click', () => {

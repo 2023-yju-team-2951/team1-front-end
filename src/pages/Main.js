@@ -24,10 +24,6 @@ export default class Main {
           </div>
         </div>
 
-        <div class="right-nav">
-          <rightnav-component></rightnav-component>
-        </div>
-
       </div>
     `;
   }
