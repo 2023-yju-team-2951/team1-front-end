@@ -1,7 +1,13 @@
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/index.js',
+
+  watchOptions: {
+    poll: true,
+    ignored: '/node_modules/',
+  },
 
   output: {
     path: path.resolve('public/assets/js/dist'),
@@ -12,7 +18,14 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        use: 'babel-loader',
+        exclude: '/node_modules/',
+        use: [
+          'thread-loader', // thread-loader를 추가
+          {
+            loader: 'babel-loader',
+            options: { cacheDirectory: true },
+          },
+        ],
       },
       {
         test: /\.css$/,
@@ -20,4 +33,5 @@ module.exports = {
       },
     ],
   },
+  plugins: [new Dotenv()],
 };

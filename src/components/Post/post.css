@@ -1,0 +1,459 @@
+.inner {
+  justify-content: center;
+  width: 100%;
+  display: flex;
+  padding-top: 22px;
+  flex-direction: row;
+}
+
+.inner post-container {
+  width: 100%;
+  max-width: 630px;
+}
+
+.inner .inner-container {
+  max-width: 630px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inner .inner-container .card-container {
+  max-width: 470px;
+  width: 100%;
+}
+
+.card {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* TOP  - 사용자 이미지  +  아이디  + ・・・ */
+.card .top {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.card .top .top-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  margin: 8px 4px 8px 5px;
+}
+
+.card .top .top-container .top-item-image .top-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-right: 10px;
+}
+
+.card .top .top-container .top-item-account {
+  display: flex;
+  flex-direction: column;
+  /* margin-left: -px; */
+  /* margin-left: -px; */
+  justify-content: center;
+  min-height: 40px;
+}
+
+.card .top .top-container .top-item-account .account {
+  font-size: 18px;
+}
+
+/* 구글 머티리얼 아이콘 */
+.card .top .top-container .dropdown {
+  position: absolute;
+  right: 1px;
+}
+.card .top .top-container .dropdown .cansel-modal {
+  border: none;
+}
+
+.card .post-footer .show_All {
+  font-size: 14px;
+  color: rgb(115, 115, 115);
+  /* position: relative; */
+  /* left: 1px; */
+  --bs-btn-active-bg: none;
+  width: 100px;
+}
+
+.isvisible {
+  transition: 1s;
+}
+
+.card .main-container {
+  width: 100%;
+  height: 650px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+}
+
+.card .main-container .items {
+  width: 100%;
+  height: 100%;
+}
+
+.card .main-container .items .carousel.slide {
+.card .main-container .items .carousel.slide {
+  height: 100%;
+}
+
+.card .main-container .items .carousel.slide .carousel-inner {
+.card .main-container .items .carousel.slide .carousel-inner {
+  width: 100%;
+  height: 100%;
+}
+
+.card .main-container .items .carousel.slide .carousel-inner .carousel-item {
+.card .main-container .items .carousel.slide .carousel-inner .carousel-item {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.card
+  .main-container
+  .items
+  .carousel.slide
+  .carousel-inner
+  .carousel-item
+  .img {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  object-fit: contain;
+  border-radius: 5px;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+}
+
+/* 🟢 CARD */
+.card .post-footer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.card .post-footer .user-heart {
+  display: flex;
+  margin-top: 4px;
+}
+
+.card .post-footer .user-heart .user-heart-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.card .post-footer .user-count {
+  display: flex;
+  margin: 6px;
+}
+
+/* 좋아요 수 ( 서버에서 변수로 받아와 적용)  */
+.card .post-footer .user-count .count-like {
+  font-size: 15px;
+  font-weight: 900;
+  margin: 0 3px 0;
+}
+/* 좋아요 수 뒤에 글자  */
+.card .post-footer .user-count .user-like {
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.card .post-footer .user-write {
+  display: flex;
+  flex-direction: column;
+}
+
+.card .post-footer .user-write #account {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 7px;
+  margin: 0 3px 0;
+}
+
+.card .post-footer .user-write #showMore {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgb(115, 115, 115);
+  cursor: pointer;
+}
+
+/* 작성자 게시글 박스 */
+.card .post-footer .user-write .user-tag .post-content {
+  height: 25px; /* 50px 2줄 */
+  overflow: hidden;
+  line-height: 0.5em;
+}
+/* 더보기 토굴  */
+.card .post-footer .user-write .user-tag .post-content.user-tag-on {
+  height: auto;
+}
+
+/* 작성자 게시글 크기 */
+.card .post-footer .user-write .user-tag .post-content .post {
+  font-size: 15px;
+  line-height: 1.7em;
+}
+
+.card .post-footer #showAll {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgb(115, 115, 115);
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.card .post-footer .comment-wrap {
+  display: flex;
+  align-items: center;
+}
+.card .post-footer .comment-wrap .comment {
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+  width: 90%;
+}
+
+.card .post-footer .comment-wrap .comment .comment-input {
+  width: 20%;
+  max-height: 120px;
+  max-width: 100%;
+  flex-grow: 1;
+  height: 40px;
+  font-size: 15px;
+  border: none;
+  outline: none;
+  resize: none;
+  overflow: hidden;
+  padding-top: 5px;
+  border-bottom: 1px solid rgba(137, 134, 134, 0.655);
+}
+
+button {
+  color: rgb(54, 120, 226);
+  background: #00000000;
+  font-size: 13px;
+  font-weight: 900;
+  border: none;
+  outline: none;
+}
+button:hover {
+  color: rgb(0, 0, 0);
+}
+button:active {
+  color: rgb(174, 174, 174);
+}
+
+/* 🟢 모달  🟢*/
+
+/* COMMON */
+.button-custom {
+  color: rgb(54, 120, 226);
+  background: #00000000;
+  font-size: 25px;
+  font-weight: 900;
+  border: none;
+  outline: none;
+  padding: 0;
+}
+.button-custom:hover {
+  color: rgb(0, 0, 0);
+  background: #00000000;
+}
+.button-custom:active {
+  background: #00000000;
+  color: rgb(174, 174, 174);
+}
+
+/* 1. LEFT */
+.modal .modal-body .modal-left {
+.modal .modal-body .modal-left {
+  background: #ffef5c;
+  width: 55%;
+  margin: 0 auto;
+  overflow: auto;
+}
+
+/* 2. RIGHT */
+.modal .modal-body .modal-right {
+.modal .modal-body .modal-right {
+  /* background: #ffae5c; */
+  width: 45%;
+}
+
+/* 🟢 TOP - 10% */
+.modal .modal-body .modal-right .right-top {
+  width: 100%;
+  height: 10%;
+  box-sizing: border-box;
+  border-bottom: solid 1px rgba(161, 160, 160, 0.486);
+}
+.modal-body .modal-right .right-top-container {
+  margin-left: 10px;
+  height: 100%;
+  /* width: 50\; */
+  display: flex;
+}
+.modal-body .modal-right .right-top-container .right-top-userimage {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-body .modal-right .right-top-container .right-top-userimage .top-img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+.modal-body .modal-right .right-top-container .top-item-account {
+  width: 25%;
+  text-align: center;
+  margin: auto 0;
+  padding-left: 30px;
+}
+.modal-body .modal-right .right-top-container .top-item-account .name {
+  font-size: 25px;
+  font-weight: 900;
+}
+
+/* 🟢  2. MIDDLE 75% */
+.modal-right .modal-middle {
+.modal-right .modal-middle {
+  width: 100%;
+  height: 75%;
+  overflow: auto;
+  margin-top: 10px;
+  box-sizing: border-box;
+  /* margin: 0 auto; */
+  font-size: 20px;
+  /* background: rgb(0, 38, 255); */
+  overflow: auto;
+  border-bottom: solid 1px rgba(161, 160, 160, 0.486);
+}
+
+/* 방문자 글 한줄 */
+.modal-right .modal-middle .visitor-post {
+  height: auto;
+  width: 100%;
+  /* background: blueviolet; */
+  display: flex;
+  align-items: center;
+  word-wrap: break-word;
+  margin-bottom: 15px;
+}
+.modal-right .modal-middle .visitor-post .visitor-imgBox {
+.modal-right .modal-middle .visitor-post .visitor-imgBox {
+  width: 100px;
+}
+
+.modal-right .modal-middle .visitor-post .visitor-imgBox .visitor-img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin: 0 10px 0;
+}
+
+.modal-right .modal-middle .visitor-post .comment {
+  /* width: 100%; */
+  height: auto;
+  /* background: rgb(246, 212, 107); */
+  display: block;
+  align-items: center;
+  margin-right: 20px;
+  float: left;
+  line-height: 1.2;
+}
+.modal-right .modal-middle .visitor-post .comment .visitor-id {
+  font-size: 30px;
+  font-weight: 900;
+}
+
+/* 🟢 하트 좋아요 5% */
+.modal-right .heart {
+.modal-right .heart {
+  /* border-top: solid 1px rgba(161, 160, 160, 0.486); */
+  height: 5%;
+  display: flex;
+  align-items: center;
+}
+.modal-right .heart .hearimg {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+}
+.modal-body .modal-right .heart .user-count {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+}
+
+/*  🟢 BOTTOM  5% */
+.modal-right .modal-comment {
+  /* background: #fb3480; */
+  width: 100%;
+  height: 8%;
+  display: flex;
+  align-items: center;
+  /* position: relative; */
+}
+.modal-right .modal-comment .modal_bottom {
+  border-top: solid 1px rgba(161, 160, 160, 0.486);
+  /* position: absolute;
+  bottom: 1px; */
+  width: 100%;
+  display: flex;
+  /* padding-top: 10px; */
+  box-sizing: border-box;
+}
+.modal-right .modal-comment .modal-comment-input {
+  width: 85%;
+  height: 90px;
+  font-size: 18px;
+  margin-right: 10px;
+  border: none;
+  outline: none;
+  background: rgba(246, 246, 246, 0);
+  overflow: auto;
+  word-wrap: break-word;
+}
+.modal-right .modal-comment .posting-push {
+  width: 12%;
+  text-align: center;
+  line-height: 100px;
+  /* -------- */
+  width: 12%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.button-custom.show_All {
+  font-size: 14px;
+  color: rgb(115, 115, 115);
+  /* position: relative; */
+  /* left: 1px; */
+  --bs-btn-active-bg: none;
+  width: 100px;
+}
