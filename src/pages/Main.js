@@ -1,5 +1,5 @@
-import '../components/Header';
-import '../components/Nav';
+import Header from '../components/Header';
+import Nav from '../components/Nav';
 import '../components/Post';
 
 export default class Main {

@@ -384,6 +384,7 @@ class StoryView extends HTMLElement {
     storyText[activeIndex].color = color;
 
     const index = this.data.findIndex((data) => data.id === id);
+    console.log(storyImg);
     this.data[index].storyImg = storyImg;
     this.data[index].storyText = storyText;
 

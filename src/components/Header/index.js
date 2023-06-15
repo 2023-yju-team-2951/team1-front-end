@@ -145,3 +145,4 @@ class Header extends HTMLElement {
 
 window.customElements.define('header-component', Header);
 
+export default Header;
