@@ -1,9 +1,10 @@
+const JSON_SERVER_URL = process.env.JSON_SERVER_URL;
 /**
  * 서버에서 프로필 목록을 가져옵니다.
  * @returns {Promise<Profile[]>} 프로필 목록
  */
 export async function getProfiles() {
-  const res = await fetch('http://localhost:7000/profiles');
+  const res = await fetch(`${JSON_SERVER_URL}/profiles`);
   const data = await res.json();
   return data;
 }
@@ -14,7 +15,7 @@ export async function getProfiles() {
  * @returns {Promise<{}>} 프로필
  */
 export async function getProfileById(id) {
-  const res = await fetch(`http://localhost:7000/profiles/${id}`);
+  const res = await fetch(`${JSON_SERVER_URL}/profiles/${id}`);
   if (!res.ok) {
     throw res;
   }
@@ -30,7 +31,7 @@ export async function getProfileById(id) {
  * @returns {Promise<{}>} 업데이트된 프로필
  */
 export async function updateProfile(id, storyImg, storyText) {
-  const res = await fetch(`http://localhost:7000/profiles/${id}`, {
+  const res = await fetch(`${JSON_SERVER_URL}/profiles/${id}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ storyImg, storyText }),
@@ -45,7 +46,7 @@ export async function updateProfile(id, storyImg, storyText) {
  * @returns {Promise<{}>} 삭제된 프로필
  */
 export async function deleteProfile(id) {
-  const res = await fetch(`http://localhost:7000/profiles/${id}`, {
+  const res = await fetch(`${JSON_SERVER_URL}/profiles/${id}`, {
     method: 'DELETE',
   });
   const data = await res.json();
@@ -58,7 +59,7 @@ export async function deleteProfile(id) {
  * @returns
  */
 export async function postProfile(data) {
-  const res = await fetch(`http://localhost:7000/profiles`, {
+  const res = await fetch(`${JSON_SERVER_URL}/profiles`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
