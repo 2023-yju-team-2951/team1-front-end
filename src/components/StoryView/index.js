@@ -2,7 +2,7 @@ import './storyview.css';
 import { getProfiles, getProfileById, updateProfile, deleteProfile } from '../../api/profiles.js';
 import { exchangeModal } from '../utils/exchangeModal';
 import { gsap } from "gsap";
-import StoryModal from '../StoryModal';
+import StoryModal from '../Modal/StoryModal';
 
 class StoryView extends HTMLElement {
 
@@ -14,7 +14,16 @@ class StoryView extends HTMLElement {
     this.modalWrapper = document.createElement('div');
     this.modalWrapper.className = 'modal-wrapper';
 
+    this.handleEditButtonClicked = this.handleEditButtonClicked.bind(this);
+  }
+
+  connectedCallback() {
+    document.addEventListener('editButtonClicked', this.handleEditButtonClicked);
     this.loadDatas();
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener('editButtonClicked', this.handleEditButtonClicked);
   }
 
   // 데이터 불러오기
@@ -25,6 +34,10 @@ class StoryView extends HTMLElement {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  handleEditButtonClicked(event) {
+    this.changeCarouselImg(event.detail);
   }
 
   render() {
@@ -76,16 +89,11 @@ class StoryView extends HTMLElement {
       const active = this.querySelector('.carousel-item.active');
       const activeImg = active.querySelector('.img');
       const activeText = active.querySelector('.text-area');
-      const color = activeImg.style.backgroundColor;
+      const background = activeImg.style.background;
       const text = activeText.value;
       const textColor = activeText.style.color;
-      exchangeModal(new StoryModal('edit', color, text, textColor))
+      exchangeModal(new StoryModal('edit', background, text, textColor))
     })
-
-    // 수정 버튼 클릭한게 도착하면 실행
-    document.addEventListener('editButtonClicked', (event) => {
-      this.changeCarouselImg(event.detail);
-    }, false);
 
     // 삭제 버튼 클릭시
     deleteStory.addEventListener('click', () => {
@@ -376,20 +384,15 @@ class StoryView extends HTMLElement {
     storyText[activeIndex].color = color;
 
     const index = this.data.findIndex((data) => data.id === id);
+    console.log(storyImg);
     this.data[index].storyImg = storyImg;
     this.data[index].storyText = storyText;
 
     await updateProfile(id, storyImg, storyText);
 
-    while (this.modalWrapper.firstChild) {
-      this.modalWrapper.firstChild.remove();
-    }
+    this.modalWrapper.innerHTML = '';
 
-    const newURL = window.location.origin + window.location.pathname + '?id=' + id;
-    history.pushState(null, null, newURL);
-
-    this.render();
-    this.sizeChange();
+    this.loadDatas();
   }
 
 }
@@ -486,6 +489,8 @@ class CarouselImg {
         img.className = 'img';
         if (/^http.*/.test(this.data.storyImg[i])) {
           img.style.background = `url(${this.data.storyImg[i]})`;
+          img.style.backgroundPosition = 'center';
+          img.style.backgroundRepeat = 'no-repeat';
         } else {
           img.style.background = this.data.storyImg[i];
         }

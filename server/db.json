@@ -80,11 +80,11 @@
       "name": "HyunjinHa",
       "img": "https://github.com/HyunjinHa.png",
       "storyImg": [
-        "rgb(155, 246, 255)"
+        "center center no-repeat rgb(155, 246, 255)"
       ],
       "storyText": [
         {
-          "text": "sdfsdfㅁㄴㄹ\nㅁㄴㄹasfasfasf",
+          "text": "sdfsdfㅁㄴㄹ\nㅁㄴㄹasfasfasfㄴㅁㄹ",
           "color": ""
         }
       ]
@@ -94,11 +94,11 @@
       "name": "Jaeil-Lee",
       "img": "https://github.com/Jaeil-Lee.png",
       "storyImg": [
-        "rgb(202, 255, 191)"
+        "center center no-repeat rgb(255, 173, 173)"
       ],
       "storyText": [
         {
-          "text": "sdfsdf",
+          "text": "가나다라마바사\n아자차카타하\n가나달\n가나다라\n가나다라\n가나다라ㅁㄴㄻ",
           "color": ""
         }
       ]
@@ -120,91 +120,26 @@
   ],
   "posts": [
     {
-      "id": 1,
-      "name": "lji1001",
-      "post_top_img": "https://github.com/Jaeil-Lee.png",
-      "post_main_img": [
-        "https://i.pinimg.com/564x/6d/aa/e0/6daae02f73627c1fdc3b442af716d5e2.jpg",
-        "https://i.pinimg.com/564x/6d/4f/9a/6d4f9a53c5569dd6d9954405cc987a80.jpg",
-        "https://i.pinimg.com/564x/9b/03/33/9b03330cc803670fc9f9a401aafa86e6.jpg"
-      ],
-      "post_content": "逃れ逃れついたあるカフェ～～逃れ逃れついたあるカフェ～～！すっごく居心地よくて時間のある方々にはぜひお勧め",
-      "statements": [
-        {
-          "visitor": "",
-          "comment": "逃れ逃れついたあるカフェ～～！すっごく居心地よくて時間のある方々にはぜひお勧めいたします！！流れてくる音楽も雰囲気とピッタリなので久々にのんびりしたい人たちにもいいと思います"
-        }
-      ],
-      "likes": 7
-    },
-    {
-      "id": 2,
-      "name": "kitty",
-      "post_top_img": "https://thumbsnap.com/i/WoMTvUCv.png",
-      "post_main_img": [
-        "https://i.pinimg.com/564x/1f/f2/4d/1ff24d7ebbae1a4eef4a76861f979994.jpg",
-        "https://i.pinimg.com/564x/be/51/84/be518469899adaa010ad917eecf654bc.jpg",
-        "https://i.pinimg.com/564x/3d/0f/87/3d0f8739fac3d68cff3a4edff3bad77b.jpg"
-      ],
-      "post_content": "to day is!",
-      "statements": [
-        {
-          "visitor": "",
-          "comment": ""
-        }
-      ],
-      "likes": 2
-    },
-    {
-      "id": 3,
-      "name": "",
-      "post_top_img": "https://thumbsnap.com/i/WoMTvUCv.png",
-      "post_main_img": [
-        "https://i.pinimg.com/564x/fa/de/09/fade09c72481660a25aaa6221e8fb9ae.jpg",
-        "https://i.pinimg.com/564x/d4/fb/97/d4fb97447185288389a41d72ad114efd.jpg",
-        "https://i.pinimg.com/564x/d6/33/01/d6330197733a631e52af818a91e3f52d.jpg"
-      ],
-      "post_content": "오늘도 갬성...........",
-      "statements": [
-        {
-          "visitor": "",
-          "comment": ""
-        }
-      ],
-      "likes": 3
-    },
-    {
-      "name": "juhyeonni",
-      "post_content": "asdfasdf👏",
+      "name": "juhyeonni123",
+      "post_content": "ㅁㄴㅇㄻㄴㅇㄹ",
       "post_top_img": "",
       "post_main_img": [
-        "https://thumbsnap.com/i/k8HTBeTa.jpg"
+        "https://thumbsnap.com/i/R9RZateo.png"
       ],
       "statements": [],
-      "likes": 0,
-      "id": 4
+      "likes": 11,
+      "id": 7
     },
     {
       "name": "juhyeonni123",
-      "post_content": "엄준식은 살아있다.",
+      "post_content": "2",
       "post_top_img": "",
       "post_main_img": [
-        "https://thumbsnap.com/i/iJwkrk8c.jpg"
+        "https://thumbsnap.com/i/f4pKJDDM.png"
       ],
       "statements": [],
       "likes": 0,
-      "id": 5
-    },
-    {
-      "name": "juhyeonni123",
-      "post_content": "엄준식은 살아있다2",
-      "post_top_img": "",
-      "post_main_img": [
-        "https://thumbsnap.com/i/iJwkrk8c.jpg"
-      ],
-      "statements": [],
-      "likes": 0,
-      "id": 6
+      "id": 9
     }
   ]
 }

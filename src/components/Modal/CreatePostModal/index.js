@@ -114,6 +114,7 @@ class CreatePostModal extends HTMLDivElement {
     };
 
     createPost(post);
+    console.log("sda");
   }
 }
 

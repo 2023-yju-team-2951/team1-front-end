@@ -9,12 +9,13 @@ class StoryModal extends HTMLDivElement {
     this.defaultColor = defaultColor;
     this.defaultText = defaultText;
     this.defaultTextColor = defaultTextColor;
-    
+
     if (mode === 'main') {
       id = 'storyModal';
     } else if (mode === 'edit') {
       id = `editStoryModal`;
     }
+
     this.id = id;
     this.mode = mode;
     this.check = false;
@@ -35,7 +36,7 @@ class StoryModal extends HTMLDivElement {
       <div class="modal-body">
         <div id="num-0" class="num">
           <div class="color-picker">
-            <div class="colors selected" style="background-color: #ffffff;"></div>
+            <div class="colors" style="background-color: #ffffff;"></div>
             <div class="colors" style="background-color: #ffadad;"></div>
             <div class="colors" style="background-color: #ffd6a5;"></div>
             <div class="colors" style="background-color: #fdffb6;"></div>
@@ -79,12 +80,14 @@ class StoryModal extends HTMLDivElement {
     if( this.defaultColor != "#ffffff" || this.defaultText != "" || this.defaultTextColor != "#000000") {
       this.check = true;
       const colors = this.querySelectorAll('.colors');
+      const rgbString = this.defaultColor.match(/rgb\(.*?\)/);
       colors.forEach((color) => {
         color.classList.remove('selected');
         if (/^http.*/.test(this.defaultColor)) {
-          color.style.backgroundImage = `url(${this.defaultColor})`;
+          this.pick = this.defaultColor;
         } 
-        else if (color.style.backgroundColor === this.defaultColor) {
+        else if (color.style.backgroundColor === rgbString[0]) {
+          
           color.classList.add('selected');
         }
       })
@@ -105,7 +108,6 @@ class StoryModal extends HTMLDivElement {
 
       const writingElement = this.querySelector('.writing')
       writingElement.style.background = this.pick;
-      writingElement.style.backgroundSize = 'cover';
       writingElement.style.backgroundPosition = 'center';
       writingElement.style.backgroundRepeat = 'no-repeat';
 
@@ -123,28 +125,28 @@ class StoryModal extends HTMLDivElement {
     });
 
     // 이미지 프리뷰
-    const uploadImg = this.querySelector('#formFile');
-    uploadImg.addEventListener('change', () => {
+    const imagePreview = this.querySelector('#formFile');
+    imagePreview.addEventListener('change', () => {
       this.check = true;
-      const file = uploadImg.files[0];
+      const file = imagePreview.files[0];
       this.renderImg(file);
     });
 
     // 완료 버튼 클릭시 버블로 넘기기
     this.querySelector('#finish-button').addEventListener('click', (e) => { 
-      const writingElement = this.querySelector('.writing')
-      const background = writingElement.style.background;
+      let background = this.querySelector('#formFile').files[0];
+      if( background === undefined ) {
+        background = this.querySelector('.writing').style.background;
+      }
       const textWrite = this.querySelector('.text-write');
       const text = textWrite.value;
       const textColor = textWrite.style.color;
 
-      // 
       const event = new CustomEvent('finishButtonClicked', {
         bubbles: true,
         detail: { background, text, textColor }
       });
-
-      e.target.dispatchEvent(event);
+      document.dispatchEvent(event);
     });
 
     // 수정 버튼 클릭
@@ -162,7 +164,7 @@ class StoryModal extends HTMLDivElement {
       });
   
       // 이벤트 발생
-      e.target.dispatchEvent(event);
+      document.dispatchEvent(event);
     });
     
     // 색깔 고를때 효과 + 고른 색 selected 클래스 추가 + 고른색으로 배경 변경
@@ -204,11 +206,10 @@ class StoryModal extends HTMLDivElement {
       this.querySelector('.text-write').focus();
     });
 
-    // 인풋창 높이 계속 변경해주기기
     const textInput = this.querySelector('.text-write');
     textInput.addEventListener('input', function () {
       this.style.display = 'block';
-      this.style.height = (this.scrollHeight) + 'px';
+      this.style.height = (textInput.scrollHeight) + 'px';
     });
   }
 

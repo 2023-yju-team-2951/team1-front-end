@@ -1,15 +1,24 @@
 import { getProfileById, updateProfile, postProfile, getProfiles  } from '../../api/profiles.js';
 import { getAccountById } from '../../api/accounts.js';
 import { exchangeModal } from '../utils/exchangeModal.js';
-import StoryModal from '../StoryModal/';
+import { uploadImg } from '../../api/thumbsnap.js';
+import StoryModal from '../Modal/StoryModal/';
 import './story.css'
-
 
 class Story extends HTMLElement {
   constructor() {
     super();
 
+    this.handleFinishButtonClicked = this.handleFinishButtonClicked.bind(this);
+  }
+
+  connectedCallback() {
+    document.addEventListener('finishButtonClicked', this.handleFinishButtonClicked);
     this.loadDatas();
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener('finishButtonClicked', this.handleFinishButtonClicked);
   }
 
   async loadDatas() {
@@ -23,6 +32,10 @@ class Story extends HTMLElement {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  handleFinishButtonClicked(event) {
+    this.addStory(event.detail);
   }
 
   render() {
@@ -65,11 +78,6 @@ class Story extends HTMLElement {
     storyHTML += `</ul>`;
     this.innerHTML = storyHTML;
 
-    // 피니시 버튼 클릭한게 도착하면 이벤트 발생
-    document.addEventListener('finishButtonClicked', (event) => {
-      this.addStory(event.detail);
-    }, false);
-
     // 스토리 추가버튼 누르면 모달창 띄우기
     this.querySelector('#add-story').addEventListener('click', () => {
       exchangeModal(new StoryModal('main'));
@@ -78,7 +86,7 @@ class Story extends HTMLElement {
     // 캔버스 그리기
     const canvasElements = this.querySelectorAll('canvas');
     canvasElements.forEach((canvasElement) => {
-      this.draw(canvasElement);
+      this.draw(canvasElement);     
     });
   }
 
@@ -103,12 +111,20 @@ class Story extends HTMLElement {
   }
 
   // 스토리 추가할때 기본값 넘겨주기
-  addStory(detail) {
+  async addStory(detail) {
 
     const testId = 7;
-    const background = detail.background;
     const text = detail.text;
     const color = detail.textColor;
+    let background = ''
+
+    if (detail.background.type) {
+      console.log("이미지");
+      background = await uploadImg(detail.background);
+    } else {
+      console.log("색상");
+      background = detail.background;
+    }
 
     this.addStoryView(testId, background, text, color);
   }
@@ -124,21 +140,16 @@ class Story extends HTMLElement {
       await updateProfile(testId, data.storyImg, data.storyText);
     } catch (error) {
       if (error.status === 404) {
+        const storyImg = [background];
+        const storyText = [{ text, color: textColor }];
         const data = await getAccountById(testId);
-        const appendData = {
-          ...data,
-          storyImg: [...(data.storyImg || []), background],
-          storyText: [...(data.storyText || []), { text, color: textColor }],
-        };
-        await postProfile(appendData);
+        await postProfile(data.id, data.name, data.img, storyImg, storyText);
       } else {
         console.error(error);
       }
     }
     
-    while (this.firstChild) {
-      this.removeChild(this.firstChild);
-    }
+    this.innerHTML = '';
 
     this.loadDatas();
 
