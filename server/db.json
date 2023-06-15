@@ -120,37 +120,26 @@
   ],
   "posts": [
     {
-      "name": "betty0612",
-      "post_content": "今日もよい一につだったわ",
-      "post_top_img": "https://i.pinimg.com/564x/3f/c2/92/3fc292c3b02c3b54cac682334bdf70a3.jpg",
+      "name": "juhyeonni123",
+      "post_content": "ㅁㄴㅇㄻㄴㅇㄹ",
+      "post_top_img": "",
       "post_main_img": [
-        "https://i.pinimg.com/564x/84/d9/f5/84d9f5db3281acec61dd39e7c8ef3a93.jpg"
+        "https://thumbsnap.com/i/R9RZateo.png"
       ],
       "statements": [],
-      "likes": 0,
-      "id": 4
+      "likes": 11,
+      "id": 7
     },
     {
       "name": "juhyeonni123",
-      "post_content": "엄준식은 살아있다.",
+      "post_content": "2",
       "post_top_img": "",
       "post_main_img": [
-        "https://thumbsnap.com/i/iJwkrk8c.jpg"
+        "https://thumbsnap.com/i/f4pKJDDM.png"
       ],
       "statements": [],
       "likes": 0,
-      "id": 5
-    },
-    {
-      "name": "juhyeonni123",
-      "post_content": "엄준식은 살아있다.",
-      "post_top_img": "",
-      "post_main_img": [
-        "https://thumbsnap.com/i/iJwkrk8c.jpg"
-      ],
-      "statements": [],
-      "likes": 0,
-      "id": 6
+      "id": 9
     }
   ]
 }
