@@ -50,9 +50,17 @@ img {
 
 .main {
   display: flex;
+  justify-content: space-between;
 }
+
 .main .main-body {
   width: 630px;
+  margin: 0 auto;
+}
+
+.main .main-nav {
+  margin-right: auto;
+  position: fixed;
 }
 
 /*# sourceMappingURL=main.css.map */
