@@ -1,6 +1,8 @@
 import { getPost, deletePost } from "../../api/posts.js";
 import "./post.css";
 import "./postMoal.js"   /* postModal import  */
+import { exchangeModal } from "../utils/exchangeModal.js";
+import PostModal from "../Modal/PostModal/;
 
 // import Modal from './postMoal.js' // 모달 import
 
@@ -52,6 +54,13 @@ class Post extends HTMLElement {
         this.cardDelete(btn.dataset.id);
       });
     });
+
+    const postModal = document.querySelectorAll('.show_All')
+    postModal.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        exchangeModal(new PostModal());
+      });
+    })
 
     /* c. 사용자가 작성한 글 더보기 (토굴) */
     this.moreViewPosts();
@@ -123,20 +132,6 @@ class Post extends HTMLElement {
     // showMore_El.addEventListener('click', () => {
     //   postContent_El.classList.toggle('user-tag-on');
     // });
-  }
-
-  /* 댓글 모두 보기 - 모달 클릭해서 열기 */
-  moreViewComments() {
-    let showAll_Els = this.querySelectorAll(".show_All");
-
-    showAll_Els.forEach((showAll_El, index) => {
-      showAll_El.addEventListener("click", () => {
-        // let createdModal = new Modal(this.data);
-        
-        console.log(showAll_El[index]);
-        console.log("댓글 모두보기 누름");
-      });
-    });
   }
 
 
