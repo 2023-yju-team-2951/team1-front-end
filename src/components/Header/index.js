@@ -31,10 +31,10 @@ class Header extends HTMLElement {
               <story-component></story-component>
             </div>
             <button class="slider-button prev">
-              <div class="btn"></div>
+              <div class="btnN"></div>
             </button>
             <button class="slider-button next">
-                <div class="btn"></div>
+                <div class="btnN"></div>
             </button>
           </div>
         </div>

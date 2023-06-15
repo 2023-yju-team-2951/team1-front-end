@@ -82,4 +82,6 @@
 .slider .story-container .story .name {
   text-align: center;
   font-family: 'Segoe UI';
+  font-size: 12px;
+  font-weight: 400;
 }

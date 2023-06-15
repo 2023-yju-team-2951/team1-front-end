@@ -7,12 +7,10 @@
   padding-top: 8px;
   padding-bottom: 20px;
 
-  width: 336px;
-  height: 100vh;
-  left: 955px;
-  top: 643px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
 
-  /* border: 1px solid #000000; */
+  width: 290px;
+  height: 100vh;
 }
 
 .nav-full .nav-header-logo {
@@ -22,7 +20,7 @@
   padding: 10px;
   gap: 10px;
 
-  width: 311px;
+  width: 265px;
   height: 92px;
 
   /* border: 1px solid #000000; */
@@ -36,7 +34,7 @@
   padding: 0;
   gap: 10px;
 
-  width: 291px;
+  width: 245px;
   height: 72px;
 
   /* border: 1px solid #000000; */
@@ -49,7 +47,7 @@
   align-items: center;
   padding: 0;
 
-  width: 310px;
+  width: 264px;
   height: 960px;
 
   /* border: 1px solid #000000; */
@@ -62,10 +60,14 @@
   align-items: start;
   padding: 0;
 
-  width: 310px;
+  width: 264px;
   height: 168px;
 
   /* border: 1px solid #000000; */
+}
+
+.nav-full .item-name {
+  padding-left: 16px;
 }
 
 .nav-full .nav-list > li,
@@ -76,7 +78,7 @@
   padding: 12px;
   gap: 12px;
 
-  width: 310px;
+  width: 264px;
   height: 56px;
   border-radius: 8px;
   cursor: pointer;
@@ -88,16 +90,28 @@
   background-color: #f2f2f2;
 }
 
-.othermenu-item {
+.other-menu > .menu-list {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.other-menu > .menu-list > a {
   width: 250px;
   cursor: pointer;
   border-radius: 8px;
 }
 
-.othermenu-item:hover {
+.other-menu > .menu-list > a > div {
+  display: flex;
+  color: black;
+  padding: 16px;
+}
+
+.other-menu > .menu-list > a:hover {
   background-color: #f2f2f2;
 }
 
-.item-name {
+.nav-full .item-name {
   padding-left: 16px;
 }

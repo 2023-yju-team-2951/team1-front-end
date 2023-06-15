@@ -1,5 +1,5 @@
 import Main from '../../pages/Main';
-import PostModal from '../Modal/PostModal';
+import CreatePostModal from '../Modal/CreatePostModal';
 import SearchModal from '../Modal/SearchModal';
 import './Nav.css';
 import { exchangeModal } from '../utils/exchangeModal';
@@ -43,26 +43,26 @@ class Nav extends HTMLDivElement {
           </li>
         </ul>
         <div class="dropup">
-          <div class="nav-other dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <div class="nav-other" data-bs-toggle="dropdown" aria-expanded="false">
             <object data="/assets/image/icons/other.svg"></object>
             <span class="item-name">더 보기</span>
           </div>
           <div class="other-menu dropdown-menu">  
-            <div class="d-flex flex-column p-10">
-              <a class="other-settings othermenu-item">
-                <div class="d-flex p-16">
+            <div class="menu-list">
+              <a class="other-settings">
+                <div>
                   <object data="/assets/image/icons/settings.svg"></object>
                   <span class="item-name">설정</span>
                 </div>
               </a>
-              <a class="other-activities othermenu-item">
-                <div class="d-flex p-16">
+              <a class="other-activities">
+                <div>
                   <object data="/assets/image/icons/activities.svg"></object>
                   <span class="item-name">내 활동</span>
                 </div>
               </a>
-              <a class="other-logout othermenu-item">
-                <div class="d-flex p-16">
+              <a class="other-logout">
+                <div>
                   <span class="item-name">로그아웃</span>
                 </div>
               </a>
@@ -102,7 +102,7 @@ class Nav extends HTMLDivElement {
 
   // 만들기 버튼 클릭 시, 기존 Modal을 PostModal로 교체
   addEvent() {
-    exchangeModal(new PostModal(this.account));
+    exchangeModal(new CreatePostModal(this.account));
   }
 
   // 검색 버튼 클릭 시, 기존 Modal을 SearchModal로 교체

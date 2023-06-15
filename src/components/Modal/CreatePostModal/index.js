@@ -1,16 +1,16 @@
-import './PostModal.css';
+import './CreatePostModal.css';
 // import Modal from '..';
 import { uploadImg } from '../../../api/thumbsnap';
 import { createPost } from '../../../api/posts';
 
 // TODO: 현재 접속한 유저 정보를 받아온다.
-class PostModal extends HTMLDivElement {
+class CreatePostModal extends HTMLDivElement {
   constructor({ name }) {
     super();
 
     this.name = name;
 
-    this.classList.add('post-modal', 'modal-dialog');
+    this.classList.add('create-post-modal', 'modal-dialog');
     this.setAttribute('role', 'document');
 
     this.innerHTML = `
@@ -114,9 +114,12 @@ class PostModal extends HTMLDivElement {
     };
 
     createPost(post);
+    console.log("sda");
   }
 }
 
-window.customElements.define('post-modal', PostModal, { extends: 'div' });
+window.customElements.define('create-post-modal', CreatePostModal, {
+  extends: 'div',
+});
 
-export default PostModal;
+export default CreatePostModal;

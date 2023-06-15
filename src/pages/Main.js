@@ -3,7 +3,8 @@ import '../components/Nav';
 import '../components/Post';
 import '../components/right_side/'
 
-export default class {
+export default class Main {
+  
   constructor() {
     document.title = 'Main';
   }
