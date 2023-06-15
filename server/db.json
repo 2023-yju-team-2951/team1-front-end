@@ -66,14 +66,9 @@
       "name": "hetame1",
       "img": "https://github.com/hetame1.png",
       "storyImg": [
-        "rgb(255, 255, 255)",
         "rgb(0, 0, 0)"
       ],
       "storyText": [
-        {
-          "text": "sdfsdfsdf",
-          "color": ""
-        },
         {
           "text": "ㄹㅇㄹㄴㅇㄹㄴㅇ",
           "color": "rgb(255, 255, 255)"
@@ -85,11 +80,11 @@
       "name": "HyunjinHa",
       "img": "https://github.com/HyunjinHa.png",
       "storyImg": [
-        "rgb(155, 246, 255)"
+        "center center no-repeat rgb(155, 246, 255)"
       ],
       "storyText": [
         {
-          "text": "sdfsdfㅁㄴㄹ\nㅁㄴㄹasfasfasf",
+          "text": "sdfsdfㅁㄴㄹ\nㅁㄴㄹasfasfasfㄴㅁㄹ",
           "color": ""
         }
       ]
@@ -103,7 +98,7 @@
       ],
       "storyText": [
         {
-          "text": "sdfsdfㅁㄴㄹㅁㄴㄹㅁㄴㄹㅁㄴㄹㄻㄴㅁㄴㄹ",
+          "text": "가나다라마바사\n아자차카타하\n가나달\n가나다라\n가나다라\n가나다라",
           "color": ""
         }
       ]
@@ -113,11 +108,11 @@
       "name": "Lsy04178",
       "img": "https://github.com/Lsy04178.png",
       "storyImg": [
-        "center center no-repeat rgb(255, 214, 165)"
+        "center center no-repeat rgb(202, 255, 191)"
       ],
       "storyText": [
         {
-          "text": "ㅔㅑㅔㅑ0ㅓㅔㄴㅁㄻㅁㄴㄹㅁㄴㄹㅁㄴㄹ",
+          "text": "ㅔㅑㅔㅑ0ㅓㅔㄴㅁㄻㅁㄴㄹㅁㄴㄹㅁㄴㄹㅁㄴㄹ",
           "color": ""
         }
       ]

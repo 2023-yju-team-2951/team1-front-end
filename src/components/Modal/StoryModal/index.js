@@ -9,13 +9,13 @@ class StoryModal extends HTMLDivElement {
     this.defaultColor = defaultColor;
     this.defaultText = defaultText;
     this.defaultTextColor = defaultTextColor;
-    console.log(defaultColor);
 
     if (mode === 'main') {
       id = 'storyModal';
     } else if (mode === 'edit') {
       id = `editStoryModal`;
     }
+
     this.id = id;
     this.mode = mode;
     this.check = false;
@@ -80,12 +80,14 @@ class StoryModal extends HTMLDivElement {
     if( this.defaultColor != "#ffffff" || this.defaultText != "" || this.defaultTextColor != "#000000") {
       this.check = true;
       const colors = this.querySelectorAll('.colors');
+      const rgbString = this.defaultColor.match(/rgb\(.*?\)/);
       colors.forEach((color) => {
         color.classList.remove('selected');
         if (/^http.*/.test(this.defaultColor)) {
           this.pick = this.defaultColor;
         } 
-        else if (color.style.backgroundColor === this.defaultColor) {
+        else if (color.style.backgroundColor === rgbString[0]) {
+          
           color.classList.add('selected');
         }
       })
@@ -162,7 +164,7 @@ class StoryModal extends HTMLDivElement {
       });
   
       // 이벤트 발생
-      e.target.dispatchEvent(event);
+      document.dispatchEvent(event);
     });
     
     // 색깔 고를때 효과 + 고른 색 selected 클래스 추가 + 고른색으로 배경 변경
@@ -204,11 +206,10 @@ class StoryModal extends HTMLDivElement {
       this.querySelector('.text-write').focus();
     });
 
-    // 인풋창 높이 계속 변경해주기기
     const textInput = this.querySelector('.text-write');
     textInput.addEventListener('input', function () {
       this.style.display = 'block';
-      this.style.height = (this.scrollHeight) + 'px';
+      this.style.height = (textInput.scrollHeight) + 'px';
     });
   }
 
