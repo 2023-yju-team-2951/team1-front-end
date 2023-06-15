@@ -4,13 +4,15 @@
       "id": 1,
       "name": "d556f8",
       "email": "",
-      "password": "1234"
+      "password": "1234",
+      "userToken": "uxGs6ihrNBnV6iLx6WGY"
     },
     {
       "id": 7,
       "nickname": "knowteach8946",
       "name": "김지훈",
-      "img": "https://cdn.pixabay.com/photo/2023/05/30/16/50/milk-8029140_1280.png"
+      "img": "https://cdn.pixabay.com/photo/2023/05/30/16/50/milk-8029140_1280.png",
+      "userToken": ""
     }
   ],
   "profiles": [
@@ -66,9 +68,7 @@
       "id": 3,
       "name": "hetame1",
       "img": "https://github.com/hetame1.png",
-      "storyImg": [
-        "rgb(255, 255, 255)"
-      ],
+      "storyImg": ["rgb(255, 255, 255)"],
       "storyText": [
         {
           "text": "sdfsdfsdf",
@@ -80,9 +80,7 @@
       "id": 4,
       "name": "HyunjinHa",
       "img": "https://github.com/HyunjinHa.png",
-      "storyImg": [
-        "center center no-repeat rgb(155, 246, 255)"
-      ],
+      "storyImg": ["center center no-repeat rgb(155, 246, 255)"],
       "storyText": [
         {
           "text": "sdfsdfㅁㄴㄹ\nㅁㄴㄹasfasfasfㄴㅁㄹ",
@@ -94,9 +92,7 @@
       "id": 5,
       "name": "Jaeil-Lee",
       "img": "https://github.com/Jaeil-Lee.png",
-      "storyImg": [
-        "center center no-repeat rgb(255, 173, 173)"
-      ],
+      "storyImg": ["center center no-repeat rgb(255, 173, 173)"],
       "storyText": [
         {
           "text": "가나다라마바사\n아자차카타하\n가나달\n가나다라\n가나다라\n가나다라ㅁㄴㄻ",
@@ -108,9 +104,7 @@
       "id": 6,
       "name": "Lsy04178",
       "img": "https://github.com/Lsy04178.png",
-      "storyImg": [
-        "center center / cover no-repeat rgb(189, 178, 255)"
-      ],
+      "storyImg": ["center center / cover no-repeat rgb(189, 178, 255)"],
       "storyText": [
         {
           "text": "ㅔㅑㅔㅑ0ㅓㅔㄴㅁㄻㅁㄴㄹsaf",
@@ -122,22 +116,9 @@
   "posts": [
     {
       "name": "juhyeonni123",
-      "post_content": "ㅁㄴㅇㄻㄴㅇㄹ",
-      "post_top_img": "https://cdn.pixabay.com/photo/2023/04/15/17/19/cat-7928232_1280.png",
-      "post_main_img": [
-        "https://thumbsnap.com/i/R9RZateo.png"
-      ],
-      "statements": [],
-      "likes": 11,
-      "id": 7
-    },
-    {
-      "name": "juhyeonni123",
       "post_content": "2",
       "post_top_img": "https://cdn.pixabay.com/photo/2023/04/15/17/19/cat-7928232_1280.png",
-      "post_main_img": [
-        "https://thumbsnap.com/i/f4pKJDDM.png"
-      ],
+      "post_main_img": ["https://thumbsnap.com/i/f4pKJDDM.png"],
       "statements": [],
       "likes": 0,
       "id": 9

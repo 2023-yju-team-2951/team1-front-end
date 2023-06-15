@@ -5,11 +5,10 @@ import './Nav.css';
 import { exchangeModal } from '../utils/exchangeModal';
 
 class Nav extends HTMLDivElement {
-  constructor() {
+  constructor(account) {
     super();
 
-    // this.account = { id, username };
-    this.account = { name: 'juhyeonni123' };
+    this.account = account;
 
     this.classList.add('nav-full');
 

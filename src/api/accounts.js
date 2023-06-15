@@ -82,5 +82,5 @@ export async function logon(userToken) {
     throw new Error('Invalid user token');
   }
 
-  return account.id;
+  return account;
 }

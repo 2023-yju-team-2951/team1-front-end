@@ -1,9 +1,9 @@
 import './rightSide.css';
 import '../Story';
-import { getAccountById} from '../../api/accounts';
+import { getAccountById } from '../../api/accounts';
 
 class RightNav extends HTMLElement {
-  constructor() { 
+  constructor() {
     super();
 
     this.testId = 7;
@@ -12,19 +12,19 @@ class RightNav extends HTMLElement {
       {
         name: '후쿠오카 현지학기제',
         img: 'https://cdn.pixabay.com/photo/2018/07/24/07/40/fukuoka-3558614_1280.jpg',
-        info: '후쿠오카 현지학기제에 관한 정보입니다'
+        info: '후쿠오카 현지학기제에 관한 정보입니다',
       },
       {
         name: '후쿠오카 여행소개',
         img: 'https://cdn.pixabay.com/photo/2020/03/30/01/55/japan-4982777_1280.jpg',
-        info: '후쿠오카 여행소개에 관한 정보입니다'
+        info: '후쿠오카 여행소개에 관한 정보입니다',
       },
       {
         name: '후쿠오카 맛집',
         img: 'https://cdn.pixabay.com/photo/2021/10/28/00/29/ramen-6748518_1280.jpg',
-        info: '후쿠오카 맛집에 관한 정보입니다'
-      }
-    ]
+        info: '후쿠오카 맛집에 관한 정보입니다',
+      },
+    ];
 
     this.loadDatas();
   }
@@ -33,8 +33,7 @@ class RightNav extends HTMLElement {
     try {
       this.data = await getAccountById(this.testId);
       this.render();
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error);
     }
   }
@@ -42,10 +41,9 @@ class RightNav extends HTMLElement {
   render() {
     let RightNav = document.createElement('div');
 
-    RightNav
+    RightNav;
 
-    this.innerHTML = 
-    `
+    this.innerHTML = `
     <div class="right-nav-container">
       <div class="right-nav">
 
@@ -74,8 +72,7 @@ class RightNav extends HTMLElement {
 
       </div>
     </div>
-    `
-
+    `;
   }
 }
 
@@ -90,8 +87,7 @@ class NavItem {
     let NavItem = document.createElement('div');
 
     this.data.forEach((item) => {
-      NavItem.innerHTML +=
-        `
+      NavItem.innerHTML += `
         <div class="right-nav-item">
           <div class="right-nav-item-contain">
             <div class="category-info">
@@ -107,12 +103,13 @@ class NavItem {
             </div>
           </div>  
         </div>
-      `
-    })
+      `;
+    });
 
     return NavItem.innerHTML;
-   
   }
 }
 
- window.customElements.define('rightnav-component', RightNav);
+window.customElements.define('rightnav-component', RightNav);
+
+export default RightNav;
