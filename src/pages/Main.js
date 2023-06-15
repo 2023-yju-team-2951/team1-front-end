@@ -1,7 +1,7 @@
 import '../components/Header';
 import '../components/Nav';
 import '../components/Post';
-import '../components/right_side/'
+import '../components/RightSide/'
 
 export default class Main {
   
