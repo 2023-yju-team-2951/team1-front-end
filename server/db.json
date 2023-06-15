@@ -66,17 +66,12 @@
       "name": "hetame1",
       "img": "https://github.com/hetame1.png",
       "storyImg": [
-        "rgb(255, 255, 255)",
-        "rgb(0, 0, 0)"
+        "rgb(255, 255, 255)"
       ],
       "storyText": [
         {
           "text": "sdfsdfsdf",
           "color": ""
-        },
-        {
-          "text": "ㄹㅇㄹㄴㅇㄹㄴㅇ",
-          "color": "rgb(255, 255, 255)"
         }
       ]
     },
@@ -113,11 +108,11 @@
       "name": "Lsy04178",
       "img": "https://github.com/Lsy04178.png",
       "storyImg": [
-        "rgb(202, 255, 191)"
+        "center center / cover no-repeat rgb(189, 178, 255)"
       ],
       "storyText": [
         {
-          "text": "ㅔㅑㅔㅑ0ㅓㅔㄴㅁㄻㅁㄴㄹ",
+          "text": "ㅔㅑㅔㅑ0ㅓㅔㄴㅁㄻㅁㄴㄹsaf",
           "color": ""
         }
       ]
