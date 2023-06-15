@@ -1,6 +1,7 @@
 import { getPost, deletePost } from "../../api/posts.js";
 import "./post.css";
-import Main from "../../pages/Main.js";
+import "./postMoal.js"   /* postModal import  */
+
 // import Modal from './postMoal.js' // 모달 import
 
 /* 🟢  1. POST */
@@ -76,7 +77,8 @@ class Post extends HTMLElement {
   /* 🔴 1.6데이터 삭제하기  */
   async cardDelete(id) {
     await deletePost(id);
-
+    
+    console.log("삭제");
     const container =  document.querySelector('.card-container')
     container.innerHTML = '';
 

@@ -66,14 +66,9 @@
       "name": "hetame1",
       "img": "https://github.com/hetame1.png",
       "storyImg": [
-        "rgb(255, 255, 255)",
         "rgb(0, 0, 0)"
       ],
       "storyText": [
-        {
-          "text": "sdfsdfsdf",
-          "color": ""
-        },
         {
           "text": "ㄹㅇㄹㄴㅇㄹㄴㅇ",
           "color": "rgb(255, 255, 255)"
@@ -85,11 +80,11 @@
       "name": "HyunjinHa",
       "img": "https://github.com/HyunjinHa.png",
       "storyImg": [
-        "rgb(155, 246, 255)"
+        "center center no-repeat rgb(155, 246, 255)"
       ],
       "storyText": [
         {
-          "text": "sdfsdfㅁㄴㄹ\nㅁㄴㄹasfasfasf",
+          "text": "sdfsdfㅁㄴㄹ\nㅁㄴㄹasfasfasfㄴㅁㄹ",
           "color": ""
         }
       ]
@@ -99,11 +94,11 @@
       "name": "Jaeil-Lee",
       "img": "https://github.com/Jaeil-Lee.png",
       "storyImg": [
-        "rgb(202, 255, 191)"
+        "center center no-repeat rgb(255, 173, 173)"
       ],
       "storyText": [
         {
-          "text": "sdfsdf",
+          "text": "가나다라마바사\n아자차카타하\n가나달\n가나다라\n가나다라\n가나다라",
           "color": ""
         }
       ]
@@ -113,11 +108,11 @@
       "name": "Lsy04178",
       "img": "https://github.com/Lsy04178.png",
       "storyImg": [
-        "rgb(202, 255, 191)"
+        "center center no-repeat rgb(202, 255, 191)"
       ],
       "storyText": [
         {
-          "text": "ㅔㅑㅔㅑ0ㅓㅔㄴㅁㄻㅁㄴㄹ",
+          "text": "ㅔㅑㅔㅑ0ㅓㅔㄴㅁㄻㅁㄴㄹㅁㄴㄹㅁㄴㄹㅁㄴㄹ",
           "color": ""
         }
       ]
@@ -125,37 +120,26 @@
   ],
   "posts": [
     {
-      "name": "betty0612",
-      "post_content": "今日もよい一につだったわ",
-      "post_top_img": "https://i.pinimg.com/564x/3f/c2/92/3fc292c3b02c3b54cac682334bdf70a3.jpg",
+      "name": "juhyeonni123",
+      "post_content": "ㅁㄴㅇㄻㄴㅇㄹ",
+      "post_top_img": "",
       "post_main_img": [
-        "https://i.pinimg.com/564x/84/d9/f5/84d9f5db3281acec61dd39e7c8ef3a93.jpg"
+        "https://thumbsnap.com/i/R9RZateo.png"
       ],
       "statements": [],
-      "likes": 0,
-      "id": 4
+      "likes": 11,
+      "id": 7
     },
     {
       "name": "juhyeonni123",
-      "post_content": "엄준식은 살아있다.",
+      "post_content": "2",
       "post_top_img": "",
       "post_main_img": [
-        "https://thumbsnap.com/i/iJwkrk8c.jpg"
+        "https://thumbsnap.com/i/f4pKJDDM.png"
       ],
       "statements": [],
       "likes": 0,
-      "id": 5
-    },
-    {
-      "name": "juhyeonni123",
-      "post_content": "엄준식은 살아있다.",
-      "post_top_img": "",
-      "post_main_img": [
-        "https://thumbsnap.com/i/iJwkrk8c.jpg"
-      ],
-      "statements": [],
-      "likes": 0,
-      "id": 6
+      "id": 9
     }
   ]
 }
