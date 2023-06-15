@@ -4,14 +4,6 @@ const Dotenv = require('dotenv-webpack');
 module.exports = {
   entry: './src/index.js',
 
-  devServer: {
-    host: 'localhost',
-    port: 3000,
-    open: true,
-    historyApiFallback: true,
-    hot: true,
-  },
-
   watchOptions: {
     poll: true,
     ignored: '/node_modules/',
@@ -39,11 +31,7 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
-
     ],
   },
-  plugins: [
-    new Dotenv(),
-  ],
-  
+  plugins: [new Dotenv()],
 };
