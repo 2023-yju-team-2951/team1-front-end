@@ -44,10 +44,6 @@ class Post extends HTMLElement {
     this.innerContainer.appendChild(this.cardContainer); // innerContainer(전체 감싸는)에 CardContainer 내용 넣기
     
     this.appendChild(this.innerContainer);
-    
-   
-
-
 
     /* a. 좋아요 하트 색 변경 */
     this.hearClick();
@@ -60,20 +56,14 @@ class Post extends HTMLElement {
       });
     });
 
-    // 🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢
-    // const postModal = document.querySelectorAll('.show_All')
-    // postModal.forEach((post) => {
-    //   post.addEventListener('click', () => {
-    //     exchangeModal(new PostModal());
-    //   })
-    // })
-    const postModal = document.querySelector('.show_All')
-   
-    postModal.addEventListener('click', () => {
-        exchangeModal(new PostModal());
+    const postModal = document.querySelectorAll('.show_All')
+    postModal.forEach((post) => {
+      post.addEventListener('click', () => {
+        const modalId = post.dataset.id;
+        const modalData = this.data.find((data) => data.id === Number(modalId));
+        exchangeModal(new PostModal(modalData));
       })
-
-
+    });
 
 
     /* c. 사용자가 작성한 글 더보기 (토굴) */
@@ -189,9 +179,6 @@ class CardContainer {
       const comment = new Comment(card);
       footer.innerHTML += comment.render(); /* 🟡 */
       
-      /* 🟢🟢🟢🟢🟢🟢🟢 모달 새로 추가 */
-      // const modal = new Modal(card);
-      // footer.innerHTML += modal.render();
       
       /* 생성된  클래스들(Top, MainPost, UserWrite, Comment) cardContainer에 전달*/
       cardContainer.appendChild(cardHTML);
@@ -315,21 +302,9 @@ class UserWrite {
           댓글 모두 보기
       </button>
     `;
-    // this.commentMoreBtn = userWriteHTML.querySelector('.sho_All')
-    // console.log(this.commentMoreBtn)
-    // this.commentMoreBtn.addEventListener('click', () => {
-    //   exchangeModal(new PostModal())
-    // })
-    //  this.commentMoreBtn = userWriteHTML.querySelectorAll('.show_All')
-    // this.commentMoreBtn.forEach((e,i)=>{
 
-    //   e.addEventListener('click', () => {
-    //     console.log("눌렀다");
-    //     exchangeModal(new PostModal(this.data).render());
-    //   })
-    // })
-
-
+    const showAll = userWriteHTML.querySelector(".show_All");
+    showAll.setAttribute("data-id", this.data.id);
 
 
     return userWriteHTML.innerHTML;
@@ -461,103 +436,5 @@ class CarouselImg {
   }
 }
 
-// /* 🟢  8. MODAL */
-// class Modal  {
-  
-//   constructor(datas) {
-//     this.data = datas;
-//   }
-  
-//   render(){
-
-//     let modalHTML = document.querySelectorAll('.btn btn-primary button-custom show_All')
-
-//     modalHTML.innerHTML += `
-    
-//     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-//       <div class=" modal-dialog modal-dialog-centered  ">
-//         <div class="modal-content modal-control ">
-          
-
-//           <div class="modal-body">
-//               <div class="modal-left">
-//                 qwd
-//               </div>
-            
-//               <div class="modal-right">
-
-//                 <div class="right-top">
-//                   <div class="right-top-container">
-            
-//                     <div class="right-top-userimage">
-//                       <img class="top-img" src="/img/box.png" alt="no_picture"> 
-//                     </div>
-              
-//                     <div class="top-item-account">
-//                       <span class="name">ichiban1001</span>
-//                     </div>
-                    
-//                   </div>
-//                 </div>
-
-            
-//                 <div class="modal-middle">
-                
-//                   <div class="visitor-post">
-//                       <div class="visitor-imgBox">
-//                         <img class="visitor-img" src="/img/ketty1.png" alt="no_picture"> 
-//                       </div>
-//                       <div class="comment">
-//                         <span class="visitor-id">betty0624</span> 
-//                         <span class="visitor-comment">
-//                           div 태그에 width를 직접 정해주면 텍스트가 자동으로 줄 바꿈을 하지 못하고 div 범위를 벗어나는 경우가 있습니다. 
-//                           div 태그에 width를 직접 정해주면 텍스트가 자동으로 줄 바꿈을 하지 못하고 div 범위를 벗어나는 경우가 있습니다. 
-//                           div 태그에 width를 직접 정해주면 텍스트가 자동으로 줄 바꿈을 하지 못하고 div 범위를 벗어나는 경우가 있습니다. 
-//                           div 태그에 width를 직접 정해주면 텍스트가 자동으로 줄 바꿈을 하지 못하고 div 범위를 벗어나는 경우가 있습니다. 
-//                           div 태그에 width를 직접 정해주면 텍스트가 자동으로 줄 바꿈을 하지 못하고 div 범위를 벗어나는 경우가 있습니다. 
-//                         </span> 
-//                       </div>
-//                   </div>
-//                   <div class="visitor-post">
-//                       <div class="visitor-imgBox">
-//                         <img class="visitor-img" src="/img/ketty1.png" alt="no_picture"> 
-//                       </div>
-//                       <div class="comment">
-//                         <span class="visitor-id">betty0624</span> 
-//                         <span class="visitor-comment">
-//                           div 태그에 width를 직접 정해주면 텍스트가 자동으로 줄 바꿈을 하지 못하고 div 범위를 벗어나는 경우가 있습니다. 
-//                           div 태그에 width를 직접 정해주면 텍스트가 자동으로 줄 바꿈을 하지 못하고 div 범위를 벗어나는 경우가 있습니다. 
-//                           div 태그에 width를 직접 정해주면 텍스트가 자동으로 줄 바꿈을 하지 못하고 div 범위를 벗어나는 경우가 있습니다. 
-//                           div 태그에 width를 직접 정해주면 텍스트가 자동으로 줄 바꿈을 하지 못하고 div 범위를 벗어나는 경우가 있습니다. 
-//                           div 태그에 width를 직접 정해주면 텍스트가 자동으로 줄 바꿈을 하지 못하고 div 범위를 벗어나는 경우가 있습니다. 
-//                         </span> 
-//                       </div>
-//                   </div>
-//                 </div>
-            
-//                 <div class="heart">
-//                   <img class="hearimg" src="./img/heart2.png" alt="">
-//                 </div>
-            
-//                 <div class="modal-comment">
-//                   <div class="modal_bottom">
-//                       <textarea  class="modal-comment-input" style="overflow:hidden; resize:none;" placeholder="댓글 달기..."></textarea>
-//                       <div class="posting-push">
-//                         <button class="button-custom ">게시</button>
-//                       </div>
-//                   </div>
-//                 </div>
-        
-//               </div>
-//           </div>
-
-//         </div>
-//       </div>
-//     </div>
-//     `
-//     return modalHTML.innerHTML;
-//   }
-
-// }
 
 window.customElements.define("post-container", Post);

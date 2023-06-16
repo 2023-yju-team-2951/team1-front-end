@@ -19,60 +19,82 @@
   color: rgb(174, 174, 174);
 }
 
+#postModal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center
+}
+
+#postModal .modal-content {
+  width: 1800px;
+  height: 1100px;
+}
+
+#postModal .modal-body {
+  display: flex;
+  padding: 0;
+}
+
 /* 1. LEFT */
 
-.modal .modal-body .modal-left {
-  background: #ffef5c;
+#postModal .modal-body .modal-left {
   width: 55%;
+  height: 100%;
   margin: 0 auto;
   overflow: auto;
+  background-size: cover;
+}
+#postModal .carousel-inner{
+  background-color:black;
 }
 
 /* 2. RIGHT */
 
-.modal .modal-body .modal-right {
+#postModal .modal-body .modal-right {
   /* background: #ffae5c; */
   width: 45%;
 }
 
 /* 🟢 TOP - 10% */
-.modal .modal-body .modal-right .right-top {
+#postModal .modal-body .modal-right .right-top {
   width: 100%;
   height: 10%;
   box-sizing: border-box;
   border-bottom: solid 1px rgba(161, 160, 160, 0.486);
 }
-.modal-body .modal-right .right-top-container {
+#postModal .modal-body .modal-right .right-top-container {
   margin-left: 10px;
   height: 100%;
   /* width: 50\; */
   display: flex;
 }
-.modal-body .modal-right .right-top-container .right-top-userimage {
+#postModal .modal-body .modal-right .right-top-container .right-top-userimage {
   width: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: -15px;
 }
-.modal-body .modal-right .right-top-container .right-top-userimage .top-img {
+#postModal .modal-body .modal-right .right-top-container .right-top-userimage .top-img {
   height: 50px;
   width: 50px;
   border-radius: 50%;
 }
-.modal-body .modal-right .right-top-container .top-item-account {
+#postModal .modal-body .modal-right .right-top-container .top-item-account {
   width: 25%;
   text-align: center;
   margin: auto 0;
   padding-left: 30px;
 }
-.modal-body .modal-right .right-top-container .top-item-account .name {
+#postModal .modal-body .modal-right .right-top-container .top-item-account .name {
   font-size: 25px;
   font-weight: 900;
 }
 
 /* 🟢  2. MIDDLE 75% */
 
-.modal-right .modal-middle {
+#postModal .modal-right .modal-middle {
   width: 100%;
   height: 75%;
   overflow: auto;
@@ -86,7 +108,7 @@
 }
 
 /* 방문자 글 한줄 */
-.modal-right .modal-middle .visitor-post {
+#postModal .modal-right .modal-middle .visitor-post {
   height: auto;
   width: 100%;
   /* background: blueviolet; */
@@ -96,18 +118,18 @@
   margin-bottom: 15px;
 }
 
-.modal-right .modal-middle .visitor-post .visitor-imgBox {
+#postModal .modal-right .modal-middle .visitor-post .visitor-imgBox {
   width: 100px;
 }
 
-.modal-right .modal-middle .visitor-post .visitor-imgBox .visitor-img {
+#postModal .modal-right .modal-middle .visitor-post .visitor-imgBox .visitor-img {
   height: 50px;
   width: 50px;
   border-radius: 50%;
   margin: 0 10px 0;
 }
 
-.modal-right .modal-middle .visitor-post .comment {
+#postModal .modal-right .modal-middle .visitor-post .comment {
   /* width: 100%; */
   height: auto;
   /* background: rgb(246, 212, 107); */
@@ -117,25 +139,28 @@
   float: left;
   line-height: 1.2;
 }
-.modal-right .modal-middle .visitor-post .comment .visitor-id {
+#postModal .modal-right .modal-middle .visitor-post .comment .visitor-id {
   font-size: 30px;
   font-weight: 900;
 }
 
 /* 🟢 하트 좋아요 5% */
 
-.modal-right .heart {
-  /* border-top: solid 1px rgba(161, 160, 160, 0.486); */
+#postModal .modal-right .heart {
   height: 5%;
   display: flex;
   align-items: center;
+  border-bottom: solid 1px rgba(161, 160, 160, 0.486);
+  margin-bottom:10px ;
 }
-.modal-right .heart .hearimg {
+#postModal .modal-right .heart .heartimg {
   width: 30px;
   height: 30px;
   margin-left: 10px;
+  margin-right: 15px;
+
 }
-.modal-body .modal-right .heart .user-count {
+#postModal .modal-body .modal-right .heart .user-count {
   margin-left: 10px;
   display: flex;
   align-items: center;
@@ -143,7 +168,7 @@
 }
 
 /*  🟢 BOTTOM  5% */
-.modal-right .modal-comment {
+#postModal .modal-right .modal-comment {
   /* background: #fb3480; */
   width: 100%;
   height: 8%;
@@ -151,19 +176,17 @@
   align-items: center;
   /* position: relative; */
 }
-.modal-right .modal-comment .modal_bottom {
-  border-top: solid 1px rgba(161, 160, 160, 0.486);
-  /* position: absolute;
-  bottom: 1px; */
+#postModal .modal-right .modal-comment .modal_bottom {
+  
   width: 100%;
   display: flex;
-  /* padding-top: 10px; */
+  
   box-sizing: border-box;
 }
-.modal-right .modal-comment .modal-comment-input {
+#postModal .modal-right .modal-comment .modal-comment-input {
   width: 85%;
   height: 90px;
-  font-size: 18px;
+  font-size: 25px;
   margin-right: 10px;
   border: none;
   outline: none;
@@ -171,7 +194,7 @@
   overflow: auto;
   word-wrap: break-word;
 }
-.modal-right .modal-comment .posting-push {
+#postModal .modal-right .modal-comment .posting-push {
   width: 12%;
   text-align: center;
   line-height: 100px;
@@ -181,7 +204,7 @@
   display: flex;
   align-items: center;
 }
-.button-custom.show_All {
+#postModal .button-custom.show_All {
   font-size: 14px;
   color: rgb(115, 115, 115);
   /* position: relative; */

@@ -123,24 +123,24 @@
     {
       "name": "juhyeonni123",
       "post_content": "ㅁㄴㅇㄻㄴㅇㄹ",
-      "post_top_img": "",
+      "post_top_img": "https://cdn.pixabay.com/photo/2023/04/15/17/19/cat-7928232_1280.png",
       "post_main_img": [
         "https://thumbsnap.com/i/R9RZateo.png"
       ],
       "statements": [],
-      "likes": 11,
-      "id": 7
+      "likes": 145,
+      "id": 1
     },
     {
       "name": "juhyeonni123",
       "post_content": "2",
-      "post_top_img": "",
+      "post_top_img": "https://cdn.pixabay.com/photo/2023/04/15/17/19/cat-7928232_1280.png",
       "post_main_img": [
         "https://thumbsnap.com/i/f4pKJDDM.png"
       ],
       "statements": [],
-      "likes": 0,
-      "id": 9
+      "likes": 44,
+      "id": 2
     },
     {
       "name": "juhyeonni123",
@@ -150,8 +150,19 @@
         "https://thumbsnap.com/i/CWBX5msF.png"
       ],
       "statements": [],
-      "likes": 0,
-      "id": 10
+      "likes": 10,
+      "id": 3
+    },
+    {
+      "name": "lji1001",
+      "post_content": "소뱅 얼마 안남았어, 조금만 기다려",
+      "post_top_img": "",
+      "post_main_img": [
+        "https://thumbsnap.com/i/tp4C8TtU.jpg"
+      ],
+      "statements": [],
+      "likes": 8,
+      "id": 4
     }
   ]
 }
