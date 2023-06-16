@@ -7,8 +7,10 @@ import { exchangeModal } from '../utils/exchangeModal.js';
 
 /* 🟢  1. POST */
 class Post extends HTMLElement {
-  constructor() {
+  constructor(account) {
     super();
+
+    this.account = account;
 
     /* 1.1   <div class="inner-container"> </div>   */
     this.innerContainer = document.createElement('div');
