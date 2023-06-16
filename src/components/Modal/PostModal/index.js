@@ -27,9 +27,6 @@ class PostModal extends HTMLDivElement {
   /* 2. 렌더링 */
   render(){
     
-    // const carouselImg = new CarouselImg(this.data);
-    // modalHTML.innerHTML += carouselImg.render();
-
     
     this.innerHTML += `
       
@@ -42,6 +39,7 @@ class PostModal extends HTMLDivElement {
               </div>
               
               <div class="modal-right">
+
                 <div class="right-top">
                   <div class="right-top-container">
                     <div class="right-top-userimage">
@@ -52,10 +50,8 @@ class PostModal extends HTMLDivElement {
                     </div>
                   </div>
                 </div>
-
-             
+              
                 <div class="modal-middle">
-               
                   <div class="visitor-post">
                       <div class="visitor-imgBox">
                         <img class="visitor-img" src="${this.data.post_top_img}" alt="no_picture"> 
@@ -67,13 +63,12 @@ class PostModal extends HTMLDivElement {
                         </span> 
                       </div>
                   </div>                
-                  
                 </div>
-                
+                  
                 <div class="heart">
                   <img class="hearimg" src="${this.data.post_top_img}" alt="">
                 </div>
-               
+                
                 <div class="modal-comment">
                   <div class="modal_bottom">
                       <textarea  class="modal-comment-input" style="overflow:hidden; resize:none;" placeholder="댓글 달기..."></textarea>
@@ -82,14 +77,18 @@ class PostModal extends HTMLDivElement {
                       </div>
                   </div>
                 </div>
-        
+
               </div>
-          </div>
+            </div>
           </div>
           
         </div>
     `;
+    
+    const heart = this.querySelector('.heart');
+    console.log(heart);
   }
+
 }
 
 
