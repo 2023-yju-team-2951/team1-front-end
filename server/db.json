@@ -116,12 +116,43 @@
   "posts": [
     {
       "name": "juhyeonni123",
+      "post_content": "ㅁㄴㅇㄻㄴㅇㄹ",
+      "post_top_img": "https://cdn.pixabay.com/photo/2023/04/15/17/19/cat-7928232_1280.png",
+      "post_main_img": ["https://thumbsnap.com/i/R9RZateo.png"],
+      "statements": [],
+      "likes": 11,
+      "id": 7,
+      "category": 1
+    },
+    {
+      "name": "juhyeonni123",
       "post_content": "2",
       "post_top_img": "https://cdn.pixabay.com/photo/2023/04/15/17/19/cat-7928232_1280.png",
       "post_main_img": ["https://thumbsnap.com/i/f4pKJDDM.png"],
       "statements": [],
       "likes": 0,
-      "id": 9
+      "id": 9,
+      "category": 2
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "후쿠오카 현지학기제",
+      "img": "https://cdn.pixabay.com/photo/2018/07/24/07/40/fukuoka-3558614_1280.jpg",
+      "info": "후쿠오카 현지학기제에 관한 정보입니다"
+    },
+    {
+      "id": 2,
+      "name": "후쿠오카 여행소개",
+      "img": "https://cdn.pixabay.com/photo/2020/03/30/01/55/japan-4982777_1280.jpg",
+      "info": "후쿠오카 여행소개에 관한 정보입니다"
+    },
+    {
+      "id": 3,
+      "name": "후쿠오카 맛집",
+      "img": "https://cdn.pixabay.com/photo/2021/10/28/00/29/ramen-6748518_1280.jpg",
+      "info": "후쿠오카 맛집에 관한 정보입니다"
     }
   ]
 }

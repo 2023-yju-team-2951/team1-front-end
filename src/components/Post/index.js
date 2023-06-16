@@ -7,7 +7,7 @@ import { exchangeModal } from '../utils/exchangeModal.js';
 
 /* 🟢  1. POST */
 class Post extends HTMLElement {
-  constructor(account) {
+  constructor(account, categoryId = null) {
     super();
 
     this.account = account;
@@ -20,16 +20,26 @@ class Post extends HTMLElement {
     this.cardContainer = document.createElement('div');
     this.cardContainer.className = 'card-container';
 
+    this.categoryId = categoryId;
     /* 🚩 1.3 */
-    this.loadDatas();
+    if (categoryId) {
+      this.loadDatas(categoryId);
+    } else {
+      this.loadDatas();
+    }
   }
 
   /* 🚩1.3 fetch - 서버에서 데이터 가져 오기  */
-  async loadDatas() {
+  async loadDatas(id = null) {
     try {
-      this.data = await getPost(); // 서버에서 객체화된 데이터 불러서 반환
-      console.log(this.data); // 확인용
-      this.render();
+      if (id) {
+        this.data = await getPost();
+        this.data = this.data.filter((post) => post.category === Number(id));
+        this.render();
+      } else {
+        this.data = await getPost(); // 서버에서 객체화된 데이터 불러서 반환
+        this.render();
+      }
     } catch (error) {
       console.log(error);
     }
@@ -68,8 +78,6 @@ class Post extends HTMLElement {
 
     /* c. 사용자가 작성한 글 더보기 (토굴) */
     this.moreViewPosts();
-
-    this.moreViewComments();
   }
   /* fetch 사용 */
   /* 🟡 1.5 데이터 수정하기  */
