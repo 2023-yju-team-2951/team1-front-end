@@ -45,11 +45,8 @@ class Post extends HTMLElement {
     
     this.appendChild(this.innerContainer);
     
-    /* 🟡🟡🟡🟡🟡🟡 FIXME:  */
-    console.log(this.data[0]);
-    // const ab = new PostModal(this.data[0]).render();
-    console.log(ab);
-    this.cardContainer.appendChild(ab); /* 모달 */
+   
+
 
 
     /* a. 좋아요 하트 색 변경 */
@@ -63,12 +60,21 @@ class Post extends HTMLElement {
       });
     });
 
-    const postModal = document.querySelectorAll('.show_All')
-    postModal.forEach((post) => {
-      post.addEventListener('click', () => {
+    // 🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢
+    // const postModal = document.querySelectorAll('.show_All')
+    // postModal.forEach((post) => {
+    //   post.addEventListener('click', () => {
+    //     exchangeModal(new PostModal());
+    //   })
+    // })
+    const postModal = document.querySelector('.show_All')
+   
+    postModal.addEventListener('click', () => {
         exchangeModal(new PostModal());
       })
-    })
+
+
+
 
     /* c. 사용자가 작성한 글 더보기 (토굴) */
     this.moreViewPosts();
