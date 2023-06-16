@@ -1,4 +1,4 @@
-import './rightSide.css';
+import './RightNav.css';
 import '../Story';
 import { getAccountById } from '../../api/accounts';
 import Post from '../Post';
