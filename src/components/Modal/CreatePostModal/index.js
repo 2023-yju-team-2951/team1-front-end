@@ -3,6 +3,9 @@ import './CreatePostModal.css';
 import { uploadImg } from '../../../api/thumbsnap';
 import { createPost } from '../../../api/posts';
 
+import Post from '../../Post';
+import { exchangeComponent } from '../../utils/exchangeComponent';
+
 // TODO: 현재 접속한 유저 정보를 받아온다.
 class CreatePostModal extends HTMLDivElement {
   constructor(account) {
@@ -67,7 +70,11 @@ class CreatePostModal extends HTMLDivElement {
 
     // for event
     this.shareBtn = this.querySelector('.btn-share');
-    this.shareBtn.addEventListener('click', () => this.share());
+    this.shareBtn.addEventListener('click', async () => {
+      await this.share();
+      const postComponent = document.querySelector('post-container');
+      exchangeComponent(postComponent, new Post());
+    });
 
     this.previewImg = this.querySelector('.upload-img-label > img');
     this.uploadImg.addEventListener('change', () => this.renderImg());
@@ -114,7 +121,7 @@ class CreatePostModal extends HTMLDivElement {
       likes: 0,
     };
 
-    createPost(post);
+    await createPost(post);
   }
 }
 
