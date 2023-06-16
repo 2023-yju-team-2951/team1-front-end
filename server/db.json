@@ -129,7 +129,8 @@
       ],
       "statements": [],
       "likes": 11,
-      "id": 7
+      "id": 7,
+      "category": 1
     },
     {
       "name": "juhyeonni123",
@@ -140,7 +141,28 @@
       ],
       "statements": [],
       "likes": 0,
-      "id": 9
+      "id": 9,
+      "category": 2
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "후쿠오카 현지학기제",
+      "img": "https://cdn.pixabay.com/photo/2018/07/24/07/40/fukuoka-3558614_1280.jpg",
+      "info": "후쿠오카 현지학기제에 관한 정보입니다"
+    },
+    {
+      "id": 2,
+      "name": "후쿠오카 여행소개",
+      "img": "https://cdn.pixabay.com/photo/2020/03/30/01/55/japan-4982777_1280.jpg",
+      "info": "후쿠오카 여행소개에 관한 정보입니다"
+    },
+    {
+      "id": 3,
+      "name": "후쿠오카 맛집",
+      "img": "https://cdn.pixabay.com/photo/2021/10/28/00/29/ramen-6748518_1280.jpg",
+      "info": "후쿠오카 맛집에 관한 정보입니다"
     }
   ]
 }

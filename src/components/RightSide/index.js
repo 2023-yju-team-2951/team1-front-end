@@ -1,37 +1,22 @@
 import './rightSide.css';
 import '../Story';
+import Post from '../Post';
 import { getAccountById} from '../../api/accounts';
+import { getCategories } from '../../api/categories';
 
 class RightNav extends HTMLElement {
   constructor() { 
     super();
 
     this.testId = 7;
-
-    this.category = [
-      {
-        name: '후쿠오카 현지학기제',
-        img: 'https://cdn.pixabay.com/photo/2018/07/24/07/40/fukuoka-3558614_1280.jpg',
-        info: '후쿠오카 현지학기제에 관한 정보입니다'
-      },
-      {
-        name: '후쿠오카 여행소개',
-        img: 'https://cdn.pixabay.com/photo/2020/03/30/01/55/japan-4982777_1280.jpg',
-        info: '후쿠오카 여행소개에 관한 정보입니다'
-      },
-      {
-        name: '후쿠오카 맛집',
-        img: 'https://cdn.pixabay.com/photo/2021/10/28/00/29/ramen-6748518_1280.jpg',
-        info: '후쿠오카 맛집에 관한 정보입니다'
-      }
-    ]
-
+    
     this.loadDatas();
   }
 
   async loadDatas() {
     try {
       this.data = await getAccountById(this.testId);
+      this.category = await getCategories();
       this.render();
     }
     catch (error) {
@@ -40,14 +25,11 @@ class RightNav extends HTMLElement {
   }
 
   render() {
-    let RightNav = document.createElement('div');
-
-    RightNav
 
     this.innerHTML = 
     `
     <div class="right-nav-container">
-      <div class="right-nav">
+      <div class="right-nav-box">
 
         <div class="right-nav-header">
           <div class="category-info">
@@ -76,13 +58,21 @@ class RightNav extends HTMLElement {
     </div>
     `
 
+    const rightNavItems = this.querySelectorAll('.right-nav-item');
+    rightNavItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        const id = item.dataset.id;
+        const postContainer = document.querySelector('post-container');
+        postContainer.parentNode.replaceChild(new Post(id), postContainer);
+      })
+    })
   }
 }
 
 class NavItem {
   constructor(data) {
     this.data = data;
-
+    console.log(data);
     this.render();
   }
 
@@ -92,7 +82,7 @@ class NavItem {
     this.data.forEach((item) => {
       NavItem.innerHTML +=
         `
-        <div class="right-nav-item">
+        <div class="right-nav-item" data-id="${item.id}">
           <div class="right-nav-item-contain">
             <div class="category-info">
               <div class="category-info-img-box">

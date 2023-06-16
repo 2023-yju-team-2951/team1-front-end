@@ -51,21 +51,33 @@ img {
 .main {
   display: flex;
   justify-content: space-between;
+  align-self: auto;
+}
+
+.main .main-nav {
+  position: fixed;
+  width: fit-content;
+  height: 100vh;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
 }
 
 .main .main-body-wrapper {
   display: flex;
-  margin: 0 auto;
+  margin-left: auto;
+  width: calc((100%) - 290px);
+}
+
+.main-body-wrapper .right-body {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .main .main-body {
   width: 630px;
-  margin: 0 auto;
-}
-
-.main .main-nav {
-  margin-right: auto;
-  position: fixed;
 }
 
 .main .right-nav {
