@@ -19,7 +19,7 @@ class StoryModal extends HTMLDivElement {
     this.id = id;
     this.mode = mode;
     this.check = false;
-
+     
     this.num = 0;
     this.render();
   }

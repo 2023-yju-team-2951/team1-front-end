@@ -1,96 +1,123 @@
-import { getPost } from '../../../api/posts.js';
 import "./PostModal.css";
 
 class PostModal extends HTMLDivElement {
+
   constructor(data) {
     super();
     this.className = 'modal-dialog';
-
     this.data = data;
 
-    this.id = 'postModal'
+    this.id = 'postModal';
 
+    // 하트 불들어 오게
+    this.imageOfHeart = "https://cdn-icons-png.flaticon.com/512/5814/5814450.png";
+
+    if (this.data.likes > 0) {
+      this.imageOfHeart = "https://cdn-icons-png.flaticon.com/512/2107/2107845.png";
+    }
+      
     this.render();
+    this.hearClick();
   }
+
   
-  /* 🚩 fetch - 서버에서 데이터 가져 오기  */
-  // async loadDatas() {
-  //     try {
-  //       this.data = await getPost(); // 서버에서 객체화된 데이터 불러서 반환
-  //       console.log(this.data); // 확인용
-  //       this.render();
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  // }
 
   /* 2. 렌더링 */
   render(){
-    
-    
     this.innerHTML += `
-      
         <div class="modal-content modal-control">
-            
           <div class="modal-body">
-              
-              <div class="modal-left">
-                ${new CarouselImg(this.data).render()}
-              </div>
-              
-              <div class="modal-right">
-
-                <div class="right-top">
-                  <div class="right-top-container">
-                    <div class="right-top-userimage">
-                      <img class="top-img" src="${this.data.post_top_img}" alt="no_picture"> 
-                    </div>
-                    <div class="top-item-account">
-                      <span class="name">${this.data.name}</span>
-                    </div>
+            <div class="modal-left">
+              ${new CarouselImg(this.data).render()}
+            </div>
+            
+            <div class="modal-right">
+              <div class="right-top">
+                <div class="right-top-container">
+                  <div class="right-top-userimage">
+                    <img class="top-img" src=${this.data.post_top_img} alt="no_picture"> 
                   </div>
-                </div>
-              
-                <div class="modal-middle">
-                  <div class="visitor-post">
-                      <div class="visitor-imgBox">
-                        <img class="visitor-img" src="${this.data.post_top_img}" alt="no_picture"> 
-                      </div>
-                      <div class="comment">
-                        <span class="visitor-id">${this.data.name}</span> 
-                        <span class="visitor-comment">
-                          ${this.data.post_content}
-                        </span> 
-                      </div>
-                  </div>                
-                </div>
-                  
-                <div class="heart">
-                  <img class="hearimg" src="${this.data.post_top_img}" alt="">
-                </div>
-                
-                <div class="modal-comment">
-                  <div class="modal_bottom">
-                      <textarea  class="modal-comment-input" style="overflow:hidden; resize:none;" placeholder="댓글 달기..."></textarea>
-                      <div class="posting-push">
-                        <button class="button-custom ">게시</button>
-                      </div>
+                  <div class="top-item-account">
+                    <span class="name">${this.data.name}</span>
                   </div>
-                </div>
-
               </div>
             </div>
+
+            <div class="modal-middle">
+              <div class="visitor-post">
+                <div class="visitor-imgBox">
+                  <img class="visitor-img" src=${this.data.post_top_img} alt="no_picture"> 
+                </div>
+                <div class="comment">
+                  <span class="visitor-id">${this.data.name}</span> 
+                  <span class="visitor-comment">
+                    ${this.data.post_content}
+                  </span> 
+                </div>
+              </div>
+            </div>
+                
+                
+            <div class="heart">
+              <img class="heartimg" src=${this.imageOfHeart}>
+              <strong class="count-like">${this.data.likes}</strong>
+              <div class="user-like">명이 좋아합니다</div>
+            </div>
+            
+            <div class="modal-comment">
+              <div class="modal_bottom">
+                  <textarea  class="modal-comment-input" style="overflow:hidden; resize:none;" placeholder="댓글 달기..."></textarea>
+                  <div class="posting-push">
+                    <button class="button-custom ">게시</button>
+                  </div>
+              </div>
+            </div>
+
           </div>
-          
         </div>
     `;
+
     
-    const heart = this.querySelector('.heart');
-    console.log(heart);
+  }
+  async pushPatch(post) {
+    try {
+      const res = await fetch(`http://localhost:7000/posts/${post.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ likes: post.likes + 1 }),
+      });
+      const data = await res.json();
+        return data;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-}
+  /* 1.7.a. 좋아요 하트 색 변경  + 숫자 변경*/
+  hearClick() {
+  /*this 현재 노드 */
+    const heartImg = this.querySelector(".heartimg");
+    const countLikes = this.querySelector(".count-like"); 
 
+    heartImg.addEventListener('click',()=>{
+      this.data.likes++;
+      console.log('클릭함');
+      console.log( this.data.likes);
+
+        if (this.data.likes > 0) {
+          heartImg.src =
+            "https://cdn-icons-png.flaticon.com/512/2107/2107845.png";
+        }
+        this.pushPatch(this.data);
+        countLikes.textContent = this.data.likes;
+      })
+
+
+
+
+  } /* /hearClick */
+
+}
 
 /* 🟢  7. CarouselImg */
 class CarouselImg {

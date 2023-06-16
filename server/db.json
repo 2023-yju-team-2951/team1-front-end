@@ -111,12 +111,12 @@
       "name": "Lsy04178",
       "img": "https://github.com/Lsy04178.png",
       "storyImg": [
-        "center center / cover no-repeat rgb(189, 178, 255)"
+        "center center no-repeat rgb(155, 246, 255)"
       ],
       "storyText": [
         {
-          "text": "ㅔㅑㅔㅑ0ㅓㅔㄴㅁㄻㅁㄴㄹsaf",
-          "color": ""
+          "text": "귀요미",
+          "color": "rgb(255, 255, 255)"
         }
       ]
     }

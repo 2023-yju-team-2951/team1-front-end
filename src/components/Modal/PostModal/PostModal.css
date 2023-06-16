@@ -27,20 +27,26 @@
 }
 
 #postModal .modal-content {
-  width: 1080px;
+  width: 1800px;
+  height: 1100px;
 }
 
 #postModal .modal-body {
   display: flex;
+  padding: 0;
 }
 
 /* 1. LEFT */
 
 #postModal .modal-body .modal-left {
   width: 55%;
-  height: 1000px;
+  height: 100%;
   margin: 0 auto;
   overflow: auto;
+  background-size: cover;
+}
+#postModal .carousel-inner{
+  background-color:black;
 }
 
 /* 2. RIGHT */
@@ -68,6 +74,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: -15px;
 }
 #postModal .modal-body .modal-right .right-top-container .right-top-userimage .top-img {
   height: 50px;
@@ -140,15 +147,18 @@
 /* 🟢 하트 좋아요 5% */
 
 #postModal .modal-right .heart {
-  /* border-top: solid 1px rgba(161, 160, 160, 0.486); */
   height: 5%;
   display: flex;
   align-items: center;
+  border-bottom: solid 1px rgba(161, 160, 160, 0.486);
+  margin-bottom:10px ;
 }
-#postModal .modal-right .heart .hearimg {
+#postModal .modal-right .heart .heartimg {
   width: 30px;
   height: 30px;
   margin-left: 10px;
+  margin-right: 15px;
+
 }
 #postModal .modal-body .modal-right .heart .user-count {
   margin-left: 10px;
@@ -167,18 +177,16 @@
   /* position: relative; */
 }
 #postModal .modal-right .modal-comment .modal_bottom {
-  border-top: solid 1px rgba(161, 160, 160, 0.486);
-  /* position: absolute;
-  bottom: 1px; */
+  
   width: 100%;
   display: flex;
-  /* padding-top: 10px; */
+  
   box-sizing: border-box;
 }
 #postModal .modal-right .modal-comment .modal-comment-input {
   width: 85%;
   height: 90px;
-  font-size: 18px;
+  font-size: 25px;
   margin-right: 10px;
   border: none;
   outline: none;
