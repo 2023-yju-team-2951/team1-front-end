@@ -1,12 +1,16 @@
 import { getPost, deletePost } from '../../api/posts.js';
 import './post.css';
-import Main from '../../pages/Main.js';
+import PostModal from '../Modal/PostModal'; /* postModal import  */
+import { exchangeModal } from '../utils/exchangeModal.js';
+
 // import Modal from './postMoal.js' // 모달 import
 
 /* 🟢  1. POST */
 class Post extends HTMLElement {
-  constructor() {
+  constructor(account, categoryId = null) {
     super();
+
+    this.account = account;
 
     /* 1.1   <div class="inner-container"> </div>   */
     this.innerContainer = document.createElement('div');
@@ -16,16 +20,26 @@ class Post extends HTMLElement {
     this.cardContainer = document.createElement('div');
     this.cardContainer.className = 'card-container';
 
+    this.categoryId = categoryId;
     /* 🚩 1.3 */
-    this.loadDatas();
+    if (categoryId) {
+      this.loadDatas(categoryId);
+    } else {
+      this.loadDatas();
+    }
   }
 
   /* 🚩1.3 fetch - 서버에서 데이터 가져 오기  */
-  async loadDatas() {
+  async loadDatas(id = null) {
     try {
-      this.data = await getPost(); // 서버에서 객체화된 데이터 불러서 반환
-      console.log(this.data); // 확인용
-      this.render();
+      if (id) {
+        this.data = await getPost();
+        this.data = this.data.filter((post) => post.category === Number(id));
+        this.render();
+      } else {
+        this.data = await getPost(); // 서버에서 객체화된 데이터 불러서 반환
+        this.render();
+      }
     } catch (error) {
       console.log(error);
     }
@@ -35,6 +49,7 @@ class Post extends HTMLElement {
   render() {
     /* 1.4.1  2.CardContainer를 불러와서 서버에서 받아온 데이터 넣고 CardContainer를 렌더*/
     //   위에서 서버로 받은 data를 CardContainer로 전달
+
     this.cardContainer.innerHTML += new CardContainer(this.data).render(); // ❓바로 CardContainer 생성자에서 render() 하면 안되나?  => return 값이 이상하게 나온단다
 
     this.innerContainer.appendChild(this.cardContainer); // innerContainer(전체 감싸는)에 CardContainer 내용 넣기
@@ -52,10 +67,17 @@ class Post extends HTMLElement {
       });
     });
 
+    const postModal = document.querySelectorAll('.show_All');
+    postModal.forEach((post) => {
+      post.addEventListener('click', () => {
+        const modalId = post.dataset.id;
+        const modalData = this.data.find((data) => data.id === Number(modalId));
+        exchangeModal(new PostModal(modalData));
+      });
+    });
+
     /* c. 사용자가 작성한 글 더보기 (토굴) */
     this.moreViewPosts();
-
-    this.moreViewComments();
   }
   /* fetch 사용 */
   /* 🟡 1.5 데이터 수정하기  */
@@ -278,13 +300,13 @@ class UserWrite {
       <div class="user-heart">
         <div class="user-heart-icon">
           <span class="use-heart-wrap">
-           <img id="hear_img" src=${this.heartImg}>
+            <img id="hear_img" src=${this.heartImg}>
           </span>
         </div>
       </div>
       <div class="user-count">
-          <strong class="count-like">${this.data.likes}</strong>
-          <div class="user-like">명이 좋아합니다</div>
+        <strong class="count-like">${this.data.likes}</strong>
+        <div class="user-like">명이 좋아합니다</div>
       </div>
       <div class="user-write">
         <div class="user-tag">
@@ -298,12 +320,13 @@ class UserWrite {
         </div>
       </div>
       
-      <button type="button" class="btn btn-primary button-custom show_All" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <button type="button" class="btn btn-primary button-custom show_All" data-bs-toggle="modal" data-bs-target="#swapModal">
         댓글 모두 보기
       </button>
-
-    
     `;
+
+    const showAll = userWriteHTML.querySelector('.show_All');
+    showAll.setAttribute('data-id', this.data.id);
 
     return userWriteHTML.innerHTML;
   }
@@ -320,12 +343,12 @@ class Comment {
 
     commentHTML.innerHTML += `
     <div class="comment-wrap">
-        <div class="comment">
-          <textarea class="comment-input" aria-label="댓글 달기..." placeholder="댓글 달기..." id="myField"></textarea> 
-        </div>
-        <div class="comment-push">
-            <button class="btn-push">게시</button>
-        </div>
+      <div class="comment">
+        <textarea class="comment-input" aria-label="댓글 달기..." placeholder="댓글 달기..." id="myField"></textarea> 
+      </div>
+      <div class="comment-push">
+          <button class="btn-push">게시</button>
+      </div>
     </div>
     `;
 
@@ -434,101 +457,6 @@ class CarouselImg {
   }
 }
 
-// /* 🟢  8. MODAL */
-// class Modal  {
-
-//   constructor(datas) {
-//     this.data = datas;
-//   }
-
-//   render(){
-
-//     let modalHTML = document.querySelectorAll('.btn btn-primary button-custom show_All')
-
-//     modalHTML.innerHTML += `
-
-//     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-//       <div class=" modal-dialog modal-dialog-centered  ">
-//         <div class="modal-content modal-control ">
-
-//           <div class="modal-body">
-//               <div class="modal-left">
-//                 qwd
-//               </div>
-
-//               <div class="modal-right">
-
-//                 <div class="right-top">
-//                   <div class="right-top-container">
-
-//                     <div class="right-top-userimage">
-//                       <img class="top-img" src="/img/box.png" alt="no_picture">
-//                     </div>
-
-//                     <div class="top-item-account">
-//                       <span class="name">ichiban1001</span>
-//                     </div>
-
-//                   </div>
-//                 </div>
-
-//                 <div class="modal-middle">
-
-//                   <div class="visitor-post">
-//                       <div class="visitor-imgBox">
-//                         <img class="visitor-img" src="/img/ketty1.png" alt="no_picture">
-//                       </div>
-//                       <div class="comment">
-//                         <span class="visitor-id">betty0624</span>
-//                         <span class="visitor-comment">
-//                           div 태그에 width를 직접 정해주면 텍스트가 자동으로 줄 바꿈을 하지 못하고 div 범위를 벗어나는 경우가 있습니다.
-//                           div 태그에 width를 직접 정해주면 텍스트가 자동으로 줄 바꿈을 하지 못하고 div 범위를 벗어나는 경우가 있습니다.
-//                           div 태그에 width를 직접 정해주면 텍스트가 자동으로 줄 바꿈을 하지 못하고 div 범위를 벗어나는 경우가 있습니다.
-//                           div 태그에 width를 직접 정해주면 텍스트가 자동으로 줄 바꿈을 하지 못하고 div 범위를 벗어나는 경우가 있습니다.
-//                           div 태그에 width를 직접 정해주면 텍스트가 자동으로 줄 바꿈을 하지 못하고 div 범위를 벗어나는 경우가 있습니다.
-//                         </span>
-//                       </div>
-//                   </div>
-//                   <div class="visitor-post">
-//                       <div class="visitor-imgBox">
-//                         <img class="visitor-img" src="/img/ketty1.png" alt="no_picture">
-//                       </div>
-//                       <div class="comment">
-//                         <span class="visitor-id">betty0624</span>
-//                         <span class="visitor-comment">
-//                           div 태그에 width를 직접 정해주면 텍스트가 자동으로 줄 바꿈을 하지 못하고 div 범위를 벗어나는 경우가 있습니다.
-//                           div 태그에 width를 직접 정해주면 텍스트가 자동으로 줄 바꿈을 하지 못하고 div 범위를 벗어나는 경우가 있습니다.
-//                           div 태그에 width를 직접 정해주면 텍스트가 자동으로 줄 바꿈을 하지 못하고 div 범위를 벗어나는 경우가 있습니다.
-//                           div 태그에 width를 직접 정해주면 텍스트가 자동으로 줄 바꿈을 하지 못하고 div 범위를 벗어나는 경우가 있습니다.
-//                           div 태그에 width를 직접 정해주면 텍스트가 자동으로 줄 바꿈을 하지 못하고 div 범위를 벗어나는 경우가 있습니다.
-//                         </span>
-//                       </div>
-//                   </div>
-//                 </div>
-
-//                 <div class="heart">
-//                   <img class="hearimg" src="./img/heart2.png" alt="">
-//                 </div>
-
-//                 <div class="modal-comment">
-//                   <div class="modal_bottom">
-//                       <textarea  class="modal-comment-input" style="overflow:hidden; resize:none;" placeholder="댓글 달기..."></textarea>
-//                       <div class="posting-push">
-//                         <button class="button-custom ">게시</button>
-//                       </div>
-//                   </div>
-//                 </div>
-
-//               </div>
-//           </div>
-
-//         </div>
-//       </div>
-//     </div>
-//     `
-//     return modalHTML.innerHTML;
-//   }
-
-// }
-
 window.customElements.define('post-container', Post);
+
+export default Post;

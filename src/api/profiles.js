@@ -64,5 +64,10 @@ export async function postProfile(data) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   });
+
+  if (!res.ok) {
+    throw new Error(`Server responded with status: ${res.status}`);
+  }
+
   return res.json();
 }

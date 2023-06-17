@@ -2,14 +2,20 @@
   "accounts": [
     {
       "id": 1,
-      "name": "d556f8",
-      "email": "",
-      "password": "1234"
+      "name": "주현",
+      "nickname": "d556f8",
+      "password": "1234",
+      "img": "https://github.com/d556f8.png",
+      "userToken": "uxGs6ihrNBnV6iLx6WGY"
     },
     {
       "id": 7,
-      "name": "ji",
-      "img": "https://cdn.pixabay.com/photo/2023/05/30/16/50/milk-8029140_1280.png"
+      "userId": "knowteach8946",
+      "name": "김지훈",
+      "nickname": "kimjihoon",
+      "password": "1234",
+      "img": "https://cdn.pixabay.com/photo/2023/05/30/16/50/milk-8029140_1280.png",
+      "userToken": "saerjahasdf112"
     }
   ],
   "profiles": [
@@ -18,16 +24,26 @@
       "name": "d556f8",
       "img": "https://github.com/d556f8.png",
       "storyImg": [
-        "https://cdn.pixabay.com/photo/2023/05/31/09/57/skyscraper-8030987_1280.jpg",
-        "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg"
+        "url(\"https://cdn.pixabay.com/photo/2023/05/31/09/57/skyscraper-8030987_1280.jpg\") center center no-repeat",
+        "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg",
+        "https://thumbsnap.com/i/iJwkrk8c.jpg",
+        "center center no-repeat rgb(189, 178, 255)"
       ],
       "storyText": [
+        {
+          "text": "dsfsdf",
+          "color": "rgb(255, 255, 255)"
+        },
         {
           "text": "",
           "color": ""
         },
         {
           "text": "",
+          "color": ""
+        },
+        {
+          "text": "스토리 테스트 1",
           "color": ""
         }
       ]
@@ -65,18 +81,11 @@
       "id": 3,
       "name": "hetame1",
       "img": "https://github.com/hetame1.png",
-      "storyImg": [
-        "rgb(255, 255, 255)",
-        "rgb(0, 0, 0)"
-      ],
+      "storyImg": ["rgb(255, 255, 255)"],
       "storyText": [
         {
           "text": "sdfsdfsdf",
           "color": ""
-        },
-        {
-          "text": "ㄹㅇㄹㄴㅇㄹㄴㅇ",
-          "color": "rgb(255, 255, 255)"
         }
       ]
     },
@@ -84,12 +93,10 @@
       "id": 4,
       "name": "HyunjinHa",
       "img": "https://github.com/HyunjinHa.png",
-      "storyImg": [
-        "rgb(155, 246, 255)"
-      ],
+      "storyImg": ["center center no-repeat rgb(155, 246, 255)"],
       "storyText": [
         {
-          "text": "sdfsdfㅁㄴㄹ\nㅁㄴㄹasfasfasf",
+          "text": "sdfsdfㅁㄴㄹ\nㅁㄴㄹasfasfasfㄴㅁㄹ",
           "color": ""
         }
       ]
@@ -98,12 +105,10 @@
       "id": 5,
       "name": "Jaeil-Lee",
       "img": "https://github.com/Jaeil-Lee.png",
-      "storyImg": [
-        "rgb(202, 255, 191)"
-      ],
+      "storyImg": ["center center no-repeat rgb(255, 173, 173)"],
       "storyText": [
         {
-          "text": "sdfsdf",
+          "text": "\nㅁㄴㄹ",
           "color": ""
         }
       ]
@@ -112,61 +117,64 @@
       "id": 6,
       "name": "Lsy04178",
       "img": "https://github.com/Lsy04178.png",
-      "storyImg": [
-        "rgb(202, 255, 191)"
-      ],
+      "storyImg": ["center center / cover no-repeat rgb(189, 178, 255)"],
       "storyText": [
         {
-          "text": "ㅔㅑㅔㅑ0ㅓㅔㄴㅁㄻㅁㄴㄹ",
-          "color": ""
+          "text": "귀요미",
+          "color": "rgb(255, 255, 255)"
         }
       ]
     }
   ],
   "posts": [
     {
-      "name": "betty0612",
-      "post_content": "今日もよい一につだったわ",
-      "post_top_img": "https://i.pinimg.com/564x/3f/c2/92/3fc292c3b02c3b54cac682334bdf70a3.jpg",
-      "post_main_img": [
-        "https://i.pinimg.com/564x/84/d9/f5/84d9f5db3281acec61dd39e7c8ef3a93.jpg"
-      ],
+      "name": "juhyeonni123",
+      "post_content": "ㅁㄴㅇㄻㄴㅇㄹ",
+      "post_top_img": "https://cdn.pixabay.com/photo/2023/04/15/17/19/cat-7928232_1280.png",
+      "post_main_img": ["https://thumbsnap.com/i/R9RZateo.png"],
       "statements": [],
-      "likes": 0,
-      "id": 4
+      "likes": 16,
+      "id": 7,
+      "category": 1
     },
     {
       "name": "juhyeonni123",
-      "post_content": "엄준식은 살아있다.",
-      "post_top_img": "",
-      "post_main_img": [
-        "https://thumbsnap.com/i/iJwkrk8c.jpg"
-      ],
+      "post_content": "2",
+      "post_top_img": "https://cdn.pixabay.com/photo/2023/04/15/17/19/cat-7928232_1280.png",
+      "post_main_img": ["https://thumbsnap.com/i/f4pKJDDM.png"],
       "statements": [],
       "likes": 0,
-      "id": 5
+      "id": 9,
+      "category": 2
     },
     {
-      "name": "juhyeonni123",
-      "post_content": "엄준식은 살아있다.",
-      "post_top_img": "",
-      "post_main_img": [
-        "https://thumbsnap.com/i/iJwkrk8c.jpg"
-      ],
+      "name": "d556f8",
+      "post_content": "엄 .... 준 .... 식 .... 🎩",
+      "post_top_img": "https://github.com/d556f8.png",
+      "post_main_img": ["https://thumbsnap.com/i/iJwkrk8c.jpg"],
       "statements": [],
       "likes": 0,
-      "id": 6
+      "id": 12
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "후쿠오카 현지학기제",
+      "img": "https://cdn.pixabay.com/photo/2018/07/24/07/40/fukuoka-3558614_1280.jpg",
+      "info": "후쿠오카 현지학기제에 관한 정보입니다"
     },
     {
-      "name": "juhyeonni123",
-      "post_content": "포스트 공유 테스트",
-      "post_top_img": "",
-      "post_main_img": [
-        "https://thumbsnap.com/i/3m5xd3qu.png"
-      ],
-      "statements": [],
-      "likes": 0,
-      "id": 7
+      "id": 2,
+      "name": "후쿠오카 여행소개",
+      "img": "https://cdn.pixabay.com/photo/2020/03/30/01/55/japan-4982777_1280.jpg",
+      "info": "후쿠오카 여행소개에 관한 정보입니다"
+    },
+    {
+      "id": 3,
+      "name": "후쿠오카 맛집",
+      "img": "https://cdn.pixabay.com/photo/2021/10/28/00/29/ramen-6748518_1280.jpg",
+      "info": "후쿠오카 맛집에 관한 정보입니다"
     }
   ]
 }
