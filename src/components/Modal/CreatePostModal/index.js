@@ -1,18 +1,16 @@
 import './CreatePostModal.css';
-// import Modal from '..';
+
 import { uploadImg } from '../../../api/thumbsnap';
 import { createPost } from '../../../api/posts';
 
 import Post from '../../Post';
 import { exchangeComponent } from '../../utils/exchangeComponent';
 
-// TODO: 현재 접속한 유저 정보를 받아온다.
 class CreatePostModal extends HTMLDivElement {
   constructor(account) {
     super();
 
     this.account = account;
-    console.log(this.account);
 
     this.classList.add('create-post-modal', 'modal-dialog');
     this.setAttribute('role', 'document');
@@ -27,20 +25,20 @@ class CreatePostModal extends HTMLDivElement {
         <div class="modal-body">
           <div class="post-upload-img">
             <label for="uploadImg" class="upload-img-label">
-              <img src="./post-temp1.jpeg" alt="upload-img">
+              <img src="/assets/image/imageupload.svg" alt="upload-img">
             </label>
             <input type="file" name="post-img" id="uploadImg" hidden>
           </div>
           <div class="post-field">
             <div class="user-info">
               <img class="user-img" src="${this.account.img}" alt="">
-              <span class="user-name">${this.account.name}</span>
+              <span class="user-name">${this.account.nickname}</span>
             </div>
             <textarea class="post-content" placeholder="문구 입력..." maxlength="2000"></textarea>
             <div class="post-assist">
               <div class="emoji-picker">                                     
                 <button type="button" class="btn dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="/assets/image/icons/emoji.svg" alt="">
+                  <img src="/assets/image/icons/emoji.svg" alt="emoji-icon">
                 </button>
                 <div class="dropdown-menu">
                   <button class="btn btn-emoji">😂</button>
@@ -109,11 +107,10 @@ class CreatePostModal extends HTMLDivElement {
     this.contentLength.textContent = `${this.postContent.value.length}/2000`;
   }
 
-  // FIXME:
   async share() {
     const file = this.uploadImg.files[0];
     const post = {
-      name: this.account.name, // 나중에 로그인한 유저 정보를 받아와서 넣어줘야 함
+      name: this.account.name,
       post_content: this.postContent.value,
       post_top_img: this.account.img,
       post_main_img: [await uploadImg(file)],
