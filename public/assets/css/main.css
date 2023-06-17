@@ -78,6 +78,7 @@ img {
 
 .main .main-body {
   width: 630px;
+  margin-left: auto;
 }
 
 .main .right-nav {
