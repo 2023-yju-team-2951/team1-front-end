@@ -144,8 +144,9 @@
   }
 }
 
-@media (max-width: 940px) {
-  .right-nav {
-    display: none !important;
+/* 모바일 nav 생각중 */
+/* @media (max-width: 630px) {
+  .nav-full,
+  .nav-full * {
   }
-}
+} */
