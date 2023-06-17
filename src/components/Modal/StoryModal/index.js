@@ -1,7 +1,11 @@
 import './storymodal.css';
 class StoryModal extends HTMLDivElement {
-
-  constructor(mode, defaultColor="#ffffff", defaultText="", defaultTextColor="#000000") {
+  constructor(
+    mode,
+    defaultColor = '#ffffff',
+    defaultText = '',
+    defaultTextColor = '#000000'
+  ) {
     super();
     this.className = 'modal-dialog';
 
@@ -74,10 +78,14 @@ class StoryModal extends HTMLDivElement {
         <button id="finish-button" type="button" class="btn btn-primary" style="display: none;" data-bs-dismiss="modal">Finish</button>
         <button id="edit-button" type="button" class="btn btn-primary" style="display: none;" data-bs-dismiss="modal">Edit</button>
       </div>
-    </div>`
+    </div>`;
 
     // 만약 기본값이 다른 값이라면 그 값을 설정
-    if( this.defaultColor != "#ffffff" || this.defaultText != "" || this.defaultTextColor != "#000000") {
+    if (
+      this.defaultColor != '#ffffff' ||
+      this.defaultText != '' ||
+      this.defaultTextColor != '#000000'
+    ) {
       this.check = true;
       const colors = this.querySelectorAll('.colors');
       const rgbString = this.defaultColor.match(/rgb\(.*?\)/);
@@ -85,12 +93,10 @@ class StoryModal extends HTMLDivElement {
         color.classList.remove('selected');
         if (/^http.*/.test(this.defaultColor)) {
           this.pick = this.defaultColor;
-        } 
-        else if (color.style.backgroundColor === rgbString[0]) {
-          
+        } else if (color.style.backgroundColor === rgbString[0]) {
           color.classList.add('selected');
         }
-      })
+      });
       const writingElement = this.querySelector('.writing');
       writingElement.style.background = this.defaultColor;
 
@@ -106,7 +112,7 @@ class StoryModal extends HTMLDivElement {
       }
       this.num++;
 
-      const writingElement = this.querySelector('.writing')
+      const writingElement = this.querySelector('.writing');
       writingElement.style.background = this.pick;
       writingElement.style.backgroundPosition = 'center';
       writingElement.style.backgroundRepeat = 'no-repeat';
@@ -114,10 +120,10 @@ class StoryModal extends HTMLDivElement {
       if (this.check === false) {
         writingElement.style.background = '#ffffff';
       }
-      
+
       this.updateNum();
     });
-    
+
     // 이전 버튼 클릭시
     this.querySelector('#prev-button').addEventListener('click', () => {
       this.num--;
@@ -133,9 +139,9 @@ class StoryModal extends HTMLDivElement {
     });
 
     // 완료 버튼 클릭시 버블로 넘기기
-    this.querySelector('#finish-button').addEventListener('click', (e) => { 
+    this.querySelector('#finish-button').addEventListener('click', (e) => {
       let background = this.querySelector('#formFile').files[0];
-      if( background === undefined ) {
+      if (background === undefined) {
         background = this.querySelector('.writing').style.background;
       }
       const textWrite = this.querySelector('.text-write');
@@ -144,7 +150,7 @@ class StoryModal extends HTMLDivElement {
 
       const event = new CustomEvent('finishButtonClicked', {
         bubbles: true,
-        detail: { background, text, textColor }
+        detail: { background, text, textColor },
       });
       document.dispatchEvent(event);
     });
@@ -156,19 +162,19 @@ class StoryModal extends HTMLDivElement {
       const textWrite = this.querySelector('.text-write');
       const text = textWrite.value;
       const textColor = textWrite.style.color;
-      
+
       // 새로운 커스텀 이벤트 생성해서 버블로 storyview 로 넘기기
       const event = new CustomEvent('editButtonClicked', {
-        bubbles: true, 
-        detail: { background, text, textColor }
+        bubbles: true,
+        detail: { background, text, textColor },
       });
-  
+
       // 이벤트 발생
       document.dispatchEvent(event);
     });
-    
+
     // 색깔 고를때 효과 + 고른 색 selected 클래스 추가 + 고른색으로 배경 변경
-    this.colors = this.querySelectorAll('.colors')
+    this.colors = this.querySelectorAll('.colors');
     this.colors.forEach((color) => {
       color.addEventListener('click', (e) => {
         this.pick = e.target.style.backgroundColor;
@@ -184,7 +190,7 @@ class StoryModal extends HTMLDivElement {
     });
 
     // 글자색 변경
-    this.fontColors = this.querySelectorAll('.fontColors')
+    this.fontColors = this.querySelectorAll('.fontColors');
     this.fontColors.forEach((fColor) => {
       fColor.addEventListener('click', (e) => {
         this.pick = e.target.style.backgroundColor;
@@ -201,7 +207,7 @@ class StoryModal extends HTMLDivElement {
     });
 
     // 배경 클릭해도 입력창 클릭되게
-    const writingElement = this.querySelector('.writing')
+    const writingElement = this.querySelector('.writing');
     writingElement.addEventListener('click', () => {
       this.querySelector('.text-write').focus();
     });
@@ -209,7 +215,7 @@ class StoryModal extends HTMLDivElement {
     const textInput = this.querySelector('.text-write');
     textInput.addEventListener('input', function () {
       this.style.display = 'block';
-      this.style.height = (textInput.scrollHeight) + 'px';
+      this.style.height = textInput.scrollHeight + 'px';
     });
   }
 
@@ -217,21 +223,24 @@ class StoryModal extends HTMLDivElement {
   renderImg(file) {
     const reader = new FileReader();
     reader.onload = () => {
-      const writingElement = this.querySelector('.writing')
+      const writingElement = this.querySelector('.writing');
       writingElement.style.background = `url(${reader.result})`;
     };
     reader.readAsDataURL(file);
   }
-  
 
   // 다음, 이전 버튼 클릭시 화면 업데이트
   updateNum() {
-    this.querySelectorAll('.num').forEach((num) => { num.style.display = 'none'; });
+    this.querySelectorAll('.num').forEach((num) => {
+      num.style.display = 'none';
+    });
 
     this.querySelector(`#num-${this.num}`).style.display = 'flex';
 
-    this.querySelector('#prev-button').style.display = this.num > 0 ? 'block' : 'none';
-    this.querySelector('#next-button').style.display = this.num < 1 ? 'block' : 'none';
+    this.querySelector('#prev-button').style.display =
+      this.num > 0 ? 'block' : 'none';
+    this.querySelector('#next-button').style.display =
+      this.num < 1 ? 'block' : 'none';
 
     if (this.num === 1) {
       if (this.mode === 'main') {
@@ -246,8 +255,6 @@ class StoryModal extends HTMLDivElement {
       this.querySelector('#edit-button').style.display = 'none';
     }
   }
-
-
 }
 
 window.customElements.define('story-modal', StoryModal, { extends: 'div' });

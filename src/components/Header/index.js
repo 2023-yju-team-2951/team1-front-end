@@ -31,7 +31,7 @@ class Header extends HTMLElement {
         <div class="menu-wrapper">
           <div class="menu">
             <div class="story-wrapper">
-              <story-component id="story-component"></story-component>
+              <story-component></story-component>
             </div>
             <button class="slider-button prev">
               <div class="btnN"></div>
@@ -45,11 +45,11 @@ class Header extends HTMLElement {
     </div>
     `;
 
-    this.storyComponent = this.querySelector('#story-component');
+    this.storyComponent = this.querySelector('story-component');
     exchangeComponent(this.storyComponent, new Story(this.account));
 
-    const prevButton = document.querySelector('.prev');
-    const nextButton = document.querySelector('.next');
+    const prevButton = this.querySelector('.prev');
+    const nextButton = this.querySelector('.next');
     this.prevBtnHidden(prevButton);
     this.nextBtnHidden(nextButton);
 
