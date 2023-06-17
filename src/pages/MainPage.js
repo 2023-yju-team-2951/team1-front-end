@@ -56,7 +56,7 @@ class MainPage extends HTMLDivElement {
     exchangeComponent(this.navComponent, new Nav(this.account));
     exchangeComponent(this.headerComponent, new Header(this.account));
     exchangeComponent(this.postComponent, new Post(this.account));
-    // exchangeComponent(this.rightNavComponent, new RightNav());
+    exchangeComponent(this.rightNavComponent, new RightNav(this.account));
 
     // Node.replaceChild(new Nav(this.account), this.navComponent);
     // Node.replaceChild(new Nav(this.account), this.navComponent);
