@@ -2,9 +2,13 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import MainPage from './pages/MainPage.js';
+import StoryPage from './pages/StoryPage.js';
 import Main from './pages/Main.js';
 import Login from './pages/Login.js';
 import Story from './pages/Story.js';
+import LoginPage from './pages/LoginPage.js';
+
+var root = document.querySelector('#root');
 
 // 페이지 전환
 // history.pushState(state, title, URL) : 현재 페이지의 상태를 변경하지 않고, 새로운 주소를 추가
@@ -16,14 +20,18 @@ const routerLink = (url) => {
 const router = async () => {
   // 경로 설정
   const routes = [
-    { path: '/', view: Main },
-    { path: '/login', view: Login },
-    { path: '/story', view: Story },
+    // { path: '/', view: Main },
+    { path: '/', view: MainPage },
+    // { path: '/login', view: Login },
+    { path: '/login', view: LoginPage },
+    // { path: '/story', view: Story },
+    { path: '/story', view: StoryPage },
     { path: '/404', view: () => console.log('Viewing 404') },
   ];
 
   // 현재 접속되어있는 주소와 일치하는 경로를 찾기
   const matchedPage = routes.find((route) => route.path === location.pathname);
+  console.log(matchedPage);
 
   // 일치하는 경로가 없으면 404(맨 마지막 위치)로 이동
   if (!matchedPage) {
@@ -59,7 +67,8 @@ const router = async () => {
   // const view = new matchedPage.view();
 
   // html을 가져오기
-  document.querySelector('#root').appendChild(new MainPage());
+  root.innerHTML = '';
+  root.appendChild(new matchedPage.view());
 };
 
 // 뒤로가기나 새로고침을 했을 때 router함수 실행
