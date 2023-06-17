@@ -2,9 +2,10 @@
   "accounts": [
     {
       "id": 1,
-      "name": "d556f8",
-      "email": "",
+      "name": "주현",
+      "nickname": "d556f8",
       "password": "1234",
+      "img": "https://github.com/d556f8.png",
       "userToken": "uxGs6ihrNBnV6iLx6WGY"
     },
     {
@@ -12,7 +13,7 @@
       "nickname": "knowteach8946",
       "name": "김지훈",
       "img": "https://cdn.pixabay.com/photo/2023/05/30/16/50/milk-8029140_1280.png",
-      "userToken": ""
+      "userToken": "saerjahasdf112"
     }
   ],
   "profiles": [
