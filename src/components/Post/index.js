@@ -287,13 +287,13 @@ class UserWrite {
       <div class="user-heart">
         <div class="user-heart-icon">
           <span class="use-heart-wrap">
-           <img id="hear_img" src=${this.heartImg}>
+            <img id="hear_img" src=${this.heartImg}>
           </span>
         </div>
       </div>
       <div class="user-count">
-          <strong class="count-like">${this.data.likes}</strong>
-          <div class="user-like">명이 좋아합니다</div>
+        <strong class="count-like">${this.data.likes}</strong>
+        <div class="user-like">명이 좋아합니다</div>
       </div>
       <div class="user-write">
         <div class="user-tag">
@@ -308,7 +308,7 @@ class UserWrite {
       </div>
       
       <button type="button" class="btn btn-primary button-custom show_All" data-bs-toggle="modal" data-bs-target="#swapModal">
-          댓글 모두 보기
+        댓글 모두 보기
       </button>
     `;
 
@@ -330,12 +330,12 @@ class Comment {
 
     commentHTML.innerHTML += `
     <div class="comment-wrap">
-        <div class="comment">
-          <textarea class="comment-input" aria-label="댓글 달기..." placeholder="댓글 달기..." id="myField"></textarea> 
-        </div>
-        <div class="comment-push">
-            <button class="btn-push">게시</button>
-        </div>
+      <div class="comment">
+        <textarea class="comment-input" aria-label="댓글 달기..." placeholder="댓글 달기..." id="myField"></textarea> 
+      </div>
+      <div class="comment-push">
+          <button class="btn-push">게시</button>
+      </div>
     </div>
     `;
 
