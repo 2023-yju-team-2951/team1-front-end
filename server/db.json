@@ -23,12 +23,17 @@
       "img": "https://github.com/d556f8.png",
       "storyImg": [
         "url(\"https://cdn.pixabay.com/photo/2023/05/31/09/57/skyscraper-8030987_1280.jpg\") center center no-repeat",
-        "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg"
+        "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg",
+        "https://thumbsnap.com/i/iJwkrk8c.jpg"
       ],
       "storyText": [
         {
           "text": "dsfsdf",
           "color": "rgb(255, 255, 255)"
+        },
+        {
+          "text": "",
+          "color": ""
         },
         {
           "text": "",
@@ -69,7 +74,9 @@
       "id": 3,
       "name": "hetame1",
       "img": "https://github.com/hetame1.png",
-      "storyImg": ["rgb(255, 255, 255)"],
+      "storyImg": [
+        "rgb(255, 255, 255)"
+      ],
       "storyText": [
         {
           "text": "sdfsdfsdf",
@@ -81,7 +88,9 @@
       "id": 4,
       "name": "HyunjinHa",
       "img": "https://github.com/HyunjinHa.png",
-      "storyImg": ["center center no-repeat rgb(155, 246, 255)"],
+      "storyImg": [
+        "center center no-repeat rgb(155, 246, 255)"
+      ],
       "storyText": [
         {
           "text": "sdfsdfㅁㄴㄹ\nㅁㄴㄹasfasfasfㄴㅁㄹ",
@@ -93,7 +102,9 @@
       "id": 5,
       "name": "Jaeil-Lee",
       "img": "https://github.com/Jaeil-Lee.png",
-      "storyImg": ["center center no-repeat rgb(255, 173, 173)"],
+      "storyImg": [
+        "center center no-repeat rgb(255, 173, 173)"
+      ],
       "storyText": [
         {
           "text": "\nㅁㄴㄹ",
@@ -105,7 +116,9 @@
       "id": 6,
       "name": "Lsy04178",
       "img": "https://github.com/Lsy04178.png",
-      "storyImg": ["center center / cover no-repeat rgb(189, 178, 255)"],
+      "storyImg": [
+        "center center / cover no-repeat rgb(189, 178, 255)"
+      ],
       "storyText": [
         {
           "text": "귀요미",
@@ -119,7 +132,9 @@
       "name": "juhyeonni123",
       "post_content": "ㅁㄴㅇㄻㄴㅇㄹ",
       "post_top_img": "https://cdn.pixabay.com/photo/2023/04/15/17/19/cat-7928232_1280.png",
-      "post_main_img": ["https://thumbsnap.com/i/R9RZateo.png"],
+      "post_main_img": [
+        "https://thumbsnap.com/i/R9RZateo.png"
+      ],
       "statements": [],
       "likes": 14,
       "id": 7,
@@ -129,7 +144,9 @@
       "name": "juhyeonni123",
       "post_content": "2",
       "post_top_img": "https://cdn.pixabay.com/photo/2023/04/15/17/19/cat-7928232_1280.png",
-      "post_main_img": ["https://thumbsnap.com/i/f4pKJDDM.png"],
+      "post_main_img": [
+        "https://thumbsnap.com/i/f4pKJDDM.png"
+      ],
       "statements": [],
       "likes": 0,
       "id": 9,
