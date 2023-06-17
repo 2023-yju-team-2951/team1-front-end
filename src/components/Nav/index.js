@@ -1,8 +1,10 @@
 import Main from '../../pages/Main';
+import Post from '../Post';
 import CreatePostModal from '../Modal/CreatePostModal';
 import SearchModal from '../Modal/SearchModal';
 import './Nav.css';
 import { exchangeModal } from '../utils/exchangeModal';
+import { exchangeComponent } from '../utils/exchangeComponent';
 
 class Nav extends HTMLDivElement {
   constructor(account) {
@@ -99,7 +101,8 @@ class Nav extends HTMLDivElement {
   // root 재 렌더링
   homeEvent() {
     const root = document.querySelector('#root');
-    root.innerHTML = new Main().getHtml();
+    const postContainer = document.querySelector('post-container');
+    exchangeComponent(postContainer, new Post(this.account));
   }
 
   // 만들기 버튼 클릭 시, 기존 Modal을 PostModal로 교체
