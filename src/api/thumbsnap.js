@@ -22,6 +22,10 @@ export async function uploadImg(file) {
     body: formData,
   });
 
+  if (!res.ok) {
+    throw new Error('An error occurred while uploading the image.');
+  }
+
   /**
    * data: {id, url, media, thumb, width, height }
    */
