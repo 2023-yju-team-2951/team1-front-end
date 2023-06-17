@@ -1,8 +1,10 @@
-import Main from '../../pages/Main';
+import MainPage from '../../pages/MainPage';
+
 import Post from '../Post';
 import CreatePostModal from '../Modal/CreatePostModal';
 import SearchModal from '../Modal/SearchModal';
 import './Nav.css';
+
 import { exchangeModal } from '../utils/exchangeModal';
 import { exchangeComponent } from '../utils/exchangeComponent';
 
@@ -117,7 +119,9 @@ class Nav extends HTMLDivElement {
 
   logoutEvent() {
     sessionStorage.removeItem('userToken');
-    document.querySelector('#root').innerHTML = new Main().getHtml();
+    const root = document.querySelector('#root');
+    root.innerHTML = '';
+    root.appendChild(new MainPage());
   }
 }
 
