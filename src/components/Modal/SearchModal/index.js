@@ -26,7 +26,7 @@ class SearchModal extends HTMLDivElement {
     this.innerHTML = `
       <div class="search-box">
         <div class="search-bar">
-          <input type="text" name="searchInput" id="searchInput" autofocus>
+          <input type="text" name="searchInput" id="searchInput" autocomplete="off" autofocus>
           <button class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="content-list"></div>
