@@ -10,7 +10,7 @@
     },
     {
       "id": 7,
-      "nickname": "knowteach8946",
+      "userId": "knowteach8946",
       "name": "김지훈",
       "img": "https://cdn.pixabay.com/photo/2023/05/30/16/50/milk-8029140_1280.png",
       "userToken": "saerjahasdf112"
@@ -22,13 +22,13 @@
       "name": "d556f8",
       "img": "https://github.com/d556f8.png",
       "storyImg": [
-        "https://cdn.pixabay.com/photo/2023/05/31/09/57/skyscraper-8030987_1280.jpg",
+        "url(\"https://cdn.pixabay.com/photo/2023/05/31/09/57/skyscraper-8030987_1280.jpg\") center center no-repeat",
         "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg"
       ],
       "storyText": [
         {
-          "text": "",
-          "color": ""
+          "text": "dsfsdf",
+          "color": "rgb(255, 255, 255)"
         },
         {
           "text": "",
@@ -96,7 +96,7 @@
       "storyImg": ["center center no-repeat rgb(255, 173, 173)"],
       "storyText": [
         {
-          "text": "가나다라마바사\n아자차카타하\n가나달\n가나다라\n가나다라\n가나다라ㅁㄴㄻ",
+          "text": "\nㅁㄴㄹ",
           "color": ""
         }
       ]
@@ -108,8 +108,8 @@
       "storyImg": ["center center / cover no-repeat rgb(189, 178, 255)"],
       "storyText": [
         {
-          "text": "ㅔㅑㅔㅑ0ㅓㅔㄴㅁㄻㅁㄴㄹsaf",
-          "color": ""
+          "text": "귀요미",
+          "color": "rgb(255, 255, 255)"
         }
       ]
     }
@@ -121,7 +121,7 @@
       "post_top_img": "https://cdn.pixabay.com/photo/2023/04/15/17/19/cat-7928232_1280.png",
       "post_main_img": ["https://thumbsnap.com/i/R9RZateo.png"],
       "statements": [],
-      "likes": 11,
+      "likes": 14,
       "id": 7,
       "category": 1
     },

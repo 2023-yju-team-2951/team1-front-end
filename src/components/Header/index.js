@@ -37,7 +37,7 @@ class Header extends HTMLElement {
               <div class="btnN"></div>
             </button>
             <button class="slider-button next">
-                <div class="btnN"></div>
+                <div class="btnN"></div>k
             </button>
           </div>
         </div>

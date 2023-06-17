@@ -89,14 +89,16 @@ class StoryModal extends HTMLDivElement {
       this.check = true;
       const colors = this.querySelectorAll('.colors');
       const rgbString = this.defaultColor.match(/rgb\(.*?\)/);
-      colors.forEach((color) => {
-        color.classList.remove('selected');
-        if (/^http.*/.test(this.defaultColor)) {
-          this.pick = this.defaultColor;
-        } else if (color.style.backgroundColor === rgbString[0]) {
-          color.classList.add('selected');
-        }
-      });
+      if (this.defaultColor.match(/http/)) {
+        this.pick = this.defaultColor;
+      } else {
+        colors.forEach((color) => {
+          if (color.style.backgroundColor === rgbString[0]) {
+            color.classList.add('selected');
+          }
+        });
+      }
+
       const writingElement = this.querySelector('.writing');
       writingElement.style.background = this.defaultColor;
 
