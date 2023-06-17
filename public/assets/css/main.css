@@ -78,10 +78,27 @@ img {
 
 .main .main-body {
   width: 630px;
+  margin: 0 auto;
 }
 
 .main .right-nav {
   padding-left: 60px;
+}
+
+@media (max-width: 1170px) {
+  .nav-full {
+    display: none !important;
+  }
+
+  .main .main-body-wrapper {
+    width: 100%;
+  }
+}
+
+@media (max-width: 940px) {
+  .right-nav {
+    display: none !important;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
