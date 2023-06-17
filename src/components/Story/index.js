@@ -13,6 +13,7 @@ import './story.css';
 class Story extends HTMLElement {
   constructor(account) {
     super();
+
     this.account = account;
 
     this.handleFinishButtonClicked = this.handleFinishButtonClicked.bind(this);
