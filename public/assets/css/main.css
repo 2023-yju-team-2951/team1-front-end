@@ -86,18 +86,8 @@ img {
 }
 
 @media (max-width: 1170px) {
-  .nav-full {
-    display: none !important;
-  }
-
   .main .main-body-wrapper {
-    width: 100%;
-  }
-}
-
-@media (max-width: 940px) {
-  .right-nav {
-    display: none !important;
+    width: calc((100%) - 57px);
   }
 }
 

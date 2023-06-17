@@ -115,3 +115,37 @@
 .nav-full .item-name {
   padding-left: 16px;
 }
+
+@media (max-width: 1170px) {
+  .nav-full {
+    /* display: none !important; */
+    width: fit-content;
+  }
+
+  .nav-full .nav-header-logo {
+    display: none !important;
+  }
+
+  .nav-full .nav-list-contain {
+    width: 32px !important;
+  }
+
+  .nav-full .nav-list {
+    width: min-content;
+  }
+
+  .nav-full .nav-list > li,
+  .nav-full .nav-other {
+    width: min-content;
+  }
+
+  .nav-full .item-name {
+    display: none !important;
+  }
+}
+
+@media (max-width: 940px) {
+  .right-nav {
+    display: none !important;
+  }
+}
