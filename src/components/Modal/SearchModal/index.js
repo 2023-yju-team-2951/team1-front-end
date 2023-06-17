@@ -1,4 +1,6 @@
+import PostModal from '../PostModal';
 import { getPost } from '../../../api/posts';
+import { exchangeModal } from '../../utils/exchangeModal';
 import './SearchModal.css';
 
 /**
@@ -64,18 +66,20 @@ class SearchModal extends HTMLDivElement {
 }
 
 class Content extends HTMLDivElement {
-  constructor({ id, post_content, name, post_top_img }) {
+  constructor(post) {
     super();
     this.classList.add('content-item');
 
+    this.post = post;
+
     this.innerHTML = `
-      <span class="content">${post_content}</span>
-      <span class="username">${name}</span>
-      <img src="${post_top_img}" alt="">
+      <span class="content">${post.post_content}</span>
+      <span class="username">${post.name}</span>
+      <img src="${post.post_top_img}" alt="">
     `;
 
     this.addEventListener('click', () => {
-      console.log(id);
+      exchangeModal(new PostModal(post));
     });
   }
 }
