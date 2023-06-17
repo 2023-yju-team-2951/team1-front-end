@@ -3,9 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import MainPage from './pages/MainPage.js';
 import StoryPage from './pages/StoryPage.js';
-import Main from './pages/Main.js';
-import Login from './pages/Login.js';
-import Story from './pages/Story.js';
 import LoginPage from './pages/LoginPage.js';
 
 var root = document.querySelector('#root');
@@ -31,42 +28,12 @@ const router = async () => {
 
   // 현재 접속되어있는 주소와 일치하는 경로를 찾기
   const matchedPage = routes.find((route) => route.path === location.pathname);
-  console.log(matchedPage);
 
   // 일치하는 경로가 없으면 404(맨 마지막 위치)로 이동
   if (!matchedPage) {
     matchedPage = routes[routes.length - 1];
   }
 
-  // // 현재 접속되어있는 주소와 일치하는 경로를 찾기
-  // const pageMatch = routes.map((route) => {
-  //   return {
-  //     route,
-  //     isMatch: location.pathname === route.path,
-  //   };
-  // });
-
-  // pageMatch는 배열으로 반환
-  /* 0:
-       isMatch: true
-       route: {path: '/', view: ()} 
-  */
-
-  // isMatch가 true인 route를 찾기
-  // let match = pageMatch.find((page) => page.isMatch);
-
-  // // 일치하는 경로가 없으면 404(맨 마지막 위치)로 이동
-  // if (!match) {
-  //   match = {
-  //     route: routes[routes.length - 1],
-  //     isMatch: true,
-  //   };
-  // }
-
-  // view 변수에 현재 경로에 맞는 view를 넣어주기
-  // const view = new matchedPage.view();
-
-  // html을 가져오기
   root.innerHTML = '';
   root.appendChild(new matchedPage.view());
 };
