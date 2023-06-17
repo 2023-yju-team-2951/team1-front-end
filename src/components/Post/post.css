@@ -105,22 +105,17 @@
 .card .main-container .items {
   width: 100%;
   height: 100%;
-  object-fit: contain
-
-  
+  object-fit: contain;
 }
-
 
 .card .main-container .items .carousel.slide {
   height: 100%;
 }
 
-
 .card .main-container .items .carousel.slide .carousel-inner {
   width: 100%;
   height: 100%;
 }
-
 
 .card .main-container .items .carousel.slide .carousel-inner .carousel-item {
   width: 100%;
@@ -172,7 +167,7 @@
   margin: 6px;
 }
 
-/* 좋아요 수 ( 서버에서 변수로 받아와 적용)  */
+/* 좋아요 수 (서버에서 변수로 받아와 적용)  */
 .card .post-footer .user-count .count-like {
   font-size: 15px;
   font-weight: 900;
@@ -210,7 +205,8 @@
   overflow: hidden;
   line-height: 0.5em;
 }
-/* 더보기 토굴  */
+
+/* 더보기 토글 */
 .card .post-footer .user-write .user-tag .post-content.user-tag-on {
   height: auto;
 }
@@ -269,4 +265,3 @@ button:hover {
 button:active {
   color: rgb(174, 174, 174);
 }
-
