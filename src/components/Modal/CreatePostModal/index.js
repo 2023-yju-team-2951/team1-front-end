@@ -110,7 +110,7 @@ class CreatePostModal extends HTMLDivElement {
   async share() {
     const file = this.uploadImg.files[0];
     const post = {
-      name: this.account.name,
+      name: this.account.nickname,
       post_content: this.postContent.value,
       post_top_img: this.account.img,
       post_main_img: [await uploadImg(file)],
