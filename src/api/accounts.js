@@ -1,9 +1,10 @@
+const JSON_SERVER_URL = process.env.JSON_SERVER_URL;
 /**
  * 서버로부터 계정 목록을 가져옵니다.
  * @returns {Promise<[]>} 계정 목록
  */
 export async function getAccounts() {
-  const res = await fetch('http://localhost:7000/accounts');
+  const res = await fetch(`${JSON_SERVER_URL}/accounts`);
 
   if (!res.ok) {
     throw new Error(`Failed to fetch accounts, ${res.status}`);
@@ -19,7 +20,7 @@ export async function getAccounts() {
  * @returns {Promise<{}>} 계정
  */
 export async function getAccountById(id) {
-  const res = await fetch(`http://localhost:7000/accounts/${id}`);
+  const res = await fetch(`${JSON_SERVER_URL}/accounts/${id}`);
 
   if (!res.ok) {
     throw new Error(`Failed to fetch account, ${res.status}`);
@@ -35,7 +36,7 @@ export async function getAccountById(id) {
  * @param {string} userToken
  */
 export async function updateUserToken(id, userToken) {
-  const res = await fetch(`http://localhost:7000/accounts/${id}`, {
+  const res = await fetch(`${JSON_SERVER_URL}/accounts/${id}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -82,5 +83,5 @@ export async function logon(userToken) {
     throw new Error('Invalid user token');
   }
 
-  return account.id;
+  return account;
 }

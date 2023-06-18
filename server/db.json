@@ -2,15 +2,20 @@
   "accounts": [
     {
       "id": 1,
-      "name": "d556f8",
-      "email": "",
-      "password": "1234"
+      "name": "주현",
+      "nickname": "d556f8",
+      "password": "1234",
+      "img": "https://github.com/d556f8.png",
+      "userToken": "uxGs6ihrNBnV6iLx6WGY"
     },
     {
       "id": 7,
-      "nickname": "knowteach8946",
+      "userId": "knowteach8946",
       "name": "김지훈",
-      "img": "https://cdn.pixabay.com/photo/2023/05/30/16/50/milk-8029140_1280.png"
+      "nickname": "kimjihoon",
+      "password": "1234",
+      "img": "https://cdn.pixabay.com/photo/2023/05/30/16/50/milk-8029140_1280.png",
+      "userToken": "saerjahasdf112"
     }
   ],
   "profiles": [
@@ -19,16 +24,26 @@
       "name": "d556f8",
       "img": "https://github.com/d556f8.png",
       "storyImg": [
-        "https://cdn.pixabay.com/photo/2023/05/31/09/57/skyscraper-8030987_1280.jpg",
-        "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg"
+        "url(\"https://cdn.pixabay.com/photo/2023/05/31/09/57/skyscraper-8030987_1280.jpg\") center center no-repeat",
+        "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg",
+        "https://thumbsnap.com/i/iJwkrk8c.jpg",
+        "center center no-repeat rgb(189, 178, 255)"
       ],
       "storyText": [
+        {
+          "text": "dsfsdf",
+          "color": "rgb(255, 255, 255)"
+        },
         {
           "text": "",
           "color": ""
         },
         {
           "text": "",
+          "color": ""
+        },
+        {
+          "text": "스토리 테스트 1",
           "color": ""
         }
       ]
@@ -66,9 +81,7 @@
       "id": 3,
       "name": "hetame1",
       "img": "https://github.com/hetame1.png",
-      "storyImg": [
-        "rgb(255, 255, 255)"
-      ],
+      "storyImg": ["rgb(255, 255, 255)"],
       "storyText": [
         {
           "text": "sdfsdfsdf",
@@ -80,9 +93,7 @@
       "id": 4,
       "name": "HyunjinHa",
       "img": "https://github.com/HyunjinHa.png",
-      "storyImg": [
-        "center center no-repeat rgb(155, 246, 255)"
-      ],
+      "storyImg": ["center center no-repeat rgb(155, 246, 255)"],
       "storyText": [
         {
           "text": "sdfsdfㅁㄴㄹ\nㅁㄴㄹasfasfasfㄴㅁㄹ",
@@ -94,12 +105,10 @@
       "id": 5,
       "name": "Jaeil-Lee",
       "img": "https://github.com/Jaeil-Lee.png",
-      "storyImg": [
-        "center center no-repeat rgb(255, 173, 173)"
-      ],
+      "storyImg": ["center center no-repeat rgb(255, 173, 173)"],
       "storyText": [
         {
-          "text": "가나다라마바사\n아자차카타하\n가나달\n가나다라\n가나다라\n가나다라ㅁㄴㄻ",
+          "text": "\nㅁㄴㄹ",
           "color": ""
         }
       ]
@@ -108,13 +117,11 @@
       "id": 6,
       "name": "Lsy04178",
       "img": "https://github.com/Lsy04178.png",
-      "storyImg": [
-        "center center / cover no-repeat rgb(189, 178, 255)"
-      ],
+      "storyImg": ["center center / cover no-repeat rgb(189, 178, 255)"],
       "storyText": [
         {
-          "text": "ㅔㅑㅔㅑ0ㅓㅔㄴㅁㄻㅁㄴㄹsaf",
-          "color": ""
+          "text": "귀요미",
+          "color": "rgb(255, 255, 255)"
         }
       ]
     }
@@ -124,23 +131,50 @@
       "name": "juhyeonni123",
       "post_content": "ㅁㄴㅇㄻㄴㅇㄹ",
       "post_top_img": "https://cdn.pixabay.com/photo/2023/04/15/17/19/cat-7928232_1280.png",
-      "post_main_img": [
-        "https://thumbsnap.com/i/R9RZateo.png"
-      ],
+      "post_main_img": ["https://thumbsnap.com/i/R9RZateo.png"],
       "statements": [],
-      "likes": 11,
-      "id": 7
+      "likes": 16,
+      "id": 7,
+      "category": 1
     },
     {
       "name": "juhyeonni123",
       "post_content": "2",
       "post_top_img": "https://cdn.pixabay.com/photo/2023/04/15/17/19/cat-7928232_1280.png",
-      "post_main_img": [
-        "https://thumbsnap.com/i/f4pKJDDM.png"
-      ],
+      "post_main_img": ["https://thumbsnap.com/i/f4pKJDDM.png"],
       "statements": [],
       "likes": 0,
-      "id": 9
+      "id": 9,
+      "category": 2
+    },
+    {
+      "name": "d556f8",
+      "post_content": "엄 .... 준 .... 식 .... 🎩",
+      "post_top_img": "https://github.com/d556f8.png",
+      "post_main_img": ["https://thumbsnap.com/i/iJwkrk8c.jpg"],
+      "statements": [],
+      "likes": 0,
+      "id": 12
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "후쿠오카 현지학기제",
+      "img": "https://cdn.pixabay.com/photo/2018/07/24/07/40/fukuoka-3558614_1280.jpg",
+      "info": "후쿠오카 현지학기제에 관한 정보입니다"
+    },
+    {
+      "id": 2,
+      "name": "후쿠오카 여행소개",
+      "img": "https://cdn.pixabay.com/photo/2020/03/30/01/55/japan-4982777_1280.jpg",
+      "info": "후쿠오카 여행소개에 관한 정보입니다"
+    },
+    {
+      "id": 3,
+      "name": "후쿠오카 맛집",
+      "img": "https://cdn.pixabay.com/photo/2021/10/28/00/29/ramen-6748518_1280.jpg",
+      "info": "후쿠오카 맛집에 관한 정보입니다"
     }
   ]
 }
