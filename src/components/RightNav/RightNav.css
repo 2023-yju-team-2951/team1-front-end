@@ -14,19 +14,19 @@
   flex-direction: column;
 }
 
-.category-info {
+.nav-info {
   display: flex;
   flex-wrap: nowrap;
   position: relative;
   cursor: pointer;
 }
 
-.category-info .category-info-img-box {
+.nav-info .nav-info-img-box {
   display: block;
   margin-right: 12px;
 }
 
-.category-info .category-info-img {
+.nav-info .nav-info-img {
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -34,25 +34,25 @@
   overflow: hidden;
 }
 
-.category-info .category-info-img img {
+.nav-info .nav-info-img img {
   position: absolute;
   display: block;
 }
 
-.category-info .category-info-text {
+.nav-info .nav-info-text {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   width: 260px;
 }
 
-.category-info .category-info-text .info-nickname {
+.nav-info .nav-info-text .info-nickname {
   color: #000;
   font-size: 14px;
   font-weight: 600;
 }
 
-.category-info .category-info-text .info-name {
+.nav-info .nav-info-text .info-name {
   color: rgb(115, 115, 115);
   font-size: 14px;
   font-weight: 400;

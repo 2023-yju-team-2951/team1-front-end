@@ -6,8 +6,10 @@ import StoryModal from '../Modal/StoryModal/';
 import './story.css'
 
 class Story extends HTMLElement {
-  constructor() {
+  constructor(account) {
     super();
+
+    this.account = account;
 
     this.handleFinishButtonClicked = this.handleFinishButtonClicked.bind(this);
   }
@@ -62,8 +64,12 @@ class Story extends HTMLElement {
       translateXValue += 80;
     });
 
+    storyHTML += `</ul>`;
+    this.innerHTML = storyHTML;
 
-    storyHTML += `
+    if (this.account) {
+      const storyUl = this.querySelector('.container');
+      storyUl.innerHTML += `
       <li class="slider" style="transform: translateX(${translateXValue}px);">
         <div class="story-container">
           <div class="story" id="add-story" data-bs-toggle="modal" data-bs-target="#swapModal">
@@ -73,15 +79,16 @@ class Story extends HTMLElement {
           </div>
         </div>
       </li>
-    `;
-
-    storyHTML += `</ul>`;
-    this.innerHTML = storyHTML;
+      `
+    }
 
     // 스토리 추가버튼 누르면 모달창 띄우기
-    this.querySelector('#add-story').addEventListener('click', () => {
-      exchangeModal(new StoryModal('main'));
-    });
+
+    if (this.account) {
+      this.querySelector('#add-story').addEventListener('click', () => {
+        exchangeModal(new StoryModal('main'));
+      });
+    }
 
     // 캔버스 그리기
     const canvasElements = this.querySelectorAll('canvas');
@@ -158,3 +165,5 @@ class Story extends HTMLElement {
 }
 
 window.customElements.define('story-component', Story);
+
+export default Story;

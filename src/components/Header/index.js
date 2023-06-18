@@ -1,5 +1,4 @@
 import './Header.css';
-// import '../Story';
 import Story from '../Story';
 import { getProfiles } from '../../api/profiles';
 import { exchangeComponent } from '../utils/exchangeComponent';
@@ -9,6 +8,7 @@ class Header extends HTMLElement {
     super();
 
     this.currentOffset = 0;
+    this.account = account;
 
     this.loadDatas();
   }
@@ -35,7 +35,7 @@ class Header extends HTMLElement {
               <div class="btnN"></div>
             </button>
             <button class="slider-button next">
-                <div class="btnN"></div>k
+                <div class="btnN"></div>
             </button>
           </div>
         </div>
@@ -86,7 +86,7 @@ class Header extends HTMLElement {
     const sliderWidth = sliderWrapper.scrollWidth;
     const containerWidth = sliderWrapper.offsetWidth;
     const minOffset = -(sliderWidth - containerWidth);
-
+    
     if (this.currentOffset == minOffset) {
       button.classList.add('hidden');
     } else {

@@ -3,9 +3,11 @@ class LoginPage extends HTMLDivElement {
     super();
 
     this.innerHTML = ` 
-
+      <div>adasd</div>
     `;
   }
 }
+
+window.customElements.define('login-page', LoginPage, { extends: 'div' });
 
 export default LoginPage;

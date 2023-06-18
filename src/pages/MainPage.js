@@ -10,7 +10,7 @@ class MainPage extends HTMLDivElement {
     super();
     this.classList.add('main');
 
-    this.account = {};
+    this.account = null;
     this.userToken = sessionStorage.getItem('userToken');
 
     // 기본 템플릿

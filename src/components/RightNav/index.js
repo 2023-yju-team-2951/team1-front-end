@@ -1,6 +1,5 @@
 import './RightNav.css';
 import '../Story';
-import { getAccountById } from '../../api/accounts';
 import Post from '../Post';
 import { getCategories } from '../../api/categories';
 import { exchangeComponent } from '../utils/exchangeComponent';
@@ -11,6 +10,7 @@ class RightNav extends HTMLElement {
 
     this.account = account;
     this.categories = [];
+
   }
 
   async connectedCallback() {
@@ -22,36 +22,14 @@ class RightNav extends HTMLElement {
     }
   }
 
-  // async loadDatas() {
-  //   try {
-  //     // this.data = await getAccountById(this.account.id);
-  //     this.categories = await getCategories();
-  //     console.log(this.categories);
-  //     this.render();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
   render() {
-    if (!this.account) {
-      return;
-    }
     this.innerHTML = `
     <div class="right-nav-container">
       <div class="right-nav-box">
 
         <div class="right-nav-header">
-          <div class="category-info">
-            <div class="category-info-img-box">
-              <div class="category-info-img">
-                <img src="${this.account.img}" alt="프로필 사진">
-              </div>
-            </div>   
-            <div class="category-info-text">
-              <span class="info-nickname">${this.account.nickname}</span>
-              <span class="info-name">${this.account.name}</span>
-            </div>
+          <div class="nav-info">
+            
           </div>
         </div>
 
@@ -67,9 +45,30 @@ class RightNav extends HTMLElement {
       </div>
     </div>
     `;
-
-    const navHeader = this.querySelector('.right-nav-header');
     
+    if(this.account) {
+      const navInfo = this.querySelector('.nav-info');
+      navInfo.innerHTML = `
+      <div class="nav-info-img-box">
+        <div class="nav-info-img">
+          <img src="${this.account.img}" alt="프로필 사진">
+        </div>
+      </div>   
+      <div class="nav-info-text">
+        <span class="info-nickname">${this.account.nickname}</span>
+        <span class="info-name">${this.account.name}</span>
+      </div>
+      `
+    } else {
+      const navInfo = this.querySelector('.nav-info');
+      navInfo.innerHTML = `
+        <div class="not-login">
+          <div class="not-login-text">
+            <span><a data-link href="/login">로그인</a>이 필요합니다.</span>
+          </div>
+        </div>
+        `  
+    }
 
     const rightNavItems = this.querySelectorAll('.right-nav-item');
     rightNavItems.forEach((item) => {
@@ -86,7 +85,6 @@ class NavItem {
   // data = categories의 개체
   constructor(data) {
     this.account = data;
-    console.log(data);
     this.render();
   }
 
@@ -97,13 +95,13 @@ class NavItem {
       NavItem.innerHTML += `
         <div class="right-nav-item" data-id="${item.id}">
           <div class="right-nav-item-contain">
-            <div class="category-info">
-              <div class="category-info-img-box">
-                <div class="category-info-img">
+            <div class="nav-info">
+              <div class="nav-info-img-box">
+                <div class="nav-info-img">
                   <img src="${item.img}" alt="프로필 사진">
                 </div>
               </div>
-              <div class="category-info-text">
+              <div class="nav-info-text">
                 <span class="info-nickname">${item.name}</span>
                 <span class="info-name">${item.info}</span>
               </div>
