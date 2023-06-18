@@ -73,7 +73,6 @@ class Nav extends HTMLDivElement {
           </div>
         </div>
       </div>
-      
     `;
     this.navHome = this.querySelector('.nav-home');
     this.navSearch = this.querySelector('.nav-search');
@@ -98,6 +97,10 @@ class Nav extends HTMLDivElement {
     this.otherActivities.addEventListener('click', () => {});
 
     this.otherLogout.addEventListener('click', () => this.logoutEvent());
+
+    if (!this.account) {
+      this.navAdd.remove();
+    }
   }
 
   // root 재 렌더링
