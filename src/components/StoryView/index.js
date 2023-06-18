@@ -15,6 +15,8 @@ class StoryView extends HTMLDivElement {
 
     this.account = account;
 
+    console.log(this.account);
+
     this.storyWrapper = document.createElement('div');
     this.storyWrapper.className = 'story-modal-wrapper';
     this.modalWrapper = document.createElement('div');
@@ -66,7 +68,7 @@ class StoryView extends HTMLDivElement {
     // 스토리 만들기
     this.modalWrapper.innerHTML = `
       ${index > 0 ? new SideStory(prevData).render('left') : ''}
-      ${new CenterStory(this.profileData[index]).render()}
+      ${new CenterStory(this.profileData[index], this.account).render()}
       ${index < this.profileData.length - 1 ? new SideStory(nextData).render('right') : ''}
     `;
 
@@ -419,8 +421,9 @@ class StoryView extends HTMLDivElement {
 }
 // 중간 스토리 생성
 class CenterStory {
-  constructor(data) {
+  constructor(data, account) {
     this.profileData = data;
+    this.account = account;
   }
   render() {
     let container = document.createElement('div');
@@ -434,14 +437,7 @@ class CenterStory {
                   <img class="story-small-img" src="${this.profileData.img}">
                   <div class="story-name">${this.profileData.name}</div>
                 </div>
-                <div class="story-tool">
-                  <span class="material-symbols-outlined" id="edit-story" data-bs-target="#swapModal" data-bs-toggle="modal">
-                    edit
-                  </span>
-                  <span class="material-symbols-outlined" id="del-story">
-                    delete_forever
-                  </span>
-                </div>
+                
               </div>
             </div>
             <button class="slide-button prevB" type="button" data-bs-target="#carouselAuto" data-bs-slide="prev">
@@ -459,6 +455,23 @@ class CenterStory {
         </div>
       </div>
     `;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = parseInt(urlParams.get('id'));
+
+    if (id === this.account.id) {
+      const storyHead = container.querySelector('.story-head');
+      storyHead.innerHTML += `
+      <div class="story-tool">
+        <span class="material-symbols-outlined" id="edit-story" data-bs-target="#swapModal" data-bs-toggle="modal">
+          edit
+        </span>
+        <span class="material-symbols-outlined" id="del-story">
+          delete_forever
+        </span>
+      </div>
+      `
+    }
 
     let imgSize = container.querySelector('.img-size');
 

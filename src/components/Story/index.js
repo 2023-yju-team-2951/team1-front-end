@@ -158,3 +158,5 @@ class Story extends HTMLElement {
 }
 
 window.customElements.define('story-component', Story);
+
+export default Story;
