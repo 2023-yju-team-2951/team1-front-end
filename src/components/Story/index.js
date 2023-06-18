@@ -23,7 +23,7 @@ class Story extends HTMLElement {
 
   async loadDatas() {
     try {
-      this.data = await getProfiles();
+      this.propfileData = await getProfiles();
       this.render();
       const canvasElements = this.querySelectorAll('canvas');
       canvasElements.forEach((canvasElement) => {
@@ -42,7 +42,7 @@ class Story extends HTMLElement {
     let translateXValue = -15;
     let storyHTML = `<ul class="container">`;
 
-    this.data.forEach((story) => {
+    this.propfileData.forEach((story) => {
       storyHTML += `
         <li class="slider" style="transform: translateX(${translateXValue}px);">
           <div class="story-container">

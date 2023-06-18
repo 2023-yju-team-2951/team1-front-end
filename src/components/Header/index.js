@@ -13,7 +13,7 @@ class Header extends HTMLElement {
 
   async loadDatas() {
     try {
-      this.data = await getProfiles();
+      this.profileData = await getProfiles();
       this.render();
     } catch (error) {
       console.log(error);
@@ -62,7 +62,7 @@ class Header extends HTMLElement {
   }
 
   nextButtonCheck() {
-    if (this.data.length > 7) {
+    if (this.profileData.length > 7) {
       const nextButton = document.querySelector(".next");
       nextButton.classList.remove("hidden");
     }

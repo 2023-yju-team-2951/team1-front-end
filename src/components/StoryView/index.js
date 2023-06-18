@@ -29,7 +29,7 @@ class StoryView extends HTMLElement {
   // 데이터 불러오기
   async loadDatas() {
     try {
-      this.data = await getProfiles();
+      this.profileData = await getProfiles();
       this.render();
     } catch (error) {
       console.log(error);
@@ -44,18 +44,18 @@ class StoryView extends HTMLElement {
     const urlParams = new URLSearchParams(window.location.search);
     const id = parseInt(urlParams.get('id'));
 
-    const index = this.data.findIndex((data) => data.id === id);
+    const index = this.profileData.findIndex((data) => data.id === id);
 
     // 왼쪽, 오른쪽 스토리 있는지 확인하고 데이터 저장
     let prevData = '', nextData = '';
-    if (index > 0) prevData = this.data[index - 1];
-    if (index < this.data.length - 1) nextData = this.data[index + 1];
+    if (index > 0) prevData = this.profileData[index - 1];
+    if (index < this.profileData.length - 1) nextData = this.profileData[index + 1];
 
     // 스토리 만들기
     this.modalWrapper.innerHTML = `
       ${index > 0 ? new SideStory(prevData).render('left') : ''}
-      ${new CenterStory(this.data[index]).render()}
-      ${index < this.data.length - 1 ? new SideStory(nextData).render('right') : ''}
+      ${new CenterStory(this.profileData[index]).render()}
+      ${index < this.profileData.length - 1 ? new SideStory(nextData).render('right') : ''}
     `;
 
     this.storyWrapper.appendChild(this.modalWrapper);
@@ -153,7 +153,7 @@ class StoryView extends HTMLElement {
   moveStory(directions) {
     const urlParams = new URLSearchParams(window.location.search);
     const id = parseInt(urlParams.get('id'));
-    const data = this.data.find((data) => {
+    const data = this.profileData.find((data) => {
       if (directions === 'left') {
         return data.id === id - 1;
       }
@@ -165,12 +165,12 @@ class StoryView extends HTMLElement {
 
     if (directions === 'left') {
       direction = 'left';
-      if (data.id === 1 || currentId === this.data.length) {
+      if (data.id === 1 || currentId === this.profileData.length) {
         direction = 'endLeft';
       }
     } else if (directions === 'right') {
       direction = 'right';
-      if (data.id === this.data.length || currentId === 1) {
+      if (data.id === this.profileData.length || currentId === 1) {
         direction = 'endRight';
       }
     }
@@ -319,7 +319,7 @@ class StoryView extends HTMLElement {
     storyImg.splice(activeIndex, 1);
     storyText.splice(activeIndex, 1);
     
-    const index = this.data.findIndex((data) => data.id === id);
+    const index = this.profileData.findIndex((data) => data.id === id);
 
     if (storyImg.length === 0) {
 
@@ -338,8 +338,8 @@ class StoryView extends HTMLElement {
       this.loadDatas();
       
     } else {
-      this.data[index].storyImg = storyImg;
-      this.data[index].storyText = storyText;
+      this.profileData[index].storyImg = storyImg;
+      this.profileData[index].storyText = storyText;
 
       fetch(`http://localhost:7000/profiles/${id}`, {
       method: 'PATCH',
@@ -383,10 +383,10 @@ class StoryView extends HTMLElement {
     storyText[activeIndex].text = text;
     storyText[activeIndex].color = color;
 
-    const index = this.data.findIndex((data) => data.id === id);
+    const index = this.profileData.findIndex((data) => data.id === id);
     console.log(storyImg);
-    this.data[index].storyImg = storyImg;
-    this.data[index].storyText = storyText;
+    this.profileData[index].storyImg = storyImg;
+    this.profileData[index].storyText = storyText;
 
     await updateProfile(id, storyImg, storyText);
 
@@ -399,7 +399,7 @@ class StoryView extends HTMLElement {
 // 중간 스토리 생성
 class CenterStory {
   constructor(data) {
-    this.data = data;
+    this.profileData = data;
   }
   render() {
     let container = document.createElement('div');
@@ -410,8 +410,8 @@ class CenterStory {
             <div class="story-header">
               <div class="story-head">
                 <div class="story-profile">
-                  <img class="story-small-img" src="${this.data.img}">
-                  <div class="story-name">${this.data.name}</div>
+                  <img class="story-small-img" src="${this.profileData.img}">
+                  <div class="story-name">${this.profileData.name}</div>
                 </div>
                 <div class="story-tool">
                   <span class="material-symbols-outlined" id="edit-story" data-bs-target="#swapModal" data-bs-toggle="modal">
@@ -441,7 +441,7 @@ class CenterStory {
 
     let imgSize = container.querySelector(".img-size");
 
-    const carouselImg = new CarouselImg(this.data);
+    const carouselImg = new CarouselImg(this.profileData);
     imgSize.appendChild(carouselImg.render());
 
     return container.innerHTML;
@@ -451,7 +451,7 @@ class CenterStory {
 // 캐러셀 이미지 생성
 class CarouselImg {
   constructor(data) {
-    this.data = data;
+    this.profileData = data;
   }
   render() {
     const carouselSlide = document.createElement('div');
@@ -465,9 +465,9 @@ class CarouselImg {
     carouselInner.className = 'carousel-inner';
 
 
-    if (Array.isArray(this.data.storyImg) && Array.isArray(this.data.storyText)) {
+    if (Array.isArray(this.profileData.storyImg) && Array.isArray(this.profileData.storyText)) {
 
-      for (let i = 0; i < this.data.storyImg.length; i++) {
+      for (let i = 0; i < this.profileData.storyImg.length; i++) {
         const carouselItem = document.createElement('div');
         const carouselIndicator = document.createElement('button');
 
@@ -487,15 +487,15 @@ class CarouselImg {
 
         const img = document.createElement('div');
         img.className = 'img';
-        if (/^http.*/.test(this.data.storyImg[i])) {
-          img.style.background = `url(${this.data.storyImg[i]})`;
+        if (/^http.*/.test(this.profileData.storyImg[i])) {
+          img.style.background = `url(${this.profileData.storyImg[i]})`;
           img.style.backgroundPosition = 'center';
           img.style.backgroundRepeat = 'no-repeat';
         } else {
-          img.style.background = this.data.storyImg[i];
+          img.style.background = this.profileData.storyImg[i];
         }
 
-        const textItem = this.data.storyText[i];
+        const textItem = this.profileData.storyText[i];
 
         const textContainer = document.createElement('div');
         textContainer.className = 'text-container';
@@ -525,7 +525,7 @@ class CarouselImg {
 // 사이드 스토리 생성
 class SideStory {
   constructor(data) {
-    this.data = data;
+    this.profileData = data;
   }
   render(name) {
     const container = document.createElement('div');
@@ -542,11 +542,11 @@ class SideStory {
                     <div class="side-story-container">
                       <div class="side-story-img-container">
                         <span class="side-story-img-item">
-                          <img class="side-story-img" src="${this.data.img}">
+                          <img class="side-story-img" src="${this.profileData.img}">
                         </span>
                       </div>
                       <div class="side-story-text-container">
-                        <span class="side-story-text">${this.data.name}</span>
+                        <span class="side-story-text">${this.profileData.name}</span>
                       </div>
                     </div>
                   </div>
@@ -561,10 +561,10 @@ class SideStory {
 
     // 이미지 배경 쓸 때 http 로 시작하는 주소면 url 로 인식하고 아니면 그냥 배경으로 인식
     const sideImg = container.querySelector('.side-img');
-    if (/^http.*/.test(this.data.storyImg[0])) {
-      sideImg.style.background = `url(${this.data.storyImg[0]})`;
+    if (/^http.*/.test(this.profileData.storyImg[0])) {
+      sideImg.style.background = `url(${this.profileData.storyImg[0]})`;
     } else {
-      sideImg.style.background = this.data.storyImg[0];
+      sideImg.style.background = this.profileData.storyImg[0];
     }
 
     return container.innerHTML;

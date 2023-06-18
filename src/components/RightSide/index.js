@@ -15,7 +15,7 @@ class RightNav extends HTMLElement {
 
   async loadDatas() {
     try {
-      this.data = await getAccountById(this.testId);
+      this.accountData = await getAccountById(this.testId);
       this.category = await getCategories();
       this.render();
     }
@@ -35,12 +35,12 @@ class RightNav extends HTMLElement {
           <div class="category-info">
             <div class="category-info-img-box">
               <div class="category-info-img">
-                <img src="${this.data.img}" alt="프로필 사진">
+                <img src="${this.accountData.img}" alt="프로필 사진">
               </div>
             </div>   
             <div class="category-info-text">
-              <span class="info-nickname">${this.data.nickname}</span>
-              <span class="info-name">${this.data.name}</span>
+              <span class="info-nickname">${this.accountData.nickname}</span>
+              <span class="info-name">${this.accountData.name}</span>
             </div>
           </div>
         </div>
@@ -71,7 +71,7 @@ class RightNav extends HTMLElement {
 
 class NavItem {
   constructor(data) {
-    this.data = data;
+    this.accountData = data;
     console.log(data);
     this.render();
   }
@@ -79,7 +79,7 @@ class NavItem {
   render() {
     let NavItem = document.createElement('div');
 
-    this.data.forEach((item) => {
+    this.accountData.forEach((item) => {
       NavItem.innerHTML +=
         `
         <div class="right-nav-item" data-id="${item.id}">
