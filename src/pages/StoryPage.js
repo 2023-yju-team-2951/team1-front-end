@@ -7,7 +7,7 @@ class StoryPage extends HTMLDivElement {
     super();
     this.classList.add('story-view-modal');
 
-    this.account = {};
+    this.account = {id:null};
     this.userToken = sessionStorage.getItem('userToken');
 
     this.innerHTML = `
