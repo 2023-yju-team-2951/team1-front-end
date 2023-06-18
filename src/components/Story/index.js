@@ -120,7 +120,7 @@ class Story extends HTMLElement {
   // 스토리 추가할때 기본값 넘겨주기
   async addStory(detail) {
 
-    const Id = 7;
+    const Id = this.account.id;
     const text = detail.text;
     const color = detail.textColor;
     let background = ''
@@ -144,13 +144,21 @@ class Story extends HTMLElement {
       data.storyImg.push(background);
       data.storyText.push({ text, color: textColor });
 
-      await updateProfile(Id, data.storyImg, data.storyText);
+      await updateProfile(data);
     } catch (error) {
-      if (error.status === 404) {
+      if (error === '404') {
         const storyImg = [background];
         const storyText = [{ text, color: textColor }];
-        const data = await getAccountById(Id);
-        await postProfile(data.id, data.name, data.img, storyImg, storyText);
+
+        const post = {
+          userId: this.account.id,
+          name: this.account.name,
+          img: this.account.img,
+          storyImg: storyImg,
+          storyText: storyText,
+        };
+
+        await postProfile(post);
       } else {
         console.error(error);
       }
