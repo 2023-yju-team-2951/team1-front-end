@@ -46,13 +46,13 @@
   width: 260px;
 }
 
-.category-info .category-info-text .info-nickname{
+.category-info .category-info-text .info-nickname {
   color: #000;
   font-size: 14px;
   font-weight: 600;
 }
 
-.category-info .category-info-text .info-name{
+.category-info .category-info-text .info-name {
   color: rgb(115, 115, 115);
   font-size: 14px;
   font-weight: 400;
@@ -92,4 +92,10 @@
 .right-nav-item .right-nav-item-contain {
   padding: 16px 8px 16px 0;
   display: flex;
+}
+
+@media (max-width: 940px) {
+  .right-nav {
+    display: none !important;
+  }
 }

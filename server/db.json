@@ -2,17 +2,20 @@
   "accounts": [
     {
       "id": 1,
-      "userId": "juhyeonni123",
+      "name": "주현",
       "nickname": "d556f8",
-      "name": "juhyeonni123",
       "password": "1234",
-      "img": ""
+      "img": "https://github.com/d556f8.png",
+      "userToken": "uxGs6ihrNBnV6iLx6WGY"
     },
     {
       "id": 7,
       "userId": "knowteach8946",
       "name": "김지훈",
-      "img": "https://cdn.pixabay.com/photo/2023/05/30/16/50/milk-8029140_1280.png"
+      "nickname": "kimjihoon",
+      "password": "1234",
+      "img": "https://cdn.pixabay.com/photo/2023/05/30/16/50/milk-8029140_1280.png",
+      "userToken": "saerjahasdf112"
     }
   ],
   "profiles": [
@@ -22,7 +25,9 @@
       "img": "https://github.com/d556f8.png",
       "storyImg": [
         "url(\"https://cdn.pixabay.com/photo/2023/05/31/09/57/skyscraper-8030987_1280.jpg\") center center no-repeat",
-        "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg"
+        "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg",
+        "https://thumbsnap.com/i/iJwkrk8c.jpg",
+        "center center no-repeat rgb(189, 178, 255)"
       ],
       "storyText": [
         {
@@ -31,6 +36,14 @@
         },
         {
           "text": "",
+          "color": ""
+        },
+        {
+          "text": "",
+          "color": ""
+        },
+        {
+          "text": "스토리 테스트 1",
           "color": ""
         }
       ]
@@ -68,9 +81,7 @@
       "id": 3,
       "name": "hetame1",
       "img": "https://github.com/hetame1.png",
-      "storyImg": [
-        "rgb(255, 255, 255)"
-      ],
+      "storyImg": ["rgb(255, 255, 255)"],
       "storyText": [
         {
           "text": "sdfsdfsdf",
@@ -82,9 +93,7 @@
       "id": 4,
       "name": "HyunjinHa",
       "img": "https://github.com/HyunjinHa.png",
-      "storyImg": [
-        "center center no-repeat rgb(155, 246, 255)"
-      ],
+      "storyImg": ["center center no-repeat rgb(155, 246, 255)"],
       "storyText": [
         {
           "text": "sdfsdfㅁㄴㄹ\nㅁㄴㄹasfasfasfㄴㅁㄹ",
@@ -96,9 +105,7 @@
       "id": 5,
       "name": "Jaeil-Lee",
       "img": "https://github.com/Jaeil-Lee.png",
-      "storyImg": [
-        "center center no-repeat rgb(255, 173, 173)"
-      ],
+      "storyImg": ["center center no-repeat rgb(255, 173, 173)"],
       "storyText": [
         {
           "text": "\nㅁㄴㄹ",
@@ -110,9 +117,7 @@
       "id": 6,
       "name": "Lsy04178",
       "img": "https://github.com/Lsy04178.png",
-      "storyImg": [
-        "center center no-repeat rgb(155, 246, 255)"
-      ],
+      "storyImg": ["center center / cover no-repeat rgb(189, 178, 255)"],
       "storyText": [
         {
           "text": "귀요미",
@@ -126,11 +131,9 @@
       "name": "juhyeonni123",
       "post_content": "ㅁㄴㅇㄻㄴㅇㄹ",
       "post_top_img": "https://cdn.pixabay.com/photo/2023/04/15/17/19/cat-7928232_1280.png",
-      "post_main_img": [
-        "https://thumbsnap.com/i/R9RZateo.png"
-      ],
+      "post_main_img": ["https://thumbsnap.com/i/R9RZateo.png"],
       "statements": [],
-      "likes": 14,
+      "likes": 16,
       "id": 7,
       "category": 1
     },
@@ -138,13 +141,20 @@
       "name": "juhyeonni123",
       "post_content": "2",
       "post_top_img": "https://cdn.pixabay.com/photo/2023/04/15/17/19/cat-7928232_1280.png",
-      "post_main_img": [
-        "https://thumbsnap.com/i/f4pKJDDM.png"
-      ],
+      "post_main_img": ["https://thumbsnap.com/i/f4pKJDDM.png"],
       "statements": [],
       "likes": 0,
       "id": 9,
       "category": 2
+    },
+    {
+      "name": "d556f8",
+      "post_content": "엄 .... 준 .... 식 .... 🎩",
+      "post_top_img": "https://github.com/d556f8.png",
+      "post_main_img": ["https://thumbsnap.com/i/iJwkrk8c.jpg"],
+      "statements": [],
+      "likes": 0,
+      "id": 12
     }
   ],
   "categories": [
