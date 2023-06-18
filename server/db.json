@@ -18,19 +18,16 @@
   "profiles": [
     {
       "id": 1,
-      "name": "d556f8",
-      "img": "https://github.com/d556f8.png",
+      "userId": 2,
+      "name": "2201400",
+      "img": "https://github.com/2201400.png",
       "storyImg": [
-        "url(\"https://cdn.pixabay.com/photo/2023/05/31/09/57/skyscraper-8030987_1280.jpg\") center center no-repeat",
         "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg",
         "https://thumbsnap.com/i/iJwkrk8c.jpg",
-        "center center no-repeat rgb(189, 178, 255)"
+        "center center no-repeat rgb(189, 178, 255)",
+        "center center no-repeat rgb(202, 255, 191)"
       ],
       "storyText": [
-        {
-          "text": "dsfsdf",
-          "color": "rgb(255, 255, 255)"
-        },
         {
           "text": "",
           "color": ""
@@ -42,32 +39,22 @@
         {
           "text": "스토리 테스트 1",
           "color": ""
+        },
+        {
+          "text": "ㄴㅁㄹ",
+          "color": ""
         }
       ]
     },
     {
       "id": 2,
-      "name": "2201400",
-      "img": "https://github.com/2201400.png",
+      "userId": 3,
+      "name": "hetame1",
+      "img": "https://github.com/hetame1.png",
       "storyImg": [
-        "rgb(189, 178, 255)",
-        "rgb(202, 255, 191)",
-        "rgb(202, 255, 191)",
-        "rgb(155, 246, 255)"
+        "rgb(255, 255, 255)"
       ],
       "storyText": [
-        {
-          "text": "테스트트트트",
-          "color": ""
-        },
-        {
-          "text": "ㄴㅁㄻㄴㄹ",
-          "color": ""
-        },
-        {
-          "text": "ㄴㅁㄹ",
-          "color": ""
-        },
         {
           "text": "sdfsdfsdf",
           "color": ""
@@ -76,21 +63,12 @@
     },
     {
       "id": 3,
-      "name": "hetame1",
-      "img": "https://github.com/hetame1.png",
-      "storyImg": ["rgb(255, 255, 255)"],
-      "storyText": [
-        {
-          "text": "sdfsdfsdf",
-          "color": ""
-        }
-      ]
-    },
-    {
-      "id": 4,
+      "userId": 4,
       "name": "HyunjinHa",
       "img": "https://github.com/HyunjinHa.png",
-      "storyImg": ["center center no-repeat rgb(155, 246, 255)"],
+      "storyImg": [
+        "center center no-repeat rgb(155, 246, 255)"
+      ],
       "storyText": [
         {
           "text": "sdfsdfㅁㄴㄹ\nㅁㄴㄹasfasfasfㄴㅁㄹ",
@@ -99,10 +77,13 @@
       ]
     },
     {
-      "id": 5,
+      "id": 4,
+      "userId": 5,
       "name": "Jaeil-Lee",
       "img": "https://github.com/Jaeil-Lee.png",
-      "storyImg": ["center center no-repeat rgb(255, 173, 173)"],
+      "storyImg": [
+        "center center no-repeat rgb(255, 173, 173)"
+      ],
       "storyText": [
         {
           "text": "\nㅁㄴㄹ",
@@ -111,16 +92,34 @@
       ]
     },
     {
-      "id": 6,
+      "id": 5,
+      "userId": 6,
       "name": "Lsy04178",
       "img": "https://github.com/Lsy04178.png",
-      "storyImg": ["center center / cover no-repeat rgb(189, 178, 255)"],
+      "storyImg": [
+        "center center / cover no-repeat rgb(189, 178, 255)"
+      ],
       "storyText": [
         {
-          "text": "귀요미asf",  
+          "text": "귀요미asf",
           "color": "rgb(255, 255, 255)"
         }
       ]
+    },
+    {
+      "userId": 1,
+      "name": "주현",
+      "img": "https://github.com/d556f8.png",
+      "storyImg": [
+        "center center no-repeat rgb(155, 246, 255)"
+      ],
+      "storyText": [
+        {
+          "text": "ㅁㄴㄹ",
+          "color": ""
+        }
+      ],
+      "id": 6
     }
   ],
   "posts": [
@@ -154,10 +153,10 @@
       "name": "FUKUOKA_TOWER",
       "post_content": " 6月、夏を待つタワーです ",
       "post_top_img": "https://i.ibb.co/Pt77Qvb/003-1.png",
-      "post_main_img":  [
+      "post_main_img": [
         "https://i.ibb.co/MCbQPK4/Kakao-Talk-20230618-173521489.jpg",
         "https://i.ibb.co/XpNdNFh/Kakao-Talk-20230618-173522349.jpg"
-          ],
+      ],
       "statements": [],
       "likes": 42,
       "id": 17,
@@ -175,8 +174,6 @@
       "id": 7,
       "category": 1
     },
-    
-
     {
       "name": "FUKUOKA_TRIP",
       "post_content": "과거, 명검객이 머물었던 웅장한 후쿠오카의 고쿠라성!!!",
@@ -218,7 +215,9 @@
       "name": "FUKUOKA_TOWER",
       "post_content": " 福岡タワーのマスコットキャラクターフータくん ",
       "post_top_img": "https://i.ibb.co/Pt77Qvb/003-1.png",
-      "post_main_img":  ["https://i.ibb.co/3rMt8Mk/Kakao-Talk-20230618-173516748.jpg"],
+      "post_main_img": [
+        "https://i.ibb.co/3rMt8Mk/Kakao-Talk-20230618-173516748.jpg"
+      ],
       "statements": [],
       "likes": 22,
       "id": 17,
@@ -266,9 +265,9 @@
       "name": "FUKUOKA_TOWER",
       "post_content": " 夜にもキラれているタワー ",
       "post_top_img": "https://i.ibb.co/Pt77Qvb/003-1.png",
-      "post_main_img":  [ 
-        "https://i.ibb.co/MVSf2bS/Kakao-Talk-20230618-173509729.jpg" ,
-        "https://i.ibb.co/y5xWp3N/Kakao-Talk-20230618-173513249.jpg"  
+      "post_main_img": [
+        "https://i.ibb.co/MVSf2bS/Kakao-Talk-20230618-173509729.jpg",
+        "https://i.ibb.co/y5xWp3N/Kakao-Talk-20230618-173513249.jpg"
       ],
       "statements": [],
       "likes": 17,
@@ -292,7 +291,9 @@
       "name": "FUKUOKA_TOWER",
       "post_content": " 夜景、美しい福岡 ",
       "post_top_img": "https://i.ibb.co/Pt77Qvb/003-1.png",
-      "post_main_img": ["https://i.ibb.co/dL4hZjG/Kakao-Talk-20230618-173511970.jpg" ],
+      "post_main_img": [
+        "https://i.ibb.co/dL4hZjG/Kakao-Talk-20230618-173511970.jpg"
+      ],
       "statements": [],
       "likes": 72,
       "id": 18,

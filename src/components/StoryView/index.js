@@ -15,8 +15,6 @@ class StoryView extends HTMLDivElement {
 
     this.account = account;
 
-    console.log(this.account);
-
     this.storyWrapper = document.createElement('div');
     this.storyWrapper.className = 'story-modal-wrapper';
     this.modalWrapper = document.createElement('div');
@@ -389,8 +387,7 @@ class StoryView extends HTMLDivElement {
     const activeCarouselItem = this.querySelector('.carousel-item.active');
     const activeIndex = activeCarouselItem.dataset.index;
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = parseInt(urlParams.get('id'));
+    const id = this.account.id;
     const background = detail.background;
     const text = detail.text;
     const color = detail.textColor;
@@ -407,12 +404,11 @@ class StoryView extends HTMLDivElement {
     storyText[activeIndex].text = text;
     storyText[activeIndex].color = color;
 
-    const index = this.profileData.findIndex((data) => data.id === id);
-    console.log(storyImg);
+    const index = this.profileData.findIndex((data) => data.userId === id);
     this.profileData[index].storyImg = storyImg;
     this.profileData[index].storyText = storyText;
 
-    await updateProfile(id, storyImg, storyText);
+    await updateProfile(this.profileData[index]);
 
     this.modalWrapper.innerHTML = '';
 
@@ -456,10 +452,9 @@ class CenterStory {
       </div>
     `;
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = parseInt(urlParams.get('id'));
 
-    if (id === this.account.id) {
+
+    if (this.profileData.userId === this.account.id) {
       const storyHead = container.querySelector('.story-head');
       storyHead.innerHTML += `
       <div class="story-tool">
