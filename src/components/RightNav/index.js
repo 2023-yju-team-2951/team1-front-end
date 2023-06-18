@@ -11,18 +11,11 @@ class RightNav extends HTMLElement {
 
     this.account = account;
     this.categories = [];
-    // this.testId = account.id;
-
-    // this.loadDatas();
-
-    // this.render();
   }
 
   async connectedCallback() {
     try {
-      this.account = await getAccountById(this.testId);
       this.categories = await getCategories();
-      console.log(this.categories);
       this.render();
     } catch (error) {
       console.error(error);
@@ -74,6 +67,9 @@ class RightNav extends HTMLElement {
       </div>
     </div>
     `;
+
+    const navHeader = this.querySelector('.right-nav-header');
+    
 
     const rightNavItems = this.querySelectorAll('.right-nav-item');
     rightNavItems.forEach((item) => {

@@ -15,11 +15,13 @@ class MainPage extends HTMLDivElement {
 
     // 기본 템플릿
     this.innerHTML = `
-      <div class="main-nav">
-        <div id="nav" is="nav-component"></div>
-      </div>
+    <div class="main-nav">
+      <div is="nav-component" id="nav"></div>
+    </div>
 
-      <main class="main-body-wrapper">
+    <main class="main-body-wrapper">
+
+      <div class="right-body">
         <div class="main-body">
           <Header-component id="header"></Header-component>
           <div class="inner">
@@ -31,6 +33,8 @@ class MainPage extends HTMLDivElement {
           <rightnav-component id="right-nav"></rightnav-component>
         </div>
       </div>
+      
+    </div>
     `;
 
     this.navComponent = this.querySelector('#nav');

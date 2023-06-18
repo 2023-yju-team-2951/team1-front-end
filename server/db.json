@@ -117,7 +117,7 @@
       "storyImg": ["center center / cover no-repeat rgb(189, 178, 255)"],
       "storyText": [
         {
-          "text": "귀요미asf",
+          "text": "귀요미asf",  
           "color": "rgb(255, 255, 255)"
         }
       ]
@@ -138,16 +138,189 @@
       "category": 1
     },
     {
-      "name": "juhyeonni123",
-      "post_content": "2",
-      "post_top_img": "https://cdn.pixabay.com/photo/2023/04/15/17/19/cat-7928232_1280.png",
+      "name": "go_school_yju",
+      "post_content": " 두근두근 설레임을 가득 안고, 후쿠오카에 도착~!",
+      "post_top_img": "https://i.ibb.co/S00HZYG/yj.png",
       "post_main_img": [
-        "https://thumbsnap.com/i/f4pKJDDM.png"
+        "https://i.ibb.co/KWCN1ny/Kakao-Talk-20230618-022440907-01.jpg",
+        "https://i.ibb.co/sKrhB5T/Kakao-Talk-20230618-022440907.jpg"
+      ],
+      "statements": [],
+      "likes": 136,
+      "id": 6,
+      "category": 1
+    },
+    {
+      "name": "FUKUOKA_TOWER",
+      "post_content": " 6月、夏を待つタワーです ",
+      "post_top_img": "https://i.ibb.co/Pt77Qvb/003-1.png",
+      "post_main_img":  [
+        "https://i.ibb.co/MCbQPK4/Kakao-Talk-20230618-173521489.jpg",
+        "https://i.ibb.co/XpNdNFh/Kakao-Talk-20230618-173522349.jpg"
+          ],
+      "statements": [],
+      "likes": 42,
+      "id": 17,
+      "category": 4
+    },
+    {
+      "name": "go_school_yju",
+      "post_content": " 여름에 성수기 후쿠오카 우리는 학교지원으로 출발~!",
+      "post_top_img": "https://i.ibb.co/S00HZYG/yj.png",
+      "post_main_img": [
+        "https://i.ibb.co/7nkgW5s/001-1.jpg"
+      ],
+      "statements": [],
+      "likes": 136,
+      "id": 7,
+      "category": 1
+    },
+    
+
+    {
+      "name": "FUKUOKA_TRIP",
+      "post_content": "과거, 명검객이 머물었던 웅장한 후쿠오카의 고쿠라성!!!",
+      "post_top_img": "https://i.ibb.co/hMP4V8b/fukuoka1.png",
+      "post_main_img": [
+        "https://i.ibb.co/myMzXH4/Kakao-Talk-20230618-170228117.jpg",
+        "https://i.ibb.co/pK1pZcB/Kakao-Talk-20230618-170229254.jpg"
       ],
       "statements": [],
       "likes": 79,
       "id": 9,
       "category": 2
+    },
+    {
+      "name": "FUKUOKA_TRIP",
+      "post_content": "후쿠오카 근교 조용한 소도시 히타로~ 흐린 날씨에도 감성가득 ",
+      "post_top_img": "https://i.ibb.co/hMP4V8b/fukuoka1.png",
+      "post_main_img": [
+        "https://i.ibb.co/nRNqTSX/Kakao-Talk-20230618-005608466-19.jpg"
+      ],
+      "statements": [],
+      "likes": 87,
+      "id": 3,
+      "category": 2
+    },
+    {
+      "name": "FUKUOKA_Oishī",
+      "post_content": " 하카타역 도보 6분 거리, 토리덴(とり田)",
+      "post_top_img": "https://i.ibb.co/2nxdtJ0/fukuokao.png",
+      "post_main_img": [
+        "https://i.ibb.co/bXB3dkF/Kakao-Talk-20230618-005608466-02.jpg"
+      ],
+      "statements": [],
+      "likes": 69,
+      "id": 13,
+      "category": 3
+    },
+    {
+      "name": "FUKUOKA_TOWER",
+      "post_content": " 福岡タワーのマスコットキャラクターフータくん ",
+      "post_top_img": "https://i.ibb.co/Pt77Qvb/003-1.png",
+      "post_main_img":  ["https://i.ibb.co/3rMt8Mk/Kakao-Talk-20230618-173516748.jpg"],
+      "statements": [],
+      "likes": 22,
+      "id": 17,
+      "category": 4
+    },
+    {
+      "name": "FUKUOKA_TRIP",
+      "post_content": "후쿠오카의 중심 나카스강~",
+      "post_top_img": "https://i.ibb.co/hMP4V8b/fukuoka1.png",
+      "post_main_img": [
+        "https://i.ibb.co/7k3Kw3C/Kakao-Talk-20230618-015859547-02.jpg"
+      ],
+      "statements": [],
+      "likes": 33,
+      "id": 2,
+      "category": 2
+    },
+    {
+      "name": "FUKUOKA_Oishī",
+      "post_content": "푸딩 맛집 GOAT DAY~ 입안에서 사르르~",
+      "post_top_img": "https://i.ibb.co/2nxdtJ0/fukuokao.png",
+      "post_main_img": [
+        "https://i.ibb.co/jHwzC51/Kakao-Talk-20230618-005608466-05.jpg",
+        "https://i.ibb.co/k1fWTTL/Kakao-Talk-20230618-005608466-04.jpg"
+      ],
+      "statements": [],
+      "likes": 99,
+      "id": 14,
+      "category": 3
+    },
+    {
+      "name": "FUKUOKA_Oishī",
+      "post_content": "후쿠오카 텐진 솔라리아 플라자의 바삭바삭 텐푸라 맛집~  ",
+      "post_top_img": "https://i.ibb.co/2nxdtJ0/fukuokao.png",
+      "post_main_img": [
+        "https://i.ibb.co/WfZRLkM/Kakao-Talk-20230618-005608466-07.jpg",
+        "https://i.ibb.co/gZW421z/Kakao-Talk-20230618-005608466-06.jpg"
+      ],
+      "statements": [],
+      "likes": 104,
+      "id": 15,
+      "category": 3
+    },
+    {
+      "name": "FUKUOKA_TOWER",
+      "post_content": " 夜にもキラれているタワー ",
+      "post_top_img": "https://i.ibb.co/Pt77Qvb/003-1.png",
+      "post_main_img":  [ 
+        "https://i.ibb.co/MVSf2bS/Kakao-Talk-20230618-173509729.jpg" ,
+        "https://i.ibb.co/y5xWp3N/Kakao-Talk-20230618-173513249.jpg"  
+      ],
+      "statements": [],
+      "likes": 17,
+      "id": 16,
+      "category": 4
+    },
+    {
+      "name": "FUKUOKA_TRIP",
+      "post_content": " 후쿠오카의 근교, 쿠로가와 온천 마을의 낮과 밤! ",
+      "post_top_img": "https://i.ibb.co/hMP4V8b/fukuoka1.png",
+      "post_main_img": [
+        "https://i.ibb.co/mCLbdQF/Kakao-Talk-20230618-015859547-04.jpg",
+        "https://i.ibb.co/YcQSttp/Kakao-Talk-20230618-015859547-03.jpg"
+      ],
+      "statements": [],
+      "likes": 169,
+      "id": 15,
+      "category": 2
+    },
+    {
+      "name": "FUKUOKA_TOWER",
+      "post_content": " 夜景、美しい福岡 ",
+      "post_top_img": "https://i.ibb.co/Pt77Qvb/003-1.png",
+      "post_main_img": ["https://i.ibb.co/dL4hZjG/Kakao-Talk-20230618-173511970.jpg" ],
+      "statements": [],
+      "likes": 72,
+      "id": 18,
+      "category": 4
+    },
+    {
+      "name": "FUKUOKA_Oishī",
+      "post_content": " 일본식 솥밥! 가오리 공원 앞 ~가오가오~ ",
+      "post_top_img": "https://i.ibb.co/2nxdtJ0/fukuokao.png",
+      "post_main_img": [
+        "https://i.ibb.co/sm2zqx1/Kakao-Talk-20230618-005608466-11.jpg"
+      ],
+      "statements": [],
+      "likes": 54,
+      "id": 16,
+      "category": 3
+    },
+    {
+      "name": "FUKUOKA_Oishī",
+      "post_content": " 일본 하면 라면! 하카타역 라멘 맛집 나가하마 ",
+      "post_top_img": "https://i.ibb.co/2nxdtJ0/fukuokao.png",
+      "post_main_img": [
+        "https://i.ibb.co/ZN6VzbG/IMG-3346.jpg"
+      ],
+      "statements": [],
+      "likes": 34,
+      "id": 17,
+      "category": 3
     }
   ],
   "categories": [
