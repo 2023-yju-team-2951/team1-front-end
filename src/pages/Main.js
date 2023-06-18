@@ -2,10 +2,9 @@ import '../components/Header';
 import PostModal from '../components/Modal/PostModal';
 import '../components/Nav';
 import '../components/Post';
-import '../components/RightSide/'
+import '../components/RightNav';
 
 export default class Main {
-  
   constructor() {
     document.title = 'Main';
   }

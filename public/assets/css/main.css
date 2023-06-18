@@ -78,10 +78,17 @@ img {
 
 .main .main-body {
   width: 630px;
+  margin: 0 auto;
 }
 
 .main .right-nav {
   padding-left: 60px;
+}
+
+@media (max-width: 1170px) {
+  .main .main-body-wrapper {
+    width: calc((100%) - 57px);
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

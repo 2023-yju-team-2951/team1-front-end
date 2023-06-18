@@ -1,33 +1,50 @@
-import './rightSide.css';
+import './RightNav.css';
 import '../Story';
+import { getAccountById } from '../../api/accounts';
 import Post from '../Post';
-import { getAccountById} from '../../api/accounts';
 import { getCategories } from '../../api/categories';
+import { exchangeComponent } from '../utils/exchangeComponent';
 
 class RightNav extends HTMLElement {
-  constructor() { 
+  constructor(account) {
     super();
 
-    this.testId = 7;
-    
-    this.loadDatas();
+    this.account = account;
+    this.categories = [];
+    // this.testId = account.id;
+
+    // this.loadDatas();
+
+    // this.render();
   }
 
-  async loadDatas() {
+  async connectedCallback() {
     try {
-      this.accountData = await getAccountById(this.testId);
-      this.category = await getCategories();
+      this.account = await getAccountById(this.testId);
+      this.categories = await getCategories();
+      console.log(this.categories);
       this.render();
-    }
-    catch (error) {
-      console.log(error);
+    } catch (error) {
+      console.error(error);
     }
   }
+
+  // async loadDatas() {
+  //   try {
+  //     // this.data = await getAccountById(this.account.id);
+  //     this.categories = await getCategories();
+  //     console.log(this.categories);
+  //     this.render();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   render() {
-
-    this.innerHTML = 
-    `
+    if (!this.account) {
+      return;
+    }
+    this.innerHTML = `
     <div class="right-nav-container">
       <div class="right-nav-box">
 
@@ -35,12 +52,12 @@ class RightNav extends HTMLElement {
           <div class="category-info">
             <div class="category-info-img-box">
               <div class="category-info-img">
-                <img src="${this.accountData.img}" alt="프로필 사진">
+                <img src="${this.account.img}" alt="프로필 사진">
               </div>
             </div>   
             <div class="category-info-text">
-              <span class="info-nickname">${this.accountData.nickname}</span>
-              <span class="info-name">${this.accountData.name}</span>
+              <span class="info-nickname">${this.account.nickname}</span>
+              <span class="info-name">${this.account.name}</span>
             </div>
           </div>
         </div>
@@ -49,29 +66,30 @@ class RightNav extends HTMLElement {
           <div class="right-nav-body-header">카테고리</div>
           <div class="right-nav-body-content">
             <div class="right-nav-body-content-item">
-              ${new NavItem(this.category).render()}
+              ${new NavItem(this.categories).render()}
             </div>
           </div>
         </div>
 
       </div>
     </div>
-    `
+    `;
 
     const rightNavItems = this.querySelectorAll('.right-nav-item');
     rightNavItems.forEach((item) => {
       item.addEventListener('click', () => {
         const id = item.dataset.id;
         const postContainer = document.querySelector('post-container');
-        postContainer.parentNode.replaceChild(new Post(id), postContainer);
-      })
-    })
+        exchangeComponent(postContainer, new Post(this.account, id));
+      });
+    });
   }
 }
 
 class NavItem {
+  // data = categories의 개체
   constructor(data) {
-    this.accountData = data;
+    this.account = data;
     console.log(data);
     this.render();
   }
@@ -79,9 +97,8 @@ class NavItem {
   render() {
     let NavItem = document.createElement('div');
 
-    this.accountData.forEach((item) => {
-      NavItem.innerHTML +=
-        `
+    this.account.forEach((item) => {
+      NavItem.innerHTML += `
         <div class="right-nav-item" data-id="${item.id}">
           <div class="right-nav-item-contain">
             <div class="category-info">
@@ -97,12 +114,13 @@ class NavItem {
             </div>
           </div>  
         </div>
-      `
-    })
+      `;
+    });
 
     return NavItem.innerHTML;
-   
   }
 }
 
- window.customElements.define('rightnav-component', RightNav);
+window.customElements.define('rightnav-component', RightNav);
+
+export default RightNav;

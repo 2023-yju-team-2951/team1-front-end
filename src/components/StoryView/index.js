@@ -1,13 +1,19 @@
 import './storyview.css';
-import { getProfiles, getProfileById, updateProfile, deleteProfile } from '../../api/profiles.js';
+import {
+  getProfiles,
+  getProfileById,
+  updateProfile,
+  deleteProfile,
+} from '../../api/profiles.js';
 import { exchangeModal } from '../utils/exchangeModal';
-import { gsap } from "gsap";
+import { gsap } from 'gsap';
 import StoryModal from '../Modal/StoryModal';
 
-class StoryView extends HTMLElement {
-
-  constructor() {
+class StoryView extends HTMLDivElement {
+  constructor(account) {
     super();
+
+    this.account = account;
 
     this.storyWrapper = document.createElement('div');
     this.storyWrapper.className = 'story-modal-wrapper';
@@ -18,12 +24,18 @@ class StoryView extends HTMLElement {
   }
 
   connectedCallback() {
-    document.addEventListener('editButtonClicked', this.handleEditButtonClicked);
+    document.addEventListener(
+      'editButtonClicked',
+      this.handleEditButtonClicked
+    );
     this.loadDatas();
   }
 
   disconnectedCallback() {
-    document.removeEventListener('editButtonClicked', this.handleEditButtonClicked);
+    document.removeEventListener(
+      'editButtonClicked',
+      this.handleEditButtonClicked
+    );
   }
 
   // 데이터 불러오기
@@ -79,7 +91,7 @@ class StoryView extends HTMLElement {
       });
     }
 
-    this.sizeChange();  // 사이즈 변경
+    this.sizeChange(); // 사이즈 변경
 
     const editStory = this.querySelector('#edit-story');
     const deleteStory = this.querySelector('#del-story');
@@ -92,8 +104,8 @@ class StoryView extends HTMLElement {
       const background = activeImg.style.background;
       const text = activeText.value;
       const textColor = activeText.style.color;
-      exchangeModal(new StoryModal('edit', background, text, textColor))
-    })
+      exchangeModal(new StoryModal('edit', background, text, textColor));
+    });
 
     // 삭제 버튼 클릭시
     deleteStory.addEventListener('click', () => {
@@ -131,10 +143,11 @@ class StoryView extends HTMLElement {
     let viewportWidth = window.innerWidth;
     let containerHeight = viewportWidth >= 940 ? 840 : viewportWidth - 100;
 
-    let storyContainers = this.storyWrapper.querySelectorAll('.story-container');
+    let storyContainers =
+      this.storyWrapper.querySelectorAll('.story-container');
     let imgSizes = this.storyWrapper.querySelectorAll('.img-size');
 
-    imgSizes.forEach(imgSize => {
+    imgSizes.forEach((imgSize) => {
       imgSize.style.width = containerHeight / 2 + 'px';
       imgSize.style.height = containerHeight - 40 + 'px';
     });
@@ -159,7 +172,7 @@ class StoryView extends HTMLElement {
       }
       return data.id === id + 1;
     });
-    let direction = ''
+    let direction = '';
 
     const currentId = parseInt(urlParams.get('id'));
 
@@ -175,9 +188,15 @@ class StoryView extends HTMLElement {
       }
     }
 
-    const sideStoryLeft = this.modalWrapper.querySelector('.story-container.left');
-    const originalStory = this.modalWrapper.querySelector('.story-container.center');
-    const sideStoryRight = this.modalWrapper.querySelector('.story-container.right');
+    const sideStoryLeft = this.modalWrapper.querySelector(
+      '.story-container.left'
+    );
+    const originalStory = this.modalWrapper.querySelector(
+      '.story-container.center'
+    );
+    const sideStoryRight = this.modalWrapper.querySelector(
+      '.story-container.right'
+    );
 
     const tl = gsap.timeline({
       onComplete: () => {
@@ -185,12 +204,13 @@ class StoryView extends HTMLElement {
           this.modalWrapper.firstChild.remove();
         }
 
-        const newURL = window.location.origin + window.location.pathname + '?id=' + data.id;
+        const newURL =
+          window.location.origin + window.location.pathname + '?id=' + data.id;
         history.pushState(null, null, newURL);
 
         this.render();
         this.sizeChange();
-      }
+      },
     });
     if (direction === 'right') {
       // 클릭한 스토리가 오른쪽에 있을 때
@@ -218,7 +238,7 @@ class StoryView extends HTMLElement {
           opacity: 0,
         }),
         '<'
-      )
+      );
     } else if (direction === 'endLeft') {
       tl.add(
         gsap.to(sideStoryLeft, {
@@ -244,7 +264,7 @@ class StoryView extends HTMLElement {
           opacity: 0,
         }),
         '<'
-      )
+      );
     } else if (direction === 'endRight') {
       tl.add(
         gsap.to(sideStoryRight, {
@@ -270,10 +290,8 @@ class StoryView extends HTMLElement {
           opacity: 0,
         }),
         '<'
-      )
-    }
-
-    else {
+      );
+    } else {
       // 클릭한 스토리가 왼쪽에 있을 때
       tl.add(
         gsap.to(sideStoryLeft, {
@@ -299,7 +317,7 @@ class StoryView extends HTMLElement {
           opacity: 0,
         }),
         '<'
-      )
+      );
     }
   }
 
@@ -322,9 +340,12 @@ class StoryView extends HTMLElement {
     const index = this.profileData.findIndex((data) => data.id === id);
 
     if (storyImg.length === 0) {
-
       let loadId = id;
-      if (id === 1) { loadId = id + 1 } else { loadId = id - 1 };
+      if (id === 1) {
+        loadId = id + 1;
+      } else {
+        loadId = id - 1;
+      }
 
       await deleteProfile(id);
 
@@ -332,31 +353,32 @@ class StoryView extends HTMLElement {
         this.modalWrapper.firstChild.remove();
       }
 
-      const newURL = window.location.origin + window.location.pathname + '?id=' + loadId;
+      const newURL =
+        window.location.origin + window.location.pathname + '?id=' + loadId;
       history.pushState(null, null, newURL);
 
       this.loadDatas();
-      
     } else {
       this.profileData[index].storyImg = storyImg;
       this.profileData[index].storyText = storyText;
 
       fetch(`http://localhost:7000/profiles/${id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ storyImg, storyText }),
-    })
-      .then((res) => res.json())
-      .then(() => {
-        while (this.modalWrapper.firstChild) {
-          this.modalWrapper.firstChild.remove();
-        }
-
-        const newURL = window.location.origin + window.location.pathname + '?id=' + id;
-        history.pushState(null, null, newURL);
-
-        this.loadDatas();
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ storyImg, storyText }),
       })
+        .then((res) => res.json())
+        .then(() => {
+          while (this.modalWrapper.firstChild) {
+            this.modalWrapper.firstChild.remove();
+          }
+
+          const newURL =
+            window.location.origin + window.location.pathname + '?id=' + id;
+          history.pushState(null, null, newURL);
+
+          this.loadDatas();
+        });
     }
   }
 
@@ -394,7 +416,6 @@ class StoryView extends HTMLElement {
 
     this.loadDatas();
   }
-
 }
 // 중간 스토리 생성
 class CenterStory {
@@ -439,7 +460,7 @@ class CenterStory {
       </div>
     `;
 
-    let imgSize = container.querySelector(".img-size");
+    let imgSize = container.querySelector('.img-size');
 
     const carouselImg = new CarouselImg(this.profileData);
     imgSize.appendChild(carouselImg.render());
@@ -571,5 +592,8 @@ class SideStory {
   }
 }
 
+window.customElements.define('storyview-component', StoryView, {
+  extends: 'div',
+});
 
-window.customElements.define('storyview-component', StoryView);
+export default StoryView;
