@@ -67,7 +67,7 @@ img {
 .main .main-body-wrapper {
   display: flex;
   margin-left: auto;
-  width: calc((100%) - 290px);
+  width: calc((100%) - 270px);
 }
 
 .main-body-wrapper .right-body {
@@ -78,7 +78,6 @@ img {
 
 .main .main-body {
   width: 630px;
-  margin: 0 auto;
 }
 
 .main .right-nav {

@@ -1,48 +1,35 @@
-import {
-  getProfileById,
-  updateProfile,
-  postProfile,
-  getProfiles,
-} from '../../api/profiles.js';
+import { getProfileById, updateProfile, postProfile, getProfiles  } from '../../api/profiles.js';
 import { getAccountById } from '../../api/accounts.js';
 import { exchangeModal } from '../utils/exchangeModal.js';
 import { uploadImg } from '../../api/thumbsnap.js';
 import StoryModal from '../Modal/StoryModal/';
-import './story.css';
+import './story.css'
 
 class Story extends HTMLElement {
-  constructor(account) {
+  constructor() {
     super();
-
-    this.account = account;
 
     this.handleFinishButtonClicked = this.handleFinishButtonClicked.bind(this);
   }
 
   connectedCallback() {
-    document.addEventListener(
-      'finishButtonClicked',
-      this.handleFinishButtonClicked
-    );
+    document.addEventListener('finishButtonClicked', this.handleFinishButtonClicked);
     this.loadDatas();
   }
 
   disconnectedCallback() {
-    document.removeEventListener(
-      'finishButtonClicked',
-      this.handleFinishButtonClicked
-    );
+    document.removeEventListener('finishButtonClicked', this.handleFinishButtonClicked);
   }
 
   async loadDatas() {
     try {
-      this.data = await getProfiles();
+      this.propfileData = await getProfiles();
       this.render();
       const canvasElements = this.querySelectorAll('canvas');
       canvasElements.forEach((canvasElement) => {
         this.draw(canvasElement);
       });
-    } catch (error) {
+    } catch (error) { 
       console.log(error);
     }
   }
@@ -55,7 +42,7 @@ class Story extends HTMLElement {
     let translateXValue = -15;
     let storyHTML = `<ul class="container">`;
 
-    this.data.forEach((story) => {
+    this.propfileData.forEach((story) => {
       storyHTML += `
         <li class="slider" style="transform: translateX(${translateXValue}px);">
           <div class="story-container">
@@ -74,6 +61,7 @@ class Story extends HTMLElement {
       `;
       translateXValue += 80;
     });
+
 
     storyHTML += `
       <li class="slider" style="transform: translateX(${translateXValue}px);">
@@ -98,7 +86,7 @@ class Story extends HTMLElement {
     // 캔버스 그리기
     const canvasElements = this.querySelectorAll('canvas');
     canvasElements.forEach((canvasElement) => {
-      this.draw(canvasElement);
+      this.draw(canvasElement);     
     });
   }
 
@@ -119,53 +107,54 @@ class Story extends HTMLElement {
     ctx.strokeStyle = gradient;
     ctx.beginPath();
     ctx.arc(centerX, centerY, 31, 0, 360, false);
-    ctx.stroke();
+    ctx.stroke(); 
   }
 
   // 스토리 추가할때 기본값 넘겨주기
   async addStory(detail) {
-    const testId = this.account.id;
+
+    const Id = 7;
     const text = detail.text;
     const color = detail.textColor;
-    let background = '';
+    let background = ''
 
     if (detail.background.type) {
-      console.log('이미지');
+      console.log("이미지");
       background = await uploadImg(detail.background);
     } else {
-      console.log('색상');
+      console.log("색상");
       background = detail.background;
     }
 
-    this.addStoryView(testId, background, text, color);
+    this.addStoryView(Id, background, text, color);
   }
 
   // 스토리 추가
-  async addStoryView(testId, background, text, textColor) {
+  async addStoryView(Id, background, text, textColor) {
     try {
-      let data = await getProfileById(testId);
+      let data = await getProfileById(Id);
 
       data.storyImg.push(background);
       data.storyText.push({ text, color: textColor });
 
-      await updateProfile(testId, data.storyImg, data.storyText);
+      await updateProfile(Id, data.storyImg, data.storyText);
     } catch (error) {
       if (error.status === 404) {
         const storyImg = [background];
         const storyText = [{ text, color: textColor }];
-        const data = await getAccountById(testId);
+        const data = await getAccountById(Id);
         await postProfile(data.id, data.name, data.img, storyImg, storyText);
       } else {
         console.error(error);
       }
     }
-
+    
     this.innerHTML = '';
 
     this.loadDatas();
+
   }
+
 }
 
 window.customElements.define('story-component', Story);
-
-export default Story;

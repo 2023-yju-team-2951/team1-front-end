@@ -11,17 +11,11 @@ class RightNav extends HTMLElement {
 
     this.account = account;
     this.categories = [];
-    // this.testId = account.id;
-
-    // this.loadDatas();
-
-    // this.render();
   }
 
   async connectedCallback() {
     try {
       this.categories = await getCategories();
-      console.log(this.categories);
       this.render();
     } catch (error) {
       console.error(error);
@@ -74,6 +68,9 @@ class RightNav extends HTMLElement {
     </div>
     `;
 
+    const navHeader = this.querySelector('.right-nav-header');
+    
+
     const rightNavItems = this.querySelectorAll('.right-nav-item');
     rightNavItems.forEach((item) => {
       item.addEventListener('click', () => {
@@ -88,7 +85,7 @@ class RightNav extends HTMLElement {
 class NavItem {
   // data = categories의 개체
   constructor(data) {
-    this.data = data;
+    this.account = data;
     console.log(data);
     this.render();
   }
@@ -96,7 +93,7 @@ class NavItem {
   render() {
     let NavItem = document.createElement('div');
 
-    this.data.forEach((item) => {
+    this.account.forEach((item) => {
       NavItem.innerHTML += `
         <div class="right-nav-item" data-id="${item.id}">
           <div class="right-nav-item-contain">
