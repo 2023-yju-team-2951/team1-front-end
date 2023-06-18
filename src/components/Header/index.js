@@ -8,6 +8,7 @@ class Header extends HTMLElement {
     super();
 
     this.currentOffset = 0;
+    this.account = account;
 
     this.loadDatas();
   }
