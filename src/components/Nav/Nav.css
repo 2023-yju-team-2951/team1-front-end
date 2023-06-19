@@ -139,7 +139,8 @@
     width: min-content;
   }
 
-  .nav-full .item-name {
+  .nav-full .nav-list .item-name,
+  .nav-full .nav-other .item-name {
     display: none !important;
   }
 }
