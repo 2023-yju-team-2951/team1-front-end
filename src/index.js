@@ -21,7 +21,7 @@ const router = async () => {
     { path: '/', view: MainPage },
     { path: '/login', view: LoginPage },
     { path: '/story', view: StoryPage },
-    { path: '/signup', view: SignUpPage},
+    { path: '/signup', view: SignUpPage },
     { path: '/404', view: () => console.log('Viewing 404') },
   ];
 
@@ -35,6 +35,7 @@ const router = async () => {
 
   root.innerHTML = '';
   root.appendChild(new matchedPage.view());
+  // root.appendChild(new SignUpPage());
 };
 
 // 뒤로가기나 새로고침을 했을 때 router함수 실행
