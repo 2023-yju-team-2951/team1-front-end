@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import MainPage from './pages/MainPage.js';
 import StoryPage from './pages/StoryPage.js';
 import LoginPage from './pages/LoginPage.js';
+import SignUpPage from './pages/SignUpPage.js';
 
 var root = document.querySelector('#root');
 
@@ -17,12 +18,10 @@ const routerLink = (url) => {
 const router = async () => {
   // 경로 설정
   const routes = [
-    // { path: '/', view: Main },
     { path: '/', view: MainPage },
-    // { path: '/login', view: Login },
     { path: '/login', view: LoginPage },
-    // { path: '/story', view: Story },
     { path: '/story', view: StoryPage },
+    { path: '/signup', view: SignUpPage},
     { path: '/404', view: () => console.log('Viewing 404') },
   ];
 

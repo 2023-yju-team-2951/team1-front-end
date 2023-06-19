@@ -64,7 +64,7 @@ class RightNav extends HTMLElement {
       navInfo.innerHTML = `
         <div class="not-login">
           <div class="not-login-text">
-            <span><a data-link href="/login">로그인</a>이 필요합니다.</span>
+            <span><a data-link href="/signup">로그인</a>이 필요합니다.</span>
           </div>
         </div>
         `  
