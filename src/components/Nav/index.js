@@ -73,7 +73,6 @@ class Nav extends HTMLDivElement {
           </div>
         </div>
       </div>
-      
     `;
     this.navHome = this.querySelector('.nav-home');
     this.navSearch = this.querySelector('.nav-search');
@@ -98,11 +97,15 @@ class Nav extends HTMLDivElement {
     this.otherActivities.addEventListener('click', () => {});
 
     this.otherLogout.addEventListener('click', () => this.logoutEvent());
+
+    if (!this.account) {
+      this.navAdd.remove();
+    }
   }
 
   // root 재 렌더링
   homeEvent() {
-    const root = document.querySelector('#root');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     const postContainer = document.querySelector('post-container');
     exchangeComponent(postContainer, new Post(this.account));
   }
