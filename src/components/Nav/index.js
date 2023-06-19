@@ -105,7 +105,7 @@ class Nav extends HTMLDivElement {
 
   // root 재 렌더링
   homeEvent() {
-    const root = document.querySelector('#root');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     const postContainer = document.querySelector('post-container');
     exchangeComponent(postContainer, new Post(this.account));
   }
