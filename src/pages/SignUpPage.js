@@ -1,41 +1,91 @@
-class SignUp extends HTMLDivElement {
-constructor() {
-  super();
+import { createAccount, getAccountByNickname } from '../api/accounts';
 
-  document.title = 'SignUp';
+class SignUpPage extends HTMLDivElement {
+  constructor() {
+    super();
 
-  this.render()
-}
+    document.title = 'SignUp';
 
-  render() {
-    this.innerHTML =  
-    `
-    <div class="signup-container">
-      <div id="signUpPage">
-        <main class="container">
-          <h1>2951</h1>
-          <h2>현지 학기제의 사진과 동영상을 보려면 가입하세요.</h2>
-          <!--SignUp FORM-->
-          <form id="signUpForm" class="signUp_wrap" onsubmit="saveUserData(event)">
-            <input id="inputId" type="text" placeholder="아이디"/>
-            <input id="inputName" type="text" placeholder="성명"/>
-            <input id="inputUsername" type="text" placeholder="사용자 이름"/>
-            <input id="inputPw" type="password" placeholder="비밀번호"/>
-            <button id="signUpBtn" type="submit" disabled="true">가입</button>
-          </form>
-        </main>
-        <main class="container_login">
-          <!--//LOGIN FORM-->
-          <p>계정이 있으신가요?</p>
-          <a href="../login_page/test.html" class="moveToLogin">로그인</a>
-        </main>
+    this.innerHTML = `
+      <div class="signup-container">
+        <div id="signUpPage">
+          <main class="container">
+            <h1>2951</h1>
+            <h2>현지 학기제의 사진과 동영상을 보려면 가입하세요.</h2>
+            <!--SignUp FORM-->
+            <form id="signUpForm" class="signUp_wrap" onsubmit="saveUserData(event)">
+              <input type="text" name="nickname" placeholder="아이디"/>
+              <input type="text" name="name" placeholder="성명"/>
+              <input type="password" name="password" placeholder="비밀번호"/>
+              <button id="signUpBtn" type="button" disabled="true">가입</button>
+            </form>
+          </main>
+          <main class="container_login">
+            <!--//LOGIN FORM-->
+            <p>계정이 있으신가요?</p>
+            <a data-link href="/login" class="moveToLogin">로그인</a>
+          </main>
+        </div>
       </div>
-    </div>
     `;
 
+    this.signUpForm = this.querySelector('#signUpForm');
+
+    // input 공백 제거 및 입력값 확인
+    this.querySelectorAll('input').forEach((input) => {
+      input.addEventListener('keyup', () => {
+        input.value = input.value.trim();
+        this.checkFormData();
+      });
+    });
+
+    this.signUpBtn = this.querySelector('#signUpBtn');
+    this.signUpBtn.addEventListener('click', async () => await this.signUp());
+  }
+
+  connectedCallback() {
+    sessionStorage.clear();
+  }
+
+  async checkFormData() {
+    const name = this.signUpForm['name'].value;
+    const nickname = this.signUpForm['nickname'].value;
+    const password = this.signUpForm['password'].value;
+
+    const isAnyFieldEmpty = !(name && nickname && password);
+    const isContainsSpaces =
+      /\s/.test(name) || /\s/.test(nickname) || /\s/.test(password);
+
+    if (isAnyFieldEmpty || isContainsSpaces) {
+      this.signUpBtn.disabled = true;
+      this.signUpBtn.style.background = '';
+      return;
+    }
+
+    this.signUpBtn.style.background = '#52adff';
+    this.signUpBtn.style.cursor = 'pointer';
+    this.signUpBtn.disabled = false;
+  }
+
+  async signUp() {
+    const name = this.signUpForm['name'].value;
+    const nickname = this.signUpForm['nickname'].value;
+    const password = this.signUpForm['password'].value;
+
+    const isExist = await getAccountByNickname(nickname);
+
+    if (isExist) return alert('이미 존재하는 닉네임입니다.');
+
+    const formData = {
+      name,
+      nickname,
+      password,
+    };
+
+    await createAccount(formData);
   }
 }
 
-window.customElements.define('signup-page', SignUp, { extends: 'div' });
+window.customElements.define('sign-up-page', SignUpPage, { extends: 'div' });
 
-export default SignUp;
+export default SignUpPage;

@@ -30,6 +30,14 @@ export async function getAccountById(id) {
   return data;
 }
 
+export async function getAccountByNickname(nickname) {
+  const accounts = await getAccounts();
+
+  const account = accounts.find((account) => account.nickname === nickname);
+
+  return account;
+}
+
 /**
  * 서버로부터 id를 통해 계정을 업데이트합니다.
  * @param {*} id
@@ -84,4 +92,18 @@ export async function logon(userToken) {
   }
 
   return account;
+}
+
+export async function createAccount(account) {
+  const res = await fetch(`${JSON_SERVER_URL}/accounts`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(account),
+  });
+
+  if (!res.ok) {
+    throw new Error(`Failed to create account, ${res.status}`);
+  }
 }
