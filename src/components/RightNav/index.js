@@ -10,7 +10,6 @@ class RightNav extends HTMLElement {
 
     this.account = account;
     this.categories = [];
-
   }
 
   async connectedCallback() {
@@ -45,8 +44,8 @@ class RightNav extends HTMLElement {
       </div>
     </div>
     `;
-    
-    if(this.account) {
+
+    if (this.account) {
       const navInfo = this.querySelector('.nav-info');
       navInfo.innerHTML = `
       <div class="nav-info-img-box">
@@ -58,7 +57,7 @@ class RightNav extends HTMLElement {
         <span class="info-nickname">${this.account.nickname}</span>
         <span class="info-name">${this.account.name}</span>
       </div>
-      `
+      `;
     } else {
       const navInfo = this.querySelector('.nav-info');
       navInfo.innerHTML = `
@@ -67,7 +66,7 @@ class RightNav extends HTMLElement {
             <span><a data-link href="/login">로그인</a>이 필요합니다.</span>
           </div>
         </div>
-        `  
+        `;
     }
 
     const rightNavItems = this.querySelectorAll('.right-nav-item');
