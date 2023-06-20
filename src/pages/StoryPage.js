@@ -7,7 +7,7 @@ class StoryPage extends HTMLDivElement {
     super();
     this.classList.add('story-view-modal');
 
-    this.account = {id:null};
+    this.account = { id: null };
     this.userToken = sessionStorage.getItem('userToken');
 
     this.innerHTML = `
@@ -22,13 +22,11 @@ class StoryPage extends HTMLDivElement {
     `;
 
     this.storyViewComponent = this.querySelector('storyview-component');
-    console.log(this.storyViewComponent);
   }
 
   async connectedCallback() {
     try {
       this.account = await logon(this.userToken);
-      console.log('login success', this.account);
     } catch (error) {
       console.error(error);
     }
