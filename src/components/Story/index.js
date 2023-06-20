@@ -1,9 +1,14 @@
-import { getProfileById, updateProfile, postProfile, getProfiles  } from '../../api/profiles.js';
+import {
+  getProfileById,
+  updateProfile,
+  postProfile,
+  getProfiles,
+} from '../../api/profiles.js';
 import { getAccountById } from '../../api/accounts.js';
 import { exchangeModal } from '../utils/exchangeModal.js';
 import { uploadImg } from '../../api/thumbsnap.js';
 import StoryModal from '../Modal/StoryModal/';
-import './story.css'
+import './story.css';
 
 class Story extends HTMLElement {
   constructor(account) {
@@ -15,12 +20,18 @@ class Story extends HTMLElement {
   }
 
   connectedCallback() {
-    document.addEventListener('finishButtonClicked', this.handleFinishButtonClicked);
+    document.addEventListener(
+      'finishButtonClicked',
+      this.handleFinishButtonClicked
+    );
     this.loadDatas();
   }
 
   disconnectedCallback() {
-    document.removeEventListener('finishButtonClicked', this.handleFinishButtonClicked);
+    document.removeEventListener(
+      'finishButtonClicked',
+      this.handleFinishButtonClicked
+    );
   }
 
   async loadDatas() {
@@ -31,7 +42,7 @@ class Story extends HTMLElement {
       canvasElements.forEach((canvasElement) => {
         this.draw(canvasElement);
       });
-    } catch (error) { 
+    } catch (error) {
       console.log(error);
     }
   }
@@ -79,7 +90,7 @@ class Story extends HTMLElement {
           </div>
         </div>
       </li>
-      `
+      `;
     }
 
     // 스토리 추가버튼 누르면 모달창 띄우기
@@ -93,7 +104,7 @@ class Story extends HTMLElement {
     // 캔버스 그리기
     const canvasElements = this.querySelectorAll('canvas');
     canvasElements.forEach((canvasElement) => {
-      this.draw(canvasElement);     
+      this.draw(canvasElement);
     });
   }
 
@@ -114,22 +125,21 @@ class Story extends HTMLElement {
     ctx.strokeStyle = gradient;
     ctx.beginPath();
     ctx.arc(centerX, centerY, 31, 0, 360, false);
-    ctx.stroke(); 
+    ctx.stroke();
   }
 
   // 스토리 추가할때 기본값 넘겨주기
   async addStory(detail) {
-
     const Id = this.account.id;
     const text = detail.text;
     const color = detail.textColor;
-    let background = ''
+    let background = '';
 
     if (detail.background.type) {
-      console.log("이미지");
+      console.log('이미지');
       background = await uploadImg(detail.background);
     } else {
-      console.log("색상");
+      console.log('색상');
       background = detail.background;
     }
 
@@ -152,7 +162,7 @@ class Story extends HTMLElement {
 
         const post = {
           userId: this.account.id,
-          name: this.account.name,
+          name: this.account.nickname,
           img: this.account.img,
           storyImg: storyImg,
           storyText: storyText,
@@ -163,13 +173,11 @@ class Story extends HTMLElement {
         console.error(error);
       }
     }
-    
+
     this.innerHTML = '';
 
     this.loadDatas();
-
   }
-
 }
 
 window.customElements.define('story-component', Story);
