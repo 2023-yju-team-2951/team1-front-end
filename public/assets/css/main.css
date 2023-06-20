@@ -1,5 +1,5 @@
 @import url(./reset.css);
-@import url(//db.onlinewebfonts.com/c/daf8c1a0f06e7a24d9dca48b9d88dac0?family=OratorW01-Medium);
+@import url('http://db.onlinewebfonts.com/c/daf8c1a0f06e7a24d9dca48b9d88dac0?family=OratorW01-Medium');
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 a {
   color: #000;
@@ -37,6 +37,10 @@ a {
 
 .p-16 {
   padding: 16px !important;
+}
+
+ctm-hashtag {
+  color: #37628b;
 }
 
 :root {
@@ -95,7 +99,7 @@ img {
 SignUp PAGE - LAYOUT
 **************************/
 
-.signup-container{
+.signup-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,7 +107,7 @@ SignUp PAGE - LAYOUT
   height: 100vh;
 }
 
-#signUpPage .container{
+#signUpPage .container {
   display: flex;
   flex-direction: column;
   padding: 7em 2em;
@@ -112,33 +116,33 @@ SignUp PAGE - LAYOUT
   text-align: center;
 }
 
-#signUpPage h2{
+#signUpPage h2 {
   margin-bottom: 50px;
   font-size: 1.2em;
   color: #9c9c9c;
 }
 
-#signUpPage h1{
-  color:#262626;
-  font-family:'Lobster', cursive;
-  font-weight:100;
+#signUpPage h1 {
+  color: #262626;
+  font-family: 'Lobster', cursive;
+  font-weight: 100;
   line-height: 1;
   margin-bottom: 50px;
   font-size: 5em;
 }
 
-#signUpPage a{
-  color:#000;
-  text-decoration:none;
+#signUpPage a {
+  color: #000;
+  text-decoration: none;
 }
 
-#signUpPage button{
+#signUpPage button {
   background: none;
   cursor: pointer;
-  border:none;
+  border: none;
 }
 
-#signUpPage .container_login{
+#signUpPage .container_login {
   display: flex;
   flex-direction: column;
   margin-top: 10px;
@@ -151,12 +155,12 @@ SignUp PAGE - LAYOUT
 /**************************
 SignUp FORM
 **************************/
-#signUpPage form.signUp_wrap{
+#signUpPage form.signUp_wrap {
   display: flex;
   flex-direction: column;
 }
 
-#signUpPage .signUp_wrap input{
+#signUpPage .signUp_wrap input {
   height: 45px;
   padding: 0 20px;
   margin-bottom: 8px;
@@ -168,11 +172,11 @@ SignUp FORM
   margin: 10px 0;
 }
 
-#signUpPage .signUp_wrap input:focus{
-  border:1px solid #d6d6d6;
+#signUpPage .signUp_wrap input:focus {
+  border: 1px solid #d6d6d6;
 }
 
-#signUpPage .signUp_wrap button{
+#signUpPage .signUp_wrap button {
   height: 40px;
   margin-top: 50px;
   margin-bottom: -20px;
@@ -186,12 +190,12 @@ SignUp FORM
   cursor: default;
 }
 
-#signUpPage .signUp_wrap button.active{
+#signUpPage .signUp_wrap button.active {
   background: #52adff;
   cursor: pointer;
 }
 
-#signUpPage .moveToLogin{
+#signUpPage .moveToLogin {
   text-align: center;
   color: #52adff;
 }
@@ -225,7 +229,7 @@ SignUp FORM
   border-radius: 8%;
   opacity: 0.8;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   background-color: #000;
 }
 #login-page .login-container .login-right-container {
@@ -247,14 +251,19 @@ SignUp FORM
 }
 #login-page .login-container .login-right-container .right-form .login-logo {
   margin: 15px 0;
-  font-family: "Lobster", cursive;
+  font-family: 'Lobster', cursive;
 }
-#login-page .login-container .login-right-container .right-form #login-form {
+#login-page .login-container .login-right-container .right-form #loginForm {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-#login-page .login-container .login-right-container .right-form #login-form input {
+#login-page
+  .login-container
+  .login-right-container
+  .right-form
+  #loginForm
+  input {
   height: 36px;
   width: 100%;
   margin: 0 20px 10px 20px;
