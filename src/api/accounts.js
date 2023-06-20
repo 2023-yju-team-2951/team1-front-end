@@ -78,7 +78,7 @@ export async function login(nickname, password) {
 
   const token = generateToken();
 
-  updateUserToken(account.id, token);
+  await updateUserToken(account.id, token);
 
   return token;
 }
