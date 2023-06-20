@@ -1,3 +1,5 @@
+import { generateToken } from '../utils/generateToken';
+
 const JSON_SERVER_URL = process.env.JSON_SERVER_URL;
 /**
  * 서버로부터 계정 목록을 가져옵니다.
@@ -59,22 +61,26 @@ export async function updateUserToken(id, userToken) {
 
 /**
  * 서버에 로그인을 요청합니다.
- * @param {string} email
+ * @param {string} nickname
  * @param {string} password
  * @returns {Promise<string>} account id
  */
-export async function login(email, password) {
+export async function login(nickname, password) {
   const accounts = await getAccounts();
 
   const account = accounts.find(
-    (account) => account.email === email && account.password === password
+    (account) => account.nickname === nickname && account.password === password
   );
 
   if (!account) {
-    throw new Error('Invalid email or password');
+    throw new Error('Invalid username or password');
   }
 
-  return account.id;
+  const token = generateToken();
+
+  updateUserToken(account.id, token);
+
+  return token;
 }
 
 /**
