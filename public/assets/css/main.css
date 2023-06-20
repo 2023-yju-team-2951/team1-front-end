@@ -195,3 +195,98 @@ SignUp FORM
   text-align: center;
   color: #52adff;
 }
+
+#login-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#login-page .login-container {
+  display: flex;
+}
+#login-page .login-container .login-left-container {
+  background-image: url(https://static.cdninstagram.com/images/instagram/xig/homepage/phones/home-phones.png?__makehaste_cache_breaker=HOgRclNOosk);
+  background-size: cover;
+  height: 500px;
+  width: 380px;
+}
+#login-page .login-container .login-left-container .left-image {
+  font-size: 100%;
+  margin-left: 122px;
+  box-sizing: border-box;
+  display: flex;
+  margin-top: 23px;
+  position: relative;
+}
+#login-page .login-container .login-left-container img {
+  width: 215px;
+  height: 445px;
+  border-radius: 8%;
+  opacity: 0.8;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-color: #000;
+}
+#login-page .login-container .login-right-container {
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#login-page .login-container .login-right-container .right-form {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+#login-page .login-container .login-right-container .right-form .login-logo {
+  margin: 15px 0;
+  font-family: "Lobster", cursive;
+}
+#login-page .login-container .login-right-container .right-form #login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#login-page .login-container .login-right-container .right-form #login-form input {
+  height: 36px;
+  width: 100%;
+  margin: 0 20px 10px 20px;
+  box-sizing: border-box;
+  background: #fafafa;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  outline: none;
+}
+#login-page .login-container .login-right-container .btn-login {
+  width: 100%;
+  height: 30px;
+  margin-top: 10px;
+  background: #3897f0;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+}
+#login-page .login-container .login-right-container .right-footer {
+  border: 1px solid #ccc;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  font-size: 14px;
+}
+#login-page .login-container .login-right-container .right-footer p {
+  margin: 5px 0;
+}
