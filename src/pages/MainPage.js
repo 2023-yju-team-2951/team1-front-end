@@ -47,7 +47,6 @@ class MainPage extends HTMLDivElement {
     // 현재 접속한 유저 정보를 받아온다.
     try {
       this.account = await logon(this.userToken);
-      console.log('login success', this.account);
     } catch (error) {
       console.error(error);
     }
