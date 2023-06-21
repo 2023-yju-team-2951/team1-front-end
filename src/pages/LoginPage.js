@@ -17,7 +17,7 @@ class LoginPage extends HTMLDivElement {
 
           <div class="login-right-container">
             <div class="right-form">
-              <h1 class="login-logo">2951</h1>
+              <a data-link href='/' class="login-logo">2951</a>
               <form id="loginForm">
                 <input type="text" name="nickname" placeholder="Username" required>
                 <input type="password" name="password" placeholder="Password" required>
@@ -33,6 +33,12 @@ class LoginPage extends HTMLDivElement {
       </div>
     `;
 
+    this.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        this.tryLogin();
+      }
+    });
+
     this.loginForm = this.querySelector('#loginForm');
     this.loginBtn = this.querySelector('.btn-login');
     this.loginBtn.addEventListener('click', async () => await this.tryLogin());
@@ -42,9 +48,13 @@ class LoginPage extends HTMLDivElement {
     const nickname = this.loginForm['nickname'].value;
     const password = this.loginForm['password'].value;
 
-    const token = await login(nickname, password);
-
-    sessionStorage.setItem('userToken', token);
+    try {
+      const token = await login(nickname, password);
+      sessionStorage.setItem('userToken', token);
+    } catch (e) {
+      alert(e.message);
+      return;
+    }
 
     this.pageChange();
   }

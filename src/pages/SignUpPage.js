@@ -28,6 +28,11 @@ class SignUpPage extends HTMLDivElement {
         </div>
       </div>
     `;
+    this.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && this.checkFormData()) {
+        this.signUp();
+      }
+    });
 
     this.signUpForm = this.querySelector('#signUpForm');
 
@@ -47,7 +52,7 @@ class SignUpPage extends HTMLDivElement {
     sessionStorage.clear();
   }
 
-  async checkFormData() {
+  checkFormData() {
     const name = this.signUpForm['name'].value;
     const nickname = this.signUpForm['nickname'].value;
     const password = this.signUpForm['password'].value;
@@ -59,12 +64,13 @@ class SignUpPage extends HTMLDivElement {
     if (isAnyFieldEmpty || isContainsSpaces) {
       this.signUpBtn.disabled = true;
       this.signUpBtn.style.background = '';
-      return;
+      return false;
     }
 
     this.signUpBtn.style.background = '#52adff';
     this.signUpBtn.style.cursor = 'pointer';
     this.signUpBtn.disabled = false;
+    return true;
   }
 
   async signUp() {
