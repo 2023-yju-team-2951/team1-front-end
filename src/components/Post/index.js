@@ -4,6 +4,7 @@ import PostModal from '../Modal/PostModal'; /* postModal import  */
 import { exchangeModal } from '../utils/exchangeModal.js';
 
 import { hashtagHighlight } from '../utils/highlight.js';
+import { exchangeComponent } from '../utils/exchangeComponent.js';
 
 // import Modal from './postMoal.js' // 모달 import
 
@@ -74,7 +75,7 @@ class Post extends HTMLElement {
       post.addEventListener('click', () => {
         const modalId = post.dataset.id;
         const modalData = this.data.find((data) => data.id === Number(modalId));
-        exchangeModal(new PostModal(modalData));
+        exchangeModal(new PostModal(modalData, this.account));
       });
     });
 
@@ -119,9 +120,9 @@ class Post extends HTMLElement {
     const comment = commentInput.value;
     const postData = await getPostById(id);
     const { img, nickname } = this.account;
-    console.log(this.account);
-    postData.comment.push({ img, nickname, comment });
-    updatePost(id, postData);
+    postData.comments.push({ img, nickname, comment });
+    await updatePost(id, postData);
+    exchangeComponent(this, new Post(this.account));
   }
 
   /* 1.7.a. 좋아요 하트 색 변경  + 숫자 변경*/
