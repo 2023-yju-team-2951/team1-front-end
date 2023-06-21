@@ -10,7 +10,7 @@ class SignUpPage extends HTMLDivElement {
       <div class="signup-container">
         <div id="signUpPage">
           <main class="container">
-            <h1>2951</h1>
+            <a data-link href='/' class="signup-logo">2951</a>
             <h2>현지 학기제의 사진과 동영상을 보려면 가입하세요.</h2>
             <!--SignUp FORM-->
             <form id="signUpForm" class="signUp_wrap" onsubmit="saveUserData(event)">
