@@ -80,9 +80,8 @@ class SignUpPage extends HTMLDivElement {
       name,
       nickname,
       password,
+      img: 'https://www.svgrepo.com/show/311063/person.svg',
     };
-
-    await createAccount(formData);
   }
 }
 
