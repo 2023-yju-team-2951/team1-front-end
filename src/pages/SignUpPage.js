@@ -10,7 +10,7 @@ class SignUpPage extends HTMLDivElement {
       <div class="signup-container">
         <div id="signUpPage">
           <main class="container">
-            <h1>2951</h1>
+            <a data-link href='/' class="signup-logo">2951</a>
             <h2>현지 학기제의 사진과 동영상을 보려면 가입하세요.</h2>
             <!--SignUp FORM-->
             <form id="signUpForm" class="signUp_wrap" onsubmit="saveUserData(event)">
@@ -28,6 +28,11 @@ class SignUpPage extends HTMLDivElement {
         </div>
       </div>
     `;
+    this.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && this.checkFormData()) {
+        this.signUp();
+      }
+    });
 
     this.signUpForm = this.querySelector('#signUpForm');
 
@@ -47,7 +52,7 @@ class SignUpPage extends HTMLDivElement {
     sessionStorage.clear();
   }
 
-  async checkFormData() {
+  checkFormData() {
     const name = this.signUpForm['name'].value;
     const nickname = this.signUpForm['nickname'].value;
     const password = this.signUpForm['password'].value;
@@ -59,12 +64,13 @@ class SignUpPage extends HTMLDivElement {
     if (isAnyFieldEmpty || isContainsSpaces) {
       this.signUpBtn.disabled = true;
       this.signUpBtn.style.background = '';
-      return;
+      return false;
     }
 
     this.signUpBtn.style.background = '#52adff';
     this.signUpBtn.style.cursor = 'pointer';
     this.signUpBtn.disabled = false;
+    return true;
   }
 
   async signUp() {
@@ -80,6 +86,7 @@ class SignUpPage extends HTMLDivElement {
       name,
       nickname,
       password,
+      img: 'https://www.svgrepo.com/show/311063/person.svg',
     };
 
     await createAccount(formData);

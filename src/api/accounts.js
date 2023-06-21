@@ -113,3 +113,17 @@ export async function createAccount(account) {
     throw new Error(`Failed to create account, ${res.status}`);
   }
 }
+
+export async function updateProfileImg(id, img) {
+  const res = await fetch(`${JSON_SERVER_URL}/accounts/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ img }),
+  });
+
+  if (!res.ok) {
+    throw new Error(`Failed to update profile image, ${res.status}`);
+  }
+}

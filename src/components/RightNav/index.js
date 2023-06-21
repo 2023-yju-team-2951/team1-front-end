@@ -3,6 +3,8 @@ import '../Story';
 import Post from '../Post';
 import { getCategories } from '../../api/categories';
 import { exchangeComponent } from '../utils/exchangeComponent';
+import { uploadImg } from '../../api/thumbsnap';
+import { getAccountById, updateProfileImg } from '../../api/accounts';
 
 class RightNav extends HTMLElement {
   constructor(account) {
@@ -50,7 +52,10 @@ class RightNav extends HTMLElement {
       navInfo.innerHTML = `
       <div class="nav-info-img-box">
         <div class="nav-info-img">
-          <img src="${this.account.img}" alt="프로필 사진">
+          <label for="profileImgFile">
+            <img src="${this.account.img}" alt="프로필 사진">
+          </label>
+          <input id="profileImgFile" type="file" hidden>
         </div>
       </div>   
       <div class="nav-info-text">
@@ -58,6 +63,15 @@ class RightNav extends HTMLElement {
         <span class="info-name">${this.account.name}</span>
       </div>
       `;
+
+      const profileImgFile = this.querySelector('#profileImgFile');
+      profileImgFile.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        const img = await uploadImg(file);
+        await updateProfileImg(this.account.id, img);
+        this.account = await getAccountById(this.account.id);
+        exchangeComponent(this, new RightNav(this.account));
+      });
     } else {
       const navInfo = this.querySelector('.nav-info');
       navInfo.innerHTML = `

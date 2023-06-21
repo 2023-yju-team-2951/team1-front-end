@@ -1,11 +1,14 @@
 import './PostModal.css';
 import { hashtagHighlight } from '../../utils/highlight';
+import { exchangeModal } from '../../utils/exchangeModal';
+import { getPostById, updatePost } from '../../../api/posts';
 
 class PostModal extends HTMLDivElement {
-  constructor(data) {
+  constructor(data, account) {
     super();
     this.className = 'modal-dialog';
     this.data = data;
+    this.account = account;
 
     this.id = 'postModal';
 
@@ -47,16 +50,13 @@ class PostModal extends HTMLDivElement {
 
             <div class="modal-middle">
               <div class="visitor-post">
-                <div class="visitor-imgBox">
-                  <img class="visitor-img" src=${
-                    this.data.post_top_img
-                  } alt="no_picture"> 
-                </div>
                 <div class="comment">
-                  <span class="visitor-id">${this.data.name}</span> 
-                  <pre class="visitor-comment">
+                  <div class="visitor-comment">
                     ${hashtagHighlight(this.data.post_content)}
-                  </pre> 
+                  </div>
+                  <div class="comment-item">
+
+                  </div>
                 </div>
               </div>
             </div>
@@ -80,7 +80,41 @@ class PostModal extends HTMLDivElement {
           </div>
         </div>
     `;
+
+    const commentItem = this.querySelector('.comment-item');
+    this.data.comments.forEach((comment) => {
+      commentItem.innerHTML += `
+      <div class="comment-div">
+        <div class="comment-img">
+          <img class="comment-img" src=${comment.img} alt="no_picture">
+        </div>
+        <div class="comment-name">
+          ${comment.nickname}
+        </div> 
+        <div class="comment-content">
+          ${comment.comment}
+        </div>
+      </div>
+      `
+    })
+
+    const postButton = this.querySelector('.button-custom');
+    postButton.addEventListener('click', () => {
+      this.cardUpdate(this.data.id);
+    });
+   
   }
+
+  async cardUpdate(id) {
+    const commentInput = this.querySelector('.modal-comment-input');
+    const comment = commentInput.value;
+    const postData = await getPostById(id);
+    const { img, nickname } = this.account;
+    postData.comments.push({ img, nickname, comment });
+    await updatePost(id, postData);
+    exchangeModal(new PostModal(postData, this.account));
+  }
+
   async pushPatch(post) {
     try {
       const res = await fetch(`http://localhost:7000/posts/${post.id}`, {

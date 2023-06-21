@@ -1,142 +1,15 @@
 {
   "accounts": [
     {
-      "id": 1,
-      "name": "주현",
-      "nickname": "d556f8",
-      "password": "1234",
-      "img": "https://github.com/d556f8.png",
-      "userToken": "jwFzI95FDsTK9tQUPUBC"
-    },
-    {
-      "id": 7,
-      "nickname": "knowteach8946",
-      "name": "김지훈",
-      "password": "123qwe",
-      "img": "https://cdn.pixabay.com/photo/2023/05/30/16/50/milk-8029140_1280.png"
-    },
-    {
-      "name": "go_school_yju",
-      "nickname": "tto1",
-      "password": "123",
-      "img": "",
-      "id": 8
-    },
-    {
       "name": "김지훈",
       "nickname": "hetame",
-      "password": "asd5050",
-      "id": 9,
-      "userToken": "HQkg0hCQpkPpGWfeEC8P"
-    }
-  ],
-  "profiles": [
-    {
+      "password": "8946",
+      "img": "https://www.svgrepo.com/show/311063/person.svg",
       "id": 1,
-      "userId": 2,
-      "name": "2201400",
-      "img": "https://github.com/2201400.png",
-      "storyImg": [
-        "https://cdn.pixabay.com/photo/2023/06/01/06/22/british-shorthair-8032816_1280.jpg",
-        "https://thumbsnap.com/i/iJwkrk8c.jpg",
-        "center center no-repeat rgb(189, 178, 255)",
-        "center center no-repeat rgb(202, 255, 191)"
-      ],
-      "storyText": [
-        {
-          "text": "",
-          "color": ""
-        },
-        {
-          "text": "",
-          "color": ""
-        },
-        {
-          "text": "스토리 테스트 1",
-          "color": ""
-        },
-        {
-          "text": "ㄴㅁㄹ",
-          "color": ""
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "userId": 3,
-      "name": "hetame1",
-      "img": "https://github.com/hetame1.png",
-      "storyImg": [
-        "rgb(255, 255, 255)"
-      ],
-      "storyText": [
-        {
-          "text": "sdfsdfsdf",
-          "color": ""
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "userId": 4,
-      "name": "HyunjinHa",
-      "img": "https://github.com/HyunjinHa.png",
-      "storyImg": [
-        "center center no-repeat rgb(155, 246, 255)"
-      ],
-      "storyText": [
-        {
-          "text": "sdfsdfㅁㄴㄹ\nㅁㄴㄹasfasfasfㄴㅁㄹ",
-          "color": ""
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "userId": 5,
-      "name": "Jaeil-Lee",
-      "img": "https://github.com/Jaeil-Lee.png",
-      "storyImg": [
-        "center center no-repeat rgb(255, 173, 173)"
-      ],
-      "storyText": [
-        {
-          "text": "\nㅁㄴㄹ",
-          "color": ""
-        }
-      ]
-    },
-    {
-      "id": 5,
-      "userId": 6,
-      "name": "Lsy04178",
-      "img": "https://github.com/Lsy04178.png",
-      "storyImg": [
-        "center center / cover no-repeat rgb(189, 178, 255)"
-      ],
-      "storyText": [
-        {
-          "text": "귀요미asf",
-          "color": "rgb(255, 255, 255)"
-        }
-      ]
-    },
-    {
-      "userId": 1,
-      "name": "d556f8",
-      "img": "https://github.com/d556f8.png",
-      "storyImg": [
-        "center center no-repeat rgb(189, 178, 255)"
-      ],
-      "storyText": [
-        {
-          "text": "테스트 스토리 작성",
-          "color": ""
-        }
-      ],
-      "id": 6
+      "userToken": "bLxvoQaBsQnu1F3pllLq"
     }
   ],
+  "profiles": [],
   "posts": [
     {
       "name": "go_school_yju",
@@ -149,7 +22,8 @@
       "statements": [],
       "likes": 78,
       "id": 7,
-      "category": 1
+      "category": 1,
+      "comments": []
     },
     {
       "name": "go_school_yju",
@@ -162,7 +36,8 @@
       "statements": [],
       "likes": 136,
       "id": 6,
-      "category": 1
+      "category": 1,
+      "comments": []
     },
     {
       "name": "FUKUOKA_TOWER",
@@ -175,7 +50,8 @@
       "statements": [],
       "likes": 42,
       "id": 17,
-      "category": 4
+      "category": 4,
+      "comments": []
     },
     {
       "name": "go_school_yju",
@@ -187,7 +63,8 @@
       "statements": [],
       "likes": 136,
       "id": 9,
-      "category": 1
+      "category": 1,
+      "comments": []
     },
     {
       "name": "FUKUOKA_TRIP",
@@ -200,7 +77,8 @@
       "statements": [],
       "likes": 79,
       "id": 8,
-      "category": 2
+      "category": 2,
+      "comments": []
     },
     {
       "name": "FUKUOKA_TRIP",
@@ -212,7 +90,8 @@
       "statements": [],
       "likes": 87,
       "id": 3,
-      "category": 2
+      "category": 2,
+      "comments": []
     },
     {
       "name": "FUKUOKA_Oishī",
@@ -224,7 +103,8 @@
       "statements": [],
       "likes": 69,
       "id": 13,
-      "category": 3
+      "category": 3,
+      "comments": []
     },
     {
       "name": "FUKUOKA_TOWER",
@@ -236,7 +116,8 @@
       "statements": [],
       "likes": 22,
       "id": 17,
-      "category": 4
+      "category": 4,
+      "comments": []
     },
     {
       "name": "FUKUOKA_TRIP",
@@ -248,7 +129,8 @@
       "statements": [],
       "likes": 33,
       "id": 2,
-      "category": 2
+      "category": 2,
+      "comments": []
     },
     {
       "name": "FUKUOKA_Oishī",
@@ -261,7 +143,8 @@
       "statements": [],
       "likes": 99,
       "id": 14,
-      "category": 3
+      "category": 3,
+      "comments": []
     },
     {
       "name": "FUKUOKA_Oishī",
@@ -274,7 +157,8 @@
       "statements": [],
       "likes": 104,
       "id": 15,
-      "category": 3
+      "category": 3,
+      "comments": []
     },
     {
       "name": "FUKUOKA_TOWER",
@@ -287,7 +171,8 @@
       "statements": [],
       "likes": 17,
       "id": 16,
-      "category": 4
+      "category": 4,
+      "comments": []
     },
     {
       "name": "FUKUOKA_TRIP",
@@ -300,7 +185,8 @@
       "statements": [],
       "likes": 169,
       "id": 15,
-      "category": 2
+      "category": 2,
+      "comments": []
     },
     {
       "name": "FUKUOKA_TOWER",
@@ -312,7 +198,8 @@
       "statements": [],
       "likes": 72,
       "id": 18,
-      "category": 4
+      "category": 4,
+      "comments": []
     },
     {
       "name": "FUKUOKA_Oishī",
@@ -324,7 +211,8 @@
       "statements": [],
       "likes": 54,
       "id": 16,
-      "category": 3
+      "category": 3,
+      "comments": []
     },
     {
       "name": "FUKUOKA_Oishī",
@@ -336,7 +224,8 @@
       "statements": [],
       "likes": 34,
       "id": 17,
-      "category": 3
+      "category": 3,
+      "comments": []
     },
     {
       "name": "d556f8",
@@ -347,7 +236,9 @@
       ],
       "statements": [],
       "likes": 0,
-      "id": 19
+      "id": 19,
+      "comments": [
+      ]
     }
   ],
   "categories": [
