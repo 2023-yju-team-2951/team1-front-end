@@ -99,26 +99,24 @@ class StoryView extends HTMLDivElement {
 
     this.sizeChange(); // 사이즈 변경
 
-    if (this.account.id === id) {
-      const editStory = this.querySelector('#edit-story');
-      const deleteStory = this.querySelector('#del-story');
+    const editStory = this.querySelector('#edit-story');
+    const deleteStory = this.querySelector('#del-story');
 
-      // 수정 버튼 클릭시 현재 정보 가져와서 모달창 열어주기
-      editStory.addEventListener('click', () => {
-        const active = this.querySelector('.carousel-item.active');
-        const activeImg = active.querySelector('.img');
-        const activeText = active.querySelector('.text-area');
-        const background = activeImg.style.background;
-        const text = activeText.value;
-        const textColor = activeText.style.color;
-        exchangeModal(new StoryModal('edit', background, text, textColor));
-      });
+    // 수정 버튼 클릭시 현재 정보 가져와서 모달창 열어주기
+    editStory.addEventListener('click', () => {
+      const active = this.querySelector('.carousel-item.active');
+      const activeImg = active.querySelector('.img');
+      const activeText = active.querySelector('.text-area');
+      const background = activeImg.style.background;
+      const text = activeText.value;
+      const textColor = activeText.style.color;
+      exchangeModal(new StoryModal('edit', background, text, textColor));
+    });
 
-      // 삭제 버튼 클릭시
-      deleteStory.addEventListener('click', () => {
-        this.deleteCarouselImg();
-      });
-    }
+    // 삭제 버튼 클릭시
+    deleteStory.addEventListener('click', () => {
+      this.deleteCarouselImg();
+    });
 
     this.textAreaResize();
 
@@ -334,8 +332,7 @@ class StoryView extends HTMLDivElement {
     const activeCarouselItem = this.querySelector('.carousel-item.active');
     const activeIndex = activeCarouselItem.dataset.index;
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = parseInt(urlParams.get('id'));
+    const id = this.account.id;
 
     const data = await getProfileById(id);
 
@@ -345,48 +342,37 @@ class StoryView extends HTMLDivElement {
     storyImg.splice(activeIndex, 1);
     storyText.splice(activeIndex, 1);
 
-    const index = this.profileData.findIndex((data) => data.id === id);
+    // 주소창에서 id 가져오기
+    const urlParams = new URLSearchParams(window.location.search);
+    const siteId = parseInt(urlParams.get('id'));
 
     if (storyImg.length === 0) {
-      let loadId = id;
-      if (id === 1) {
-        loadId = id + 1;
+      let loadId = siteId;
+      if (siteId === 1) {
+        loadId = siteId + 1;
       } else {
-        loadId = id - 1;
+        loadId = siteId - 1;
       }
 
       await deleteProfile(id);
+    
+      this.innerHTML = '';
 
-      while (this.modalWrapper.firstChild) {
-        this.modalWrapper.firstChild.remove();
-      }
-
-      const newURL =
-        window.location.origin + window.location.pathname + '?id=' + loadId;
+      const newURL = window.location.origin + window.location.pathname + '?id=' + loadId;
       history.pushState(null, null, newURL);
 
       this.loadDatas();
     } else {
-      this.profileData[index].storyImg = storyImg;
-      this.profileData[index].storyText = storyText;
+      const currentData = this.profileData.find((data) => data.id === siteId);
 
-      fetch(`http://localhost:7000/profiles/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ storyImg, storyText }),
-      })
-        .then((res) => res.json())
-        .then(() => {
-          while (this.modalWrapper.firstChild) {
-            this.modalWrapper.firstChild.remove();
-          }
+      currentData.storyImg = storyImg;
+      currentData.storyText = storyText;
 
-          const newURL =
-            window.location.origin + window.location.pathname + '?id=' + id;
-          history.pushState(null, null, newURL);
+      await updateProfile(currentData);
 
-          this.loadDatas();
-        });
+      this.innerHTML = '';
+
+      this.render();
     }
   }
 
