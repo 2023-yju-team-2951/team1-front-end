@@ -55,11 +55,11 @@ export async function updateProfile(data) {
  * @returns {Promise<{}>} 삭제된 프로필
  */
 export async function deleteProfile(id) {
-  const res = await fetch(`${JSON_SERVER_URL}/profiles/${id}`, {
+  const data = await getProfiles();
+  const newData = data.find((profile) => profile.userId === id);
+  await fetch(`${JSON_SERVER_URL}/profiles/${newData.id}`, {
     method: 'DELETE',
   });
-  const data = await res.json();
-  return data;
 }
 
 /**

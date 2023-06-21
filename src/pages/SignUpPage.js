@@ -82,6 +82,20 @@ class SignUpPage extends HTMLDivElement {
       password,
       img: 'https://www.svgrepo.com/show/311063/person.svg',
     };
+
+    await createAccount(formData);
+    alert('회원가입이 완료되었습니다');
+    this.pageChange();
+  }
+
+  pageChange() {
+    const moveToLogin = document.createElement('a');
+    moveToLogin.setAttribute('data-link', '');
+    moveToLogin.setAttribute('href', '/login');
+
+    document.body.appendChild(moveToLogin);
+
+    moveToLogin.click();
   }
 }
 
