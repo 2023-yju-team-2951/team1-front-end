@@ -40,7 +40,7 @@ class SearchModal extends HTMLDivElement {
   searchContents(keyword) {
     const contents = this.contents
       .filter(({ post_content }) => post_content.includes(keyword))
-      .slice(0, 10);
+      .slice(0, 5);
 
     this.renderContents(contents, keyword);
   }

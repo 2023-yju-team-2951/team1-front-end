@@ -34,11 +34,6 @@
   overflow: hidden;
 }
 
-.nav-info .nav-info-img img {
-  position: absolute;
-  display: block;
-}
-
 .nav-info .nav-info-text {
   display: flex;
   flex-direction: column;
