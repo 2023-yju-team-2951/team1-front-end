@@ -99,26 +99,24 @@ class StoryView extends HTMLDivElement {
 
     this.sizeChange(); // 사이즈 변경
 
-    if (this.account.id === id) {
-      const editStory = this.querySelector('#edit-story');
-      const deleteStory = this.querySelector('#del-story');
+    const editStory = this.querySelector('#edit-story');
+    const deleteStory = this.querySelector('#del-story');
 
-      // 수정 버튼 클릭시 현재 정보 가져와서 모달창 열어주기
-      editStory.addEventListener('click', () => {
-        const active = this.querySelector('.carousel-item.active');
-        const activeImg = active.querySelector('.img');
-        const activeText = active.querySelector('.text-area');
-        const background = activeImg.style.background;
-        const text = activeText.value;
-        const textColor = activeText.style.color;
-        exchangeModal(new StoryModal('edit', background, text, textColor));
-      });
+    // 수정 버튼 클릭시 현재 정보 가져와서 모달창 열어주기
+    editStory.addEventListener('click', () => {
+      const active = this.querySelector('.carousel-item.active');
+      const activeImg = active.querySelector('.img');
+      const activeText = active.querySelector('.text-area');
+      const background = activeImg.style.background;
+      const text = activeText.value;
+      const textColor = activeText.style.color;
+      exchangeModal(new StoryModal('edit', background, text, textColor));
+    });
 
-      // 삭제 버튼 클릭시
-      deleteStory.addEventListener('click', () => {
-        this.deleteCarouselImg();
-      });
-    }
+    // 삭제 버튼 클릭시
+    deleteStory.addEventListener('click', () => {
+      this.deleteCarouselImg();
+    });
 
     this.textAreaResize();
 
