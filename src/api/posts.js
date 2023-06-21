@@ -31,3 +31,21 @@ export async function deletePost(id) {
   const data = await res.json();
   return data;
 }
+
+export async function getPostById(id) {
+  const res = await fetch(`${JSON_SERVER_URL}/posts/${id}`);
+  const data = await res.json();
+  return data;
+}
+
+export async function updatePost(id, post) {
+  const res = await fetch(`${JSON_SERVER_URL}/posts/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(post),
+  });
+  const data = await res.json();
+  return data;
+}
