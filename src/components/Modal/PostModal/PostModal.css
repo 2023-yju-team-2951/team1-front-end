@@ -111,7 +111,6 @@
   font-size: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   border-bottom: solid 1px rgba(161, 160, 160, 0.486);
 }
 
@@ -151,7 +150,7 @@
 
 #postModal .comment-item .comment-img {
   width: 34px;
-  height: 34px; 
+  height: 34px;
   border-radius: 50%;
   margin-right: 5px;
 }
