@@ -355,10 +355,11 @@ class StoryView extends HTMLDivElement {
       }
 
       await deleteProfile(id);
-    
+
       this.innerHTML = '';
 
-      const newURL = window.location.origin + window.location.pathname + '?id=' + loadId;
+      const newURL =
+        window.location.origin + window.location.pathname + '?id=' + loadId;
       history.pushState(null, null, newURL);
 
       this.loadDatas();
@@ -511,8 +512,8 @@ class CarouselImg {
         img.className = 'img';
         if (/^http.*/.test(this.profileData.storyImg[i])) {
           img.style.background = `url(${this.profileData.storyImg[i]})`;
-          img.style.backgroundPosition = 'center';
           img.style.backgroundRepeat = 'no-repeat';
+          img.style.backgroundSize = 'cover';
         } else {
           img.style.background = this.profileData.storyImg[i];
         }
