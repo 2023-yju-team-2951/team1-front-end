@@ -95,14 +95,13 @@ class PostModal extends HTMLDivElement {
           ${comment.comment}
         </div>
       </div>
-      `
-    })
+      `;
+    });
 
     const postButton = this.querySelector('.button-custom');
     postButton.addEventListener('click', () => {
       this.cardUpdate(this.data.id);
     });
-   
   }
 
   async cardUpdate(id) {
@@ -226,7 +225,6 @@ class CarouselImg {
         img.style.height = '100%';
         if (/^http.*/.test(this.data.post_main_img[i])) {
           img.style.background = `url(${this.data.post_main_img[i]})`;
-          img.style.backgroundPosition = 'center';
           img.style.backgroundRepeat = 'no-repeat';
         } else {
           img.style.background = this.data.post_main_img[i];
