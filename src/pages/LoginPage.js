@@ -46,9 +46,17 @@ class LoginPage extends HTMLDivElement {
 
     sessionStorage.setItem('userToken', token);
 
-    const root = document.querySelector('#root');
-    root.innerHTML = '';
-    root.appendChild(new MainPage());
+    this.pageChange();
+  }
+
+  pageChange() {
+    const moveToLogin = document.createElement('a');
+    moveToLogin.setAttribute('data-link', '');
+    moveToLogin.setAttribute('href', '/');
+
+    document.body.appendChild(moveToLogin);
+
+    moveToLogin.click();
   }
 }
 
