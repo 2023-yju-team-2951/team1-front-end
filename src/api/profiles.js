@@ -56,8 +56,10 @@ export async function updateProfile(data) {
  */
 export async function deleteProfile(id) {
   const data = await getProfiles();
-  const newData = data.filter((profile) => profile.userId !== id);
-  return newData;
+  const newData = data.find((profile) => profile.userId === id);
+  await fetch(`${JSON_SERVER_URL}/profiles/${newData.id}`, {
+    method: 'DELETE',
+  });
 }
 
 /**

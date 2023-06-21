@@ -27,7 +27,7 @@
       "nickname": "hetame",
       "password": "asd5050",
       "id": 9,
-      "userToken": "6939SKjJB5Y5DLCN3mdi"
+      "userToken": "HQkg0hCQpkPpGWfeEC8P"
     }
   ],
   "profiles": [
@@ -135,20 +135,6 @@
         }
       ],
       "id": 6
-    },
-    {
-      "userId": 9,
-      "name": "hetame",
-      "storyImg": [
-        "center center no-repeat rgb(202, 255, 191)"
-      ],
-      "storyText": [
-        {
-          "text": "asffdssdfqwe",
-          "color": ""
-        }
-      ],
-      "id": 7
     }
   ],
   "posts": [

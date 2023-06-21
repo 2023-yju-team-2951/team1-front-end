@@ -348,43 +348,31 @@ class StoryView extends HTMLDivElement {
 
     if (storyImg.length === 0) {
       let loadId = siteId;
-      if (id === 1) {
-        loadId = id + 1;
+      if (siteId === 1) {
+        loadId = siteId + 1;
       } else {
-        loadId = id - 1;
+        loadId = siteId - 1;
       }
 
       await deleteProfile(id);
-
-      while (this.modalWrapper.firstChild) {
-        this.modalWrapper.firstChild.remove();
-      }
+    
+      this.innerHTML = '';
 
       const newURL = window.location.origin + window.location.pathname + '?id=' + loadId;
       history.pushState(null, null, newURL);
 
       this.loadDatas();
     } else {
-      this.profileData[index].storyImg = storyImg;
-      this.profileData[index].storyText = storyText;
+      const currentData = this.profileData.find((data) => data.id === siteId);
 
-      fetch(`http://localhost:7000/profiles/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ storyImg, storyText }),
-      })
-        .then((res) => res.json())
-        .then(() => {
-          while (this.modalWrapper.firstChild) {
-            this.modalWrapper.firstChild.remove();
-          }
+      currentData.storyImg = storyImg;
+      currentData.storyText = storyText;
 
-          const newURL =
-            window.location.origin + window.location.pathname + '?id=' + id;
-          history.pushState(null, null, newURL);
+      await updateProfile(currentData);
 
-          this.loadDatas();
-        });
+      this.innerHTML = '';
+
+      this.render();
     }
   }
 
