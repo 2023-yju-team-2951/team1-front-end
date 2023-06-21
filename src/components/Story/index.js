@@ -136,10 +136,8 @@ class Story extends HTMLElement {
     let background = '';
 
     if (detail.background.type) {
-      console.log('이미지');
       background = await uploadImg(detail.background);
     } else {
-      console.log('색상');
       background = detail.background;
     }
 

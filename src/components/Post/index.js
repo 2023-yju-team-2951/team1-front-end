@@ -1,9 +1,10 @@
-import { getPost, deletePost } from '../../api/posts.js';
+import { getPost, deletePost, updatePost, getPostById } from '../../api/posts.js';
 import './post.css';
 import PostModal from '../Modal/PostModal'; /* postModal import  */
 import { exchangeModal } from '../utils/exchangeModal.js';
 
 import { hashtagHighlight } from '../utils/highlight.js';
+import { exchangeComponent } from '../utils/exchangeComponent.js';
 
 // import Modal from './postMoal.js' // 모달 import
 
@@ -52,7 +53,7 @@ class Post extends HTMLElement {
     /* 1.4.1  2.CardContainer를 불러와서 서버에서 받아온 데이터 넣고 CardContainer를 렌더*/
     //   위에서 서버로 받은 data를 CardContainer로 전달
 
-    this.cardContainer.innerHTML += new CardContainer(this.data).render(); // ❓바로 CardContainer 생성자에서 render() 하면 안되나?  => return 값이 이상하게 나온단다
+    this.cardContainer.innerHTML += new CardContainer(this.data, this.account).render(); // ❓바로 CardContainer 생성자에서 render() 하면 안되나?  => return 값이 이상하게 나온단다
 
     this.innerContainer.appendChild(this.cardContainer); // innerContainer(전체 감싸는)에 CardContainer 내용 넣기
 
@@ -74,7 +75,14 @@ class Post extends HTMLElement {
       post.addEventListener('click', () => {
         const modalId = post.dataset.id;
         const modalData = this.data.find((data) => data.id === Number(modalId));
-        exchangeModal(new PostModal(modalData));
+        exchangeModal(new PostModal(modalData, this.account));
+      });
+    });
+
+    const commentPush = document.querySelectorAll('.btn-push');
+    commentPush.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        this.cardUpdate(btn.dataset.id);
       });
     });
 
@@ -105,6 +113,16 @@ class Post extends HTMLElement {
     container.innerHTML = '';
 
     this.loadDatas();
+  }
+
+  async cardUpdate(id) {
+    const commentInput = document.querySelector('.comment-input');
+    const comment = commentInput.value;
+    const postData = await getPostById(id);
+    const { img, nickname } = this.account;
+    postData.comments.push({ img, nickname, comment });
+    await updatePost(id, postData);
+    exchangeComponent(this, new Post(this.account));
   }
 
   /* 1.7.a. 좋아요 하트 색 변경  + 숫자 변경*/
@@ -164,9 +182,10 @@ class Post extends HTMLElement {
 
 /* 🟢  2. CardContainer */
 class CardContainer {
-  constructor(data) {
+  constructor(data, account) {
     // 46번 라인에서 데이터 전달 받아 값 전달
     this.data = data;
+    this.account = account;
   }
 
   /* 2.1  다른 클래스들(Top, MainPost, UserWrite, Comment)의 인스턴스를 생성 하면서 카드의 HTML생성*/
@@ -198,9 +217,11 @@ class CardContainer {
       footer.innerHTML += userWrite.render(); /* 🟡 */
 
       /* 2.2.5 Comment */ //따개진 card를 Comment 컴포넌트로 전달
-      const comment = new Comment(card);
-      footer.innerHTML += comment.render(); /* 🟡 */
-
+      if (this.account) {
+        const comment = new Comment(card);
+        footer.innerHTML += comment.render();
+      }
+       /* 🟡 */
       /* 🟢🟢🟢🟢🟢🟢🟢 모달 새로 추가 */
       // const modal = new Modal(card);
       // footer.innerHTML += modal.render();
@@ -353,6 +374,9 @@ class Comment {
       </div>
     </div>
     `;
+
+    const commentPush = commentHTML.querySelector('.btn-push');
+    commentPush.setAttribute('data-id', this.data.id);
 
     return commentHTML.innerHTML;
   }
