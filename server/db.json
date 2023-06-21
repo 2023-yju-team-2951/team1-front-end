@@ -6,18 +6,20 @@
       "nickname": "d556f8",
       "password": "1234",
       "img": "https://github.com/d556f8.png",
-      "userToken": "uxGs6ihrNBnV6iLx6WGY"
+      "userToken": "jwFzI95FDsTK9tQUPUBC"
     },
     {
       "id": 7,
-      "userId": "knowteach8946",
+      "nickname": "knowteach8946",
       "name": "김지훈",
+      "password": "123qwe",
       "img": "https://cdn.pixabay.com/photo/2023/05/30/16/50/milk-8029140_1280.png"
     },
     {
-      "name": "ㅁ낭러",
+      "name": "go_school_yju",
       "nickname": "tto1",
       "password": "123",
+      "img": "",
       "id": 8
     }
   ],
@@ -57,9 +59,7 @@
       "userId": 3,
       "name": "hetame1",
       "img": "https://github.com/hetame1.png",
-      "storyImg": [
-        "rgb(255, 255, 255)"
-      ],
+      "storyImg": ["rgb(255, 255, 255)"],
       "storyText": [
         {
           "text": "sdfsdfsdf",
@@ -72,9 +72,7 @@
       "userId": 4,
       "name": "HyunjinHa",
       "img": "https://github.com/HyunjinHa.png",
-      "storyImg": [
-        "center center no-repeat rgb(155, 246, 255)"
-      ],
+      "storyImg": ["center center no-repeat rgb(155, 246, 255)"],
       "storyText": [
         {
           "text": "sdfsdfㅁㄴㄹ\nㅁㄴㄹasfasfasfㄴㅁㄹ",
@@ -87,9 +85,7 @@
       "userId": 5,
       "name": "Jaeil-Lee",
       "img": "https://github.com/Jaeil-Lee.png",
-      "storyImg": [
-        "center center no-repeat rgb(255, 173, 173)"
-      ],
+      "storyImg": ["center center no-repeat rgb(255, 173, 173)"],
       "storyText": [
         {
           "text": "\nㅁㄴㄹ",
@@ -102,9 +98,7 @@
       "userId": 6,
       "name": "Lsy04178",
       "img": "https://github.com/Lsy04178.png",
-      "storyImg": [
-        "center center / cover no-repeat rgb(189, 178, 255)"
-      ],
+      "storyImg": ["center center / cover no-repeat rgb(189, 178, 255)"],
       "storyText": [
         {
           "text": "귀요미asf",
@@ -114,14 +108,12 @@
     },
     {
       "userId": 1,
-      "name": "주현",
+      "name": "d556f8",
       "img": "https://github.com/d556f8.png",
-      "storyImg": [
-        "center center no-repeat rgb(155, 246, 255)"
-      ],
+      "storyImg": ["center center no-repeat rgb(189, 178, 255)"],
       "storyText": [
         {
-          "text": "ㅁㄴㄹ",
+          "text": "테스트 스토리 작성",
           "color": ""
         }
       ],
@@ -172,12 +164,10 @@
       "name": "go_school_yju",
       "post_content": " 여름에 성수기 후쿠오카 우리는 학교지원으로 출발~!",
       "post_top_img": "https://i.ibb.co/S00HZYG/yj.png",
-      "post_main_img": [
-        "https://i.ibb.co/7nkgW5s/001-1.jpg"
-      ],
+      "post_main_img": ["https://i.ibb.co/7nkgW5s/001-1.jpg"],
       "statements": [],
       "likes": 136,
-      "id": 7,
+      "id": 9,
       "category": 1
     },
     {
@@ -190,7 +180,7 @@
       ],
       "statements": [],
       "likes": 79,
-      "id": 9,
+      "id": 8,
       "category": 2
     },
     {
@@ -321,13 +311,20 @@
       "name": "FUKUOKA_Oishī",
       "post_content": " 일본 하면 라면! 하카타역 라멘 맛집 나가하마 ",
       "post_top_img": "https://i.ibb.co/2nxdtJ0/fukuokao.png",
-      "post_main_img": [
-        "https://i.ibb.co/ZN6VzbG/IMG-3346.jpg"
-      ],
+      "post_main_img": ["https://i.ibb.co/ZN6VzbG/IMG-3346.jpg"],
       "statements": [],
       "likes": 34,
       "id": 17,
       "category": 3
+    },
+    {
+      "name": "d556f8",
+      "post_content": "#jp_mood\n#raw_japan\n#photo_map\n#photo_jpn\n#as_archive\n#light_nikon\n#japanawaits\n#genic_japan\n#raw_world\n#jp_portrait部\n#tokyocamelaclub\n#japan_travel\n#daily_photo_jpn\n#その瞬間に物語を\n#撮りたい世界が地元にある\n#zcreators\n#nikoncreators👏",
+      "post_top_img": "https://github.com/d556f8.png",
+      "post_main_img": ["https://thumbsnap.com/i/xTqxQWnn.jpg"],
+      "statements": [],
+      "likes": 0,
+      "id": 19
     }
   ],
   "categories": [

@@ -1,13 +1,11 @@
+import { login } from '../api/accounts';
+import MainPage from './MainPage';
+
 class LoginPage extends HTMLDivElement {
   constructor() {
     super();
 
-    this.render();
-  }
-
-  render() {
-    this.innerHTML =
-    `
+    this.innerHTML = `
       <div id="login-page">
         <div class="login-container">
 
@@ -20,10 +18,10 @@ class LoginPage extends HTMLDivElement {
           <div class="login-right-container">
             <div class="right-form">
               <h1 class="login-logo">2951</h1>
-              <form id="login-form">
-                <input type="text" name="username" placeholder="Username" required>
+              <form id="loginForm">
+                <input type="text" name="nickname" placeholder="Username" required>
                 <input type="password" name="password" placeholder="Password" required>
-                <button class="btn-login" type="submit">로그인</button>
+                <button class="btn-login" type="button">로그인</button>
               </form>
             </div>
             <div class="right-footer">
@@ -33,7 +31,24 @@ class LoginPage extends HTMLDivElement {
 
         </div>
       </div>
-    `
+    `;
+
+    this.loginForm = this.querySelector('#loginForm');
+    this.loginBtn = this.querySelector('.btn-login');
+    this.loginBtn.addEventListener('click', async () => await this.tryLogin());
+  }
+
+  async tryLogin() {
+    const nickname = this.loginForm['nickname'].value;
+    const password = this.loginForm['password'].value;
+
+    const token = await login(nickname, password);
+
+    sessionStorage.setItem('userToken', token);
+
+    const root = document.querySelector('#root');
+    root.innerHTML = '';
+    root.appendChild(new MainPage());
   }
 }
 

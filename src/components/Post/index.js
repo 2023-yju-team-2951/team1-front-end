@@ -3,6 +3,8 @@ import './post.css';
 import PostModal from '../Modal/PostModal'; /* postModal import  */
 import { exchangeModal } from '../utils/exchangeModal.js';
 
+import { hashtagHighlight } from '../utils/highlight.js';
+
 // import Modal from './postMoal.js' // 모달 import
 
 /* 🟢  1. POST */
@@ -313,7 +315,7 @@ class UserWrite {
           <span id="account">${this.data.name}</span>
           <div class="post-content">
             <span class="post">
-              ${this.data.post_content} 
+              ${hashtagHighlight(this.data.post_content)} 
             </span>
           </div> 
           <span id="showMore">더보기</span>

@@ -1,6 +1,7 @@
 .search-modal {
   display: flex;
   justify-content: center;
+  --bs-modal-width: 625px;
 }
 
 .search-modal.modal-dialog {
@@ -8,7 +9,7 @@
 }
 
 .search-modal .search-box {
-  width: 600px;
+  width: 625px;
 
   background-color: white;
   border-radius: 5px;

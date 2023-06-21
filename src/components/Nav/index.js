@@ -20,7 +20,7 @@ class Nav extends HTMLDivElement {
       <div class="nav-header-logo">
         <div class="header-logo">
           <div>
-            <object data="/assets/image/insta-logo.svg"></object>
+            <span class="logo-text">2951</span>
           </div>
         </div>
       </div>
@@ -98,6 +98,7 @@ class Nav extends HTMLDivElement {
 
     this.otherLogout.addEventListener('click', () => this.logoutEvent());
 
+    // 로그인 상태가 아니면 만들기 버튼 제거
     if (!this.account) {
       this.navAdd.remove();
     }

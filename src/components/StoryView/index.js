@@ -44,7 +44,7 @@ class StoryView extends HTMLDivElement {
       this.profileData = await getProfiles();
       this.render();
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -59,15 +59,21 @@ class StoryView extends HTMLDivElement {
     const index = this.profileData.findIndex((data) => data.id === id);
 
     // 왼쪽, 오른쪽 스토리 있는지 확인하고 데이터 저장
-    let prevData = '', nextData = '';
+    let prevData = '',
+      nextData = '';
     if (index > 0) prevData = this.profileData[index - 1];
-    if (index < this.profileData.length - 1) nextData = this.profileData[index + 1];
+    if (index < this.profileData.length - 1)
+      nextData = this.profileData[index + 1];
 
     // 스토리 만들기
     this.modalWrapper.innerHTML = `
       ${index > 0 ? new SideStory(prevData).render('left') : ''}
       ${new CenterStory(this.profileData[index], this.account).render()}
-      ${index < this.profileData.length - 1 ? new SideStory(nextData).render('right') : ''}
+      ${
+        index < this.profileData.length - 1
+          ? new SideStory(nextData).render('right')
+          : ''
+      }
     `;
 
     this.storyWrapper.appendChild(this.modalWrapper);
@@ -93,24 +99,26 @@ class StoryView extends HTMLDivElement {
 
     this.sizeChange(); // 사이즈 변경
 
-    const editStory = this.querySelector('#edit-story');
-    const deleteStory = this.querySelector('#del-story');
+    if (this.account.id === id) {
+      const editStory = this.querySelector('#edit-story');
+      const deleteStory = this.querySelector('#del-story');
 
-    // 수정 버튼 클릭시 현재 정보 가져와서 모달창 열어주기
-    editStory.addEventListener('click', () => {
-      const active = this.querySelector('.carousel-item.active');
-      const activeImg = active.querySelector('.img');
-      const activeText = active.querySelector('.text-area');
-      const background = activeImg.style.background;
-      const text = activeText.value;
-      const textColor = activeText.style.color;
-      exchangeModal(new StoryModal('edit', background, text, textColor));
-    });
+      // 수정 버튼 클릭시 현재 정보 가져와서 모달창 열어주기
+      editStory.addEventListener('click', () => {
+        const active = this.querySelector('.carousel-item.active');
+        const activeImg = active.querySelector('.img');
+        const activeText = active.querySelector('.text-area');
+        const background = activeImg.style.background;
+        const text = activeText.value;
+        const textColor = activeText.style.color;
+        exchangeModal(new StoryModal('edit', background, text, textColor));
+      });
 
-    // 삭제 버튼 클릭시
-    deleteStory.addEventListener('click', () => {
-      this.deleteCarouselImg();
-    });
+      // 삭제 버튼 클릭시
+      deleteStory.addEventListener('click', () => {
+        this.deleteCarouselImg();
+      });
+    }
 
     this.textAreaResize();
 
@@ -336,7 +344,7 @@ class StoryView extends HTMLDivElement {
 
     storyImg.splice(activeIndex, 1);
     storyText.splice(activeIndex, 1);
-    
+
     const index = this.profileData.findIndex((data) => data.id === id);
 
     if (storyImg.length === 0) {
@@ -452,8 +460,6 @@ class CenterStory {
       </div>
     `;
 
-
-
     if (this.profileData.userId === this.account.id) {
       const storyHead = container.querySelector('.story-head');
       storyHead.innerHTML += `
@@ -465,7 +471,7 @@ class CenterStory {
           delete_forever
         </span>
       </div>
-      `
+      `;
     }
 
     let imgSize = container.querySelector('.img-size');
@@ -493,9 +499,10 @@ class CarouselImg {
     const carouselInner = document.createElement('div');
     carouselInner.className = 'carousel-inner';
 
-
-    if (Array.isArray(this.profileData.storyImg) && Array.isArray(this.profileData.storyText)) {
-
+    if (
+      Array.isArray(this.profileData.storyImg) &&
+      Array.isArray(this.profileData.storyText)
+    ) {
       for (let i = 0; i < this.profileData.storyImg.length; i++) {
         const carouselItem = document.createElement('div');
         const carouselIndicator = document.createElement('button');
