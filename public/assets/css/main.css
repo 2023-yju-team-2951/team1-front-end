@@ -142,6 +142,14 @@ SignUp PAGE - LAYOUT
   border: none;
 }
 
+#signUpPage .signup-logo {
+  color: #000 !important;
+  text-decoration: none !important;
+  font-size: 3em;
+  margin: 15px 0;
+  font-family: 'Lobster', cursive;
+}
+
 #signUpPage .container_login {
   display: flex;
   flex-direction: column;
@@ -250,6 +258,9 @@ SignUp FORM
   margin-bottom: 20px;
 }
 #login-page .login-container .login-right-container .right-form .login-logo {
+  color: #000 !important;
+  text-decoration: none !important;
+  font-size: 5em;
   margin: 15px 0;
   font-family: 'Lobster', cursive;
 }
