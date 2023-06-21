@@ -1,3 +1,5 @@
+import Hashtag from '../common/Hashtag';
+
 export function hashtagHighlight(text) {
   const regex = /#[^\s#]+/g;
   return text.replace(regex, (match) => `<ctm-hashtag>${match}</ctm-hashtag>`);
