@@ -35,11 +35,11 @@ class Post extends HTMLElement {
   async loadDatas(id = null) {
     try {
       if (id) {
-        this.data = await getPost();
+        this.data = (await getPost()).reverse();
         this.data = this.data.filter((post) => post.category === Number(id));
         this.render();
       } else {
-        this.data = await getPost(); // 서버에서 객체화된 데이터 불러서 반환
+        this.data = (await getPost()).reverse(); // 서버에서 객체화된 데이터 불러서 반환
         this.render();
       }
     } catch (error) {
