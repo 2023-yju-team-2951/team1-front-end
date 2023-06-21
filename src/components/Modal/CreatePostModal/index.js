@@ -69,6 +69,9 @@ class CreatePostModal extends HTMLDivElement {
     // for event
     this.shareBtn = this.querySelector('.btn-share');
     this.shareBtn.addEventListener('click', async () => {
+      if (!this.postContent.value) return alert('내용을 입력해주세요.');
+      if (!this.uploadImg.files[0]) return alert('이미지를 업로드해주세요.');
+
       await this.share();
       const postComponent = document.querySelector('post-container');
       exchangeComponent(postComponent, new Post());
@@ -114,7 +117,7 @@ class CreatePostModal extends HTMLDivElement {
       post_content: this.postContent.value,
       post_top_img: this.account.img,
       post_main_img: [await uploadImg(file)],
-      statements: [],
+      comments: [],
       likes: 0,
     };
 
