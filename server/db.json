@@ -1,0 +1,414 @@
+{
+  "accounts": [
+    {
+      "name": "이주현",
+      "nickname": "d556f8",
+      "password": "123qwe",
+      "img": "https://www.svgrepo.com/show/311063/person.svg",
+      "id": 1,
+      "userToken": "7Wnu0HbUMcarGm4K2XtS"
+    },
+    {
+      "name": "김지훈",
+      "nickname": "hetame",
+      "password": "123qwe",
+      "img": "https://www.svgrepo.com/show/311063/person.svg",
+      "id": 2,
+      "userToken": "F48udoqnKedPJ5NbteTv"
+    },
+    {
+      "name": "임서연",
+      "nickname": "imsy",
+      "password": "123qwe",
+      "img": "https://www.svgrepo.com/show/311063/person.svg",
+      "id": 3,
+      "userToken": "H4vfT8jbkRX5odT71m5b"
+    },
+    {
+      "name": "하현진",
+      "nickname": "hahyeon",
+      "password": "123qwe",
+      "img": "https://www.svgrepo.com/show/311063/person.svg",
+      "id": 4,
+      "userToken": "NP8rxEyPDRBNfUczQfbh"
+    },
+    {
+      "name": "장준호",
+      "nickname": "jjho",
+      "password": "123qwe",
+      "img": "https://www.svgrepo.com/show/311063/person.svg",
+      "id": 5,
+      "userToken": "iiKntEX7A9X2RGBXv8fq"
+    },
+    {
+      "name": "이재일",
+      "nickname": "ichiban",
+      "password": "123qwe",
+      "img": "https://www.svgrepo.com/show/311063/person.svg",
+      "id": 6,
+      "userToken": "FKIitwK3n3Kt3rShsBT3"
+    }
+  ],
+  "profiles": [
+    {
+      "userId": 2,
+      "name": "hetame",
+      "img": "https://www.svgrepo.com/show/311063/person.svg",
+      "storyImg": [
+        "https://thumbsnap.com/i/K81bcSbr.jpg",
+        "center center / cover no-repeat rgb(255, 255, 255)"
+      ],
+      "storyText": [
+        {
+          "text": "",
+          "color": ""
+        },
+        {
+          "text": "이름: 김지훈\n맡은 업무: 스토리 조원소개, 스토리 페이지\n깃허브주소: https://github.com/hetame1\n한마디: 프론트엔드 좋아하는 김지훈입니다",
+          "color": ""
+        }
+      ],
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "name": "d556f8",
+      "img": "https://www.svgrepo.com/show/311063/person.svg",
+      "storyImg": [
+        "https://thumbsnap.com/i/RWje9MYb.png",
+        "center center / cover no-repeat rgb(189, 178, 255)"
+      ],
+      "storyText": [
+        {
+          "text": "",
+          "color": ""
+        },
+        {
+          "text": "이름: 이주현\n맡은 업무: Nav 컴포넌트, 검색 모달, 게시글 작성 모달\r\n깃허브주소: https://github.com/d556f8\n한마디: 좋게 봐주세요!",
+          "color": ""
+        }
+      ],
+      "id": 2
+    },
+    {
+      "userId": 6,
+      "name": "ichiban",
+      "img": "https://www.svgrepo.com/show/311063/person.svg",
+      "storyImg": [
+        "https://thumbsnap.com/i/EkmzHtEN.jpg",
+        "center center / cover no-repeat rgb(253, 255, 182)"
+      ],
+      "storyText": [
+        {
+          "text": "",
+          "color": ""
+        },
+        {
+          "text": "@이재일\n# 프론트앤드\n#소프트뱅크",
+          "color": ""
+        }
+      ],
+      "id": 3
+    },
+    {
+      "userId": 3,
+      "name": "imsy",
+      "img": "https://www.svgrepo.com/show/311063/person.svg",
+      "storyImg": [
+        "https://thumbsnap.com/i/AgePMNN7.jpg",
+        "center center / cover no-repeat rgb(255, 214, 165)"
+      ],
+      "storyText": [
+        {
+          "text": "",
+          "color": ""
+        },
+        {
+          "text": "@임서연\n오른쪽 카테고리\nhttps://github.com/Lsy04178\n1학기 모두 수고 하셨습니다\n\n뿡-",
+          "color": ""
+        }
+      ],
+      "id": 4
+    },
+    {
+      "userId": 4,
+      "name": "hahyeon",
+      "img": "https://www.svgrepo.com/show/311063/person.svg",
+      "storyImg": [
+        "https://thumbsnap.com/i/F9eE5ikZ.jpg",
+        "center center / cover no-repeat rgb(160, 196, 255)"
+      ],
+      "storyText": [
+        {
+          "text": "",
+          "color": ""
+        },
+        {
+          "text": "@하현진\n# 회원가입페이지\n# https://github.com/HyunjinHa\n# 더위 조심들 하세요",
+          "color": ""
+        }
+      ],
+      "id": 5
+    },
+    {
+      "userId": 5,
+      "name": "jjho",
+      "img": "https://www.svgrepo.com/show/311063/person.svg",
+      "storyImg": [
+        "https://thumbsnap.com/i/7PjhRFbj.jpg",
+        "center center / cover no-repeat rgb(255, 173, 173)"
+      ],
+      "storyText": [
+        {
+          "text": "",
+          "color": ""
+        },
+        {
+          "text": "@장준호\n로그인페이지\nhttps://github.com/2201400\n다들 행복하셨음 좋겠습니다",
+          "color": ""
+        }
+      ],
+      "id": 6
+    }
+  ],
+  "posts": [
+    {
+      "name": "go_school_yju",
+      "post_content": "여름방학에 뭐해? 일본IT 학생들은, 후쿠오카에 공부하러가!!",
+      "post_top_img": "https://i.ibb.co/S00HZYG/yj.png",
+      "post_main_img": [
+        "https://i.ibb.co/PZ5pFbr/004-4-1.jpg",
+        "https://i.ibb.co/PrG4KTn/005-3-1.png"
+      ],
+      "statements": [],
+      "likes": 78,
+      "id": 7,
+      "category": 1,
+      "comments": []
+    },
+    {
+      "name": "go_school_yju",
+      "post_content": " 두근두근 설레임을 가득 안고, 후쿠오카에 도착~!",
+      "post_top_img": "https://i.ibb.co/S00HZYG/yj.png",
+      "post_main_img": [
+        "https://i.ibb.co/KWCN1ny/Kakao-Talk-20230618-022440907-01.jpg",
+        "https://i.ibb.co/sKrhB5T/Kakao-Talk-20230618-022440907.jpg"
+      ],
+      "statements": [],
+      "likes": 136,
+      "id": 6,
+      "category": 1,
+      "comments": []
+    },
+    {
+      "name": "FUKUOKA_TOWER",
+      "post_content": " 6月、夏を待つタワーです ",
+      "post_top_img": "https://i.ibb.co/Pt77Qvb/003-1.png",
+      "post_main_img": [
+        "https://i.ibb.co/MCbQPK4/Kakao-Talk-20230618-173521489.jpg",
+        "https://i.ibb.co/XpNdNFh/Kakao-Talk-20230618-173522349.jpg"
+      ],
+      "statements": [],
+      "likes": 42,
+      "id": 17,
+      "category": 4,
+      "comments": []
+    },
+    {
+      "name": "go_school_yju",
+      "post_content": " 여름에 성수기 후쿠오카 우리는 학교지원으로 출발~!",
+      "post_top_img": "https://i.ibb.co/S00HZYG/yj.png",
+      "post_main_img": ["https://i.ibb.co/7nkgW5s/001-1.jpg"],
+      "statements": [],
+      "likes": 136,
+      "id": 9,
+      "category": 1,
+      "comments": []
+    },
+    {
+      "name": "FUKUOKA_TRIP",
+      "post_content": "과거, 명검객이 머물었던 웅장한 후쿠오카의 고쿠라성!!!",
+      "post_top_img": "https://i.ibb.co/hMP4V8b/fukuoka1.png",
+      "post_main_img": [
+        "https://i.ibb.co/myMzXH4/Kakao-Talk-20230618-170228117.jpg",
+        "https://i.ibb.co/pK1pZcB/Kakao-Talk-20230618-170229254.jpg"
+      ],
+      "statements": [],
+      "likes": 79,
+      "id": 8,
+      "category": 2,
+      "comments": []
+    },
+    {
+      "name": "FUKUOKA_TRIP",
+      "post_content": "후쿠오카 근교 조용한 소도시 히타로~ 흐린 날씨에도 감성가득 ",
+      "post_top_img": "https://i.ibb.co/hMP4V8b/fukuoka1.png",
+      "post_main_img": [
+        "https://i.ibb.co/nRNqTSX/Kakao-Talk-20230618-005608466-19.jpg"
+      ],
+      "statements": [],
+      "likes": 87,
+      "id": 3,
+      "category": 2,
+      "comments": []
+    },
+    {
+      "name": "FUKUOKA_Oishī",
+      "post_content": " 하카타역 도보 6분 거리, 토리덴(とり田)",
+      "post_top_img": "https://i.ibb.co/2nxdtJ0/fukuokao.png",
+      "post_main_img": [
+        "https://i.ibb.co/bXB3dkF/Kakao-Talk-20230618-005608466-02.jpg"
+      ],
+      "statements": [],
+      "likes": 69,
+      "id": 13,
+      "category": 3,
+      "comments": []
+    },
+    {
+      "name": "FUKUOKA_TOWER",
+      "post_content": " 福岡タワーのマスコットキャラクターフータくん ",
+      "post_top_img": "https://i.ibb.co/Pt77Qvb/003-1.png",
+      "post_main_img": [
+        "https://i.ibb.co/3rMt8Mk/Kakao-Talk-20230618-173516748.jpg"
+      ],
+      "statements": [],
+      "likes": 22,
+      "id": 17,
+      "category": 4,
+      "comments": []
+    },
+    {
+      "name": "FUKUOKA_TRIP",
+      "post_content": "후쿠오카의 중심 나카스강~",
+      "post_top_img": "https://i.ibb.co/hMP4V8b/fukuoka1.png",
+      "post_main_img": [
+        "https://i.ibb.co/7k3Kw3C/Kakao-Talk-20230618-015859547-02.jpg"
+      ],
+      "statements": [],
+      "likes": 33,
+      "id": 2,
+      "category": 2,
+      "comments": []
+    },
+    {
+      "name": "FUKUOKA_Oishī",
+      "post_content": "푸딩 맛집 GOAT DAY~ 입안에서 사르르~",
+      "post_top_img": "https://i.ibb.co/2nxdtJ0/fukuokao.png",
+      "post_main_img": [
+        "https://i.ibb.co/jHwzC51/Kakao-Talk-20230618-005608466-05.jpg",
+        "https://i.ibb.co/k1fWTTL/Kakao-Talk-20230618-005608466-04.jpg"
+      ],
+      "statements": [],
+      "likes": 99,
+      "id": 14,
+      "category": 3,
+      "comments": []
+    },
+    {
+      "name": "FUKUOKA_Oishī",
+      "post_content": "후쿠오카 텐진 솔라리아 플라자의 바삭바삭 텐푸라 맛집~  ",
+      "post_top_img": "https://i.ibb.co/2nxdtJ0/fukuokao.png",
+      "post_main_img": [
+        "https://i.ibb.co/WfZRLkM/Kakao-Talk-20230618-005608466-07.jpg",
+        "https://i.ibb.co/gZW421z/Kakao-Talk-20230618-005608466-06.jpg"
+      ],
+      "statements": [],
+      "likes": 104,
+      "id": 15,
+      "category": 3,
+      "comments": []
+    },
+    {
+      "name": "FUKUOKA_TOWER",
+      "post_content": " 夜にもキラれているタワー ",
+      "post_top_img": "https://i.ibb.co/Pt77Qvb/003-1.png",
+      "post_main_img": [
+        "https://i.ibb.co/MVSf2bS/Kakao-Talk-20230618-173509729.jpg",
+        "https://i.ibb.co/y5xWp3N/Kakao-Talk-20230618-173513249.jpg"
+      ],
+      "statements": [],
+      "likes": 17,
+      "id": 16,
+      "category": 4,
+      "comments": []
+    },
+    {
+      "name": "FUKUOKA_TRIP",
+      "post_content": " 후쿠오카의 근교, 쿠로가와 온천 마을의 낮과 밤! ",
+      "post_top_img": "https://i.ibb.co/hMP4V8b/fukuoka1.png",
+      "post_main_img": [
+        "https://i.ibb.co/mCLbdQF/Kakao-Talk-20230618-015859547-04.jpg",
+        "https://i.ibb.co/YcQSttp/Kakao-Talk-20230618-015859547-03.jpg"
+      ],
+      "statements": [],
+      "likes": 169,
+      "id": 15,
+      "category": 2,
+      "comments": []
+    },
+    {
+      "name": "FUKUOKA_TOWER",
+      "post_content": " 夜景、美しい福岡 ",
+      "post_top_img": "https://i.ibb.co/Pt77Qvb/003-1.png",
+      "post_main_img": [
+        "https://i.ibb.co/dL4hZjG/Kakao-Talk-20230618-173511970.jpg"
+      ],
+      "statements": [],
+      "likes": 72,
+      "id": 18,
+      "category": 4,
+      "comments": []
+    },
+    {
+      "name": "FUKUOKA_Oishī",
+      "post_content": " 일본식 솥밥! 가오리 공원 앞 ~가오가오~ ",
+      "post_top_img": "https://i.ibb.co/2nxdtJ0/fukuokao.png",
+      "post_main_img": [
+        "https://i.ibb.co/sm2zqx1/Kakao-Talk-20230618-005608466-11.jpg"
+      ],
+      "statements": [],
+      "likes": 54,
+      "id": 16,
+      "category": 3,
+      "comments": []
+    },
+    {
+      "name": "FUKUOKA_Oishī",
+      "post_content": " 일본 하면 라면! 하카타역 라멘 맛집 나가하마 ",
+      "post_top_img": "https://i.ibb.co/2nxdtJ0/fukuokao.png",
+      "post_main_img": ["https://i.ibb.co/ZN6VzbG/IMG-3346.jpg"],
+      "statements": [],
+      "likes": 34,
+      "id": 17,
+      "category": 3,
+      "comments": []
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "go_school_yju",
+      "img": "https://i.ibb.co/S00HZYG/yj.png",
+      "info": "영진 후쿠오카 현지학기제 정보"
+    },
+    {
+      "id": 2,
+      "name": "FUKUOKA_TRIP",
+      "img": "https://i.ibb.co/hMP4V8b/fukuoka1.png",
+      "info": "후쿠오카 여행 어디까지 가봤나!? "
+    },
+    {
+      "id": 3,
+      "name": "FUKUOKA_Oishī",
+      "img": "https://i.ibb.co/2nxdtJ0/fukuokao.png",
+      "info": "후쿠오카 맛집 총 출동!! "
+    },
+    {
+      "id": 4,
+      "name": "FUKUOKA_TOWER",
+      "img": "https://i.ibb.co/Pt77Qvb/003-1.png",
+      "info": " 福岡タワー "
+    }
+  ]
+}

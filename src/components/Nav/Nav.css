@@ -1,0 +1,162 @@
+.nav-full {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding-right: 12px;
+  padding-left: 12px;
+  padding-top: 8px;
+  padding-bottom: 20px;
+
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+
+  width: 290px;
+  height: 100vh;
+}
+
+.nav-full .nav-header-logo {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  padding: 10px;
+  gap: 10px;
+
+  width: 265px;
+  height: 92px;
+
+  /* border: 1px solid #000000; */
+}
+
+.nav-full .header-logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  padding: 0;
+  gap: 10px;
+
+  width: 245px;
+  height: 72px;
+
+  /* border: 1px solid #000000; */
+}
+
+.nav-full .header-logo .logo-text {
+  color: #262626;
+  font-family: 'Lobster', cursive;
+  font-weight: 100;
+  line-height: 1;
+  margin-left: 10px;
+  font-size: 3em;
+}
+
+.nav-full .nav-list-contain {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+
+  width: 264px;
+  height: 960px;
+
+  /* border: 1px solid #000000; */
+}
+
+.nav-full .nav-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  padding: 0;
+
+  width: 264px;
+  height: 168px;
+
+  /* border: 1px solid #000000; */
+}
+
+.nav-full .item-name {
+  padding-left: 16px;
+}
+
+.nav-full .nav-list > li,
+.nav-full .nav-other {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px;
+  gap: 12px;
+
+  width: 264px;
+  height: 56px;
+  border-radius: 8px;
+  cursor: pointer;
+  /* border: 1px solid #000000; */
+}
+
+.nav-full .nav-list > li:hover,
+.nav-full .nav-other:hover {
+  background-color: #f2f2f2;
+}
+
+.other-menu > .menu-list {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.other-menu > .menu-list > a {
+  width: 250px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.other-menu > .menu-list > a > div {
+  display: flex;
+  color: black;
+  padding: 16px;
+}
+
+.other-menu > .menu-list > a:hover {
+  background-color: #f2f2f2;
+}
+
+.nav-full .item-name {
+  padding-left: 16px;
+}
+
+@media (max-width: 1170px) {
+  .nav-full {
+    /* display: none !important; */
+    width: fit-content;
+  }
+
+  .nav-full .nav-header-logo {
+    display: none !important;
+  }
+
+  .nav-full .nav-list-contain {
+    width: 32px !important;
+  }
+
+  .nav-full .nav-list {
+    width: min-content;
+  }
+
+  .nav-full .nav-list > li,
+  .nav-full .nav-other {
+    width: min-content;
+  }
+
+  .nav-full .nav-list .item-name,
+  .nav-full .nav-other .item-name {
+    display: none !important;
+  }
+}
+
+/* 모바일 nav 생각중 */
+/* @media (max-width: 630px) {
+  .nav-full,
+  .nav-full * {
+  }
+} */

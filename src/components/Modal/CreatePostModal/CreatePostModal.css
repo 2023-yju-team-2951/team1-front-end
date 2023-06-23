@@ -1,0 +1,107 @@
+/* PostModal의 Window */
+.create-post-modal.modal-dialog {
+  width: 1000px;
+  max-width: 960px;
+  min-width: 688px;
+  min-height: 391px;
+  max-height: 898px;
+}
+
+/* 창의 모든 요소 wrapper */
+.create-post-modal .modal-content {
+  border-radius: 0.6rem;
+  overflow: hidden;
+}
+
+/* Header 창 */
+.create-post-modal .modal-header {
+  padding: 0.5rem 0.5rem;
+}
+
+/* Header close 버튼 */
+.create-post-modal .modal-header > .btn-close {
+  margin: 0;
+}
+
+/* Header 공유 버튼 */
+.create-post-modal .modal-header > .btn-share {
+  color: #0d6efd;
+}
+
+/* 메인 */
+.create-post-modal .modal-body {
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 0;
+
+  min-height: 348px;
+  max-height: 80vh;
+}
+
+/* 메인 왼쪽 레이아웃 */
+.create-post-modal .post-upload-img {
+  flex-grow: 2;
+  width: min-content;
+}
+
+.create-post-modal .post-upload-img > .upload-img-label > img,
+.create-post-modal .post-upload-img > .upload-img-label {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 메인 오른쪽 레이아웃 */
+.create-post-modal .post-field {
+  flex-grow: 1;
+  width: min-content;
+}
+
+.create-post-modal .post-field > .user-info {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 1rem 1rem;
+  gap: 10px;
+}
+
+.create-post-modal .post-field > .user-info > .user-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.create-post-modal .post-field > .user-info > .user-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.create-post-modal .post-field > textarea {
+  width: 100%;
+  height: 200px;
+  padding: 0.5rem 1rem;
+  border: none;
+  resize: none;
+  outline: none;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.create-post-modal .post-assist {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 4px;
+
+  width: 100%;
+}
+
+.create-post-modal .emoji-picker > .dropdown > img {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+}
+
+.create-post-modal .post-assist > .content-length {
+  padding: 0.375rem 0.75rem;
+}
